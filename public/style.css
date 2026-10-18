@@ -1,0 +1,80 @@
+:root {
+  --hintergrund: #0b0f1a;
+  --flaeche: #111827;
+  --akzent: #ffe81f;
+  --text: #e8e6d9;
+  --tipp: #1f3b1f;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--hintergrund);
+  color: var(--text);
+  font: 20px/1.5 system-ui, sans-serif;
+}
+
+main { padding: 24px; max-width: 1400px; margin: 0 auto; }
+h1, h2 { color: var(--akzent); margin: 0 0 16px; }
+h2 { margin-top: 32px; }
+
+button {
+  font: inherit; font-weight: bold; cursor: pointer;
+  background: var(--akzent); color: #000; border: none; border-radius: 8px; padding: 10px 20px;
+}
+button.link { background: none; color: var(--text); opacity: .7; font-weight: normal; padding: 0; margin-top: 24px; }
+
+.kopf { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; }
+.punkte { color: var(--akzent); font-weight: bold; font-size: 24px; white-space: nowrap; }
+
+/* Übersicht */
+.raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+.kachel {
+  text-align: left; background: var(--flaeche); color: var(--text); font-weight: normal;
+  border: 2px solid transparent; border-radius: 12px; padding: 16px; min-height: 110px;
+}
+.kachel b { display: block; margin: 4px 0; }
+.kachel small { opacity: .8; }
+.kachel.offen { border-color: var(--akzent); }
+.kachel.gesperrt { opacity: .4; cursor: default; }
+.abzeichen { display: flex; flex-wrap: wrap; gap: 16px; }
+.abzeichen div { background: var(--flaeche); border-radius: 12px; padding: 12px 16px; text-align: center; min-width: 140px; }
+.abzeichen span { display: block; font-size: 48px; }
+
+/* Aufgabe – Layout B */
+#aufgabe { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.bildrahmen {
+  border-radius: 12px; overflow: hidden; height: min(80vh, 640px);
+  background: radial-gradient(1px 1px at 20% 30%, #fff, transparent), radial-gradient(1px 1px at 70% 60%, #fff, transparent),
+              radial-gradient(2px 2px at 40% 80%, #fff, transparent), radial-gradient(1px 1px at 85% 15%, #fff, transparent),
+              var(--flaeche);
+}
+.bildrahmen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.kapiteltitel { color: var(--akzent); font-weight: bold; }
+.fortschritt { font-size: 16px; opacity: .8; }
+.geschichte { font-size: 22px; }
+.frage { font-size: 24px; font-weight: bold; color: var(--akzent); }
+form { display: flex; gap: 12px; }
+#antwort {
+  flex: 1; min-width: 0; font: inherit; font-size: 32px; padding: 8px 12px; border-radius: 8px;
+  border: 3px solid var(--akzent); background: var(--flaeche); color: var(--text);
+}
+.meldung { min-height: 1.5em; font-weight: bold; }
+.meldung.richtig { color: #7cdb6a; }
+.meldung.falsch { color: #ff8a80; }
+.tipp { background: var(--tipp); border-left: 5px solid #7cb342; border-radius: 8px; padding: 12px 16px; }
+
+/* Abzeichen-Overlay */
+.overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, .8); display: flex; align-items: center; justify-content: center; }
+.overlay-box { background: var(--flaeche); border: 3px solid var(--akzent); border-radius: 16px; padding: 32px 48px; text-align: center; }
+.overlay-symbol { font-size: 120px; line-height: 1.2; }
+
+.hinweis { position: fixed; bottom: 16px; right: 16px; background: #5c1f1f; padding: 8px 16px; border-radius: 8px; font-size: 16px; }
+
+@media (max-width: 800px) {
+  #aufgabe { grid-template-columns: 1fr; }
+  .bildrahmen { height: 40vh; }
+}

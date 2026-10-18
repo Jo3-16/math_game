@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mathe-Missionen</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="spiel.js"></script>
+</head>
+<body>
+  <main id="auswahl" hidden>
+    <h1>Welche Welt?</h1>
+    <div id="welten" class="raster"></div>
+  </main>
+
+  <main id="uebersicht" hidden>
+    <header class="kopf">
+      <h1 id="weltname"></h1>
+      <div class="punkte">⭐ <span id="gesamt-uebersicht">0</span> Punkte</div>
+    </header>
+    <div id="kapitel" class="raster"></div>
+    <h2>Abzeichen</h2>
+    <div id="abzeichen" class="abzeichen"></div>
+  </main>
+
+  <main id="aufgabe" hidden>
+    <div class="bildrahmen"><img id="bild" alt=""></div>
+    <section class="text">
+      <header class="kopf">
+        <div>
+          <div id="kapiteltitel" class="kapiteltitel"></div>
+          <div id="fortschritt" class="fortschritt"></div>
+        </div>
+        <div class="punkte">⭐ <span id="gesamt-aufgabe">0</span></div>
+      </header>
+      <p id="geschichte" class="geschichte"></p>
+      <p id="frage" class="frage"></p>
+      <form id="antwort-form" autocomplete="off">
+        <input id="antwort" inputmode="numeric" aria-label="Deine Antwort" placeholder="?">
+        <button>Los!</button>
+      </form>
+      <p id="meldung" class="meldung" aria-live="polite"></p>
+      <p id="tipp" class="tipp" hidden></p>
+      <button id="zurueck" class="link">← Zurück zur Übersicht</button>
+    </section>
+  </main>
+
+  <div id="overlay" class="overlay" hidden>
+    <div class="overlay-box">
+      <div id="overlay-symbol" class="overlay-symbol"></div>
+      <h2 id="overlay-titel"></h2>
+      <p id="overlay-text"></p>
+      <button id="overlay-weiter">Weiter</button>
+    </div>
+  </div>
+
+  <p id="hinweis" class="hinweis" hidden></p>
+</body>
+</html>
