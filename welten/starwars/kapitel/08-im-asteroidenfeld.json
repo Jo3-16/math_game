@@ -1,0 +1,46 @@
+{
+  "titel": "Im Asteroidenfeld",
+  "abzeichen": { "name": "Asteroiden-Ass", "symbol": "☄️" },
+  "aufgaben": [
+    {
+      "bild": ["asteroid"],
+      "geschichte": "Han fliegt den Falcon mitten in ein Asteroidenfeld! C-3PO zählt ängstlich mit: In jeder Minute sausen 35 Asteroiden vorbei.",
+      "frage": "Wie viele Asteroiden sausen in 8 Minuten vorbei?",
+      "rechnung": "35 * 8",
+      "loesung": 280,
+      "tipp": "35 mal 8 – erst 30 mal 8, dann 5 mal 8, und beides zusammenzählen du musst."
+    },
+    {
+      "bild": ["tie bomber"],
+      "geschichte": "Vader schickt TIE-Bomber hinterher: 3 Staffeln mit je 8 Bombern. Ein Viertel davon kracht gleich gegen Asteroiden.",
+      "frage": "Wie viele TIE-Bomber krachen gegen Asteroiden?",
+      "rechnung": "3 * 8 / 4",
+      "loesung": 6,
+      "tipp": "Zuerst alle Bomber zählen: 3 mal 8. Ein Viertel heißt: durch 4 teilen."
+    },
+    {
+      "bild": ["tie bomber"],
+      "geschichte": "Die übrigen TIE-Bomber suchen weiter nach dem Falcon.",
+      "frage": "Wie viele TIE-Bomber suchen noch weiter?",
+      "rechnung": "3 * 8 - 6",
+      "loesung": 18,
+      "tipp": "Von allen Bombern die abgestürzten abziehen du musst. Beide Zahlen du schon kennst."
+    },
+    {
+      "bild": ["krater"],
+      "geschichte": "Han versteckt den Falcon in einem riesigen Krater auf einem Asteroiden. Der Krater ist 480 Meter tief. Der Falcon sinkt in jeder Minute 60 Meter tiefer.",
+      "frage": "Wie viele Minuten dauert es bis zum Boden des Kraters?",
+      "rechnung": "480 / 60",
+      "loesung": 8,
+      "tipp": "Wie oft passt 60 in 480? Denk an 48 durch 6, hmm."
+    },
+    {
+      "bild": ["sternzerstörer", "star destroyer"],
+      "geschichte": "Draußen suchen 4 Sternzerstörer. Jeder schickt 45 Suchsonden ins Asteroidenfeld. 90 Sonden werden von Asteroiden zerstört.",
+      "frage": "Wie viele Sonden suchen noch nach dem Falcon?",
+      "rechnung": "4 * 45 - 90",
+      "loesung": 90,
+      "tipp": "Zuerst alle Sonden zählen: 4 mal 45 – verdoppeln und nochmal verdoppeln hilft. Dann die zerstörten abziehen."
+    }
+  ]
+}

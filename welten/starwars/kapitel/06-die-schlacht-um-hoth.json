@@ -1,0 +1,46 @@
+{
+  "titel": "Die Schlacht um Hoth",
+  "abzeichen": { "name": "Held von Hoth", "symbol": "🛡️" },
+  "aufgaben": [
+    {
+      "bild": ["x-wing"],
+      "geschichte": "Riesige AT-AT-Kampfläufer stapfen durch den Schnee auf die Echo-Basis zu! Die Rebellen starten zur Verteidigung: 8 Gruppen mit je 3 X-Wings.",
+      "frage": "Wie viele X-Wings starten?",
+      "rechnung": "8 * 3",
+      "loesung": 24,
+      "tipp": "8 Gruppen, in jeder 3 X-Wings. Die Dreierreihe dir hilft."
+    },
+    {
+      "bild": ["tie bomber"],
+      "geschichte": "Jetzt greifen TIE-Bomber den Schutzschild-Generator an! 7 TIE-Bomber werfen je 6 Bomben ab.",
+      "frage": "Wie viele Bomben werfen die TIE-Bomber ab?",
+      "rechnung": "7 * 6",
+      "loesung": 42,
+      "tipp": "7 Bomber mit je 6 Bomben. Das Einmaleins mit 6 oder 7 du brauchst."
+    },
+    {
+      "bild": ["tie bomber"],
+      "geschichte": "Die X-Wings sind schnell! Sie schießen die Hälfte der Bomben ab, bevor sie den Boden erreichen.",
+      "frage": "Wie viele Bomben treffen den Schutzschild?",
+      "rechnung": "42 / 2",
+      "loesung": 21,
+      "tipp": "Die Hälfte wird abgeschossen – die andere Hälfte trifft. Halbieren du musst."
+    },
+    {
+      "bild": ["sternzerstörer", "star destroyer"],
+      "geschichte": "Vom Sternzerstörer aus beobachtet Darth Vader den Schutzschild. Er hatte 400 Energiepunkte. Jeder Bombentreffer hat 10 Punkte gekostet.",
+      "frage": "Wie viele Energiepunkte hat der Schild noch?",
+      "rechnung": "400 - 21 * 10",
+      "loesung": 190,
+      "tipp": "Zuerst ausrechnen, wie viel alle Treffer zusammen kosten. Mal 10 – eine Null dranhängen du musst. Dann von 400 abziehen."
+    },
+    {
+      "bild": ["x-wing"],
+      "geschichte": "Der Schild hält! Jetzt schlagen die X-Wings zurück. Jeder der 24 X-Wings feuert 4 Salven ab. Jede dritte Salve trifft einen AT-AT.",
+      "frage": "Wie viele Salven treffen?",
+      "rechnung": "24 * 4 / 3",
+      "loesung": 32,
+      "tipp": "Zuerst alle Salven zählen: 24 mal 4. Dann durch 3 teilen du musst, hmm."
+    }
+  ]
+}

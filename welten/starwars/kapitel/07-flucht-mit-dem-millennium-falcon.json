@@ -1,0 +1,46 @@
+{
+  "titel": "Flucht mit dem Millennium Falcon",
+  "abzeichen": { "name": "Hyperraum-Held", "symbol": "⚡" },
+  "aufgaben": [
+    {
+      "bild": ["millennium"],
+      "geschichte": "Die Echo-Basis muss geräumt werden! Han, Leia, Chewbacca und C-3PO rennen zum Millennium Falcon. Der Weg zum Hangar ist 360 Meter lang und führt durch 4 gleich lange Eisgänge.",
+      "frage": "Wie lang ist ein Eisgang?",
+      "rechnung": "360 / 4",
+      "loesung": 90,
+      "tipp": "360 durch 4 teilen du musst. Weißt du, was 36 durch 4 ist? Dann eine Null dranhängen."
+    },
+    {
+      "bild": ["verfolgung"],
+      "geschichte": "Der Falcon hebt ab! Doch hinter ihm tauchen 3 Sternzerstörer auf. Jeder schickt 6 TIE-Fighter hinterher.",
+      "frage": "Wie viele TIE-Fighter verfolgen den Falcon?",
+      "rechnung": "3 * 6",
+      "loesung": 18,
+      "tipp": "3 Sternzerstörer, jeder schickt 6. Mal rechnen du musst."
+    },
+    {
+      "bild": ["tie interceptor"],
+      "geschichte": "Han schießt 7 TIE-Fighter ab, Leia noch einmal 5. Doch dann tauchen zusätzlich 4 schnelle TIE-Interceptoren auf!",
+      "frage": "Wie viele imperiale Jäger verfolgen den Falcon jetzt?",
+      "rechnung": "18 - 7 - 5 + 4",
+      "loesung": 10,
+      "tipp": "Von allen TIE-Fightern die abgeschossenen abziehen – Hans und Leias. Dann die Interceptoren dazuzählen du musst."
+    },
+    {
+      "bild": ["hyperraum"],
+      "geschichte": "„Ab in den Hyperraum!“, ruft Han und zieht den Hebel. Nichts passiert! Der Hyperantrieb braucht 250 Energieeinheiten, hat aber nur 130.",
+      "frage": "Wie viele Energieeinheiten fehlen noch?",
+      "rechnung": "250 - 130",
+      "loesung": 120,
+      "tipp": "Von 250 die 130 abziehen du musst. Erst die Hunderter, dann die Zehner."
+    },
+    {
+      "bild": ["millennium"],
+      "geschichte": "Chewbacca schließt eine Notbatterie an. Sie lädt in jeder Minute 20 Energieeinheiten nach.",
+      "frage": "Wie viele Minuten dauert es, bis die fehlende Energie geladen ist?",
+      "rechnung": "120 / 20",
+      "loesung": 6,
+      "tipp": "Wie oft die 20 in die fehlende Energie passt, du herausfinden musst. Ohne die Nullen es leichter geht, hmm."
+    }
+  ]
+}

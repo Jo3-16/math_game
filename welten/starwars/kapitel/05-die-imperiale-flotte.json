@@ -1,0 +1,46 @@
+{
+  "titel": "Die imperiale Flotte kommt",
+  "abzeichen": { "name": "Flotten-Späher", "symbol": "🔭" },
+  "aufgaben": [
+    {
+      "bild": ["sternzerstörer", "star destroyer"],
+      "geschichte": "Eine Suchdrohne hat die Rebellen entdeckt! Darth Vaders Flotte springt aus dem Hyperraum: 5 Sternzerstörer. In jedem warten 4 Staffeln TIE-Fighter auf den Start.",
+      "frage": "Wie viele Staffeln TIE-Fighter sind das?",
+      "rechnung": "5 * 4",
+      "loesung": 20,
+      "tipp": "5 Sternzerstörer mit je 4 Staffeln. Mal rechnen du musst."
+    },
+    {
+      "bild": ["tie fighter"],
+      "geschichte": "Die Rebellen-Späher zählen genau: Jede Staffel besteht aus 12 TIE-Fightern.",
+      "frage": "Wie viele TIE-Fighter hat die Flotte insgesamt?",
+      "rechnung": "20 * 12",
+      "loesung": 240,
+      "tipp": "20 mal 12 – erst 2 mal 12 rechnen, dann mal 10 du nimmst."
+    },
+    {
+      "bild": ["tie bomber"],
+      "geschichte": "Doch das ist noch nicht alles! Jeder der 5 Sternzerstörer hat außerdem 9 TIE-Bomber an Bord.",
+      "frage": "Wie viele TIE-Bomber sind es?",
+      "rechnung": "5 * 9",
+      "loesung": 45,
+      "tipp": "5 Sternzerstörer, in jedem 9 Bomber. Die Fünferreihe dir hilft."
+    },
+    {
+      "bild": ["tie fighter", "tie bomber"],
+      "geschichte": "General Rieekan will wissen, wie groß die Gefahr ist. Er fragt nach allen imperialen Jägern zusammen.",
+      "frage": "Wie viele TIE-Fighter und TIE-Bomber sind es zusammen?",
+      "rechnung": "240 + 45",
+      "loesung": 285,
+      "tipp": "Die TIE-Fighter und die TIE-Bomber zusammenzählen du musst. Beide Zahlen du schon kennst."
+    },
+    {
+      "bild": ["x-wing"],
+      "geschichte": "Die Rebellen haben nur 57 Jäger, um sich zu verteidigen. Das wird ein harter Kampf!",
+      "frage": "Wie viele Jäger hat das Imperium mehr als die Rebellen?",
+      "rechnung": "285 - 57",
+      "loesung": 228,
+      "tipp": "Von allen imperialen Jägern die 57 der Rebellen abziehen du musst. Erst 50 weg, dann noch 7."
+    }
+  ]
+}
