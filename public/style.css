@@ -45,14 +45,16 @@ button.link { background: none; color: var(--text); opacity: .7; font-weight: no
 .abzeichen span { display: block; font-size: 48px; }
 
 /* Aufgabe – Layout B */
-#aufgabe { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+/* Bild 2,5-mal so breit wie die Textspalte, nutzt die ganze Bildschirmbreite */
+#aufgabe { display: grid; grid-template-columns: minmax(0, 2.5fr) minmax(380px, 1fr); gap: 32px; align-items: start; max-width: none; }
 .bildrahmen {
-  border-radius: 12px; overflow: hidden; height: min(80vh, 640px);
+  border-radius: 12px; overflow: hidden;
   background: radial-gradient(1px 1px at 20% 30%, #fff, transparent), radial-gradient(1px 1px at 70% 60%, #fff, transparent),
               radial-gradient(2px 2px at 40% 80%, #fff, transparent), radial-gradient(1px 1px at 85% 15%, #fff, transparent),
               var(--flaeche);
 }
-.bildrahmen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bildrahmen:has(> img[hidden]) { height: 60vh; } /* Sternenhimmel, wenn kein Bild passt */
+.bildrahmen img { width: 100%; height: auto; max-height: calc(100vh - 48px); object-fit: cover; display: block; }
 .kapiteltitel { color: var(--akzent); font-weight: bold; }
 .fortschritt { font-size: 16px; opacity: .8; }
 .geschichte { font-size: 22px; }
