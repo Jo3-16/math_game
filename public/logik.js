@@ -68,3 +68,34 @@ export function istRichtig(eingabe, loesung) {
 export function punkteFuer(fehlversuche) {
   return fehlversuche < TIPP_AB ? 15 : 10;
 }
+
+// Spielstand: { kapitel: { [id]: { geloest, punkte, fertig } }, abzeichen: [id] }
+export function leererStand() {
+  return { kapitel: {}, abzeichen: [] };
+}
+
+export function kapitelStatus(stand, kapitelIds) {
+  let offenVergeben = false;
+  return kapitelIds.map(id => {
+    if (stand.kapitel[id]?.fertig) return 'fertig';
+    if (offenVergeben) return 'gesperrt';
+    offenVergeben = true;
+    return 'offen';
+  });
+}
+
+export function aufgabeGeloest(stand, kapitelId, anzahlAufgaben, fehlversuche) {
+  const neu = structuredClone(stand);
+  const k = neu.kapitel[kapitelId] ??= { geloest: 0, punkte: 0, fertig: false };
+  k.geloest += 1;
+  k.punkte += punkteFuer(fehlversuche);
+  if (k.geloest >= anzahlAufgaben) {
+    k.fertig = true;
+    if (!neu.abzeichen.includes(kapitelId)) neu.abzeichen.push(kapitelId);
+  }
+  return neu;
+}
+
+export function gesamtPunkte(stand) {
+  return Object.values(stand.kapitel).reduce((summe, k) => summe + k.punkte, 0);
+}

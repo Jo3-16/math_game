@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer } from '../public/logik.js';
+import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte } from '../public/logik.js';
 
 test('normalisiere', () => {
   assert.equal(normalisiere('X-wing_SWB.webp'), 'x wing swb.webp');
@@ -41,4 +41,22 @@ test('punkteFuer', () => {
   assert.equal(punkteFuer(0), 15);
   assert.equal(punkteFuer(1), 15);
   assert.equal(punkteFuer(2), 10);
+});
+
+test('kapitelStatus', () => {
+  const s = { kapitel: { a: { geloest: 5, punkte: 75, fertig: true }, b: { geloest: 2, punkte: 25, fertig: false } }, abzeichen: ['a'] };
+  assert.deepEqual(kapitelStatus(s, ['a', 'b', 'c']), ['fertig', 'offen', 'gesperrt']);
+  assert.deepEqual(kapitelStatus(leererStand(), ['a', 'b']), ['offen', 'gesperrt']);
+});
+
+test('aufgabeGeloest bis Kapitelende', () => {
+  let s = leererStand();
+  s = aufgabeGeloest(s, 'a', 2, 0);
+  assert.deepEqual(s.kapitel.a, { geloest: 1, punkte: 15, fertig: false });
+  const vorher = s;
+  s = aufgabeGeloest(s, 'a', 2, 3);
+  assert.deepEqual(s.kapitel.a, { geloest: 2, punkte: 25, fertig: true });
+  assert.deepEqual(s.abzeichen, ['a']);
+  assert.equal(vorher.kapitel.a.geloest, 1); // nicht mutiert
+  assert.equal(gesamtPunkte(s), 25);
 });
