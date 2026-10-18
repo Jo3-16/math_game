@@ -8,7 +8,7 @@
       "frage": "Wie viele Liter Kühlmittel braucht der X-Wing insgesamt?",
       "rechnung": "4 * 25",
       "loesung": 100,
-      "tipp": "4 mal 25 rechnen du musst. Wie viele 25er in 100 passen, weißt du vielleicht schon."
+      "tipp": "Zweimal 25 sind 50. Und dann noch einmal verdoppeln du musst."
     },
     {
       "bild": ["trench run"],
@@ -36,7 +36,7 @@
     },
     {
       "bild": ["trench run"],
-      "geschichte": "Luke weicht geschickt aus! Von Vaders Schüssen trifft nur jeder fünfte Lukes Schutzschild.",
+      "geschichte": "Luke weicht geschickt aus! Von allen Schüssen der TIE-Fighter trifft nur jeder fünfte Lukes Schutzschild.",
       "frage": "Wie viele Schüsse treffen den Schutzschild?",
       "rechnung": "45 / 5",
       "loesung": 9,

@@ -12,11 +12,11 @@
     },
     {
       "bild": ["black one"],
-      "geschichte": "Poe trifft seine Staffel. Mit seiner Black One fliegen jetzt 8 X-Wings zusammen. Jeder X-Wing hat 4 Laserkanonen.",
+      "geschichte": "Poe trifft seine Staffel. Zusammen mit seiner Black One sind es jetzt 8 X-Wings. Jeder X-Wing hat 4 Laserkanonen.",
       "frage": "Wie viele Laserkanonen hat die ganze Staffel?",
       "rechnung": "8 * 4",
       "loesung": 32,
-      "tipp": "8 X-Wings mit je 4 Kanonen. Das Verdoppeln dir hilft: 8, 16, ..."
+      "tipp": "8 X-Wings mit je 4 Kanonen. 4 mal 8 ist wie 8 verdoppeln und dann nochmal verdoppeln, hmm."
     },
     {
       "bild": ["tie interceptor"],

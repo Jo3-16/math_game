@@ -69,3 +69,7 @@ test('spielstand', async () => {
   fs.writeFileSync(path.join(wurzel, 'welten/testwelt/spielstand.json'), '{kaputt');
   assert.equal(await (await fetch(sUrl)).json(), null);
 });
+
+test('belegter port wird gemeldet statt abzustürzen', async () => {
+  await assert.rejects(starte({ wurzel, port: server.address().port }), { code: 'EADDRINUSE' });
+});

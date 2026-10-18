@@ -95,12 +95,20 @@ export function starte({ wurzel = PROJEKT, port = PORT } = {}) {
       res.writeHead(404).end(); // fehlende Datei, unbekannte Welt, Ordner statt Datei …
     }
   });
-  return new Promise(ok => server.listen(port, '127.0.0.1', () => ok(server)));
+  return new Promise((ok, fehler) => {
+    server.once('error', fehler);
+    server.listen(port, '127.0.0.1', () => ok(server));
+  });
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const server = await starte();
-  const url = `http://localhost:${server.address().port}`;
-  console.log(`Mathe-Missionen läuft auf ${url} – Fenster offen lassen, Strg+C beendet.`);
+  const url = `http://localhost:${PORT}`;
+  try {
+    await starte();
+    console.log(`Mathe-Missionen läuft auf ${url} – Fenster offen lassen, Strg+C beendet.`);
+  } catch (e) {
+    if (e.code !== 'EADDRINUSE') throw e;
+    console.log(`Mathe-Missionen läuft schon auf ${url} – dieses Fenster kann zu.`);
+  }
   if (process.argv.includes('--open')) exec(`start "" ${url}`);
 }
