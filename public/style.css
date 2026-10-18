@@ -65,7 +65,12 @@ form { display: flex; gap: 12px; }
 .meldung { min-height: 1.5em; font-weight: bold; }
 .meldung.richtig { color: #7cdb6a; }
 .meldung.falsch { color: #ff8a80; }
-.tipp { background: var(--tipp); border-left: 5px solid #7cb342; border-radius: 8px; padding: 12px 16px; }
+.tipp {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--tipp); border-left: 5px solid #7cb342; border-radius: 8px; padding: 12px 16px;
+}
+.tipp p { margin: 0; }
+.tipp img { width: 120px; height: 120px; object-fit: cover; border-radius: 50%; flex-shrink: 0; border: 3px solid #7cb342; }
 
 /* Abzeichen-Overlay */
 .overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, .8); display: flex; align-items: center; justify-content: center; }

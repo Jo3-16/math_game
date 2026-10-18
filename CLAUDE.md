@@ -37,3 +37,5 @@ Wenn der Vater z. B. „Mach 5 neue Kapitel über Hoth“ sagt:
 ## Neue Welt
 
 Ordner `welten/<id>/` mit `welt.json` (`name`, `helfer`, `farben`: hintergrund, flaeche, akzent, text, tipp), `bilder/` und `kapitel/`.
+
+Das Bild des Helfers (Tipp-Box) ist ein Bild in `bilder/`, dessen Pfad den Helfernamen enthält (z. B. `Yoda.png`). Ohne ein solches Bild erscheint 🟢.

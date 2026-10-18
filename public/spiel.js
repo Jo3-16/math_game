@@ -100,7 +100,10 @@ function zeigeAufgabe() {
   $('meldung').textContent = '';
   $('meldung').className = 'meldung';
   $('tipp').hidden = true;
-  $('tipp').textContent = `🟢 ${welt.helfer}: „${aufgabe.tipp}“`;
+  const helferUrl = bildUrl([welt.helfer]);
+  $('helfer-bild').hidden = !helferUrl;
+  if (helferUrl) $('helfer-bild').src = helferUrl;
+  $('tipp-text').textContent = `${helferUrl ? '' : '🟢 '}${welt.helfer}: „${aufgabe.tipp}“`;
   $('antwort').value = '';
   zeige('aufgabe');
   $('antwort').focus();
