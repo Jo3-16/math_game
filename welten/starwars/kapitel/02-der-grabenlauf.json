@@ -1,0 +1,46 @@
+{
+  "titel": "Der Grabenlauf",
+  "abzeichen": { "name": "Grabenläufer", "symbol": "🎯" },
+  "aufgaben": [
+    {
+      "bild": ["luke"],
+      "geschichte": "Luke Skywalker steigt in seinen X-Wing. R2-D2 macht den Startcheck: Der X-Wing hat 4 Triebwerke, und jedes braucht 25 Liter Kühlmittel.",
+      "frage": "Wie viele Liter Kühlmittel braucht der X-Wing insgesamt?",
+      "rechnung": "4 * 25",
+      "loesung": 100,
+      "tipp": "4 mal 25 rechnen du musst. Wie viele 25er in 100 passen, weißt du vielleicht schon."
+    },
+    {
+      "bild": ["trench run"],
+      "geschichte": "Luke fliegt in den Graben des Todessterns. Bis zum Abluftschacht sind es 300 Kilometer. 125 Kilometer hat er schon geschafft.",
+      "frage": "Wie viele Kilometer muss Luke noch fliegen?",
+      "rechnung": "300 - 125",
+      "loesung": 175,
+      "tipp": "Von 300 die 125 wegnehmen du musst. Erst 100 weg, dann noch 25, hmm."
+    },
+    {
+      "bild": ["formation"],
+      "geschichte": "Plötzlich flackert ein Bildschirm! R2-D2 muss 7 Kabel reparieren. An jedem Kabel sitzen 6 Stecker, die er alle prüfen muss.",
+      "frage": "Wie viele Stecker prüft R2-D2?",
+      "rechnung": "7 * 6",
+      "loesung": 42,
+      "tipp": "7 Kabel, an jedem 6 Stecker. Das Einmaleins mit 6 oder mit 7 dir hilft."
+    },
+    {
+      "bild": ["tie fighter"],
+      "geschichte": "Darth Vader jagt Luke mit 3 TIE-Fightern: seinem eigenen und 2 Begleitern. Jeder TIE-Fighter feuert 3 Salven ab, und jede Salve hat 5 Schüsse.",
+      "frage": "Wie viele Schüsse feuern die TIE-Fighter insgesamt ab?",
+      "rechnung": "3 * 3 * 5",
+      "loesung": 45,
+      "tipp": "Zuerst die Schüsse eines TIE-Fighters zählen: 3 Salven mal 5. Dann mal 3 Jäger du nimmst."
+    },
+    {
+      "bild": ["trench run"],
+      "geschichte": "Luke weicht geschickt aus! Von Vaders Schüssen trifft nur jeder fünfte Lukes Schutzschild.",
+      "frage": "Wie viele Schüsse treffen den Schutzschild?",
+      "rechnung": "45 / 5",
+      "loesung": 9,
+      "tipp": "Jeder fünfte trifft – also alle Schüsse durch 5 teilen du musst, hmm."
+    }
+  ]
+}

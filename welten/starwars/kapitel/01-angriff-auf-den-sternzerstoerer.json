@@ -1,0 +1,46 @@
+{
+  "titel": "Angriff auf den Sternzerstörer",
+  "abzeichen": { "name": "Sternzerstörer-Jäger", "symbol": "🏅" },
+  "aufgaben": [
+    {
+      "bild": ["x-wing"],
+      "geschichte": "Alarm auf Yavin 4! Die Rot-Staffel startet mit 12 X-Wings. Im Weltall teilen sie sich in 4 gleich große Gruppen auf, um den Feind von allen Seiten anzugreifen.",
+      "frage": "Wie viele X-Wings fliegen in jeder Gruppe?",
+      "rechnung": "12 / 4",
+      "loesung": 3,
+      "tipp": "Auf 4 Gruppen verteilen du musst. Welche Zahl mal 4 ergibt 12, hmm?"
+    },
+    {
+      "bild": ["sternzerstörer", "star destroyer"],
+      "geschichte": "Eine der Gruppen entdeckt einen riesigen Sternzerstörer! Jeder X-Wing der Gruppe feuert 8 Protonentorpedos ab. Die Hälfte davon trifft.",
+      "frage": "Wie viele Treffer sind das?",
+      "rechnung": "3 * 8 / 2",
+      "loesung": 12,
+      "tipp": "Wie viele X-Wings in einer Gruppe sind, weißt du schon. Erst alle Torpedos zählen, dann halbieren du musst."
+    },
+    {
+      "bild": ["tie fighter"],
+      "geschichte": "Der Sternzerstörer schlägt zurück! Aus 6 Hangars starten TIE-Fighter, aus jedem Hangar 9 Stück.",
+      "frage": "Wie viele TIE-Fighter starten insgesamt?",
+      "rechnung": "6 * 9",
+      "loesung": 54,
+      "tipp": "6 Hangars, in jedem 9. Das Einmaleins mit 9 dir hilft, junger Padawan."
+    },
+    {
+      "bild": ["tie fighter"],
+      "geschichte": "Die Rot-Staffel kämpft tapfer und schießt 38 der TIE-Fighter ab. Der Rest dreht ab und flieht.",
+      "frage": "Wie viele TIE-Fighter fliehen?",
+      "rechnung": "54 - 38",
+      "loesung": 16,
+      "tipp": "Von allen TIE-Fightern die abgeschossenen wegnehmen du musst. Erst die Zehner, dann die Einer."
+    },
+    {
+      "bild": ["sternzerstörer", "star destroyer"],
+      "geschichte": "Der Schutzschild des Sternzerstörers hatte 240 Energiepunkte. Jeder der 12 Torpedo-Treffer hat 15 Punkte abgezogen.",
+      "frage": "Wie viele Energiepunkte hat der Schild jetzt noch?",
+      "rechnung": "240 - 12 * 15",
+      "loesung": 60,
+      "tipp": "Zuerst ausrechnen, wie viel alle Treffer zusammen abziehen: 12 mal 15. Danach von 240 abziehen, hmm."
+    }
+  ]
+}
