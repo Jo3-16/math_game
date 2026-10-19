@@ -1,0 +1,47 @@
+{
+  "titel": "Die Schlacht von Endor",
+  "vorschau": "Kapitelbilder/12.jpg",
+  "abzeichen": { "name": "Retter der Galaxis", "symbol": "🌟" },
+  "aufgaben": [
+    {
+      "bild": ["mon calamari"],
+      "geschichte": "Der Schild ist aus! Die Rebellenflotte springt aus dem Hyperraum. Admiral Ackbar führt 6 riesige Mon-Calamari-Kreuzer an. Jeder Kreuzer trägt 24 Jäger.",
+      "frage": "Wie viele Jäger tragen die Kreuzer zusammen?",
+      "rechnung": "6 * 24",
+      "loesung": 144,
+      "tipp": "6 mal 24 – erst 6 mal 20, dann 6 mal 4, und beides zusammenzählen du musst."
+    },
+    {
+      "bild": ["a-wing"],
+      "geschichte": "Ein Drittel aller Jäger sind die superschnellen A-Wings. Sie fliegen voraus!",
+      "frage": "Wie viele A-Wings sind es?",
+      "rechnung": "144 / 3",
+      "loesung": 48,
+      "tipp": "Ein Drittel heißt: durch 3 teilen. Erst 120 durch 3, dann den Rest, hmm."
+    },
+    {
+      "bild": ["executor"],
+      "geschichte": "Darth Vaders riesiges Flaggschiff, der Executor, hat 250 Geschütztürme. Die A-Wings zerstören 85 davon, die X-Wings noch einmal 75.",
+      "frage": "Wie viele Geschütztürme feuern noch?",
+      "rechnung": "250 - 85 - 75",
+      "loesung": 90,
+      "tipp": "Von 250 zuerst die 85 abziehen und dann die 75 – oder erst 85 und 75 zusammenzählen du kannst."
+    },
+    {
+      "bild": ["imperator palpatine"],
+      "geschichte": "Auf dem Todesstern lacht Imperator Palpatine. Er glaubt, die Rebellen haben keine Chance: Er hat 4 Flotten mit je 25 Sternzerstörern.",
+      "frage": "Wie viele Sternzerstörer hat der Imperator?",
+      "rechnung": "4 * 25",
+      "loesung": 100,
+      "tipp": "4 mal 25 – verdoppeln und nochmal verdoppeln du kannst, hmm."
+    },
+    {
+      "bild": ["todesstern2"],
+      "geschichte": "Lando fliegt den Millennium Falcon mitten in den Todesstern hinein! Bis zum Reaktor sind es 480 Meter. Der Falcon fliegt jede Sekunde 40 Meter.",
+      "frage": "Wie viele Sekunden braucht Lando bis zum Reaktor?",
+      "rechnung": "480 / 40",
+      "loesung": 12,
+      "tipp": "Wie oft die 40 in 480 passt, du herausfinden musst. 10 mal 40 sind 400 – und wie oft passt die 40 noch in den Rest?"
+    }
+  ]
+}

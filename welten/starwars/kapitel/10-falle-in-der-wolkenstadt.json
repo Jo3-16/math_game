@@ -1,0 +1,47 @@
+{
+  "titel": "Falle in der Wolkenstadt",
+  "vorschau": "Kapitelbilder/10.png",
+  "abzeichen": { "name": "Wolkenstadt-Entkommer", "symbol": "☁️" },
+  "aufgaben": [
+    {
+      "bild": ["wolkenstadt"],
+      "geschichte": "Der Millennium Falcon erreicht die Wolkenstadt, die hoch über dem Gasplaneten Bespin schwebt. Die Stadt hat 8 Türme, und in jedem Turm wohnen 50 Leute.",
+      "frage": "Wie viele Leute wohnen in den Türmen?",
+      "rechnung": "8 * 50",
+      "loesung": 400,
+      "tipp": "8 mal 50 – rechne 8 mal 5 und häng eine Null dran du musst."
+    },
+    {
+      "bild": ["lando"],
+      "geschichte": "Han Solos alter Freund Lando Calrissian ist hier der Chef. Han schuldet ihm noch 250 Credits. Heute zahlt er 180 davon zurück.",
+      "frage": "Wie viele Credits schuldet Han Lando jetzt noch?",
+      "rechnung": "250 - 180",
+      "loesung": 70,
+      "tipp": "Von 250 die 180 abziehen du musst. Von 180 bis 200 ist es leicht – und dann bis 250, hmm."
+    },
+    {
+      "bild": ["boba"],
+      "geschichte": "Doch es ist eine Falle! Darth Vader und der Kopfgeldjäger Boba Fett warten schon. Vader hat 6 Trupps Sturmtruppen mitgebracht, mit je 8 Soldaten.",
+      "frage": "Wie viele Sturmtruppen sind es?",
+      "rechnung": "6 * 8",
+      "loesung": 48,
+      "tipp": "6 Trupps mit je 8 Soldaten. Das Einmaleins mit 8 dir hilft."
+    },
+    {
+      "bild": ["carbonit"],
+      "geschichte": "Han soll in Carbonit eingefroren werden! Die Maschine braucht dafür 300 Sekunden. 4 Minuten sind schon vergangen – und eine Minute hat 60 Sekunden.",
+      "frage": "Wie viele Sekunden dauert es noch?",
+      "rechnung": "300 - 4 * 60",
+      "loesung": 60,
+      "tipp": "Zuerst die 4 Minuten in Sekunden umrechnen: 4 mal 60. Dann von 300 abziehen du musst."
+    },
+    {
+      "bild": ["landeplattform"],
+      "geschichte": "Lando hilft Leia, Chewbacca und C-3PO bei der Flucht! Bis zum Falcon rennen sie durch 5 Gänge, jeder 45 Meter lang, und dann noch 30 Meter über die Landeplattform.",
+      "frage": "Wie viele Meter rennen sie bis zum Falcon?",
+      "rechnung": "5 * 45 + 30",
+      "loesung": 255,
+      "tipp": "Zuerst die Gänge: 5 mal 45. Dann die Landeplattform dazuzählen du musst."
+    }
+  ]
+}

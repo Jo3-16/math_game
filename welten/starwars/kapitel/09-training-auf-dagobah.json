@@ -1,0 +1,47 @@
+{
+  "titel": "Training auf Dagobah",
+  "vorschau": "Kapitelbilder/09.png",
+  "abzeichen": { "name": "Jedi-Schüler", "symbol": "🧘" },
+  "aufgaben": [
+    {
+      "bild": ["sumpf"],
+      "geschichte": "Luke landet auf dem Sumpfplaneten Dagobah – mitten im Wasser! Sein X-Wing steckt schon 120 Zentimeter tief im Schlamm. Jede Stunde sinkt er 15 Zentimeter tiefer.",
+      "frage": "Wie tief steckt der X-Wing nach 4 Stunden?",
+      "rechnung": "120 + 4 * 15",
+      "loesung": 180,
+      "tipp": "Zuerst ausrechnen, wie tief er in 4 Stunden noch sinkt: 4 mal 15. Dann zu den 120 dazuzählen du musst."
+    },
+    {
+      "bild": ["yoda"],
+      "geschichte": "Ein kleines grünes Wesen taucht auf – es ist Yoda! In seiner Hütte kocht er Wurzelsuppe. Für jede Schüssel braucht er 7 Wurzeln, und er kocht 6 Schüsseln.",
+      "frage": "Wie viele Wurzeln braucht Yoda?",
+      "rechnung": "6 * 7",
+      "loesung": 42,
+      "tipp": "6 Schüsseln, in jede 7 Wurzeln. Das Einmaleins mit 7 dir hilft, hmm."
+    },
+    {
+      "bild": ["rücken"],
+      "geschichte": "Das Training beginnt! Luke läuft mit Yoda auf dem Rücken durch den Dschungel. Er schafft 8 Runden, und jede Runde ist 45 Meter lang.",
+      "frage": "Wie viele Meter läuft Luke insgesamt?",
+      "rechnung": "8 * 45",
+      "loesung": 360,
+      "tipp": "8 mal 45 – erst 8 mal 40, dann 8 mal 5, und beides zusammenzählen du musst."
+    },
+    {
+      "bild": ["dagobah"],
+      "geschichte": "Jetzt hebt Luke Dinge mit der Macht: 3 Steine, die jeder 25 Kilo wiegen, und dazu noch R2-D2, der 32 Kilo wiegt.",
+      "frage": "Wie viele Kilo hebt Luke zusammen hoch?",
+      "rechnung": "3 * 25 + 32",
+      "loesung": 107,
+      "tipp": "Zuerst die Steine: 3 mal 25. Dann R2-D2 dazuzählen du musst."
+    },
+    {
+      "bild": ["x wing im sumpf"],
+      "geschichte": "Den X-Wing schafft Luke nicht. Da hebt Yoda ihn aus dem Sumpf! Er zieht ihn in 5 gleich großen Rucken nach oben – so tief, wie der X-Wing nach 4 Stunden im Schlamm steckte.",
+      "frage": "Um wie viele Zentimeter hebt Yoda den X-Wing bei jedem Ruck?",
+      "rechnung": "180 / 5",
+      "loesung": 36,
+      "tipp": "Wie tief der X-Wing steckte, du in der ersten Aufgabe ausgerechnet hast. Durch 5 teilen du musst – erst die Hunderter, dann den Rest."
+    }
+  ]
+}

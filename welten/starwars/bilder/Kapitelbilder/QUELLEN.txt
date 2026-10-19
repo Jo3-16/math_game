@@ -7,3 +7,7 @@ Kapitel-Vorschaubilder von Wikimedia Commons (freie Lizenzen, Details auf der je
 06.jpg: https://commons.wikimedia.org/wiki/File:Diorama_AT-AT.jpg
 07.webp: https://commons.wikimedia.org/wiki/File:Millennium_Falcon.webp
 08.jpg: https://commons.wikimedia.org/wiki/File:243_Ida_large.jpg
+09.png: Kopie von Dagobah/06_ESB_X-Wing_im_Sumpf.png (eigene Sammlung)
+10.png: Kopie von Wolkenstadt-Bespin/01_ESB_Wolkenstadt_ueber_Wolken.png (eigene Sammlung)
+11.jpg: Kopie von Ewoks/06_ROTJ_Ewoks_Baumdorf.jpg (eigene Sammlung)
+12.jpg: Kopie von Todesstern/08_ROTJ_Todesstern2_Schlacht_Endor.jpg (eigene Sammlung)
