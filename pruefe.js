@@ -17,6 +17,9 @@ export async function pruefeWelt(weltOrdner) {
   }
 
   const bilder = await bilderListe(path.join(weltOrdner, 'bilder'));
+  if (welt?.helferBild !== undefined && !bilder.includes(welt.helferBild)) {
+    fehler.push(`welt.json: helferBild "${welt.helferBild}" gibt es nicht im Bilder-Ordner`);
+  }
   const dateien = (await fs.readdir(path.join(weltOrdner, 'kapitel')).catch(() => []))
     .filter(d => d.endsWith('.json')).sort();
 
@@ -35,6 +38,9 @@ export async function pruefeWelt(weltOrdner) {
     const b = kapitel.bonus;
     if (b !== undefined && (leer(b.geschichte) || leer(b.frage) || leer(b.tipp) || !Number.isInteger(b.loesung) || b.loesung < 0 || b.loesung > 500)) {
       fehler.push(`${datei}: Bonus-Rätsel braucht geschichte, frage, tipp und eine ganze loesung von 0 bis 500`);
+    }
+    if (kapitel.belohnung !== undefined && !bilder.includes(kapitel.belohnung)) {
+      fehler.push(`${datei}: Belohnungsbild "${kapitel.belohnung}" gibt es nicht im Bilder-Ordner`);
     }
     if (kapitel.vorschau !== undefined && !bilder.includes(kapitel.vorschau)) {
       fehler.push(`${datei}: Vorschaubild "${kapitel.vorschau}" gibt es nicht im Bilder-Ordner`);

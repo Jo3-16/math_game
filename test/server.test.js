@@ -14,6 +14,7 @@ before(async () => {
     fs.writeFileSync(path.join(wurzel, rel), inhalt);
   };
   datei('public/index.html', '<!doctype html>');
+  datei('einstellungen.json', JSON.stringify({ adminPasswort: 'geheim' }));
   datei('welten/testwelt/welt.json', JSON.stringify({ name: 'Test', helfer: 'Yoda', farben: {} }));
   datei('welten/testwelt/kapitel/02-b.json', JSON.stringify({ titel: 'B' }));
   datei('welten/testwelt/kapitel/01-a.json', JSON.stringify({ titel: 'A' }));
@@ -74,10 +75,20 @@ test('belegter port wird gemeldet statt abzustürzen', async () => {
   await assert.rejects(starte({ wurzel, port: server.address().port }), { code: 'EADDRINUSE' });
 });
 
-test('admin-seite liefert das spiel', async () => {
-  const antwort = await fetch(`${url}/admin`);
-  assert.equal(antwort.status, 200);
-  assert.equal(await antwort.text(), '<!doctype html>');
+const anmeldung = passwort => ({ headers: { Authorization: 'Basic ' + Buffer.from('papa:' + passwort).toString('base64') } });
+
+test('admin-seite braucht das passwort', async () => {
+  const ohne = await fetch(`${url}/admin`);
+  assert.equal(ohne.status, 401);
+  assert.match(ohne.headers.get('www-authenticate'), /Basic/);
+  assert.equal((await fetch(`${url}/admin`, anmeldung('falsch'))).status, 401);
+  const mit = await fetch(`${url}/admin`, anmeldung('geheim'));
+  assert.equal(mit.status, 200);
+  assert.equal(await mit.text(), '<!doctype html>');
+});
+
+test('einstellungen.json wird nicht ausgeliefert', async () => {
+  assert.equal((await fetch(`${url}/einstellungen.json`)).status, 404);
 });
 
 test('abzeichen-seite liefert das spiel', async () => {

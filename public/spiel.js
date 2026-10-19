@@ -210,7 +210,7 @@ function zeigeAufgabe() {
     + (aufgabe.rechnung ? `  (${aufgabe.rechnung})` : '');
   $('rest-teil').hidden = aufgabe.rest === undefined;
   $('antwort-rest').value = '';
-  const helferUrl = bildUrl([welt.helfer]);
+  const helferUrl = welt.helferBild ? pfadUrl(welt.helferBild) : bildUrl([welt.helfer]);
   $('helfer-bild').hidden = !helferUrl;
   if (helferUrl) $('helfer-bild').src = helferUrl;
   $('tipp-text').textContent = `${helferUrl ? '' : '🟢 '}${welt.helfer}: „${aufgabe.tipp}“`;
@@ -353,7 +353,7 @@ function zeigeGalerie() {
   welt.kapitel.forEach((k, i) => k.aufgaben.forEach((a, j) => {
     for (const p of findeBilder(welt.bilder, a.bild)) verwendet.get(p).push(`K${kapitelNummer(k, i)}·A${j + 1}`);
   }));
-  for (const p of findeBilder(welt.bilder, [welt.helfer])) verwendet.get(p).push('Tipp-Bild');
+  for (const p of welt.helferBild ? [welt.helferBild] : findeBilder(welt.bilder, [welt.helfer])) verwendet.get(p)?.push('Tipp-Bild');
   const ordner = new Map();
   for (const p of [...welt.bilder].sort()) {
     const name = p.includes('/') ? p.split('/')[0] : '(Hauptordner)';

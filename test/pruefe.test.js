@@ -119,3 +119,19 @@ test('rest-aufgabe ohne rest', async () => {
   const r = await pruefeWelt(welt(vier({ rechnung: '24 / 4', loesung: 6, rest: 0, merke: '6 Kisten' })));
   assert.equal(r.fehler.length, 1);
 });
+
+test('helferBild muss existieren', async () => {
+  assert.deepEqual(await pruefeWelt(welt(vier(), { name: 'W', helfer: 'Yoda', farben: {}, helferBild: 'X-Wing.jpg' })), { fehler: [], warnungen: [] });
+  const r = await pruefeWelt(welt(vier(), { name: 'W', helfer: 'Yoda', farben: {}, helferBild: 'Yoda/fehlt.png' }));
+  assert.match(r.fehler[0], /helferBild/);
+});
+
+test('belohnung muss existieren', async () => {
+  const ordner = welt(vier());
+  const datei = path.join(ordner, 'kapitel', '01-test.json');
+  const kapitel = JSON.parse(fs.readFileSync(datei, 'utf8'));
+  fs.writeFileSync(datei, JSON.stringify({ ...kapitel, belohnung: 'X-Wing.jpg' }));
+  assert.deepEqual(await pruefeWelt(ordner), { fehler: [], warnungen: [] });
+  fs.writeFileSync(datei, JSON.stringify({ ...kapitel, belohnung: 'Kapitelbilder/fehlt.jpg' }));
+  assert.match((await pruefeWelt(ordner)).fehler[0], /Belohnung/);
+});

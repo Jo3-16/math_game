@@ -1,6 +1,7 @@
 // Lokaler Server: liefert Seite, Welten, Kapitel und Bilder aus und speichert den Spielstand.
 import http from 'node:http';
 import fs from 'node:fs/promises';
+import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { exec } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -30,6 +31,15 @@ function sichereSegmente(segmente) {
 
 export function starte({ wurzel = PROJEKT, port = PORT } = {}) {
   const welten = path.join(wurzel, 'welten');
+  // einstellungen.json (nicht im Git): { "adminPasswort": "…" } – ohne Datei ist /admin offen.
+  let einstellungen = {};
+  try { einstellungen = JSON.parse(readFileSync(path.join(wurzel, 'einstellungen.json'), 'utf8')); } catch { /* keine Einstellungen */ }
+  const adminErlaubt = req => {
+    if (!einstellungen.adminPasswort) return true;
+    const [art, wert] = (req.headers.authorization ?? '').split(' ');
+    const passwort = art === 'Basic' ? Buffer.from(wert ?? '', 'base64').toString().split(':').slice(1).join(':') : '';
+    return passwort === einstellungen.adminPasswort;
+  };
 
   async function weltOrdner(id) {
     const ordner = path.join(welten, id);
@@ -80,7 +90,8 @@ export function starte({ wurzel = PROJEKT, port = PORT } = {}) {
     if (teile[0] === 'welten' && teile[2] === 'bilder' && teile.length > 3) {
       datei = path.join(await weltOrdner(teile[1]), 'bilder', ...teile.slice(3));
     } else {
-      const seite = teile.length === 0 || (teile.length === 1 && ['admin', 'abzeichen'].includes(teile[0]));
+      if (teile.length === 1 && teile[0] === 'admin' && !adminErlaubt(req)) return [401];
+      const seite = teile.length === 0 || (teile.length === 1 && ['admin', 'abzeichen', 'archiv'].includes(teile[0]));
       datei = path.join(wurzel, 'public', ...(seite ? ['index.html'] : teile));
     }
     return [200, await fs.readFile(datei), TYPEN[path.extname(datei).toLowerCase()] ?? 'application/octet-stream'];
@@ -89,6 +100,7 @@ export function starte({ wurzel = PROJEKT, port = PORT } = {}) {
   const server = http.createServer(async (req, res) => {
     try {
       const [status, inhalt, typ] = await bearbeite(req, res);
+      if (status === 401) return res.writeHead(401, { 'WWW-Authenticate': 'Basic realm="Mathe-Missionen Admin", charset="UTF-8"' }).end('Passwort nötig');
       if (inhalt === undefined) return res.writeHead(status).end();
       if (Buffer.isBuffer(inhalt)) return res.writeHead(status, { 'Content-Type': typ }).end(inhalt);
       res.writeHead(status, { 'Content-Type': TYPEN['.json'] }).end(JSON.stringify(inhalt));
