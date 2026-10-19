@@ -48,5 +48,11 @@
       "merke": "32 Treffer auf AT-ATs",
       "tipp": "Zuerst alle Salven zählen: 24 mal 4. Dann durch 3 teilen du musst, hmm."
     }
-  ]
+  ],
+  "bonus": {
+    "geschichte": "Ein AT-AT ist 3-mal so hoch, wie ein Snowspeeder lang ist. AT-AT-Höhe und Snowspeeder-Länge ergeben zusammen 20 Meter.",
+    "frage": "Wie hoch ist der AT-AT?",
+    "loesung": 15,
+    "tipp": "Der Snowspeeder ist 1 Teil, der AT-AT 3 Teile – zusammen 4 gleiche Teile sind 20 Meter. Wie groß ist ein Teil?"
+  }
 }

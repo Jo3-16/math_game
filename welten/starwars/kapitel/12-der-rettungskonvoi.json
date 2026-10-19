@@ -57,5 +57,11 @@
       "merke": "7 Minuten bis zum Sprung",
       "tipp": "Wie oft die 60 in 420 passt, du herausfinden musst. Ohne die Nullen es leichter geht."
     }
-  ]
+  ],
+  "bonus": {
+    "geschichte": "Die 8 Transporter des Konvois fliegen in einer langen Reihe hintereinander. Zwischen zwei Transportern sind immer genau 15 Kilometer Abstand.",
+    "frage": "Wie viele Kilometer sind es vom ersten bis zum letzten Transporter?",
+    "loesung": 105,
+    "tipp": "Zähl die Lücken, nicht die Transporter! Bei 8 Transportern – wie viele Lücken gibt es dazwischen?"
+  }
 }

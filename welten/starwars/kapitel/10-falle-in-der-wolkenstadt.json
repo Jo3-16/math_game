@@ -48,5 +48,11 @@
       "merke": "255 Meter bis zum Falcon",
       "tipp": "Zuerst die Gänge: 5 mal 45. Dann die Landeplattform dazuzählen du musst."
     }
-  ]
+  ],
+  "bonus": {
+    "geschichte": "Lando hat nur Münzen zu 5 Credits und zu 2 Credits. Er hat 9 Münzen, zusammen sind sie 33 Credits wert.",
+    "frage": "Wie viele 5-Credit-Münzen hat Lando?",
+    "loesung": 5,
+    "tipp": "Probier es aus: Wenn 1 Münze ein Fünfer ist, sind 8 Zweier – wie viel ist das? Dann 2 Fünfer, 3 Fünfer … bis 33 herauskommt."
+  }
 }

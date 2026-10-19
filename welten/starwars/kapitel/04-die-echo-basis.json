@@ -48,5 +48,11 @@
       "merke": "330 Rebellen in der Basis",
       "tipp": "Zuerst ausrechnen, wie viele auf Patrouille gehen: 4 mal 30. Dann von 450 abziehen du musst."
     }
-  ]
+  ],
+  "bonus": {
+    "geschichte": "Im Hangar der Echo-Basis stehen Rebellen und Lasttiere mit 4 Beinen. Zusammen sind es 10 Köpfe und 28 Beine.",
+    "frage": "Wie viele Lasttiere stehen im Hangar?",
+    "loesung": 4,
+    "tipp": "Stell dir vor, alle 10 hätten nur 2 Beine – wie viele Beine wären das? Die übrigen Beine gehören den Lasttieren, je 2 zusätzlich."
+  }
 }

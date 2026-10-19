@@ -48,5 +48,11 @@
       "merke": "9 Treffer auf Lukes Schild",
       "tipp": "Jeder fünfte trifft – also alle Schüsse durch 5 teilen du musst, hmm."
     }
-  ]
+  ],
+  "bonus": {
+    "geschichte": "Im Graben des Todessterns stehen Geschütztürme in einer Reihe. Der erste steht bei Kilometer 5, danach kommt alle 7 Kilometer ein weiterer Turm.",
+    "frage": "Bei welchem Kilometer steht der 6. Turm?",
+    "loesung": 40,
+    "tipp": "Vom ersten bis zum sechsten Turm – wie viele 7-Kilometer-Abstände dazwischen liegen? Zähl genau, es sind nicht 6!"
+  }
 }

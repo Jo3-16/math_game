@@ -48,5 +48,11 @@
       "merke": "90 Sonden suchen noch",
       "tipp": "Zuerst alle Sonden zählen: 4 mal 45 – verdoppeln und nochmal verdoppeln hilft. Dann die zerstörten abziehen."
     }
-  ]
+  ],
+  "bonus": {
+    "geschichte": "C-3PO hat die Asteroiden in einer Zahlenreihe gezählt: 2, 5, 11, 23, … Jede Zahl entsteht aus der vorherigen nach derselben Regel.",
+    "frage": "Welche Zahl kommt als nächstes?",
+    "loesung": 47,
+    "tipp": "Von 2 nach 5, von 5 nach 11 – erst verdoppeln, dann etwas dazu du musst."
+  }
 }

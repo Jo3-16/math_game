@@ -17,9 +17,10 @@
     <header class="kopf">
       <h1 id="weltname"></h1>
       <div class="punkte">
-        <button id="spielername" class="spielername" title="Namen ändern"></button> ⭐ <span id="gesamt-uebersicht">0</span> Punkte
+        <button id="spielername" class="spielername" title="Namen ändern"></button> <span id="rang-uebersicht" class="rang"></span> ⭐ <span id="gesamt-uebersicht">0</span> Punkte
         <a href="/abzeichen" class="kopf-link">🏅 Abzeichen &amp; Punkte</a>
         <button id="galerie-knopf" class="link kopf-link" hidden>🖼️ Bildergalerie</button>
+        <button class="link kopf-link ton-knopf" title="Ton an/aus"></button>
       </div>
     </header>
     <div id="kapitel" class="raster"></div>
@@ -30,9 +31,10 @@
   <main id="ruhmeshalle" hidden>
     <header class="kopf">
       <h1>Abzeichen &amp; Punkte</h1>
-      <div class="punkte"><span id="ruhm-name" class="spielername"></span> ⭐ <span id="ruhm-punkte">0</span> Punkte</div>
+      <div class="punkte"><span id="ruhm-name" class="spielername"></span> <span id="ruhm-rang" class="rang"></span> ⭐ <span id="ruhm-punkte">0</span> Punkte</div>
     </header>
     <p id="ruhm-zusammenfassung"></p>
+    <p id="ruhm-naechster"></p>
     <div id="ruhm-abzeichen" class="abzeichen ruhm"></div>
     <p><a href="/">← Zurück zur Übersicht</a></p>
   </main>
@@ -54,7 +56,7 @@
           <div id="kapiteltitel" class="kapiteltitel"></div>
           <div id="fortschritt" class="fortschritt"></div>
         </div>
-        <div class="punkte"><span id="spielername-aufgabe" class="spielername"></span> ⭐ <span id="gesamt-aufgabe">0</span></div>
+        <div class="punkte"><span id="spielername-aufgabe" class="spielername"></span> <span id="rang-aufgabe" class="rang"></span> ⭐ <span id="gesamt-aufgabe">0</span> <button class="link kopf-link ton-knopf" title="Ton an/aus"></button></div>
       </header>
       <p id="geschichte" class="geschichte"></p>
       <p id="frage" class="frage"></p>
@@ -63,6 +65,7 @@
         <button>Los!</button>
       </form>
       <p id="meldung" class="meldung" aria-live="polite"></p>
+      <button id="bonus-ueberspringen" class="link" hidden>Rätsel überspringen →</button>
       <div id="admin-leiste" class="admin-leiste" hidden>
         <span id="admin-loesung"></span>
         <button id="admin-weiter">Weiter ▶</button>
@@ -80,6 +83,7 @@
     <div class="overlay-box">
       <div id="overlay-symbol" class="overlay-symbol"></div>
       <h2 id="overlay-titel"></h2>
+      <p id="overlay-sterne" class="overlay-sterne"></p>
       <p id="overlay-text"></p>
       <button id="overlay-weiter">Weiter</button>
     </div>

@@ -48,5 +48,11 @@
       "merke": "228 Jäger mehr als die Rebellen",
       "tipp": "Von allen imperialen Jägern die 57 der Rebellen abziehen du musst. Erst 50 weg, dann noch 7."
     }
-  ]
+  ],
+  "bonus": {
+    "geschichte": "Die Nummer von Vaders Sternzerstörer ist zweistellig. Ihre beiden Ziffern ergeben zusammen 9, und die Zehnerziffer ist doppelt so groß wie die Einerziffer.",
+    "frage": "Welche Nummer hat der Sternzerstörer?",
+    "loesung": 63,
+    "tipp": "Probier die Einerziffern durch: 1, 2, 3 … Die Zehnerziffer ist immer das Doppelte. Wann ergeben beide zusammen 9?"
+  }
 }

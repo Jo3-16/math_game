@@ -48,5 +48,11 @@
       "merke": "6 Minuten Ladezeit",
       "tipp": "Wie oft die 20 in die fehlende Energie passt, du herausfinden musst. Ohne die Nullen es leichter geht, hmm."
     }
-  ]
+  ],
+  "bonus": {
+    "geschichte": "Han, Leia und Chewbacca teilen 60 Essensrationen. Han und Leia bekommen gleich viel. Chewbacca hat großen Hunger und bekommt doppelt so viel wie Han.",
+    "frage": "Wie viele Rationen bekommt Chewbacca?",
+    "loesung": 30,
+    "tipp": "Han 1 Teil, Leia 1 Teil, Chewbacca 2 Teile – zusammen 4 Teile. Wie groß ist ein Teil von 60?"
+  }
 }

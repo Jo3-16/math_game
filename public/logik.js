@@ -110,3 +110,49 @@ export function aufgabeGeloest(stand, kapitelId, anzahlAufgaben, fehlversuche) {
 export function gesamtPunkte(stand) {
   return Object.values(stand.kapitel).reduce((summe, k) => summe + k.punkte, 0);
 }
+
+export const BONUS_PUNKTE = 20;
+
+const RAENGE = [
+  { name: 'Jüngling', symbol: '🌱', ab: 0 },
+  { name: 'Padawan', symbol: '🟢', ab: 150 },
+  { name: 'Jedi-Ritter', symbol: '⚔️', ab: 500 },
+  { name: 'Jedi-Meister', symbol: '🧙', ab: 1000 },
+];
+
+export function rang(punkte) {
+  const i = RAENGE.findLastIndex(r => punkte >= r.ab);
+  const naechster = RAENGE[i + 1];
+  return { name: RAENGE[i].name, symbol: RAENGE[i].symbol, naechster: naechster ? { name: naechster.name, ab: naechster.ab } : null };
+}
+
+// 3 Sterne: alles ohne Tipp, 2: mindestens die Hälfte, sonst 1.
+export function sterneFuer(ohneTipp, anzahl) {
+  if (ohneTipp >= anzahl) return 3;
+  return ohneTipp * 2 >= anzahl ? 2 : 1;
+}
+
+// Sterne eines fertigen Kapitels: gespeicherte Bestleistung oder aus den Punkten des ersten Durchlaufs.
+export function kapitelSterne(k, anzahl) {
+  if (!k?.fertig) return 0;
+  const punkte = k.punkte - (k.bonus ? BONUS_PUNKTE : 0);
+  const ohneTipp = Math.max(0, Math.round((punkte - 10 * anzahl) / 5));
+  return Math.max(k.sterne ?? 0, sterneFuer(ohneTipp, anzahl));
+}
+
+export function mitSternen(stand, kapitelId, sterne) {
+  const neu = structuredClone(stand);
+  const k = neu.kapitel[kapitelId];
+  k.sterne = Math.max(k.sterne ?? 0, sterne);
+  return neu;
+}
+
+export function bonusGeloest(stand, kapitelId) {
+  const neu = structuredClone(stand);
+  const k = neu.kapitel[kapitelId];
+  if (!k.bonus) {
+    k.bonus = true;
+    k.punkte += BONUS_PUNKTE;
+  }
+  return neu;
+}

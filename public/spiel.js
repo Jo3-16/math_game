@@ -1,4 +1,7 @@
-import { findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName } from './logik.js';
+import {
+  findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName,
+  rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, BONUS_PUNKTE,
+} from './logik.js';
 
 const $ = id => document.getElementById(id);
 const ANSICHTEN = ['auswahl', 'uebersicht', 'aufgabe', 'ruhmeshalle', 'galerie'];
@@ -7,6 +10,7 @@ const ADMIN = location.pathname === '/admin';
 
 let welt, weltId, stand;
 let kapitelIndex, aufgabeIndex, fehlversuche, wiederholung, wartet, weiterTimer;
+let ohneTipp, laufSterne; // im aktuellen Durchlauf ohne Tipp gelöste Aufgaben, Sterne dieses Durchlaufs
 
 function zeige(ansicht) {
   for (const a of ANSICHTEN) $(a).hidden = a !== ansicht;
@@ -18,6 +22,49 @@ function element(tag, klasse, text) {
   if (text !== undefined) e.textContent = text;
   return e;
 }
+
+const kapitelNummer = (k, i) => Number(k.id.match(/^\d+/)?.[0] ?? i + 1);
+const sterneText = n => '⭐'.repeat(n) + '☆'.repeat(3 - n);
+const maxPunkte = k => k.aufgaben.length * 15 + (k.bonus ? BONUS_PUNKTE : 0);
+const rangText = () => { const r = rang(gesamtPunkte(stand)); return `${r.symbol} ${r.name}`; };
+
+// --- Ton: im Browser erzeugt, an/aus wird im Browser gemerkt ---
+let audio;
+function tonAn() {
+  try { return localStorage.getItem('ton') !== 'aus'; } catch { return true; }
+}
+function zeigeTonKnopf() {
+  for (const b of document.querySelectorAll('.ton-knopf')) b.textContent = tonAn() ? '🔊' : '🔇';
+}
+function ton(art) {
+  if (!tonAn()) return;
+  try {
+    audio ??= new AudioContext();
+    const t = audio.currentTime;
+    // [von Hz, bis Hz, Start s, Dauer s, Wellenform]
+    const toene = art === 'richtig'
+      ? [[1600, 220, 0, 0.22, 'sawtooth']] // Laser-„Piu“
+      : [[1200, 1800, 0, 0.07, 'square'], [1700, 900, 0.09, 0.07, 'square'], [1000, 1500, 0.19, 0.09, 'square']]; // R2-D2-Pfeifen
+    for (const [von, bis, start, dauer, form] of toene) {
+      const o = audio.createOscillator(), g = audio.createGain();
+      o.type = form;
+      o.frequency.setValueAtTime(von, t + start);
+      o.frequency.exponentialRampToValueAtTime(bis, t + start + dauer);
+      g.gain.setValueAtTime(0.08, t + start);
+      g.gain.exponentialRampToValueAtTime(0.001, t + start + dauer);
+      o.connect(g).connect(audio.destination);
+      o.start(t + start);
+      o.stop(t + start + dauer);
+    }
+  } catch { /* ohne Ton weiterspielen */ }
+}
+for (const b of document.querySelectorAll('.ton-knopf')) {
+  b.onclick = () => {
+    try { localStorage.setItem('ton', tonAn() ? 'aus' : 'an'); } catch { /* egal */ }
+    zeigeTonKnopf();
+  };
+}
+zeigeTonKnopf();
 
 async function start() {
   const welten = await (await fetch('/api/welten')).json();
@@ -43,13 +90,26 @@ async function ladeWelt(id) {
   else zeigeUebersicht();
 }
 
+function abzeichenKarte(k, i, mitDetails) {
+  const s = stand.kapitel[k.id];
+  const hat = stand.abzeichen.includes(k.id);
+  const d = element('div', [hat ? '' : 'offen', s?.bonus ? 'gold' : ''].join(' ').trim());
+  d.append(element('span', '', k.abzeichen.symbol), hat || !mitDetails ? k.abzeichen.name : '???');
+  if (mitDetails) {
+    d.append(element('small', '', `Kapitel ${kapitelNummer(k, i)} · ${s?.punkte ?? 0}/${maxPunkte(k)} Punkte`));
+    if (hat) d.append(element('small', '', sterneText(kapitelSterne(s, k.aufgaben.length)) + (s?.bonus ? ' 🥇' : '')));
+  }
+  d.title = k.titel + (s?.bonus ? ' – Gold-Abzeichen' : '');
+  return d;
+}
+
 function zeigeUebersicht() {
   const status = kapitelStatus(stand, welt.kapitel.map(k => k.id));
   $('kapitel').replaceChildren(...welt.kapitel.map((k, i) => {
     const s = stand.kapitel[k.id];
     const b = element('button', `kachel ${status[i]}`);
     const zeile = {
-      fertig: `✅ ${s?.punkte ?? 0}/${k.aufgaben.length * 15} Punkte – nochmal spielen`,
+      fertig: `✅ ${s?.punkte ?? 0}/${maxPunkte(k)} Punkte ${sterneText(kapitelSterne(s, k.aufgaben.length))}${s?.bonus ? ' 🥇' : ''} – nochmal spielen`,
       offen: `▶️ ${s?.geloest ?? 0}/${k.aufgaben.length} gelöst`,
       gesperrt: '🔒 gesperrt',
     }[status[i]];
@@ -68,23 +128,22 @@ function zeigeUebersicht() {
     return b;
   }));
 
-  const abzeichen = welt.kapitel.filter(k => stand.abzeichen.includes(k.id));
+  const abzeichen = welt.kapitel.map((k, i) => [k, i]).filter(([k]) => stand.abzeichen.includes(k.id));
   $('abzeichen').replaceChildren(...(abzeichen.length
-    ? abzeichen.map(k => {
-        const d = element('div');
-        d.append(element('span', '', k.abzeichen.symbol), k.abzeichen.name);
-        return d;
-      })
+    ? abzeichen.map(([k, i]) => abzeichenKarte(k, i, false))
     : [element('p', '', "Noch keine Abzeichen – auf geht's!")]));
 
   $('gesamt-uebersicht').textContent = gesamtPunkte(stand);
   $('spielername').textContent = stand.name;
+  $('rang-uebersicht').textContent = rangText();
   zeige('uebersicht');
 }
 
 function starteKapitel(index, alsWiederholung) {
   kapitelIndex = index;
   wiederholung = alsWiederholung;
+  ohneTipp = 0;
+  laufSterne = 0;
   aufgabeIndex = wiederholung ? 0 : (stand.kapitel[welt.kapitel[index].id]?.geloest ?? 0);
   zeigeAufgabe();
 }
@@ -99,9 +158,18 @@ function pfadUrl(pfad) {
   return `/welten/${encodeURIComponent(weltId)}/bilder/${pfad.split('/').map(encodeURIComponent).join('/')}`;
 }
 
+const imBonus = kapitel => aufgabeIndex >= kapitel.aufgaben.length;
+
+// Die normale Aufgabe – oder nach der letzten Aufgabe das Bonus-Rätsel (mit dem Bild der letzten Aufgabe).
+function aktuelleAufgabe(kapitel) {
+  if (!imBonus(kapitel)) return kapitel.aufgaben[aufgabeIndex];
+  return { bild: kapitel.aufgaben.at(-1).bild, ...kapitel.bonus };
+}
+
 function zeigeAufgabe() {
   const kapitel = welt.kapitel[kapitelIndex];
-  const aufgabe = kapitel.aufgaben[aufgabeIndex];
+  const aufgabe = aktuelleAufgabe(kapitel);
+  const bonus = imBonus(kapitel);
   fehlversuche = 0;
   wartet = false;
 
@@ -111,9 +179,12 @@ function zeigeAufgabe() {
 
   $('kapiteltitel').textContent = kapitel.titel + (ADMIN ? ' (Admin)' : wiederholung ? ' (Wiederholung)' : '');
   const punkte = kapitel.aufgaben.map((_, i) => (i < aufgabeIndex ? '●' : i === aufgabeIndex ? '◉' : '○')).join(' ');
-  $('fortschritt').textContent = `Aufgabe ${aufgabeIndex + 1}/${kapitel.aufgaben.length}  ${punkte}`;
+  $('fortschritt').textContent = bonus
+    ? `🧩 Bonus-Rätsel – für das Gold-Abzeichen`
+    : `Aufgabe ${aufgabeIndex + 1}/${kapitel.aufgaben.length}  ${punkte}`;
   $('gesamt-aufgabe').textContent = gesamtPunkte(stand);
   $('spielername-aufgabe').textContent = stand.name;
+  $('rang-aufgabe').textContent = rangText();
   const bisher = kapitel.aufgaben.slice(0, aufgabeIndex).map(a => element('span', 'ergebnis', `✔ ${a.merke}`));
   $('ergebnisse').replaceChildren(...bisher);
   $('ergebnisse').hidden = !bisher.length;
@@ -121,9 +192,10 @@ function zeigeAufgabe() {
   $('frage').textContent = aufgabe.frage;
   $('meldung').textContent = '';
   $('meldung').className = 'meldung';
+  $('bonus-ueberspringen').hidden = !bonus;
   $('tipp').hidden = !ADMIN;
   $('admin-leiste').hidden = !ADMIN;
-  $('admin-loesung').textContent = `Lösung: ${aufgabe.loesung}  (${aufgabe.rechnung})`;
+  $('admin-loesung').textContent = `Lösung: ${aufgabe.loesung}` + (aufgabe.rechnung ? `  (${aufgabe.rechnung})` : '');
   const helferUrl = bildUrl([welt.helfer]);
   $('helfer-bild').hidden = !helferUrl;
   if (helferUrl) $('helfer-bild').src = helferUrl;
@@ -139,6 +211,7 @@ function meldung(text, klasse) {
 }
 
 async function speichern() {
+  if (ADMIN) return;
   try {
     const antwort = await fetch(`/api/welten/${encodeURIComponent(weltId)}/spielstand`, { method: 'PUT', body: JSON.stringify(stand) });
     if (!antwort.ok) throw new Error(antwort.status);
@@ -155,10 +228,11 @@ $('antwort-form').onsubmit = event => {
   const eingabe = $('antwort').value.trim();
   if (!eingabe) return;
   const kapitel = welt.kapitel[kapitelIndex];
-  const aufgabe = kapitel.aufgaben[aufgabeIndex];
+  const aufgabe = aktuelleAufgabe(kapitel);
 
   if (!istRichtig(eingabe, aufgabe.loesung)) {
     fehlversuche++;
+    ton('falsch');
     meldung("Leider nicht – versuch's nochmal!", 'falsch');
     if (fehlversuche >= TIPP_AB) $('tipp').hidden = false;
     $('antwort').value = '';
@@ -167,6 +241,20 @@ $('antwort-form').onsubmit = event => {
   }
 
   wartet = true;
+  ton('richtig');
+  if (imBonus(kapitel)) {
+    const neu = !ADMIN && !stand.kapitel[kapitel.id]?.bonus;
+    if (!ADMIN) {
+      stand = bonusGeloest(stand, kapitel.id);
+      speichern();
+      $('gesamt-aufgabe').textContent = gesamtPunkte(stand);
+    }
+    meldung(neu ? `Rätsel gelöst! +${BONUS_PUNKTE} – Gold-Abzeichen!` : 'Rätsel gelöst!', 'richtig');
+    weiterTimer = setTimeout(() => zeigeKapitelEnde(kapitel), 1500);
+    return;
+  }
+
+  if (fehlversuche < TIPP_AB) ohneTipp++;
   if (wiederholung) {
     meldung('Richtig!', 'richtig');
   } else {
@@ -176,35 +264,49 @@ $('antwort-form').onsubmit = event => {
     $('gesamt-aufgabe').textContent = gesamtPunkte(stand);
     meldung(plus > 10 ? `Richtig! +${plus} – ohne ${welt.helfer}s Hilfe!` : `Richtig! +${plus}`, 'richtig');
   }
-
   weiterTimer = setTimeout(naechsteAufgabe, 1500);
 };
+
+// Nach der letzten Aufgabe: Sterne festhalten (beim Wiederholen nur verbessern), dann Bonus-Rätsel oder Ende.
+function aufgabenGeschafft(kapitel) {
+  const n = kapitel.aufgaben.length;
+  laufSterne = wiederholung ? sterneFuer(ohneTipp, n) : kapitelSterne(stand.kapitel[kapitel.id], n);
+  if (!ADMIN) {
+    stand = mitSternen(stand, kapitel.id, laufSterne);
+    speichern();
+  }
+}
 
 function naechsteAufgabe() {
   clearTimeout(weiterTimer);
   const kapitel = welt.kapitel[kapitelIndex];
+  if (imBonus(kapitel)) return zeigeKapitelEnde(kapitel);
   aufgabeIndex++;
-  if (aufgabeIndex < kapitel.aufgaben.length) zeigeAufgabe();
+  if (!imBonus(kapitel)) return zeigeAufgabe();
+  aufgabenGeschafft(kapitel);
+  if (kapitel.bonus) zeigeAufgabe();
   else zeigeKapitelEnde(kapitel);
 }
 
 $('admin-weiter').onclick = naechsteAufgabe;
-
-const kapitelNummer = (k, i) => Number(k.id.match(/^\d+/)?.[0] ?? i + 1);
+$('bonus-ueberspringen').onclick = () => {
+  clearTimeout(weiterTimer);
+  zeigeKapitelEnde(welt.kapitel[kapitelIndex]);
+};
 
 function zeigeRuhmeshalle() {
   const erreicht = welt.kapitel.filter(k => stand.abzeichen.includes(k.id)).length;
+  const gold = welt.kapitel.filter(k => stand.kapitel[k.id]?.bonus).length;
+  const punkte = gesamtPunkte(stand);
+  const r = rang(punkte);
   $('ruhm-name').textContent = stand.name;
-  $('ruhm-punkte').textContent = gesamtPunkte(stand);
-  $('ruhm-zusammenfassung').textContent = `${erreicht} von ${welt.kapitel.length} Abzeichen gesammelt`;
-  $('ruhm-abzeichen').replaceChildren(...welt.kapitel.map((k, i) => {
-    const hat = stand.abzeichen.includes(k.id);
-    const d = element('div', hat ? '' : 'offen');
-    const punkte = `Kapitel ${kapitelNummer(k, i)} · ${stand.kapitel[k.id]?.punkte ?? 0}/${k.aufgaben.length * 15} Punkte`;
-    d.append(element('span', '', k.abzeichen.symbol), hat ? k.abzeichen.name : '???', element('small', '', punkte));
-    d.title = k.titel;
-    return d;
-  }));
+  $('ruhm-rang').textContent = `${r.symbol} ${r.name}`;
+  $('ruhm-punkte').textContent = punkte;
+  $('ruhm-zusammenfassung').textContent = `${erreicht} von ${welt.kapitel.length} Abzeichen gesammelt · ${gold} davon in Gold 🥇`;
+  $('ruhm-naechster').textContent = r.naechster
+    ? `Noch ${r.naechster.ab - punkte} Punkte bis zum Rang ${rang(r.naechster.ab).symbol} ${r.naechster.name}!`
+    : 'Höchster Rang erreicht – du bist ein Jedi-Meister! 🧙';
+  $('ruhm-abzeichen').replaceChildren(...welt.kapitel.map((k, i) => abzeichenKarte(k, i, true)));
   zeige('ruhmeshalle');
 }
 
@@ -243,13 +345,18 @@ $('galerie-knopf').onclick = zeigeGalerie;
 $('galerie-zurueck').onclick = zeigeUebersicht;
 
 function zeigeKapitelEnde(kapitel) {
+  const s = stand.kapitel[kapitel.id];
+  const gold = Boolean(s?.bonus);
   $('overlay-symbol').textContent = kapitel.abzeichen.symbol;
+  $('overlay-symbol').classList.toggle('gold', gold);
+  $('overlay-sterne').textContent = laufSterne ? sterneText(laufSterne) : '';
+  const goldText = gold ? ' 🥇 Gold-Abzeichen!' : kapitel.bonus ? ' Löse das Bonus-Rätsel für Gold!' : '';
   if (wiederholung) {
     $('overlay-titel').textContent = 'Mission erneut geschafft!';
-    $('overlay-text').textContent = kapitel.titel;
+    $('overlay-text').textContent = `${kapitel.titel} – beste Wertung: ${sterneText(kapitelSterne(s, kapitel.aufgaben.length))}.${goldText}`;
   } else {
     $('overlay-titel').textContent = `Neues Abzeichen: ${kapitel.abzeichen.name}!`;
-    $('overlay-text').textContent = `${stand.kapitel[kapitel.id].punkte} von ${kapitel.aufgaben.length * 15} Punkten in „${kapitel.titel}“`;
+    $('overlay-text').textContent = `${s.punkte} von ${maxPunkte(kapitel)} Punkten in „${kapitel.titel}“.${goldText}`;
   }
   $('overlay').hidden = false;
   $('overlay-weiter').focus();

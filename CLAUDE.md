@@ -38,6 +38,7 @@ Wenn der Vater z. B. „Mach 5 neue Kapitel über Hoth“ sagt:
    - `merke`: kurzes Ergebnis mit der Lösungszahl (z. B. „12 Torpedo-Treffer“). Es erscheint unten in der Ergebnisleiste der folgenden Aufgaben – jede Aufgabe muss mit Geschichte + Ergebnisleiste allein lösbar sein; Zahlen aus früheren Geschichten, die keine Lösung waren, in der Geschichte wiederholen.
    - Texte auf Deutsch.
    - `vorschau`: festes Vorschaubild für die Übersicht, Pfad relativ zu `bilder/` (Ordner `Kapitelbilder/`, Quelle in `Kapitelbilder/QUELLEN.txt` eintragen). Bilder frei lizenziert z. B. von Wikimedia Commons; Wookieepedia blockt Downloads.
+   - `bonus`: ein Knobel-Rätsel nach der letzten Aufgabe (`{ "geschichte", "frage", "loesung", "tipp" }`, optional `bild`). Lösen gibt Gold-Abzeichen und +20 Punkte. Lösung ganzzahlig 0–500 und **eindeutig** – vorher per Skript durchprobieren (z. B. alle Zahlen 0–500 gegen die Bedingungen prüfen). Gute Typen: Zahl erraten aus Bedingungen, Zahlenfolgen, Teile-Aufgaben, Zaunpfahl-Problem, Köpfe-und-Beine.
 5. **Prüfen:** `node pruefe.js` ausführen und alle FEHLER und WARNUNGEN beheben, bevor du fertig meldest.
 
 ## Neue Welt

@@ -48,5 +48,11 @@
       "merke": "60 Energiepunkte im Schild",
       "tipp": "Zuerst ausrechnen, wie viel alle Treffer zusammen abziehen: 12 mal 15. Danach von 240 abziehen, hmm."
     }
-  ]
+  ],
+  "bonus": {
+    "geschichte": "Admiral Ackbar hat sich eine Zahl ausgedacht: „Verdoppelt man meine Zahl und zählt dann noch 6 dazu, kommt 30 heraus.“",
+    "frage": "An welche Zahl denkt Admiral Ackbar?",
+    "loesung": 12,
+    "tipp": "Rückwärts rechnen du musst: Erst die 6 wieder wegnehmen, dann halbieren."
+  }
 }

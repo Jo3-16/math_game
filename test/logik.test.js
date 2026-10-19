@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName } from '../public/logik.js';
+import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest } from '../public/logik.js';
 
 test('normalisiere', () => {
   assert.equal(normalisiere('X-wing_SWB.webp'), 'x wing swb.webp');
@@ -75,4 +75,43 @@ test('findeBilder mit ordner-suchwort', () => {
   assert.deepEqual(findeBilder(p, ['x-wing/']), ['X-Wing/01_Trench-Run.png', 'X-Wing/Hoth/02.png']);
   assert.deepEqual(findeBilder(p, ['x wing/', 'sumpf']), ['X-Wing/01_Trench-Run.png', 'X-Wing/Hoth/02.png', 'Dagobah/06_X-Wing_im_Sumpf.png']);
   assert.deepEqual(findeBilder(p, ['wing/']), []); // Ordnername muss ganz passen
+});
+
+test('rang nach gesamtpunkten', () => {
+  assert.deepEqual(rang(0), { name: 'Jüngling', symbol: '🌱', naechster: { name: 'Padawan', ab: 150 } });
+  assert.equal(rang(149).name, 'Jüngling');
+  assert.equal(rang(150).name, 'Padawan');
+  assert.equal(rang(500).name, 'Jedi-Ritter');
+  assert.deepEqual(rang(1000), { name: 'Jedi-Meister', symbol: '🧙', naechster: null });
+});
+
+test('sterne', () => {
+  assert.equal(sterneFuer(5, 5), 3);
+  assert.equal(sterneFuer(3, 5), 2);
+  assert.equal(sterneFuer(2, 5), 1);
+  assert.equal(sterneFuer(3, 6), 2);
+  // aus gespeicherten Punkten: 15 je Aufgabe ohne Tipp, 10 mit Tipp
+  assert.equal(kapitelSterne({ geloest: 5, punkte: 75, fertig: true }, 5), 3);
+  assert.equal(kapitelSterne({ geloest: 5, punkte: 70, fertig: true }, 5), 2);
+  assert.equal(kapitelSterne({ geloest: 5, punkte: 55, fertig: true }, 5), 1);
+  assert.equal(kapitelSterne({ geloest: 5, punkte: 55, fertig: true, sterne: 3 }, 5), 3);
+  assert.equal(kapitelSterne({ geloest: 5, punkte: 95, fertig: true, bonus: true }, 5), 3); // Bonus zählt nicht mit
+  assert.equal(kapitelSterne({ geloest: 2, punkte: 30, fertig: false }, 5), 0);
+  assert.equal(kapitelSterne(undefined, 5), 0);
+});
+
+test('mitSternen verbessert nur', () => {
+  let s = aufgabeGeloest(leererStand(), 'a', 1, 5);
+  s = mitSternen(s, 'a', 2);
+  assert.equal(s.kapitel.a.sterne, 2);
+  assert.equal(mitSternen(s, 'a', 1).kapitel.a.sterne, 2);
+  assert.equal(mitSternen(s, 'a', 3).kapitel.a.sterne, 3);
+});
+
+test('bonusGeloest gibt einmal 20 punkte', () => {
+  let s = aufgabeGeloest(leererStand(), 'a', 1, 0);
+  s = bonusGeloest(s, 'a');
+  assert.equal(s.kapitel.a.bonus, true);
+  assert.equal(gesamtPunkte(s), 35);
+  assert.equal(gesamtPunkte(bonusGeloest(s, 'a')), 35);
 });

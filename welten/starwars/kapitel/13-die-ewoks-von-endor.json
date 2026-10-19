@@ -48,5 +48,11 @@
       "merke": "0 Energiepunkte – Schild aus!",
       "tipp": "Zuerst ausrechnen, wie viel alle Sprengladungen zusammen zerstören: 5 mal 80. Dann von 400 abziehen du musst."
     }
-  ]
+  ],
+  "bonus": {
+    "geschichte": "Wicket sammelt Beeren für das große Fest. Am Montag sammelt er 4 Beeren, und an jedem Tag danach 3 Beeren mehr als am Tag davor.",
+    "frage": "Wie viele Beeren sammelt Wicket am Sonntag?",
+    "loesung": 22,
+    "tipp": "Schreib alle Wochentage auf: Montag 4, Dienstag 3 mehr … bis Sonntag du zählen musst."
+  }
 }

@@ -48,5 +48,11 @@
       "merke": "105 Abschüsse von Poe",
       "tipp": "96 und 9 zusammenzählen du musst. Erst bis 100 auffüllen – wie viele brauchst du dafür?"
     }
-  ]
+  ],
+  "bonus": {
+    "geschichte": "BB-8 rollt über das Landefeld. In der 1. Minute rollt er 3 Meter, und in jeder weiteren Minute rollt er doppelt so weit wie in der Minute davor.",
+    "frage": "Wie viele Meter rollt BB-8 in der 5. Minute?",
+    "loesung": 48,
+    "tipp": "Schreib die Minuten auf: 1. Minute 3 Meter, 2. Minute das Doppelte … bis zur 5. Minute du kommen musst."
+  }
 }

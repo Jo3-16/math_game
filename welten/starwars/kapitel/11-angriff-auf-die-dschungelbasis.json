@@ -57,5 +57,11 @@
       "merke": "46 Bomben Reserve im Schild",
       "tipp": "Von 150 die abgeworfenen Bomben abziehen du musst. Erst die 100 weg, dann den Rest."
     }
-  ]
+  ],
+  "bonus": {
+    "geschichte": "Das Tor zum Fluchttunnel öffnet sich nur mit dem richtigen Code. Der Code liegt zwischen 100 und 200, ist durch 5 und durch 9 teilbar und eine gerade Zahl.",
+    "frage": "Wie lautet der Code?",
+    "loesung": 180,
+    "tipp": "Durch 5 und durch 9 teilbar heißt: in der 45er-Reihe. Welche dieser Zahlen liegt zwischen 100 und 200 und ist gerade?"
+  }
 }

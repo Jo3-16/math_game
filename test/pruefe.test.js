@@ -85,3 +85,21 @@ test('merke ohne lösungszahl', async () => {
   assert.equal(r.fehler.length, 1);
   assert.match(r.fehler[0], /merke/);
 });
+
+function mitBonus(bonus) {
+  const ordner = welt(vier());
+  const datei = path.join(ordner, 'kapitel', '01-test.json');
+  fs.writeFileSync(datei, JSON.stringify({ ...JSON.parse(fs.readFileSync(datei, 'utf8')), bonus }));
+  return ordner;
+}
+
+test('bonus-rätsel gültig', async () => {
+  const r = await pruefeWelt(mitBonus({ geschichte: 'G', frage: 'F?', loesung: 36, tipp: 'T' }));
+  assert.deepEqual(r, { fehler: [], warnungen: [] });
+});
+
+test('bonus-rätsel unvollständig', async () => {
+  const r = await pruefeWelt(mitBonus({ geschichte: 'G', frage: 'F?', loesung: 'viele' }));
+  assert.equal(r.fehler.length, 1);
+  assert.match(r.fehler[0], /Bonus/);
+});

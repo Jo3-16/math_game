@@ -48,5 +48,11 @@
       "merke": "12 Sekunden bis zum Reaktor",
       "tipp": "Wie oft die 40 in 480 passt, du herausfinden musst. 10 mal 40 sind 400 – und wie oft passt die 40 noch in den Rest?"
     }
-  ]
+  ],
+  "bonus": {
+    "geschichte": "Drei Zahlen, die direkt aufeinander folgen (wie 7, 8, 9), ergeben zusammen 72. Sie sind der letzte Code, um den Todesstern zu zerstören!",
+    "frage": "Wie heißt die größte der drei Zahlen?",
+    "loesung": 25,
+    "tipp": "Die mittlere Zahl ist ein Drittel von 72. Die größte ist 1 mehr."
+  }
 }

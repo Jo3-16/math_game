@@ -48,5 +48,11 @@
       "merke": "36 cm pro Ruck",
       "tipp": "Wie tief der X-Wing steckte, du in der ersten Aufgabe ausgerechnet hast. Durch 5 teilen du musst – erst die Hunderter, dann den Rest."
     }
-  ]
+  ],
+  "bonus": {
+    "geschichte": "Yoda stapelt Steine zu einer Pyramide. In der untersten Reihe liegen 6 Steine, in jeder Reihe darüber 1 Stein weniger – bis ganz oben nur noch 1 Stein liegt.",
+    "frage": "Wie viele Steine hat die ganze Pyramide?",
+    "loesung": 21,
+    "tipp": "Alle Reihen von 6 bis 1 zusammenzählen du musst. Tipp: 6 und 1, 5 und 2, 4 und 3 – Paare bilden!"
+  }
 }

@@ -32,6 +32,10 @@ export async function pruefeWelt(weltOrdner) {
       fehler.push(`${datei}: titel, abzeichen.name, abzeichen.symbol oder aufgaben fehlt`);
       continue;
     }
+    const b = kapitel.bonus;
+    if (b !== undefined && (leer(b.geschichte) || leer(b.frage) || leer(b.tipp) || !Number.isInteger(b.loesung) || b.loesung < 0 || b.loesung > 500)) {
+      fehler.push(`${datei}: Bonus-Rätsel braucht geschichte, frage, tipp und eine ganze loesung von 0 bis 500`);
+    }
     if (kapitel.vorschau !== undefined && !bilder.includes(kapitel.vorschau)) {
       fehler.push(`${datei}: Vorschaubild "${kapitel.vorschau}" gibt es nicht im Bilder-Ordner`);
     }

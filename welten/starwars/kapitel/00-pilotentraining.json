@@ -57,5 +57,11 @@
       "merke": "420 Pilotenpunkte – bestanden!",
       "tipp": "Zuerst die Treffer zählen: alle Bomben weniger die 6 daneben. Dann mal 10 – eine Null dranhängen du musst."
     }
-  ]
+  ],
+  "bonus": {
+    "geschichte": "Zum Abschluss der Pilotenschule musst du den Geheimcode des Hangartors knacken. Der Code ist eine Zahl, die sich durch 3 und durch 4 teilen lässt. Sie ist größer als 30, aber kleiner als 40.",
+    "frage": "Wie lautet der Geheimcode?",
+    "loesung": 36,
+    "tipp": "Zahlen, die durch 3 und durch 4 teilbar sind, auch durch 12 teilbar sind. Die Zwölferreihe durchgehen du musst."
+  }
 }
