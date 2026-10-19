@@ -28,6 +28,7 @@ button {
 button.link { background: none; color: var(--text); opacity: .7; font-weight: normal; padding: 0; margin-top: 24px; }
 
 .kopf { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; }
+#aufgabe .kopf { flex-direction: column-reverse; align-items: flex-start; gap: 4px; } /* Name + Punkte über der Überschrift */
 .punkte { color: var(--akzent); font-weight: bold; font-size: 24px; white-space: nowrap; }
 .spielername { color: var(--text); margin-right: 12px; }
 button.spielername { background: none; padding: 0; color: var(--text); font-size: inherit; }
@@ -84,8 +85,7 @@ form { display: flex; gap: 12px; }
   padding: 12px 24px; background: var(--flaeche); border-top: 2px solid var(--akzent); font-size: 18px;
 }
 .ergebnis { background: var(--hintergrund); border-radius: 999px; padding: 4px 14px; }
-.links { display: flex; gap: 24px; margin: -8px 0 20px; }
-.links a, .links button.link { color: var(--akzent); font-size: 20px; margin: 0; opacity: 1; text-decoration: none; }
+.kopf-link, button.link.kopf-link { color: var(--akzent); font-size: 20px; margin: 0 0 0 24px; opacity: 1; text-decoration: none; }
 .abzeichen.ruhm div { height: auto; min-height: var(--kachelbild-hoehe); }
 .abzeichen.ruhm div.offen { opacity: .35; filter: grayscale(1); }
 .abzeichen.ruhm small { opacity: .8; margin-top: 4px; }
