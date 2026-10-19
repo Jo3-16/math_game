@@ -65,7 +65,7 @@ button.spielername::after { content: " ✏️"; font-size: .8em; }
 }
 .bildrahmen:has(> img[hidden]) { height: 60vh; } /* Sternenhimmel, wenn kein Bild passt */
 .bildrahmen img { width: 100%; height: auto; max-height: calc(100vh - 140px); object-fit: cover; display: block; }
-.kapiteltitel { color: var(--akzent); font-weight: bold; font-size: 30px; line-height: 1.2; }
+.kapiteltitel { color: var(--akzent); font-weight: bold; font-size: 45px; line-height: 1.15; }
 .fortschritt { font-size: 16px; opacity: .8; }
 .geschichte { font-size: 22px; }
 .frage { font-size: 24px; font-weight: bold; color: var(--akzent); }
