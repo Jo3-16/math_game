@@ -30,7 +30,8 @@ button.link { background: none; color: var(--text); opacity: .7; font-weight: no
 .kopf { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; }
 .punkte { color: var(--akzent); font-weight: bold; font-size: 24px; white-space: nowrap; }
 .spielername { color: var(--text); margin-right: 12px; }
-button.spielername { background: none; padding: 0; border-bottom: 2px dashed var(--text); border-radius: 0; font-size: inherit; }
+button.spielername { background: none; padding: 0; color: var(--text); font-size: inherit; }
+button.spielername::after { content: " ✏️"; font-size: .8em; }
 
 /* Übersicht */
 :root { --kachelbild-breite: 180px; --kachelbild-hoehe: 130px; } /* Vorschaubild = Abzeichen-Größe */
