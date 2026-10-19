@@ -48,7 +48,15 @@ function zeigeUebersicht() {
       offen: `▶️ ${s?.geloest ?? 0}/${k.aufgaben.length} gelöst`,
       gesperrt: '🔒 gesperrt',
     }[status[i]];
-    b.append(element('small', '', `Kapitel ${i + 1}`), element('b', '', k.titel), element('small', '', zeile));
+    if (k.vorschau) {
+      const vorschau = element('img', 'vorschau');
+      vorschau.src = pfadUrl(k.vorschau);
+      vorschau.alt = '';
+      b.append(vorschau);
+    }
+    const text = element('div');
+    text.append(element('small', '', `Kapitel ${i + 1}`), element('b', '', k.titel), element('small', '', zeile));
+    b.append(text);
     if (status[i] === 'gesperrt') b.disabled = true;
     else b.onclick = () => starteKapitel(i, status[i] === 'fertig');
     return b;
@@ -77,7 +85,10 @@ function starteKapitel(index, alsWiederholung) {
 function bildUrl(suchwoerter) {
   const treffer = findeBilder(welt.bilder, suchwoerter);
   if (!treffer.length) return '';
-  const pfad = treffer[Math.floor(Math.random() * treffer.length)];
+  return pfadUrl(treffer[Math.floor(Math.random() * treffer.length)]);
+}
+
+function pfadUrl(pfad) {
   return `/welten/${encodeURIComponent(weltId)}/bilder/${pfad.split('/').map(encodeURIComponent).join('/')}`;
 }
 

@@ -17,6 +17,7 @@ Wenn der Vater z. B. „Mach 5 neue Kapitel über Hoth“ sagt:
    ```json
    {
      "titel": "…",
+     "vorschau": "Kapitelbilder/NN.jpg",
      "abzeichen": { "name": "…", "symbol": "ein Emoji" },
      "aufgaben": [
        { "bild": ["suchwort", "alternative"], "geschichte": "…", "frage": "…?",
@@ -32,6 +33,7 @@ Wenn der Vater z. B. „Mach 5 neue Kapitel über Hoth“ sagt:
    - Geschichte kurz (2–3 Sätze), spannend, kindgerecht; die Frage separat und eindeutig.
    - `tipp` spricht der Helfer der Welt (Star Wars: Yoda, in Yoda-Sprache), zeigt den Rechenweg an, **verrät nie das Ergebnis**.
    - Texte auf Deutsch.
+   - `vorschau`: festes Vorschaubild für die Übersicht, Pfad relativ zu `bilder/` (Ordner `Kapitelbilder/`, Quelle in `Kapitelbilder/QUELLEN.txt` eintragen). Bilder frei lizenziert z. B. von Wikimedia Commons; Wookieepedia blockt Downloads.
 5. **Prüfen:** `node pruefe.js` ausführen und alle FEHLER und WARNUNGEN beheben, bevor du fertig meldest.
 
 ## Neue Welt

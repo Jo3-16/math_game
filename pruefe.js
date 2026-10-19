@@ -32,6 +32,9 @@ export async function pruefeWelt(weltOrdner) {
       fehler.push(`${datei}: titel, abzeichen.name, abzeichen.symbol oder aufgaben fehlt`);
       continue;
     }
+    if (kapitel.vorschau !== undefined && !bilder.includes(kapitel.vorschau)) {
+      fehler.push(`${datei}: Vorschaubild "${kapitel.vorschau}" gibt es nicht im Bilder-Ordner`);
+    }
     if (kapitel.aufgaben.length < 4 || kapitel.aufgaben.length > 6) {
       fehler.push(`${datei}: ${kapitel.aufgaben.length} Aufgaben, erlaubt sind 4 bis 6`);
     }

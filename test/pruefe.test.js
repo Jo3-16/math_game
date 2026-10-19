@@ -59,3 +59,19 @@ test('kaputtes json', async () => {
 test('welt.json unvollständig', async () => {
   assert.equal((await pruefeWelt(welt(vier(), { name: 'W' }))).fehler.length, 1);
 });
+
+test('vorschaubild vorhanden', async () => {
+  const ordner = welt(vier());
+  const datei = path.join(ordner, 'kapitel', '01-test.json');
+  const kapitel = JSON.parse(fs.readFileSync(datei, 'utf8'));
+  fs.writeFileSync(datei, JSON.stringify({ ...kapitel, vorschau: 'X-Wing.jpg' }));
+  assert.deepEqual(await pruefeWelt(ordner), { fehler: [], warnungen: [] });
+});
+
+test('vorschaubild fehlt als datei', async () => {
+  const ordner = welt(vier());
+  const datei = path.join(ordner, 'kapitel', '01-test.json');
+  const kapitel = JSON.parse(fs.readFileSync(datei, 'utf8'));
+  fs.writeFileSync(datei, JSON.stringify({ ...kapitel, vorschau: 'Kapitelbilder/gibtsnicht.jpg' }));
+  assert.match((await pruefeWelt(ordner)).fehler[0], /Vorschaubild/);
+});
