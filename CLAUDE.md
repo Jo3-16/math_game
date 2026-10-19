@@ -22,7 +22,7 @@ Wenn der Vater z. B. „Mach 5 neue Kapitel über Hoth“ sagt:
      "abzeichen": { "name": "…", "symbol": "ein Emoji" },
      "aufgaben": [
        { "bild": ["suchwort", "alternative"], "geschichte": "…", "frage": "…?",
-         "rechnung": "3 * 8 / 2", "loesung": 12, "tipp": "…" }
+         "rechnung": "3 * 8 / 2", "loesung": 12, "merke": "12 Torpedo-Treffer", "tipp": "…" }
      ]
    }
    ```
@@ -33,6 +33,7 @@ Wenn der Vater z. B. „Mach 5 neue Kapitel über Hoth“ sagt:
    - `rechnung` nur mit Zahlen, `+ - * /` und Klammern; sie muss genau den Rechenweg der Geschichte abbilden.
    - Geschichte kurz (2–3 Sätze), spannend, kindgerecht; die Frage separat und eindeutig.
    - `tipp` spricht der Helfer der Welt (Star Wars: Yoda, in Yoda-Sprache), zeigt den Rechenweg an, **verrät nie das Ergebnis**.
+   - `merke`: kurzes Ergebnis mit der Lösungszahl (z. B. „12 Torpedo-Treffer“). Es erscheint unten in der Ergebnisleiste der folgenden Aufgaben – jede Aufgabe muss mit Geschichte + Ergebnisleiste allein lösbar sein; Zahlen aus früheren Geschichten, die keine Lösung waren, in der Geschichte wiederholen.
    - Texte auf Deutsch.
    - `vorschau`: festes Vorschaubild für die Übersicht, Pfad relativ zu `bilder/` (Ordner `Kapitelbilder/`, Quelle in `Kapitelbilder/QUELLEN.txt` eintragen). Bilder frei lizenziert z. B. von Wikimedia Commons; Wookieepedia blockt Downloads.
 5. **Prüfen:** `node pruefe.js` ausführen und alle FEHLER und WARNUNGEN beheben, bevor du fertig meldest.

@@ -6,7 +6,7 @@ import path from 'node:path';
 import { pruefeWelt } from '../pruefe.js';
 
 const aufgabe = (aenderung = {}) => ({
-  bild: ['x-wing'], geschichte: 'G', frage: 'F?', rechnung: '12 / 4', loesung: 3, tipp: 'T', ...aenderung,
+  bild: ['x-wing'], geschichte: 'G', frage: 'F?', rechnung: '12 / 4', loesung: 3, tipp: 'T', merke: '3 X-Wings pro Gruppe', ...aenderung,
 });
 
 function welt(aufgaben, welt = { name: 'W', helfer: 'Yoda', farben: {} }) {
@@ -27,13 +27,13 @@ test('gültiges kapitel', async () => {
 });
 
 test('falsche loesung', async () => {
-  const r = await pruefeWelt(welt(vier({ loesung: 4 })));
+  const r = await pruefeWelt(welt(vier({ loesung: 4, merke: '4 X-Wings pro Gruppe' })));
   assert.equal(r.fehler.length, 1);
   assert.match(r.fehler[0], /01-test\.json Aufgabe 1/);
 });
 
 test('zahl über 500', async () => {
-  assert.equal((await pruefeWelt(welt(vier({ rechnung: '250 * 3', loesung: 750 })))).fehler.length, 1);
+  assert.equal((await pruefeWelt(welt(vier({ rechnung: '250 * 3', loesung: 750, merke: '750 X-Wings' })))).fehler.length, 1);
 });
 
 test('fehlendes bild nur warnung', async () => {
@@ -74,4 +74,14 @@ test('vorschaubild fehlt als datei', async () => {
   const kapitel = JSON.parse(fs.readFileSync(datei, 'utf8'));
   fs.writeFileSync(datei, JSON.stringify({ ...kapitel, vorschau: 'Kapitelbilder/gibtsnicht.jpg' }));
   assert.match((await pruefeWelt(ordner)).fehler[0], /Vorschaubild/);
+});
+
+test('merke fehlt', async () => {
+  assert.match((await pruefeWelt(welt(vier({ merke: '' })))).fehler[0], /merke/);
+});
+
+test('merke ohne lösungszahl', async () => {
+  const r = await pruefeWelt(welt(vier({ merke: '13 X-Wings pro Gruppe' })));
+  assert.equal(r.fehler.length, 1);
+  assert.match(r.fehler[0], /merke/);
 });

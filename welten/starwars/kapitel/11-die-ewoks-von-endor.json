@@ -9,6 +9,7 @@
       "frage": "Wie viele Kämpfer sitzen im Shuttle?",
       "rechnung": "4 * 6",
       "loesung": 24,
+      "merke": "24 Kämpfer im Shuttle",
       "tipp": "4 Reihen, in jeder 6 Kämpfer. Mal rechnen du musst."
     },
     {
@@ -17,6 +18,7 @@
       "frage": "Wie viele Sturmtruppen patrouillieren im Wald?",
       "rechnung": "9 * 4",
       "loesung": 36,
+      "merke": "36 Sturmtruppen im Wald",
       "tipp": "9 Gruppen mit je 4 Soldaten. Die Viererreihe – oder 10 mal 4 und dann eine Gruppe weniger."
     },
     {
@@ -25,6 +27,7 @@
       "frage": "Wie viele Ewoks wohnen im Dorf?",
       "rechnung": "7 * 9",
       "loesung": 63,
+      "merke": "63 Ewoks im Dorf",
       "tipp": "7 Häuser mit je 9 Ewoks. 7 mal 10 rechnen und dann 7 wieder wegnehmen, hmm."
     },
     {
@@ -33,6 +36,7 @@
       "frage": "Wie viele Beeren braucht das ganze Dorf?",
       "rechnung": "63 * 4",
       "loesung": 252,
+      "merke": "252 Beeren fürs Fest",
       "tipp": "Wie viele Ewoks im Dorf wohnen, du schon weißt. Mal 4 – also verdoppeln und nochmal verdoppeln du musst."
     },
     {
@@ -41,6 +45,7 @@
       "frage": "Wie viele Energiepunkte hat der Schildgenerator danach noch?",
       "rechnung": "400 - 5 * 80",
       "loesung": 0,
+      "merke": "0 Energiepunkte – Schild aus!",
       "tipp": "Zuerst ausrechnen, wie viel alle Sprengladungen zusammen zerstören: 5 mal 80. Dann von 400 abziehen du musst."
     }
   ]

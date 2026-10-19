@@ -9,6 +9,7 @@
       "frage": "Wie viele X-Wings fliegen in jeder Gruppe?",
       "rechnung": "12 / 4",
       "loesung": 3,
+      "merke": "3 X-Wings in jeder Gruppe",
       "tipp": "Auf 4 Gruppen verteilen du musst. Welche Zahl mal 4 ergibt 12, hmm?"
     },
     {
@@ -17,6 +18,7 @@
       "frage": "Wie viele Treffer sind das?",
       "rechnung": "3 * 8 / 2",
       "loesung": 12,
+      "merke": "12 Torpedo-Treffer",
       "tipp": "Wie viele X-Wings in einer Gruppe sind, weißt du schon. Erst alle Torpedos zählen, dann halbieren du musst."
     },
     {
@@ -25,6 +27,7 @@
       "frage": "Wie viele TIE-Fighter starten insgesamt?",
       "rechnung": "6 * 9",
       "loesung": 54,
+      "merke": "54 TIE-Fighter starten",
       "tipp": "6 Hangars, in jedem 9. Das Einmaleins mit 9 dir hilft, junger Padawan."
     },
     {
@@ -33,6 +36,7 @@
       "frage": "Wie viele TIE-Fighter fliehen?",
       "rechnung": "54 - 38",
       "loesung": 16,
+      "merke": "16 TIE-Fighter fliehen",
       "tipp": "Von allen TIE-Fightern die abgeschossenen wegnehmen du musst. Erst die Zehner, dann die Einer."
     },
     {
@@ -41,6 +45,7 @@
       "frage": "Wie viele Energiepunkte hat der Schild jetzt noch?",
       "rechnung": "240 - 12 * 15",
       "loesung": 60,
+      "merke": "60 Energiepunkte im Schild",
       "tipp": "Zuerst ausrechnen, wie viel alle Treffer zusammen abziehen: 12 mal 15. Danach von 240 abziehen, hmm."
     }
   ]

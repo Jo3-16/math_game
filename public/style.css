@@ -64,7 +64,7 @@ button.spielername::after { content: " ✏️"; font-size: .8em; }
               var(--flaeche);
 }
 .bildrahmen:has(> img[hidden]) { height: 60vh; } /* Sternenhimmel, wenn kein Bild passt */
-.bildrahmen img { width: 100%; height: auto; max-height: calc(100vh - 48px); object-fit: cover; display: block; }
+.bildrahmen img { width: 100%; height: auto; max-height: calc(100vh - 140px); object-fit: cover; display: block; }
 .kapiteltitel { color: var(--akzent); font-weight: bold; }
 .fortschritt { font-size: 16px; opacity: .8; }
 .geschichte { font-size: 22px; }
@@ -77,6 +77,13 @@ form { display: flex; gap: 12px; }
 .meldung { min-height: 1.5em; font-weight: bold; }
 .meldung.richtig { color: #7cdb6a; }
 .meldung.falsch { color: #ff8a80; }
+/* Ergebnisse der vorherigen Aufgaben am unteren Rand */
+#aufgabe { padding-bottom: 100px; }
+.ergebnisse {
+  position: fixed; left: 0; right: 0; bottom: 0; display: flex; flex-wrap: wrap; gap: 10px;
+  padding: 12px 24px; background: var(--flaeche); border-top: 2px solid var(--akzent); font-size: 18px;
+}
+.ergebnis { background: var(--hintergrund); border-radius: 999px; padding: 4px 14px; }
 .admin-leiste { display: flex; justify-content: space-between; align-items: center; gap: 16px; border: 2px dashed #ff8a80; border-radius: 8px; padding: 8px 12px; margin-bottom: 16px; }
 .tipp {
   display: flex; align-items: center; gap: 16px;

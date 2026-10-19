@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { rechne, findeBilder } from './public/logik.js';
 import { bilderListe } from './server.js';
 
-const FELDER = ['geschichte', 'frage', 'rechnung', 'tipp'];
+const FELDER = ['geschichte', 'frage', 'rechnung', 'tipp', 'merke'];
 const leer = wert => typeof wert !== 'string' || !wert.trim();
 
 export async function pruefeWelt(weltOrdner) {
@@ -49,6 +49,9 @@ export async function pruefeWelt(weltOrdner) {
       if (ergebnis.fehler) fehler.push(`${wo}: Rechnung "${a.rechnung}": ${ergebnis.fehler}`);
       else if (ergebnis.wert !== a.loesung) fehler.push(`${wo}: "${a.rechnung}" ergibt ${ergebnis.wert}, nicht ${a.loesung}`);
 
+      if (!new RegExp(`(^|\\D)${a.loesung}(\\D|$)`).test(a.merke)) {
+        fehler.push(`${wo}: merke "${a.merke}" enthält die Lösung ${a.loesung} nicht`);
+      }
       if (!findeBilder(bilder, a.bild).length) warnungen.push(`${wo}: kein Bild zu ${a.bild.join(', ')}`);
     });
   }

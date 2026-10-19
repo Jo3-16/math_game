@@ -9,6 +9,7 @@
       "frage": "Wie viele Leute wohnen in den Türmen?",
       "rechnung": "8 * 50",
       "loesung": 400,
+      "merke": "400 Leute in den Türmen",
       "tipp": "8 mal 50 – rechne 8 mal 5 und häng eine Null dran du musst."
     },
     {
@@ -17,6 +18,7 @@
       "frage": "Wie viele Credits schuldet Han Lando jetzt noch?",
       "rechnung": "250 - 180",
       "loesung": 70,
+      "merke": "70 Credits Schulden",
       "tipp": "Von 250 die 180 abziehen du musst. Von 180 bis 200 ist es leicht – und dann bis 250, hmm."
     },
     {
@@ -25,6 +27,7 @@
       "frage": "Wie viele Sturmtruppen sind es?",
       "rechnung": "6 * 8",
       "loesung": 48,
+      "merke": "48 Sturmtruppen",
       "tipp": "6 Trupps mit je 8 Soldaten. Das Einmaleins mit 8 dir hilft."
     },
     {
@@ -33,6 +36,7 @@
       "frage": "Wie viele Sekunden dauert es noch?",
       "rechnung": "300 - 4 * 60",
       "loesung": 60,
+      "merke": "60 Sekunden bis zum Einfrieren",
       "tipp": "Zuerst die 4 Minuten in Sekunden umrechnen: 4 mal 60. Dann von 300 abziehen du musst."
     },
     {
@@ -41,6 +45,7 @@
       "frage": "Wie viele Meter rennen sie bis zum Falcon?",
       "rechnung": "5 * 45 + 30",
       "loesung": 255,
+      "merke": "255 Meter bis zum Falcon",
       "tipp": "Zuerst die Gänge: 5 mal 45. Dann die Landeplattform dazuzählen du musst."
     }
   ]

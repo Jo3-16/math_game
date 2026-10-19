@@ -9,6 +9,7 @@
       "frage": "Wie lang ist ein Eisgang?",
       "rechnung": "360 / 4",
       "loesung": 90,
+      "merke": "90 Meter pro Eisgang",
       "tipp": "360 durch 4 teilen du musst. Weißt du, was 36 durch 4 ist? Dann eine Null dranhängen."
     },
     {
@@ -17,6 +18,7 @@
       "frage": "Wie viele TIE-Fighter verfolgen den Falcon?",
       "rechnung": "3 * 6",
       "loesung": 18,
+      "merke": "18 TIE-Fighter verfolgen",
       "tipp": "3 Sternzerstörer, jeder schickt 6. Mal rechnen du musst."
     },
     {
@@ -25,6 +27,7 @@
       "frage": "Wie viele imperiale Jäger verfolgen den Falcon jetzt?",
       "rechnung": "18 - 7 - 5 + 4",
       "loesung": 10,
+      "merke": "10 Jäger verfolgen jetzt",
       "tipp": "Von allen TIE-Fightern die abgeschossenen abziehen – Hans und Leias. Dann die Interceptoren dazuzählen du musst."
     },
     {
@@ -33,6 +36,7 @@
       "frage": "Wie viele Energieeinheiten fehlen noch?",
       "rechnung": "250 - 130",
       "loesung": 120,
+      "merke": "120 Energie fehlen",
       "tipp": "Von 250 die 130 abziehen du musst. Erst die Hunderter, dann die Zehner."
     },
     {
@@ -41,6 +45,7 @@
       "frage": "Wie viele Minuten dauert es, bis die fehlende Energie geladen ist?",
       "rechnung": "120 / 20",
       "loesung": 6,
+      "merke": "6 Minuten Ladezeit",
       "tipp": "Wie oft die 20 in die fehlende Energie passt, du herausfinden musst. Ohne die Nullen es leichter geht, hmm."
     }
   ]

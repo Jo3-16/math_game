@@ -9,6 +9,7 @@
       "frage": "Wie viele Energieeinheiten hat Poe nach dem Start noch?",
       "rechnung": "180 - 45",
       "loesung": 135,
+      "merke": "135 Energie nach dem Start",
       "tipp": "Von 180 die 45 abziehen du musst. Erst 40 weg, dann noch 5."
     },
     {
@@ -17,6 +18,7 @@
       "frage": "Wie viele Laserkanonen hat die ganze Staffel?",
       "rechnung": "8 * 4",
       "loesung": 32,
+      "merke": "32 Laserkanonen",
       "tipp": "8 X-Wings mit je 4 Kanonen. 4 mal 8 ist wie 8 verdoppeln und dann nochmal verdoppeln, hmm."
     },
     {
@@ -25,6 +27,7 @@
       "frage": "Wie viele TIE-Interceptoren sind noch übrig?",
       "rechnung": "5 * 7 - 17",
       "loesung": 18,
+      "merke": "18 TIE-Interceptoren übrig",
       "tipp": "Zuerst alle Interceptoren zählen: 5 mal 7. Dann die abgeschossenen wegnehmen du musst."
     },
     {
@@ -33,6 +36,7 @@
       "frage": "Wie viele TIE-Interceptoren fliegen zu jedem Sternzerstörer?",
       "rechnung": "18 / 3",
       "loesung": 6,
+      "merke": "6 Interceptoren pro Sternzerstörer",
       "tipp": "Die übrigen Jäger auf 3 Schiffe verteilen du musst. Welche Zahl mal 3 ergibt 18?"
     },
     {
@@ -41,6 +45,7 @@
       "frage": "Wie viele Abschüsse hat Poe jetzt insgesamt?",
       "rechnung": "96 + 9",
       "loesung": 105,
+      "merke": "105 Abschüsse von Poe",
       "tipp": "96 und 9 zusammenzählen du musst. Erst bis 100 auffüllen – wie viele brauchst du dafür?"
     }
   ]

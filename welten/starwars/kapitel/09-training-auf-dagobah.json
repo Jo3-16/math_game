@@ -9,6 +9,7 @@
       "frage": "Wie tief steckt der X-Wing nach 4 Stunden?",
       "rechnung": "120 + 4 * 15",
       "loesung": 180,
+      "merke": "180 cm tief im Schlamm",
       "tipp": "Zuerst ausrechnen, wie tief er in 4 Stunden noch sinkt: 4 mal 15. Dann zu den 120 dazuzählen du musst."
     },
     {
@@ -17,6 +18,7 @@
       "frage": "Wie viele Wurzeln braucht Yoda?",
       "rechnung": "6 * 7",
       "loesung": 42,
+      "merke": "42 Wurzeln für die Suppe",
       "tipp": "6 Schüsseln, in jede 7 Wurzeln. Das Einmaleins mit 7 dir hilft, hmm."
     },
     {
@@ -25,6 +27,7 @@
       "frage": "Wie viele Meter läuft Luke insgesamt?",
       "rechnung": "8 * 45",
       "loesung": 360,
+      "merke": "360 Meter gelaufen",
       "tipp": "8 mal 45 – erst 8 mal 40, dann 8 mal 5, und beides zusammenzählen du musst."
     },
     {
@@ -33,6 +36,7 @@
       "frage": "Wie viele Kilo hebt Luke zusammen hoch?",
       "rechnung": "3 * 25 + 32",
       "loesung": 107,
+      "merke": "107 Kilo gehoben",
       "tipp": "Zuerst die Steine: 3 mal 25. Dann R2-D2 dazuzählen du musst."
     },
     {
@@ -41,6 +45,7 @@
       "frage": "Um wie viele Zentimeter hebt Yoda den X-Wing bei jedem Ruck?",
       "rechnung": "180 / 5",
       "loesung": 36,
+      "merke": "36 cm pro Ruck",
       "tipp": "Wie tief der X-Wing steckte, du in der ersten Aufgabe ausgerechnet hast. Durch 5 teilen du musst – erst die Hunderter, dann den Rest."
     }
   ]

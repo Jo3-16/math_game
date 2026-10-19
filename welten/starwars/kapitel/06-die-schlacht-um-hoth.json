@@ -9,6 +9,7 @@
       "frage": "Wie viele X-Wings starten?",
       "rechnung": "8 * 3",
       "loesung": 24,
+      "merke": "24 X-Wings starten",
       "tipp": "8 Gruppen, in jeder 3 X-Wings. Die Dreierreihe dir hilft."
     },
     {
@@ -17,6 +18,7 @@
       "frage": "Wie viele Bomben werfen die TIE-Bomber ab?",
       "rechnung": "7 * 6",
       "loesung": 42,
+      "merke": "42 Bomben abgeworfen",
       "tipp": "7 Bomber mit je 6 Bomben. Das Einmaleins mit 6 oder 7 du brauchst."
     },
     {
@@ -25,6 +27,7 @@
       "frage": "Wie viele Bomben treffen den Schutzschild?",
       "rechnung": "42 / 2",
       "loesung": 21,
+      "merke": "21 Bomben treffen",
       "tipp": "Die Hälfte wird abgeschossen – die andere Hälfte trifft. Halbieren du musst."
     },
     {
@@ -33,6 +36,7 @@
       "frage": "Wie viele Energiepunkte hat der Schild noch?",
       "rechnung": "400 - 21 * 10",
       "loesung": 190,
+      "merke": "190 Energiepunkte im Schild",
       "tipp": "Zuerst ausrechnen, wie viel alle Treffer zusammen kosten. Mal 10 – eine Null dranhängen du musst. Dann von 400 abziehen."
     },
     {
@@ -41,6 +45,7 @@
       "frage": "Wie viele Salven treffen?",
       "rechnung": "24 * 4 / 3",
       "loesung": 32,
+      "merke": "32 Treffer auf AT-ATs",
       "tipp": "Zuerst alle Salven zählen: 24 mal 4. Dann durch 3 teilen du musst, hmm."
     }
   ]

@@ -9,6 +9,7 @@
       "frage": "Wie viele Liter Kühlmittel braucht der X-Wing insgesamt?",
       "rechnung": "4 * 25",
       "loesung": 100,
+      "merke": "100 Liter Kühlmittel",
       "tipp": "Zweimal 25 sind 50. Und dann noch einmal verdoppeln du musst."
     },
     {
@@ -17,6 +18,7 @@
       "frage": "Wie viele Kilometer muss Luke noch fliegen?",
       "rechnung": "300 - 125",
       "loesung": 175,
+      "merke": "noch 175 km bis zum Schacht",
       "tipp": "Von 300 die 125 wegnehmen du musst. Erst 100 weg, dann noch 25, hmm."
     },
     {
@@ -25,6 +27,7 @@
       "frage": "Wie viele Stecker prüft R2-D2?",
       "rechnung": "7 * 6",
       "loesung": 42,
+      "merke": "42 Stecker geprüft",
       "tipp": "7 Kabel, an jedem 6 Stecker. Das Einmaleins mit 6 oder mit 7 dir hilft."
     },
     {
@@ -33,6 +36,7 @@
       "frage": "Wie viele Schüsse feuern die TIE-Fighter insgesamt ab?",
       "rechnung": "3 * 3 * 5",
       "loesung": 45,
+      "merke": "45 Schüsse der TIE-Fighter",
       "tipp": "Zuerst die Schüsse eines TIE-Fighters zählen: 3 Salven mal 5. Dann mal 3 Jäger du nimmst."
     },
     {
@@ -41,6 +45,7 @@
       "frage": "Wie viele Schüsse treffen den Schutzschild?",
       "rechnung": "45 / 5",
       "loesung": 9,
+      "merke": "9 Treffer auf Lukes Schild",
       "tipp": "Jeder fünfte trifft – also alle Schüsse durch 5 teilen du musst, hmm."
     }
   ]

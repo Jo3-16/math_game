@@ -9,6 +9,7 @@
       "frage": "Wie viele Staffeln TIE-Fighter sind das?",
       "rechnung": "5 * 4",
       "loesung": 20,
+      "merke": "20 Staffeln TIE-Fighter",
       "tipp": "5 Sternzerstörer mit je 4 Staffeln. Mal rechnen du musst."
     },
     {
@@ -17,6 +18,7 @@
       "frage": "Wie viele TIE-Fighter hat die Flotte insgesamt?",
       "rechnung": "20 * 12",
       "loesung": 240,
+      "merke": "240 TIE-Fighter",
       "tipp": "20 mal 12 – erst 2 mal 12 rechnen, dann mal 10 du nimmst."
     },
     {
@@ -25,6 +27,7 @@
       "frage": "Wie viele TIE-Bomber sind es?",
       "rechnung": "5 * 9",
       "loesung": 45,
+      "merke": "45 TIE-Bomber",
       "tipp": "5 Sternzerstörer, in jedem 9 Bomber. Die Fünferreihe dir hilft."
     },
     {
@@ -33,6 +36,7 @@
       "frage": "Wie viele TIE-Fighter und TIE-Bomber sind es zusammen?",
       "rechnung": "240 + 45",
       "loesung": 285,
+      "merke": "285 imperiale Jäger",
       "tipp": "Die TIE-Fighter und die TIE-Bomber zusammenzählen du musst. Beide Zahlen du schon kennst."
     },
     {
@@ -41,6 +45,7 @@
       "frage": "Wie viele Jäger hat das Imperium mehr als die Rebellen?",
       "rechnung": "285 - 57",
       "loesung": 228,
+      "merke": "228 Jäger mehr als die Rebellen",
       "tipp": "Von allen imperialen Jägern die 57 der Rebellen abziehen du musst. Erst 50 weg, dann noch 7."
     }
   ]

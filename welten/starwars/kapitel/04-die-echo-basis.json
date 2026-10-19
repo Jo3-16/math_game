@@ -9,6 +9,7 @@
       "frage": "Wie viele X-Wings stehen im Hangar?",
       "rechnung": "6 * 7",
       "loesung": 42,
+      "merke": "42 X-Wings im Hangar",
       "tipp": "6 Reihen mit je 7 X-Wings. Das Einmaleins mit 7 dir hilft, junger Padawan."
     },
     {
@@ -17,6 +18,7 @@
       "frage": "Wie viele Liter Frostschutz brauchen alle X-Wings zusammen?",
       "rechnung": "42 * 5",
       "loesung": 210,
+      "merke": "210 Liter Frostschutz",
       "tipp": "Erst 40 mal 5 rechnen, dann noch 2 mal 5 dazu du nimmst."
     },
     {
@@ -25,6 +27,7 @@
       "frage": "Wie viele Schrauben zieht jeder von ihnen fest?",
       "rechnung": "96 / 2",
       "loesung": 48,
+      "merke": "48 Schrauben für jeden",
       "tipp": "Halbieren du musst. Erst die 90 halbieren, dann die 6, hmm."
     },
     {
@@ -33,6 +36,7 @@
       "frage": "Wie viele Schrauben hat Chewbacca insgesamt festgezogen?",
       "rechnung": "96 / 2 + 25",
       "loesung": 73,
+      "merke": "73 Schrauben von Chewbacca",
       "tipp": "Seine Hälfte der Schrauben du schon kennst. Die 25 vom Hyperantrieb noch dazuzählen du musst."
     },
     {
@@ -41,6 +45,7 @@
       "frage": "Wie viele Rebellen bleiben in der Basis?",
       "rechnung": "450 - 4 * 30",
       "loesung": 330,
+      "merke": "330 Rebellen in der Basis",
       "tipp": "Zuerst ausrechnen, wie viele auf Patrouille gehen: 4 mal 30. Dann von 450 abziehen du musst."
     }
   ]

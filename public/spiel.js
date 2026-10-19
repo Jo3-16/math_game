@@ -112,6 +112,9 @@ function zeigeAufgabe() {
   $('fortschritt').textContent = `Aufgabe ${aufgabeIndex + 1}/${kapitel.aufgaben.length}  ${punkte}`;
   $('gesamt-aufgabe').textContent = gesamtPunkte(stand);
   $('spielername-aufgabe').textContent = stand.name;
+  const bisher = kapitel.aufgaben.slice(0, aufgabeIndex).map(a => element('span', 'ergebnis', `✔ ${a.merke}`));
+  $('ergebnisse').replaceChildren(...bisher);
+  $('ergebnisse').hidden = !bisher.length;
   $('geschichte').textContent = aufgabe.geschichte;
   $('frage').textContent = aufgabe.frage;
   $('meldung').textContent = '';
