@@ -47,6 +47,16 @@
       "loesung": 255,
       "merke": "255 Meter bis zum Falcon",
       "tipp": "Zuerst die Gänge: 5 mal 45. Dann die Landeplattform dazuzählen du musst."
+    },
+    {
+      "bild": ["wolkenstadt"],
+      "geschichte": "Landos Wachen nehmen die 48 Sturmtruppen gefangen und bringen sie mit Wolkenwagen weg. In jeden Wolkenwagen passen 5 Gefangene.",
+      "frage": "Wie viele Wolkenwagen werden voll – und wie viele Sturmtruppen bleiben übrig?",
+      "rechnung": "48 / 5",
+      "loesung": 9,
+      "rest": 3,
+      "merke": "9 volle Wolkenwagen, 3 Sturmtruppen übrig",
+      "tipp": "Wie oft passt die 5 ganz in 48? Die Fünferreihe dir hilft. Was übrig bleibt, der Rest ist."
     }
   ],
   "bonus": {

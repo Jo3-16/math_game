@@ -1,0 +1,74 @@
+{
+  "titel": "Han Solos Schmuggelfahrt",
+  "vorschau": "Kapitelbilder/15.jpg",
+  "abzeichen": { "name": "Schmuggler-Profi", "symbol": "📦" },
+  "aufgaben": [
+    {
+      "bild": ["tatooine/"],
+      "art": "einheiten",
+      "geschichte": "Lange bevor Han Solo ein Held der Rebellion wurde, war er Schmuggler. Mit Chewbacca fliegt er nach Tatooine – der Flug dauert 3 Stunden.",
+      "frage": "Wie viele Minuten dauert der Flug?",
+      "rechnung": "3 * 60",
+      "loesung": 180,
+      "merke": "180 Minuten Flug",
+      "tipp": "Eine Stunde hat 60 Minuten. Mal rechnen du musst."
+    },
+    {
+      "bild": ["han-solo/"],
+      "art": "einheiten",
+      "geschichte": "In der Cantina von Mos Eisley wartet Han auf seinen Auftraggeber. Er wartet 2 Minuten und 45 Sekunden.",
+      "frage": "Wie viele Sekunden wartet Han?",
+      "rechnung": "2 * 60 + 45",
+      "loesung": 165,
+      "merke": "165 Sekunden gewartet",
+      "tipp": "Eine Minute hat 60 Sekunden. Erst die Minuten umrechnen, dann die Sekunden dazuzählen du musst."
+    },
+    {
+      "bild": ["chewbacca/"],
+      "art": "einheiten",
+      "geschichte": "Chewbacca lädt die Schmuggelware in den Falcon. Jede Kiste ist 1 Meter und 20 Zentimeter hoch. Er stapelt 3 Kisten übereinander.",
+      "frage": "Wie hoch ist der Kistenstapel in Zentimetern?",
+      "rechnung": "3 * 120",
+      "loesung": 360,
+      "merke": "360 cm hoher Kistenstapel",
+      "tipp": "Erst eine Kiste in Zentimeter umrechnen: Ein Meter hat 100 Zentimeter. Dann mal 3."
+    },
+    {
+      "bild": ["millennium-falcon/"],
+      "art": "einheiten",
+      "geschichte": "Der Laderaum des Millennium Falcon ist 4 Meter hoch. Passt der Stapel hinein?",
+      "frage": "Wie viele Zentimeter Platz sind noch über dem Kistenstapel?",
+      "rechnung": "4 * 100 - 360",
+      "loesung": 40,
+      "merke": "40 cm Platz über den Kisten",
+      "tipp": "4 Meter in Zentimeter umrechnen du musst. Dann die Höhe des Stapels abziehen."
+    },
+    {
+      "bild": ["sturmtruppen/"],
+      "art": "einheiten",
+      "geschichte": "Alarm! Sturmtruppen haben den Falcon entdeckt. In 5 Minuten muss Han starten – das Beladen hat schon 210 Sekunden gedauert.",
+      "frage": "Wie viele Sekunden bleiben noch bis zum Start?",
+      "rechnung": "5 * 60 - 210",
+      "loesung": 90,
+      "merke": "90 Sekunden bis zum Start",
+      "tipp": "Erst die 5 Minuten in Sekunden umrechnen. Dann die Zeit fürs Beladen abziehen du musst."
+    },
+    {
+      "bild": ["hyperraum"],
+      "art": "einheiten",
+      "geschichte": "Geschafft! Der Falcon springt in den Hyperraum. Der Sprung bis zum Ziel dauert 270 Sekunden.",
+      "frage": "Wie viele ganze Minuten sind das – und wie viele Sekunden bleiben als Rest?",
+      "rechnung": "270 / 60",
+      "loesung": 4,
+      "rest": 30,
+      "merke": "4 Minuten und 30 Sekunden im Hyperraum",
+      "tipp": "Wie oft passen 60 Sekunden ganz in 270 Sekunden? Was übrig bleibt, die Sekunden im Rest sind."
+    }
+  ],
+  "bonus": {
+    "geschichte": "Im Laderaum stehen Kisten mit Ersatzteilen und Kisten mit Vorräten – zusammen 20 Kisten. Es sind 4 Vorratskisten mehr als Ersatzteilkisten.",
+    "frage": "Wie viele Vorratskisten sind im Laderaum?",
+    "loesung": 12,
+    "tipp": "Nimm die 4 zusätzlichen Vorratskisten erst weg. Den Rest teilst du gerecht auf beide Sorten auf – dann die 4 wieder dazu."
+  }
+}

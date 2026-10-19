@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest } from '../public/logik.js';
+import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN } from '../public/logik.js';
 
 test('normalisiere', () => {
   assert.equal(normalisiere('X-wing_SWB.webp'), 'x wing swb.webp');
@@ -114,4 +114,47 @@ test('bonusGeloest gibt einmal 20 punkte', () => {
   assert.equal(s.kapitel.a.bonus, true);
   assert.equal(gesamtPunkte(s), 35);
   assert.equal(gesamtPunkte(bonusGeloest(s, 'a')), 35);
+});
+
+test('rechneMitRest', () => {
+  assert.deepEqual(rechneMitRest('25 / 4'), { wert: 6, rest: 1 });
+  assert.deepEqual(rechneMitRest('(4 * 6 + 3) / 5'), { wert: 5, rest: 2 });
+  assert.deepEqual(rechneMitRest('24 / 4'), { wert: 6, rest: 0 });
+  assert.ok(rechneMitRest('25 / 0').fehler);
+  assert.ok(rechneMitRest('25 + 4').fehler);           // keine Division
+  assert.ok(rechneMitRest('10 + 15 / 4').fehler);      // links nicht geklammert
+  assert.ok(rechneMitRest('25 / (2 + 2)').fehler);     // Teiler muss eine Zahl sein
+  assert.ok(rechneMitRest('600 / 7').fehler);          // über 500
+});
+
+test('rechenarten', () => {
+  assert.deepEqual(rechenarten({ rechnung: '12 / 4' }), ['geteilt']);
+  assert.deepEqual(rechenarten({ rechnung: '240 - 12 * 15' }), ['mal', 'plusminus']);
+  assert.deepEqual(rechenarten({ rechnung: '25 / 4', rest: 1 }), ['rest']);
+  assert.deepEqual(rechenarten({ rechnung: '2 * 60 + 15', art: 'einheiten' }), ['einheiten']);
+  assert.deepEqual(rechenarten({}), ['raetsel']);
+});
+
+test('mitStatistik', () => {
+  let s = mitStatistik(leererStand(), ['mal', 'plusminus'], 2, '01#3');
+  s = mitStatistik(s, ['mal'], 0, '01#4');
+  assert.deepEqual(s.statistik.arten.mal, { aufgaben: 2, fehlversuche: 2, mitTipp: 1 });
+  assert.deepEqual(s.statistik.arten.plusminus, { aufgaben: 1, fehlversuche: 2, mitTipp: 1 });
+  assert.deepEqual(s.statistik.aufgaben, { '01#3': 2 });
+  assert.equal(leererStand().statistik, undefined);
+});
+
+test('erzeugeAufgabe', () => {
+  let x = 0;
+  const zufall = () => (x = (x * 9301 + 49297) % 233280) / 233280; // feste Zufallsfolge
+  for (const art of SIMULATOR_ARTEN.map(a => a.id)) {
+    for (let i = 0; i < 200; i++) {
+      const a = erzeugeAufgabe(art, zufall);
+      const r = a.rest !== undefined ? rechneMitRest(a.rechnung) : rechne(a.rechnung);
+      assert.ok(!r.fehler, `${art}: ${a.rechnung} – ${r.fehler}`);
+      assert.equal(r.wert, a.loesung, a.rechnung);
+      if (a.rest !== undefined) assert.ok(r.rest === a.rest && a.rest > 0, a.rechnung);
+      assert.ok(a.frage && a.tipp && !new RegExp(`(^|\\D)${a.loesung}(\\D|$)`).test(a.tipp), `${art}: ${a.frage} / ${a.tipp}`);
+    }
+  }
 });

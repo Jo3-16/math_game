@@ -47,6 +47,16 @@
       "loesung": 228,
       "merke": "228 Jäger mehr als die Rebellen",
       "tipp": "Von allen imperialen Jägern die 57 der Rebellen abziehen du musst. Erst 50 weg, dann noch 7."
+    },
+    {
+      "bild": ["tie fighter"],
+      "geschichte": "Die 240 TIE-Fighter sollen in Angriffsgruppen zu je 7 Jägern losfliegen. Jäger, die keine volle Gruppe mehr bilden, bleiben im Hangar.",
+      "frage": "Wie viele volle Angriffsgruppen gibt es – und wie viele TIE-Fighter bleiben im Hangar?",
+      "rechnung": "240 / 7",
+      "loesung": 34,
+      "rest": 2,
+      "merke": "34 Angriffsgruppen, 2 TIE-Fighter im Hangar",
+      "tipp": "Wie oft passt die 7 ganz in 240? Erst 7 mal 30 rechnen, dann schauen, wie viele Siebener noch hineinpassen. Was übrig bleibt, der Rest ist."
     }
   ],
   "bonus": {

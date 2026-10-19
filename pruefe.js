@@ -2,7 +2,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { rechne, findeBilder } from './public/logik.js';
+import { rechne, rechneMitRest, findeBilder } from './public/logik.js';
 import { bilderListe } from './server.js';
 
 const FELDER = ['geschichte', 'frage', 'rechnung', 'tipp', 'merke'];
@@ -49,9 +49,13 @@ export async function pruefeWelt(weltOrdner) {
       if (!Number.isInteger(a.loesung)) fehlend.push('loesung');
       if (fehlend.length) return fehler.push(`${wo}: fehlt oder leer: ${fehlend.join(', ')}`);
 
-      const ergebnis = rechne(a.rechnung);
+      const mitRest = a.rest !== undefined;
+      const ergebnis = mitRest ? rechneMitRest(a.rechnung) : rechne(a.rechnung);
       if (ergebnis.fehler) fehler.push(`${wo}: Rechnung "${a.rechnung}": ${ergebnis.fehler}`);
       else if (ergebnis.wert !== a.loesung) fehler.push(`${wo}: "${a.rechnung}" ergibt ${ergebnis.wert}, nicht ${a.loesung}`);
+      else if (mitRest && (ergebnis.rest !== a.rest || a.rest === 0)) {
+        fehler.push(`${wo}: "${a.rechnung}" hat Rest ${ergebnis.rest}, nicht ${a.rest}` + (a.rest === 0 ? ' (Rest-Aufgaben brauchen einen Rest)' : ''));
+      }
 
       if (!new RegExp(`(^|\\D)${a.loesung}(\\D|$)`).test(a.merke)) {
         fehler.push(`${wo}: merke "${a.merke}" enthält die Lösung ${a.loesung} nicht`);

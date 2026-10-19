@@ -47,6 +47,16 @@
       "loesung": 0,
       "merke": "0 Energiepunkte – Schild aus!",
       "tipp": "Zuerst ausrechnen, wie viel alle Sprengladungen zusammen zerstören: 5 mal 80. Dann von 400 abziehen du musst."
+    },
+    {
+      "bild": ["ewoks/"],
+      "geschichte": "Zum großen Siegesfest setzen sich die 63 Ewoks an lange Tische. An jeden Tisch passen 6 Ewoks.",
+      "frage": "Wie viele Tische werden voll – und wie viele Ewoks sitzen am letzten Tisch?",
+      "rechnung": "63 / 6",
+      "loesung": 10,
+      "rest": 3,
+      "merke": "10 volle Tische, 3 Ewoks am letzten Tisch",
+      "tipp": "Wie oft passt die 6 ganz in 63? Die Sechserreihe dir hilft. Was übrig bleibt, der Rest ist."
     }
   ],
   "bonus": {

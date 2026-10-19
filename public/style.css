@@ -71,10 +71,17 @@ button.spielername::after { content: " ✏️"; font-size: .8em; }
 .geschichte { font-size: 22px; }
 .frage { font-size: 24px; font-weight: bold; color: var(--akzent); }
 form { display: flex; gap: 12px; }
-#antwort {
-  flex: 1; min-width: 0; font: inherit; font-size: 32px; padding: 8px 12px; border-radius: 8px;
+#antwort, #antwort-rest {
+  flex: 1; min-width: 0; width: 0; font: inherit; font-size: 32px; padding: 8px 12px; border-radius: 8px;
   border: 3px solid var(--akzent); background: var(--flaeche); color: var(--text);
 }
+#rest-teil { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; font-weight: bold; color: var(--akzent); font-size: 24px; }
+#rest-teil[hidden] { display: none; }
+.statistik { border-collapse: collapse; font-size: 18px; }
+.statistik th, .statistik td { padding: 8px 16px; text-align: right; border-bottom: 1px solid var(--flaeche); }
+.statistik th:first-child, .statistik td:first-child { text-align: left; }
+.statistik tr.schwer td { color: #ff8a80; }
+#statistik-aufgaben li { margin-bottom: 6px; }
 .meldung { min-height: 1.5em; font-weight: bold; }
 .meldung.richtig { color: #7cdb6a; }
 .meldung.falsch { color: #ff8a80; }

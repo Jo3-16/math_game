@@ -19,7 +19,9 @@
       <div class="punkte">
         <button id="spielername" class="spielername" title="Namen ändern"></button> <span id="rang-uebersicht" class="rang"></span> ⭐ <span id="gesamt-uebersicht">0</span> Punkte
         <a href="/abzeichen" class="kopf-link">🏅 Abzeichen &amp; Punkte</a>
+        <button id="simulator-knopf" class="link kopf-link">🎮 Flugsimulator</button>
         <button id="galerie-knopf" class="link kopf-link" hidden>🖼️ Bildergalerie</button>
+        <button id="statistik-knopf" class="link kopf-link" hidden>📊 Statistik</button>
         <button class="link kopf-link ton-knopf" title="Ton an/aus"></button>
       </div>
     </header>
@@ -37,6 +39,26 @@
     <p id="ruhm-naechster"></p>
     <div id="ruhm-abzeichen" class="abzeichen ruhm"></div>
     <p><a href="/">← Zurück zur Übersicht</a></p>
+  </main>
+
+  <main id="simulator" hidden>
+    <header class="kopf">
+      <h1>🎮 Flugsimulator</h1>
+      <button class="link zur-uebersicht">← Zurück zur Übersicht</button>
+    </header>
+    <p>Trainiere so lange du willst – immer neue Aufgaben. Wie lang wird deine Serie ohne Fehler?</p>
+    <div id="simulator-arten" class="raster"></div>
+  </main>
+
+  <main id="statistik" hidden>
+    <header class="kopf">
+      <h1>📊 Statistik</h1>
+      <button class="link zur-uebersicht">← Zurück zur Übersicht</button>
+    </header>
+    <h2>Nach Rechenart</h2>
+    <table id="statistik-arten" class="statistik"></table>
+    <h2>Die schwierigsten Aufgaben</h2>
+    <ol id="statistik-aufgaben"></ol>
   </main>
 
   <main id="galerie" hidden>
@@ -62,6 +84,7 @@
       <p id="frage" class="frage"></p>
       <form id="antwort-form" autocomplete="off">
         <input id="antwort" inputmode="numeric" aria-label="Deine Antwort" placeholder="?">
+        <label id="rest-teil" hidden>Rest <input id="antwort-rest" inputmode="numeric" aria-label="Rest" placeholder="?"></label>
         <button>Los!</button>
       </form>
       <p id="meldung" class="meldung" aria-live="polite"></p>

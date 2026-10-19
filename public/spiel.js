@@ -1,16 +1,18 @@
 import {
   findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName,
   rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, BONUS_PUNKTE,
+  rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, RECHENART_NAMEN,
 } from './logik.js';
 
 const $ = id => document.getElementById(id);
-const ANSICHTEN = ['auswahl', 'uebersicht', 'aufgabe', 'ruhmeshalle', 'galerie'];
+const ANSICHTEN = ['auswahl', 'uebersicht', 'aufgabe', 'ruhmeshalle', 'galerie', 'simulator', 'statistik'];
 // Admin-Modus (/admin): alle Kapitel offen, Aufgaben überspringen, Lösung sichtbar, nichts wird gespeichert.
 const ADMIN = location.pathname === '/admin';
 
 let welt, weltId, stand;
 let kapitelIndex, aufgabeIndex, fehlversuche, wiederholung, wartet, weiterTimer;
 let ohneTipp, laufSterne; // im aktuellen Durchlauf ohne Tipp gelöste Aufgaben, Sterne dieses Durchlaufs
+let simulatorArt = null, simAufgabe, serie = 0; // Flugsimulator: gewählte Rechenart, aktuelle Zufallsaufgabe, Serie ohne Fehler
 
 function zeige(ansicht) {
   for (const a of ANSICHTEN) $(a).hidden = a !== ansicht;
@@ -86,6 +88,7 @@ async function ladeWelt(id) {
   document.title = welt.name;
   $('weltname').textContent = welt.name + (ADMIN ? ' – Admin-Modus' : '');
   $('galerie-knopf').hidden = !ADMIN;
+  $('statistik-knopf').hidden = !ADMIN;
   if (location.pathname === '/abzeichen') zeigeRuhmeshalle();
   else zeigeUebersicht();
 }
@@ -140,6 +143,7 @@ function zeigeUebersicht() {
 }
 
 function starteKapitel(index, alsWiederholung) {
+  simulatorArt = null;
   kapitelIndex = index;
   wiederholung = alsWiederholung;
   ohneTipp = 0;
@@ -158,10 +162,11 @@ function pfadUrl(pfad) {
   return `/welten/${encodeURIComponent(weltId)}/bilder/${pfad.split('/').map(encodeURIComponent).join('/')}`;
 }
 
-const imBonus = kapitel => aufgabeIndex >= kapitel.aufgaben.length;
+const imBonus = kapitel => !simulatorArt && aufgabeIndex >= kapitel.aufgaben.length;
 
-// Die normale Aufgabe – oder nach der letzten Aufgabe das Bonus-Rätsel (mit dem Bild der letzten Aufgabe).
+// Die normale Aufgabe – nach der letzten Aufgabe das Bonus-Rätsel (mit dem Bild der letzten Aufgabe) – oder im Simulator die Zufallsaufgabe.
 function aktuelleAufgabe(kapitel) {
+  if (simulatorArt) return simAufgabe;
   if (!imBonus(kapitel)) return kapitel.aufgaben[aufgabeIndex];
   return { bild: kapitel.aufgaben.at(-1).bild, ...kapitel.bonus };
 }
@@ -177,15 +182,21 @@ function zeigeAufgabe() {
   $('bild').hidden = !url;
   if (url) $('bild').src = url;
 
-  $('kapiteltitel').textContent = kapitel.titel + (ADMIN ? ' (Admin)' : wiederholung ? ' (Wiederholung)' : '');
-  const punkte = kapitel.aufgaben.map((_, i) => (i < aufgabeIndex ? '●' : i === aufgabeIndex ? '◉' : '○')).join(' ');
-  $('fortschritt').textContent = bonus
-    ? `🧩 Bonus-Rätsel – für das Gold-Abzeichen`
-    : `Aufgabe ${aufgabeIndex + 1}/${kapitel.aufgaben.length}  ${punkte}`;
+  if (simulatorArt) {
+    const rekord = stand.simulatorRekord?.[simulatorArt] ?? 0;
+    $('kapiteltitel').textContent = `Flugsimulator – ${SIMULATOR_ARTEN.find(a => a.id === simulatorArt).name}`;
+    $('fortschritt').textContent = `🎮 Serie: ${serie} ohne Fehler · Rekord: ${rekord}`;
+  } else {
+    $('kapiteltitel').textContent = kapitel.titel + (ADMIN ? ' (Admin)' : wiederholung ? ' (Wiederholung)' : '');
+    const punkte = kapitel.aufgaben.map((_, i) => (i < aufgabeIndex ? '●' : i === aufgabeIndex ? '◉' : '○')).join(' ');
+    $('fortschritt').textContent = bonus
+      ? `🧩 Bonus-Rätsel – für das Gold-Abzeichen`
+      : `Aufgabe ${aufgabeIndex + 1}/${kapitel.aufgaben.length}  ${punkte}`;
+  }
   $('gesamt-aufgabe').textContent = gesamtPunkte(stand);
   $('spielername-aufgabe').textContent = stand.name;
   $('rang-aufgabe').textContent = rangText();
-  const bisher = kapitel.aufgaben.slice(0, aufgabeIndex).map(a => element('span', 'ergebnis', `✔ ${a.merke}`));
+  const bisher = simulatorArt ? [] : kapitel.aufgaben.slice(0, aufgabeIndex).map(a => element('span', 'ergebnis', `✔ ${a.merke}`));
   $('ergebnisse').replaceChildren(...bisher);
   $('ergebnisse').hidden = !bisher.length;
   $('geschichte').textContent = aufgabe.geschichte;
@@ -195,7 +206,10 @@ function zeigeAufgabe() {
   $('bonus-ueberspringen').hidden = !bonus;
   $('tipp').hidden = !ADMIN;
   $('admin-leiste').hidden = !ADMIN;
-  $('admin-loesung').textContent = `Lösung: ${aufgabe.loesung}` + (aufgabe.rechnung ? `  (${aufgabe.rechnung})` : '');
+  $('admin-loesung').textContent = `Lösung: ${aufgabe.loesung}` + (aufgabe.rest !== undefined ? ` Rest ${aufgabe.rest}` : '')
+    + (aufgabe.rechnung ? `  (${aufgabe.rechnung})` : '');
+  $('rest-teil').hidden = aufgabe.rest === undefined;
+  $('antwort-rest').value = '';
   const helferUrl = bildUrl([welt.helfer]);
   $('helfer-bild').hidden = !helferUrl;
   if (helferUrl) $('helfer-bild').src = helferUrl;
@@ -229,19 +243,37 @@ $('antwort-form').onsubmit = event => {
   if (!eingabe) return;
   const kapitel = welt.kapitel[kapitelIndex];
   const aufgabe = aktuelleAufgabe(kapitel);
+  const mitRest = aufgabe.rest !== undefined;
+  const restEingabe = $('antwort-rest').value.trim();
+  if (mitRest && !restEingabe) return $('antwort-rest').focus(); // erst beide Felder ausfüllen
 
-  if (!istRichtig(eingabe, aufgabe.loesung)) {
+  if (!istRichtig(eingabe, aufgabe.loesung) || (mitRest && !istRichtig(restEingabe, aufgabe.rest))) {
     fehlversuche++;
+    serie = 0;
     ton('falsch');
     meldung("Leider nicht – versuch's nochmal!", 'falsch');
     if (fehlversuche >= TIPP_AB) $('tipp').hidden = false;
     $('antwort').value = '';
+    $('antwort-rest').value = '';
     $('antwort').focus();
     return;
   }
 
   wartet = true;
   ton('richtig');
+  if (!ADMIN) {
+    const schluessel = simulatorArt ? null : `${kapitel.id}#${imBonus(kapitel) ? 'Bonus' : aufgabeIndex + 1}`;
+    stand = mitStatistik(stand, rechenarten(aufgabe), fehlversuche, schluessel);
+  }
+  if (simulatorArt) {
+    if (fehlversuche === 0) serie++;
+    const rekord = Math.max(stand.simulatorRekord?.[simulatorArt] ?? 0, serie);
+    if (!ADMIN) stand = { ...stand, simulatorRekord: { ...stand.simulatorRekord, [simulatorArt]: rekord } };
+    speichern();
+    meldung(fehlversuche === 0 ? `Richtig! Serie: ${serie}` : 'Richtig!', 'richtig');
+    weiterTimer = setTimeout(() => { simAufgabe = erzeugeAufgabe(simulatorArt); zeigeAufgabe(); }, 1200);
+    return;
+  }
   if (imBonus(kapitel)) {
     const neu = !ADMIN && !stand.kapitel[kapitel.id]?.bonus;
     if (!ADMIN) {
@@ -256,6 +288,7 @@ $('antwort-form').onsubmit = event => {
 
   if (fehlversuche < TIPP_AB) ohneTipp++;
   if (wiederholung) {
+    speichern(); // Statistik
     meldung('Richtig!', 'richtig');
   } else {
     const plus = punkteFuer(fehlversuche);
@@ -279,6 +312,10 @@ function aufgabenGeschafft(kapitel) {
 
 function naechsteAufgabe() {
   clearTimeout(weiterTimer);
+  if (simulatorArt) {
+    simAufgabe = erzeugeAufgabe(simulatorArt);
+    return zeigeAufgabe();
+  }
   const kapitel = welt.kapitel[kapitelIndex];
   if (imBonus(kapitel)) return zeigeKapitelEnde(kapitel);
   aufgabeIndex++;
@@ -344,6 +381,58 @@ function zeigeGalerie() {
 $('galerie-knopf').onclick = zeigeGalerie;
 $('galerie-zurueck').onclick = zeigeUebersicht;
 
+function zeigeSimulatorMenu() {
+  $('simulator-arten').replaceChildren(...SIMULATOR_ARTEN.map(a => {
+    const b = element('button', 'kachel offen');
+    const text = element('div');
+    text.append(element('b', '', a.name), element('small', '', `Rekord: ${stand.simulatorRekord?.[a.id] ?? 0} in Folge`));
+    b.append(text);
+    b.onclick = () => starteSimulator(a.id);
+    return b;
+  }));
+  zeige('simulator');
+}
+
+function starteSimulator(art) {
+  simulatorArt = art;
+  serie = 0;
+  simAufgabe = erzeugeAufgabe(art);
+  zeigeAufgabe();
+}
+
+// Admin: wo hakt es? Je Rechenart Fehlversuche pro Aufgabe und Anteil mit Tipp, dazu die schwierigsten Aufgaben.
+function zeigeStatistik() {
+  const st = stand.statistik ?? { arten: {}, aufgaben: {} };
+  const zeilen = Object.entries(st.arten)
+    .map(([art, a]) => ({ art, ...a, schnitt: a.fehlversuche / a.aufgaben }))
+    .sort((x, y) => y.schnitt - x.schnitt);
+  const kopf = element('tr');
+  for (const t of ['Rechenart', 'Gelöst', 'Fehlversuche', 'Ø pro Aufgabe', 'Mit Tipp']) kopf.append(element('th', '', t));
+  $('statistik-arten').replaceChildren(kopf, ...(zeilen.length ? zeilen.map(z => {
+    const tr = element('tr', z.schnitt >= 1 ? 'schwer' : '');
+    for (const t of [RECHENART_NAMEN[z.art] ?? z.art, z.aufgaben, z.fehlversuche, z.schnitt.toFixed(1), `${Math.round(100 * z.mitTipp / z.aufgaben)} %`]) tr.append(element('td', '', t));
+    return tr;
+  }) : [(() => { const tr = element('tr'); tr.append(element('td', '', 'Noch keine Daten – es wird ab jetzt mitgezählt.')); return tr; })()]));
+
+  const titel = schluessel => {
+    const [id, nr] = schluessel.split('#');
+    const i = welt.kapitel.findIndex(k => k.id === id);
+    const k = welt.kapitel[i];
+    if (!k) return schluessel;
+    const a = nr === 'Bonus' ? k.bonus : k.aufgaben[Number(nr) - 1];
+    return `Kapitel ${kapitelNummer(k, i)}, ${nr === 'Bonus' ? 'Bonus-Rätsel' : `Aufgabe ${nr}`}: ${a?.frage ?? ''}`;
+  };
+  const schwer = Object.entries(st.aufgaben).sort((x, y) => y[1] - x[1]).slice(0, 10);
+  $('statistik-aufgaben').replaceChildren(...(schwer.length
+    ? schwer.map(([s, n]) => element('li', '', `${n} Fehlversuche – ${titel(s)}`))
+    : [element('li', '', 'Noch keine Fehlversuche erfasst.')]));
+  zeige('statistik');
+}
+
+$('simulator-knopf').onclick = zeigeSimulatorMenu;
+$('statistik-knopf').onclick = zeigeStatistik;
+for (const b of document.querySelectorAll('.zur-uebersicht')) b.onclick = zeigeUebersicht;
+
 function zeigeKapitelEnde(kapitel) {
   const s = stand.kapitel[kapitel.id];
   const gold = Boolean(s?.bonus);
@@ -377,7 +466,8 @@ $('spielername').onclick = () => {
 
 $('zurueck').onclick = () => {
   clearTimeout(weiterTimer);
-  zeigeUebersicht();
+  if (simulatorArt) zeigeSimulatorMenu();
+  else zeigeUebersicht();
 };
 
 start().catch(() => {

@@ -103,3 +103,19 @@ test('bonus-rätsel unvollständig', async () => {
   assert.equal(r.fehler.length, 1);
   assert.match(r.fehler[0], /Bonus/);
 });
+
+test('rest-aufgabe gültig', async () => {
+  const r = await pruefeWelt(welt(vier({ rechnung: '25 / 4', loesung: 6, rest: 1, merke: '6 Kisten, 1 übrig' })));
+  assert.deepEqual(r, { fehler: [], warnungen: [] });
+});
+
+test('rest-aufgabe falscher rest', async () => {
+  const r = await pruefeWelt(welt(vier({ rechnung: '25 / 4', loesung: 6, rest: 2, merke: '6 Kisten' })));
+  assert.equal(r.fehler.length, 1);
+  assert.match(r.fehler[0], /Rest/);
+});
+
+test('rest-aufgabe ohne rest', async () => {
+  const r = await pruefeWelt(welt(vier({ rechnung: '24 / 4', loesung: 6, rest: 0, merke: '6 Kisten' })));
+  assert.equal(r.fehler.length, 1);
+});
