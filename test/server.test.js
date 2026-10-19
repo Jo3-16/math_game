@@ -73,3 +73,9 @@ test('spielstand', async () => {
 test('belegter port wird gemeldet statt abzustürzen', async () => {
   await assert.rejects(starte({ wurzel, port: server.address().port }), { code: 'EADDRINUSE' });
 });
+
+test('admin-seite liefert das spiel', async () => {
+  const antwort = await fetch(`${url}/admin`);
+  assert.equal(antwort.status, 200);
+  assert.equal(await antwort.text(), '<!doctype html>');
+});

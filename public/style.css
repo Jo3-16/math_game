@@ -77,6 +77,7 @@ form { display: flex; gap: 12px; }
 .meldung { min-height: 1.5em; font-weight: bold; }
 .meldung.richtig { color: #7cdb6a; }
 .meldung.falsch { color: #ff8a80; }
+.admin-leiste { display: flex; justify-content: space-between; align-items: center; gap: 16px; border: 2px dashed #ff8a80; border-radius: 8px; padding: 8px 12px; margin-bottom: 16px; }
 .tipp {
   display: flex; align-items: center; gap: 16px;
   background: var(--tipp); border-left: 5px solid #7cb342; border-radius: 8px; padding: 12px 16px;

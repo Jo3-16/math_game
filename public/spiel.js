@@ -2,6 +2,8 @@ import { findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatu
 
 const $ = id => document.getElementById(id);
 const ANSICHTEN = ['auswahl', 'uebersicht', 'aufgabe'];
+// Admin-Modus (/admin): alle Kapitel offen, Aufgaben überspringen, Lösung sichtbar, nichts wird gespeichert.
+const ADMIN = location.pathname === '/admin';
 
 let welt, weltId, stand;
 let kapitelIndex, aufgabeIndex, fehlversuche, wiederholung, wartet, weiterTimer;
@@ -35,7 +37,7 @@ async function ladeWelt(id) {
   stand = mitName(stand);
   for (const [name, wert] of Object.entries(welt.farben ?? {})) document.documentElement.style.setProperty(`--${name}`, wert);
   document.title = welt.name;
-  $('weltname').textContent = welt.name;
+  $('weltname').textContent = welt.name + (ADMIN ? ' – Admin-Modus' : '');
   zeigeUebersicht();
 }
 
@@ -58,7 +60,8 @@ function zeigeUebersicht() {
     const text = element('div');
     text.append(element('small', '', `Kapitel ${i + 1}`), element('b', '', k.titel), element('small', '', zeile));
     b.append(text);
-    if (status[i] === 'gesperrt') b.disabled = true;
+    if (ADMIN) b.onclick = () => starteKapitel(i, true);
+    else if (status[i] === 'gesperrt') b.disabled = true;
     else b.onclick = () => starteKapitel(i, status[i] === 'fertig');
     return b;
   }));
@@ -104,7 +107,7 @@ function zeigeAufgabe() {
   $('bild').hidden = !url;
   if (url) $('bild').src = url;
 
-  $('kapiteltitel').textContent = kapitel.titel + (wiederholung ? ' (Wiederholung)' : '');
+  $('kapiteltitel').textContent = kapitel.titel + (ADMIN ? ' (Admin)' : wiederholung ? ' (Wiederholung)' : '');
   const punkte = kapitel.aufgaben.map((_, i) => (i < aufgabeIndex ? '●' : i === aufgabeIndex ? '◉' : '○')).join(' ');
   $('fortschritt').textContent = `Aufgabe ${aufgabeIndex + 1}/${kapitel.aufgaben.length}  ${punkte}`;
   $('gesamt-aufgabe').textContent = gesamtPunkte(stand);
@@ -113,7 +116,9 @@ function zeigeAufgabe() {
   $('frage').textContent = aufgabe.frage;
   $('meldung').textContent = '';
   $('meldung').className = 'meldung';
-  $('tipp').hidden = true;
+  $('tipp').hidden = !ADMIN;
+  $('admin-leiste').hidden = !ADMIN;
+  $('admin-loesung').textContent = `Lösung: ${aufgabe.loesung}  (${aufgabe.rechnung})`;
   const helferUrl = bildUrl([welt.helfer]);
   $('helfer-bild').hidden = !helferUrl;
   if (helferUrl) $('helfer-bild').src = helferUrl;
@@ -167,12 +172,18 @@ $('antwort-form').onsubmit = event => {
     meldung(plus > 10 ? `Richtig! +${plus} – ohne ${welt.helfer}s Hilfe!` : `Richtig! +${plus}`, 'richtig');
   }
 
-  weiterTimer = setTimeout(() => {
-    aufgabeIndex++;
-    if (aufgabeIndex < kapitel.aufgaben.length) zeigeAufgabe();
-    else zeigeKapitelEnde(kapitel);
-  }, 1500);
+  weiterTimer = setTimeout(naechsteAufgabe, 1500);
 };
+
+function naechsteAufgabe() {
+  clearTimeout(weiterTimer);
+  const kapitel = welt.kapitel[kapitelIndex];
+  aufgabeIndex++;
+  if (aufgabeIndex < kapitel.aufgaben.length) zeigeAufgabe();
+  else zeigeKapitelEnde(kapitel);
+}
+
+$('admin-weiter').onclick = naechsteAufgabe;
 
 function zeigeKapitelEnde(kapitel) {
   $('overlay-symbol').textContent = kapitel.abzeichen.symbol;

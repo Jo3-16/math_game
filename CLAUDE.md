@@ -6,6 +6,7 @@ Lernspiel für einen Jungen am Anfang der 4. Klasse: Mathe-Sachaufgaben als Gesc
 - Tests: `npm test`
 - Kapitel prüfen: `node pruefe.js`
 - Spielstand zurücksetzen: `welten/<welt>/spielstand.json` löschen
+- Admin-Modus: http://localhost:8642/admin – alle Kapitel offen, „Weiter ▶“ ohne Rechnen, Lösung + Tipp sichtbar, nichts wird gespeichert
 
 ## Neue Kapitel erzeugen
 
