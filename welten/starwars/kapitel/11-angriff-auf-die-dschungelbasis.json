@@ -1,0 +1,61 @@
+{
+  "titel": "Angriff auf die Dschungelbasis",
+  "vorschau": "Kapitelbilder/11.png",
+  "abzeichen": { "name": "Basis-Retter", "symbol": "🚨" },
+  "aufgaben": [
+    {
+      "bild": ["rebellenbasis"],
+      "geschichte": "Nach der Flucht aus der Wolkenstadt treffen sich die Rebellen in einer geheimen Basis in einem alten Dschungeltempel. Plötzlich heult der Alarm: 7 Staffeln TIE-Bomber sind im Anflug, jede mit 6 Bombern!",
+      "frage": "Wie viele TIE-Bomber greifen an?",
+      "rechnung": "7 * 6",
+      "loesung": 42,
+      "merke": "42 TIE-Bomber im Anflug",
+      "tipp": "7 Staffeln mit je 6 Bombern. Das Einmaleins mit 6 oder mit 7 du brauchst."
+    },
+    {
+      "bild": ["a-wing"],
+      "geschichte": "Die superschnellen A-Wings starten, um die Bomber abzufangen! Die Bomber werden gerecht auf 6 A-Wing-Gruppen verteilt – jede Gruppe jagt gleich viele.",
+      "frage": "Wie viele TIE-Bomber muss jede A-Wing-Gruppe abfangen?",
+      "rechnung": "42 / 6",
+      "loesung": 7,
+      "merke": "7 Bomber pro A-Wing-Gruppe",
+      "tipp": "Alle Bomber auf 6 Gruppen verteilen du musst. Welche Zahl mal 6 ergibt die Zahl der Bomber, hmm?"
+    },
+    {
+      "bild": ["tie bomber"],
+      "geschichte": "Die A-Wings kämpfen tapfer und schießen 29 TIE-Bomber ab. Die übrigen Bomber kommen durch und erreichen die Basis.",
+      "frage": "Wie viele TIE-Bomber erreichen die Basis?",
+      "rechnung": "42 - 29",
+      "loesung": 13,
+      "merke": "13 Bomber erreichen die Basis",
+      "tipp": "Von allen Bombern die abgeschossenen abziehen du musst. Erst 20 weg, dann noch 9."
+    },
+    {
+      "bild": ["transporter", "nebulon"],
+      "geschichte": "Die Basis muss evakuiert werden! 360 Rebellen müssen zu den Rettungsschiffen. In jede Fähre zur Nebulon-B-Fregatte passen 40 Rebellen.",
+      "frage": "Wie viele Fähren werden gebraucht?",
+      "rechnung": "360 / 40",
+      "loesung": 9,
+      "merke": "9 Fähren für die Evakuierung",
+      "tipp": "Wie oft die 40 in 360 passt, du herausfinden musst. Ohne die Nullen es leichter geht, hmm."
+    },
+    {
+      "bild": ["bombardierung", "angriff auf planet"],
+      "geschichte": "Jetzt werfen die TIE-Bomber, die durchgekommen sind, ihre Bomben ab. Jeder von ihnen hat 8 Bomben an Bord.",
+      "frage": "Wie viele Bomben fallen auf die Basis?",
+      "rechnung": "13 * 8",
+      "loesung": 104,
+      "merke": "104 Bomben fallen",
+      "tipp": "Wie viele Bomber durchgekommen sind, unten du siehst. Mal 8 – erst 10 mal 8, dann 3 mal 8, und zusammenzählen du musst."
+    },
+    {
+      "bild": ["tempel"],
+      "geschichte": "Der Schutzschild über dem Tempel hält bis zu 150 Bomben aus – und er hält! Alle Fähren entkommen sicher zur Fregatte.",
+      "frage": "Wie viele Bomben hätte der Schild noch zusätzlich aushalten können?",
+      "rechnung": "150 - 104",
+      "loesung": 46,
+      "merke": "46 Bomben Reserve im Schild",
+      "tipp": "Von 150 die abgeworfenen Bomben abziehen du musst. Erst die 100 weg, dann den Rest."
+    }
+  ]
+}
