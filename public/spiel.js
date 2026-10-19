@@ -205,6 +205,7 @@ function zeigeAufgabe() {
   $('meldung').textContent = '';
   $('meldung').className = 'meldung';
   $('bonus-ueberspringen').hidden = !bonus;
+  $('zurueck').textContent = simulatorArt ? '← Zurück zum Flugsimulator' : '← Zurück zur Übersicht';
   $('tipp').hidden = !ADMIN;
   $('admin-leiste').hidden = !ADMIN;
   $('admin-loesung').textContent = `Lösung: ${aufgabe.loesung}` + (aufgabe.rest !== undefined ? ` Rest ${aufgabe.rest}` : '')
