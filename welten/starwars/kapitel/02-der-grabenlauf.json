@@ -4,7 +4,7 @@
   "abzeichen": { "name": "Grabenläufer", "symbol": "🎯" },
   "aufgaben": [
     {
-      "bild": ["luke"],
+      "bild": ["luke steigt ein"],
       "geschichte": "Luke Skywalker steigt in seinen X-Wing. R2-D2 macht den Startcheck: Der X-Wing hat 4 Triebwerke, und jedes braucht 25 Liter Kühlmittel.",
       "frage": "Wie viele Liter Kühlmittel braucht der X-Wing insgesamt?",
       "rechnung": "4 * 25",
@@ -22,7 +22,7 @@
       "tipp": "Von 300 die 125 wegnehmen du musst. Erst 100 weg, dann noch 25, hmm."
     },
     {
-      "bild": ["formation"],
+      "bild": ["r2-d2"],
       "geschichte": "Plötzlich flackert ein Bildschirm! R2-D2 muss 7 Kabel reparieren. An jedem Kabel sitzen 6 Stecker, die er alle prüfen muss.",
       "frage": "Wie viele Stecker prüft R2-D2?",
       "rechnung": "7 * 6",

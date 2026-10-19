@@ -58,7 +58,7 @@ function zeigeUebersicht() {
       b.append(vorschau);
     }
     const text = element('div');
-    text.append(element('small', '', `Kapitel ${i + 1}`), element('b', '', k.titel), element('small', '', zeile));
+    text.append(element('small', '', `Kapitel ${Number(k.id.match(/^\d+/)?.[0] ?? i + 1)}`), element('b', '', k.titel), element('small', '', zeile));
     b.append(text);
     if (ADMIN) b.onclick = () => starteKapitel(i, true);
     else if (status[i] === 'gesperrt') b.disabled = true;

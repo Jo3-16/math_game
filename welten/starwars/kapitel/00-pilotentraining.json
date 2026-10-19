@@ -1,0 +1,61 @@
+{
+  "titel": "Pilotentraining",
+  "vorschau": "Kapitelbilder/00.png",
+  "abzeichen": { "name": "Rebellen-Pilot", "symbol": "🎖️" },
+  "aufgaben": [
+    {
+      "bild": ["red one", "trench run", "x wing swb", "takodana"],
+      "geschichte": "Willkommen in der Pilotenschule der Rebellen! Heute trainierst du in drei verschiedenen Jägern. Zuerst der X-Wing: Er hat 4 Laserkanonen, eine an jeder Flügelspitze. Im Hangar stehen 9 X-Wings für die Schüler bereit.",
+      "frage": "Wie viele Laserkanonen haben alle 9 X-Wings zusammen?",
+      "rechnung": "9 * 4",
+      "loesung": 36,
+      "merke": "36 Laserkanonen an den X-Wings",
+      "tipp": "9 X-Wings mit je 4 Kanonen. Die Viererreihe dir hilft, junger Pilot."
+    },
+    {
+      "bild": ["red one", "trench run", "x wing swb", "takodana"],
+      "geschichte": "Zielschießen im X-Wing! Du hast 60 Schuss. Jede Zielscheibe muss 5-mal getroffen werden, bevor sie zerplatzt – und du triffst immer.",
+      "frage": "Wie viele Zielscheiben lässt du zerplatzen?",
+      "rechnung": "60 / 5",
+      "loesung": 12,
+      "merke": "12 Zielscheiben zerplatzt",
+      "tipp": "Wie oft die 5 in 60 passt, du herausfinden musst. Denk an die Fünferreihe, hmm."
+    },
+    {
+      "bild": ["a-wing"],
+      "geschichte": "Jetzt der A-Wing – der schnellste Jäger der Rebellen! Beim Wettflug schafft er in jeder Sekunde 8 Kilometer. Der Wettflug dauert 25 Sekunden.",
+      "frage": "Wie viele Kilometer fliegt der A-Wing beim Wettflug?",
+      "rechnung": "8 * 25",
+      "loesung": 200,
+      "merke": "A-Wing fliegt 200 km",
+      "tipp": "8 mal 25 – 4 mal 25 du vielleicht kennst. Dann verdoppeln du musst."
+    },
+    {
+      "bild": ["a-wing"],
+      "geschichte": "Ein X-Wing fliegt beim selben Wettflug mit. Er schafft in den 25 Sekunden nur 150 Kilometer.",
+      "frage": "Wie viele Kilometer ist der A-Wing weiter geflogen als der X-Wing?",
+      "rechnung": "200 - 150",
+      "loesung": 50,
+      "merke": "A-Wing 50 km weiter",
+      "tipp": "Die Strecke des A-Wings und die des X-Wings vergleichen du musst. Die kleinere von der größeren abziehen."
+    },
+    {
+      "bild": ["y-wing"],
+      "geschichte": "Zum Schluss der Y-Wing, der robuste Bomber der Rebellen. Bei jedem Übungsflug trägt er 8 Übungsbomben. Du fliegst 6 Übungsflüge.",
+      "frage": "Wie viele Übungsbomben wirfst du insgesamt ab?",
+      "rechnung": "6 * 8",
+      "loesung": 48,
+      "merke": "48 Übungsbomben abgeworfen",
+      "tipp": "6 Flüge mit je 8 Bomben. Das Einmaleins mit 8 dir hilft."
+    },
+    {
+      "bild": ["y-wing"],
+      "geschichte": "Von allen Übungsbomben gehen nur 6 daneben, alle anderen treffen das Ziel. Für jeden Treffer bekommst du 10 Pilotenpunkte.",
+      "frage": "Wie viele Pilotenpunkte bekommst du?",
+      "rechnung": "(48 - 6) * 10",
+      "loesung": 420,
+      "merke": "420 Pilotenpunkte – bestanden!",
+      "tipp": "Zuerst die Treffer zählen: alle Bomben weniger die 6 daneben. Dann mal 10 – eine Null dranhängen du musst."
+    }
+  ]
+}

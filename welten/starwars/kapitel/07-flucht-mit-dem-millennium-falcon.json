@@ -13,7 +13,7 @@
       "tipp": "360 durch 4 teilen du musst. Weißt du, was 36 durch 4 ist? Dann eine Null dranhängen."
     },
     {
-      "bild": ["verfolgung"],
+      "bild": ["falcon-verfolgung", "asteroidenfeld verfolgung", "jakku verfolgung"],
       "geschichte": "Der Falcon hebt ab! Doch hinter ihm tauchen 3 Sternzerstörer auf. Jeder schickt 6 TIE-Fighter hinterher.",
       "frage": "Wie viele TIE-Fighter verfolgen den Falcon?",
       "rechnung": "3 * 6",
