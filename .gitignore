@@ -1,5 +1,6 @@
 .superpowers/
 welten/*/spielstand.json
 welten/*/spielstand.json.tmp
-welten/*/bilder/
+welten/*/bilder/*
+!welten/*/bilder/Kapitelbilder/
 Bilder/
