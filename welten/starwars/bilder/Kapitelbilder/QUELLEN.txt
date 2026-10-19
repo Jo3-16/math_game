@@ -10,5 +10,6 @@ Kapitel-Vorschaubilder – Quelle je Datei (Wikimedia Commons: freie Lizenzen, D
 09.png: Kopie von Dagobah/06_ESB_X-Wing_im_Sumpf.png (eigene Sammlung)
 10.png: Kopie von Wolkenstadt-Bespin/01_ESB_Wolkenstadt_ueber_Wolken.png (eigene Sammlung)
 11.png: Kopie von TIE-Bomber/08_Artwork_Angriff_auf_Planet.png (eigene Sammlung)
-12.jpg: Kopie von Ewoks/06_ROTJ_Ewoks_Baumdorf.jpg (eigene Sammlung)
-13.jpg: Kopie von Todesstern/08_ROTJ_Todesstern2_Schlacht_Endor.jpg (eigene Sammlung)
+12.png: Kopie von TIE-Interceptor/03_ROTJ_TIE-Interceptor_Endor_Rebellenkreuzer.png (eigene Sammlung)
+13.jpg: Kopie von Ewoks/06_ROTJ_Ewoks_Baumdorf.jpg (eigene Sammlung)
+14.jpg: Kopie von Todesstern/08_ROTJ_Todesstern2_Schlacht_Endor.jpg (eigene Sammlung)

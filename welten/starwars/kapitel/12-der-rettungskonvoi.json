@@ -1,0 +1,61 @@
+{
+  "titel": "Der Rettungskonvoi",
+  "vorschau": "Kapitelbilder/12.png",
+  "abzeichen": { "name": "Konvoi-Beschützer", "symbol": "🛰️" },
+  "aufgaben": [
+    {
+      "bild": ["transporter", "nebulon"],
+      "geschichte": "Die Fähren haben alle 360 Rebellen aus der Dschungelbasis gerettet. Jetzt werden sie gerecht auf 8 große Transporter verteilt, die zu einem neuen Versteck fliegen sollen.",
+      "frage": "Wie viele Rebellen fliegen in jedem Transporter?",
+      "rechnung": "360 / 8",
+      "loesung": 45,
+      "merke": "45 Rebellen pro Transporter",
+      "tipp": "360 auf 8 Transporter verteilen du musst. Erst 320 durch 8, dann den Rest durch 8, hmm."
+    },
+    {
+      "bild": ["nebulon"],
+      "geschichte": "Die Transporter sind langsam und haben keine Waffen. Darum schützen 4 Nebulon-B-Fregatten den Konvoi. Jede Fregatte hat 12 Turbolaser-Kanonen.",
+      "frage": "Wie viele Turbolaser schützen den Konvoi?",
+      "rechnung": "4 * 12",
+      "loesung": 48,
+      "merke": "48 Turbolaser zum Schutz",
+      "tipp": "4 Fregatten mit je 12 Kanonen. 12 verdoppeln und nochmal verdoppeln du kannst."
+    },
+    {
+      "bild": ["tie interceptor"],
+      "geschichte": "Achtung! Das Imperium hat den Konvoi entdeckt. Schnelle TIE-Interceptoren greifen an: 6 Staffeln mit je 9 Jägern!",
+      "frage": "Wie viele TIE-Interceptoren greifen an?",
+      "rechnung": "6 * 9",
+      "loesung": 54,
+      "merke": "54 TIE-Interceptoren greifen an",
+      "tipp": "6 Staffeln mit je 9 Jägern. 6 mal 10 rechnen und dann 6 wieder wegnehmen, hmm."
+    },
+    {
+      "bild": ["rebellenkreuzer"],
+      "geschichte": "Die Nebulon-B-Fregatten feuern mit allen Turbolasern! Jeder dritte TIE-Interceptor wird getroffen.",
+      "frage": "Wie viele TIE-Interceptoren werden von den Fregatten getroffen?",
+      "rechnung": "54 / 3",
+      "loesung": 18,
+      "merke": "18 Interceptoren von den Fregatten getroffen",
+      "tipp": "Jeder dritte – also alle Angreifer durch 3 teilen du musst. Erst 30 durch 3, dann den Rest."
+    },
+    {
+      "bild": ["interceptor vs", "x-wing"],
+      "geschichte": "Jetzt kommen 4 X-Wings zu Hilfe! Jeder X-Wing schießt 7 TIE-Interceptoren ab.",
+      "frage": "Wie viele TIE-Interceptoren sind jetzt noch übrig?",
+      "rechnung": "54 - 18 - 4 * 7",
+      "loesung": 8,
+      "merke": "8 Interceptoren übrig",
+      "tipp": "Erst ausrechnen, wie viele die X-Wings abschießen: 4 mal 7. Dann von allen Angreifern die Treffer der Fregatten und der X-Wings abziehen du musst."
+    },
+    {
+      "bild": ["hyperraum"],
+      "geschichte": "Die letzten Interceptoren drehen ab! Der Konvoi fliegt zum Sprungpunkt für den Hyperraum. Bis dorthin sind es 420 Kilometer, und der Konvoi schafft jede Minute 60 Kilometer.",
+      "frage": "Wie viele Minuten dauert es bis zum Sprungpunkt?",
+      "rechnung": "420 / 60",
+      "loesung": 7,
+      "merke": "7 Minuten bis zum Sprung",
+      "tipp": "Wie oft die 60 in 420 passt, du herausfinden musst. Ohne die Nullen es leichter geht."
+    }
+  ]
+}
