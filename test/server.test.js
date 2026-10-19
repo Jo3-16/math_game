@@ -94,3 +94,7 @@ test('einstellungen.json wird nicht ausgeliefert', async () => {
 test('abzeichen-seite liefert das spiel', async () => {
   assert.equal(await (await fetch(`${url}/abzeichen`)).text(), '<!doctype html>');
 });
+
+test('archiv-seite liefert das spiel', async () => {
+  assert.equal(await (await fetch(`${url}/archiv`)).text(), '<!doctype html>');
+});

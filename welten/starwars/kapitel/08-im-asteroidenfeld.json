@@ -1,6 +1,7 @@
 {
   "titel": "Im Asteroidenfeld",
   "vorschau": "Kapitelbilder/08.jpg",
+  "belohnung": "Kapitelbilder/Belohnung/08.jpg",
   "abzeichen": { "name": "Asteroiden-Ass", "symbol": "☄️" },
   "aufgaben": [
     {

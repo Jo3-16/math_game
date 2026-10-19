@@ -19,6 +19,7 @@
       <div class="punkte">
         <button id="spielername" class="spielername" title="Namen ändern"></button> <span id="rang-uebersicht" class="rang"></span> ⭐ <span id="gesamt-uebersicht">0</span> Punkte
         <a href="/abzeichen" class="kopf-link">🏅 Abzeichen &amp; Punkte</a>
+        <a href="/archiv" class="kopf-link">🛰️ Archiv</a>
         <button id="simulator-knopf" class="link kopf-link">🎮 Flugsimulator</button>
         <button id="galerie-knopf" class="link kopf-link" hidden>🖼️ Bildergalerie</button>
         <button id="statistik-knopf" class="link kopf-link" hidden>📊 Statistik</button>
@@ -39,6 +40,15 @@
     <p id="ruhm-naechster"></p>
     <div id="ruhm-abzeichen" class="abzeichen ruhm"></div>
     <p><a href="/">← Zurück zur Übersicht</a></p>
+  </main>
+
+  <main id="archiv" hidden>
+    <header class="kopf">
+      <h1>🛰️ Hologramm-Archiv</h1>
+      <a href="/">← Zurück zur Übersicht</a>
+    </header>
+    <p id="archiv-zusammenfassung"></p>
+    <div id="archiv-inhalt" class="archiv-raster"></div>
   </main>
 
   <main id="simulator" hidden>
@@ -108,6 +118,7 @@
       <h2 id="overlay-titel"></h2>
       <p id="overlay-sterne" class="overlay-sterne"></p>
       <p id="overlay-text"></p>
+      <figure id="overlay-belohnung" class="overlay-belohnung" hidden><img alt=""><figcaption>🛰️ Neues Hologramm im Archiv!</figcaption></figure>
       <button id="overlay-weiter">Weiter</button>
     </div>
   </div>

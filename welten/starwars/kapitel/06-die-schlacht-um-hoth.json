@@ -1,16 +1,17 @@
 {
   "titel": "Die Schlacht um Hoth",
   "vorschau": "Kapitelbilder/06.jpg",
+  "belohnung": "Kapitelbilder/Belohnung/06.jpg",
   "abzeichen": { "name": "Held von Hoth", "symbol": "🛡️" },
   "aufgaben": [
     {
-      "bild": ["x-wing/"],
-      "geschichte": "Riesige AT-AT-Kampfläufer stapfen durch den Schnee auf die Echo-Basis zu! Die Rebellen starten zur Verteidigung: 8 Gruppen mit je 3 X-Wings.",
-      "frage": "Wie viele X-Wings starten?",
+      "bild": ["snowspeeder/"],
+      "geschichte": "Riesige AT-AT-Kampfläufer stapfen durch den Schnee auf die Echo-Basis zu! Die Rebellen starten zur Verteidigung: 8 Gruppen mit je 3 Snowspeedern.",
+      "frage": "Wie viele Snowspeeder starten?",
       "rechnung": "8 * 3",
       "loesung": 24,
-      "merke": "24 X-Wings starten",
-      "tipp": "8 Gruppen, in jeder 3 X-Wings. Die Dreierreihe dir hilft."
+      "merke": "24 Snowspeeder starten",
+      "tipp": "8 Gruppen, in jeder 3 Snowspeeder. Die Dreierreihe dir hilft."
     },
     {
       "bild": ["tie bomber"],
@@ -23,7 +24,7 @@
     },
     {
       "bild": ["tie bomber"],
-      "geschichte": "Die X-Wings sind schnell! Sie schießen die Hälfte der Bomben ab, bevor sie den Boden erreichen.",
+      "geschichte": "Die Snowspeeder sind schnell! Sie schießen die Hälfte der Bomben ab, bevor sie den Boden erreichen.",
       "frage": "Wie viele Bomben treffen den Schutzschild?",
       "rechnung": "42 / 2",
       "loesung": 21,
@@ -40,8 +41,8 @@
       "tipp": "Zuerst ausrechnen, wie viel alle Treffer zusammen kosten. Mal 10 – eine Null dranhängen du musst. Dann von 400 abziehen."
     },
     {
-      "bild": ["x-wing/"],
-      "geschichte": "Der Schild hält! Jetzt schlagen die X-Wings zurück. Jeder der 24 X-Wings feuert 4 Salven ab. Jede dritte Salve trifft einen AT-AT.",
+      "bild": ["at-at/"],
+      "geschichte": "Der Schild hält! Jetzt schlagen die Snowspeeder zurück. Jeder der 24 Snowspeeder feuert 4 Salven ab. Jede dritte Salve trifft einen AT-AT.",
       "frage": "Wie viele Salven treffen?",
       "rechnung": "24 * 4 / 3",
       "loesung": 32,

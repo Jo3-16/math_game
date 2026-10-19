@@ -1,6 +1,7 @@
 {
   "titel": "Falle in der Wolkenstadt",
-  "vorschau": "Kapitelbilder/10.png",
+  "vorschau": "Kapitelbilder/10.jpg",
+  "belohnung": "Kapitelbilder/Belohnung/10.jpg",
   "abzeichen": { "name": "Wolkenstadt-Entkommer", "symbol": "☁️" },
   "aufgaben": [
     {

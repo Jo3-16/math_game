@@ -1,17 +1,18 @@
-Kapitel-Vorschaubilder – Quelle je Datei (Wikimedia Commons: freie Lizenzen, Details auf der Dateiseite):
-00.png: Kopie von X-Wing/04_RogueOne_Red_One.png (eigene Sammlung)
+Kapitel-Vorschaubilder (auf 480 px verkleinert) – Quelle je Datei (Wikimedia Commons: freie Lizenzen, Details auf der Dateiseite):
+00.jpg: Kopie von X-Wing/04_RogueOne_Red_One.png (eigene Sammlung)
 01.jpg: Kopie von Sternzerstörer/ImpStarDestroyer-SWI125-Mac.jpg (eigene Sammlung)
-02.png: Kopie von X-Wing/01_ANH_Trench-Run.png (eigene Sammlung)
+02.jpg: Kopie von X-Wing/01_ANH_Trench-Run.png (eigene Sammlung)
 03.jpg: https://commons.wikimedia.org/wiki/File:Star_Wars_Launch_Bay_Poe_Dameron's_Helmet.jpg
 04.jpg: Kopie von Snowspeeder/05_Art_Snowspeeder_Hoth_Staffel.jpg (eigene Sammlung)
 05.webp: https://commons.wikimedia.org/wiki/File:TIE_Fighter.webp
 06.jpg: Kopie von Hoth/07_ESB_Schlacht_um_Hoth.jpg (eigene Sammlung)
 07.webp: https://commons.wikimedia.org/wiki/File:Millennium_Falcon.webp
 08.jpg: https://commons.wikimedia.org/wiki/File:243_Ida_large.jpg
-09.png: Kopie von Dagobah/06_ESB_X-Wing_im_Sumpf.png (eigene Sammlung)
-10.png: Kopie von Wolkenstadt-Bespin/01_ESB_Wolkenstadt_ueber_Wolken.png (eigene Sammlung)
-11.png: Kopie von TIE-Bomber/08_Artwork_Angriff_auf_Planet.png (eigene Sammlung)
-12.png: Kopie von TIE-Interceptor/03_ROTJ_TIE-Interceptor_Endor_Rebellenkreuzer.png (eigene Sammlung)
-13.jpg: Kopie von Ewoks/06_ROTJ_Ewoks_Baumdorf.jpg (eigene Sammlung)
-14.jpg: Kopie von Todesstern/08_ROTJ_Todesstern2_Schlacht_Endor.jpg (eigene Sammlung)
-15.jpg: Kopie von Tatooine/03_Tatooine_Doppelsonnen.jpg (eigene Sammlung)
+09.jpg: Kopie von Dagobah/06_ESB_X-Wing_im_Sumpf.png (eigene Sammlung)
+10.jpg: Kopie von Wolkenstadt-Bespin/01_ESB_Wolkenstadt_ueber_Wolken.png (eigene Sammlung)
+11.jpg: Kopie von TIE-Bomber/08_Artwork_Angriff_auf_Planet.png (eigene Sammlung)
+12.jpg: Kopie von TIE-Interceptor/03_ROTJ_TIE-Interceptor_Endor_Rebellenkreuzer.png (eigene Sammlung)
+13.jpg: Kopie von Speeder-Bikes/05_Art_Speeder-Bike_Endor_Verfolgung.png (eigene Sammlung)
+14.jpg: Kopie von Ewoks/06_ROTJ_Ewoks_Baumdorf.jpg (eigene Sammlung)
+15.jpg: Kopie von Todesstern/08_ROTJ_Todesstern2_Schlacht_Endor.jpg (eigene Sammlung)
+16.jpg: Kopie von Tatooine/03_Tatooine_Doppelsonnen.jpg (eigene Sammlung)

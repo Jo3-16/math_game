@@ -1,6 +1,7 @@
 {
   "titel": "Angriff auf den Sternzerstörer",
   "vorschau": "Kapitelbilder/01.jpg",
+  "belohnung": "Kapitelbilder/Belohnung/01.jpg",
   "abzeichen": { "name": "Sternzerstörer-Jäger", "symbol": "🏅" },
   "aufgaben": [
     {

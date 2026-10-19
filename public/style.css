@@ -108,6 +108,15 @@ a { color: var(--akzent); }
 .overlay-symbol.gold { filter: drop-shadow(0 0 24px #ffd54a); }
 .overlay-sterne { font-size: 40px; margin: 0 0 8px; letter-spacing: 6px; }
 #bonus-ueberspringen { display: block; margin: 0 0 16px; color: var(--akzent); opacity: 1; }
+.archiv-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+.holo { display: block; margin: 0; background: var(--flaeche); border-radius: 12px; padding: 8px; color: var(--text); text-decoration: none; }
+.holo img { width: 100%; height: 220px; object-fit: cover; border-radius: 8px; display: block; }
+.holo span { display: block; margin-top: 8px; font-size: 16px; }
+.holo.gesperrt img { filter: grayscale(1) blur(14px) brightness(.6) sepia(1) hue-rotate(160deg) saturate(3); opacity: .45; }
+.holo.gesperrt { box-shadow: inset 0 0 30px rgba(80, 200, 255, .25); }
+.overlay-belohnung { margin: 0 0 16px; }
+.overlay-belohnung img { max-width: 420px; max-height: 240px; border-radius: 10px; box-shadow: 0 0 24px rgba(80, 200, 255, .6); }
+.overlay-belohnung figcaption { color: #8fdcff; margin-top: 6px; }
 .admin-leiste { display: flex; justify-content: space-between; align-items: center; gap: 16px; border: 2px dashed #ff8a80; border-radius: 8px; padding: 8px 12px; margin-bottom: 16px; }
 .tipp {
   display: flex; align-items: center; gap: 16px;

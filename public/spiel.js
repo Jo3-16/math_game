@@ -5,7 +5,7 @@ import {
 } from './logik.js';
 
 const $ = id => document.getElementById(id);
-const ANSICHTEN = ['auswahl', 'uebersicht', 'aufgabe', 'ruhmeshalle', 'galerie', 'simulator', 'statistik'];
+const ANSICHTEN = ['auswahl', 'uebersicht', 'aufgabe', 'ruhmeshalle', 'galerie', 'simulator', 'statistik', 'archiv'];
 // Admin-Modus (/admin): alle Kapitel offen, Aufgaben überspringen, Lösung sichtbar, nichts wird gespeichert.
 const ADMIN = location.pathname === '/admin';
 
@@ -90,6 +90,7 @@ async function ladeWelt(id) {
   $('galerie-knopf').hidden = !ADMIN;
   $('statistik-knopf').hidden = !ADMIN;
   if (location.pathname === '/abzeichen') zeigeRuhmeshalle();
+  else if (location.pathname === '/archiv') zeigeArchiv();
   else zeigeUebersicht();
 }
 
@@ -381,6 +382,25 @@ function zeigeGalerie() {
 $('galerie-knopf').onclick = zeigeGalerie;
 $('galerie-zurueck').onclick = zeigeUebersicht;
 
+// Hologramm-Archiv: jedes fertige Kapitel schaltet sein Belohnungsbild frei.
+function zeigeArchiv() {
+  const mit = welt.kapitel.map((k, i) => [k, i]).filter(([k]) => k.belohnung);
+  const frei = mit.filter(([k]) => stand.kapitel[k.id]?.fertig).length;
+  $('archiv-zusammenfassung').textContent = `${frei} von ${mit.length} Hologrammen freigeschaltet – jedes geschaffte Kapitel bringt ein neues.`;
+  $('archiv-inhalt').replaceChildren(...mit.map(([k, i]) => {
+    const offen = stand.kapitel[k.id]?.fertig;
+    const f = element(offen ? 'a' : 'figure', offen ? 'holo' : 'holo gesperrt');
+    const img = element('img');
+    img.src = pfadUrl(k.belohnung);
+    img.alt = offen ? k.titel : '';
+    img.loading = 'lazy';
+    if (offen) { f.href = img.src; f.target = '_blank'; }
+    f.append(img, element('span', '', offen ? `Kapitel ${kapitelNummer(k, i)} · ${k.titel}` : `🔒 Kapitel ${kapitelNummer(k, i)}`));
+    return f;
+  }));
+  zeige('archiv');
+}
+
 function zeigeSimulatorMenu() {
   $('simulator-arten').replaceChildren(...SIMULATOR_ARTEN.map(a => {
     const b = element('button', 'kachel offen');
@@ -447,6 +467,9 @@ function zeigeKapitelEnde(kapitel) {
     $('overlay-titel').textContent = `Neues Abzeichen: ${kapitel.abzeichen.name}!`;
     $('overlay-text').textContent = `${s.punkte} von ${maxPunkte(kapitel)} Punkten in „${kapitel.titel}“.${goldText}`;
   }
+  // Belohnungsbild zeigen, wenn das Kapitel gerade zum ersten Mal geschafft wurde
+  $('overlay-belohnung').hidden = wiederholung || !kapitel.belohnung;
+  if (kapitel.belohnung) $('overlay-belohnung').querySelector('img').src = pfadUrl(kapitel.belohnung);
   $('overlay').hidden = false;
   $('overlay-weiter').focus();
 }

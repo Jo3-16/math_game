@@ -1,6 +1,7 @@
 {
   "titel": "Der Grabenlauf",
-  "vorschau": "Kapitelbilder/02.png",
+  "vorschau": "Kapitelbilder/02.jpg",
+  "belohnung": "Kapitelbilder/Belohnung/02.jpg",
   "abzeichen": { "name": "Grabenläufer", "symbol": "🎯" },
   "aufgaben": [
     {

@@ -1,0 +1,69 @@
+{
+  "titel": "Speeder-Jagd auf Endor",
+  "vorschau": "Kapitelbilder/13.jpg",
+  "belohnung": "Kapitelbilder/Belohnung/13.jpg",
+  "abzeichen": { "name": "Speeder-Ass", "symbol": "🏍️" },
+  "aufgaben": [
+    {
+      "bild": ["endor wald"],
+      "geschichte": "Han, Leia, Luke und Chewbacca schleichen durch die riesigen Wälder von Endor. Plötzlich entdecken sie Späher des Imperiums: 4 Gruppen mit je 3 Scouts auf Speeder-Bikes.",
+      "frage": "Wie viele Scouts sind es?",
+      "rechnung": "4 * 3",
+      "loesung": 12,
+      "merke": "12 Scouts auf Speeder-Bikes",
+      "tipp": "4 Gruppen mit je 3 Scouts. Die Dreierreihe dir hilft."
+    },
+    {
+      "bild": ["scouttrooper endor", "speeder bike ewok", "endor verfolgung"],
+      "geschichte": "Zwei Scouts fliehen, um Verstärkung zu holen! Luke und Leia springen auf Speeder-Bikes und rasen hinterher. Die Scouts haben 150 Meter Vorsprung. In jeder Sekunde holen Luke und Leia 25 Meter auf.",
+      "frage": "Nach wie vielen Sekunden haben sie die Scouts eingeholt?",
+      "rechnung": "150 / 25",
+      "loesung": 6,
+      "merke": "nach 6 Sekunden eingeholt",
+      "tipp": "Wie oft die 25 in 150 passt, du herausfinden musst. Vier 25er sind 100 – und wie viele noch bis 150?"
+    },
+    {
+      "bild": ["scout explosion"],
+      "geschichte": "Leia drängt einen Scout gegen einen Baum – BUMM! Doch da tauchen 3 weitere Scouts auf. Jeder von ihnen feuert 9 Laserschüsse auf Luke und Leia ab.",
+      "frage": "Wie viele Laserschüsse sind das?",
+      "rechnung": "3 * 9",
+      "loesung": 27,
+      "merke": "27 Laserschüsse",
+      "tipp": "3 Scouts mit je 9 Schüssen. 3 mal 10 rechnen und dann 3 wieder wegnehmen, hmm."
+    },
+    {
+      "bild": ["endor verfolgung", "speeder bike ewok"],
+      "geschichte": "Die wilde Jagd geht durch den dichten Wald. Die Strecke ist 250 Meter lang, und alle 30 Meter steht ein riesiger Baum, um den die Speeder herumflitzen müssen.",
+      "frage": "Wie viele ganze 30-Meter-Abschnitte hat die Strecke – und wie viele Meter bleiben übrig?",
+      "rechnung": "250 / 30",
+      "loesung": 8,
+      "rest": 10,
+      "merke": "8 Abschnitte und 10 Meter",
+      "tipp": "Wie oft passt die 30 ganz in 250? Denk an die Dreierreihe mit einer Null dran. Was übrig bleibt, der Rest ist."
+    },
+    {
+      "bild": ["at-st/"],
+      "geschichte": "Am Waldrand steht ein AT-ST-Läufer Wache. Er stapft hin und her und macht in jeder Minute 24 Schritte. Han beobachtet ihn 5 Minuten lang aus dem Gebüsch.",
+      "frage": "Wie viele Schritte macht der AT-ST in den 5 Minuten?",
+      "rechnung": "24 * 5",
+      "loesung": 120,
+      "merke": "120 AT-ST-Schritte",
+      "tipp": "24 mal 5 – erst 20 mal 5, dann 4 mal 5, und beides zusammenzählen du musst."
+    },
+    {
+      "bild": ["leia wicket"],
+      "geschichte": "Leia ist vom Speeder-Bike gefallen und wacht im Wald auf. Ein kleiner Ewok schaut sie neugierig an – es ist Wicket! Er hat 60 Beeren gesammelt und teilt sie gerecht zwischen sich, Leia und seinen 2 Freunden auf.",
+      "frage": "Wie viele Beeren bekommt jeder?",
+      "rechnung": "60 / 4",
+      "loesung": 15,
+      "merke": "15 Beeren für jeden",
+      "tipp": "Zähl genau, wie viele sich die Beeren teilen: Wicket, Leia und 2 Freunde. Dann 60 durch diese Zahl teilen du musst."
+    }
+  ],
+  "bonus": {
+    "geschichte": "Die Scouts parken ihre Speeder-Bikes in Reihen. Stellen sie immer 4 in eine Reihe, bleibt 1 übrig. Stellen sie immer 5 in eine Reihe, bleibt auch 1 übrig. Es sind mehr als 1 und weniger als 30 Speeder-Bikes.",
+    "frage": "Wie viele Speeder-Bikes sind es?",
+    "loesung": 21,
+    "tipp": "Nimm das eine übrige Bike weg – dann geht es in 4er- und in 5er-Reihen genau auf. Welche Zahl ist durch 4 und durch 5 teilbar?"
+  }
+}

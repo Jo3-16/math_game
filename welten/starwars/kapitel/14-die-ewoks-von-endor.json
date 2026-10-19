@@ -1,11 +1,12 @@
 {
   "titel": "Die Ewoks von Endor",
-  "vorschau": "Kapitelbilder/13.jpg",
+  "vorschau": "Kapitelbilder/14.jpg",
+  "belohnung": "Kapitelbilder/Belohnung/14.jpg",
   "abzeichen": { "name": "Ewok-Freund", "symbol": "🧸" },
   "aufgaben": [
     {
       "bild": ["endor mond"],
-      "geschichte": "Ein neuer Todesstern wird gebaut! Sein Schutzschild kommt von einem Generator auf dem Waldmond Endor. Ein Rebellen-Shuttle fliegt hin. Darin sitzen 4 Reihen mit je 6 Kämpfern.",
+      "geschichte": "Der Schutzschild des neuen Todessterns kommt von einem Generator hier auf dem Waldmond Endor. Ein zweites Rebellen-Shuttle landet mit Verstärkung. Darin sitzen 4 Reihen mit je 6 Kämpfern.",
       "frage": "Wie viele Kämpfer sitzen im Shuttle?",
       "rechnung": "4 * 6",
       "loesung": 24,
@@ -13,8 +14,8 @@
       "tipp": "4 Reihen, in jeder 6 Kämpfer. Mal rechnen du musst."
     },
     {
-      "bild": ["sturmtruppen"],
-      "geschichte": "Im Wald patrouillieren Sturmtruppen. Die Rebellen zählen 9 Gruppen, in jeder Gruppe sind 4 Soldaten.",
+      "bild": ["at-st/", "endor wald truppen"],
+      "geschichte": "Im Wald patrouillieren Sturmtruppen, und zwischen den Bäumen stapfen AT-ST-Läufer. Die Rebellen zählen 9 Gruppen, in jeder Gruppe sind 4 Soldaten.",
       "frage": "Wie viele Sturmtruppen patrouillieren im Wald?",
       "rechnung": "9 * 4",
       "loesung": 36,
@@ -23,7 +24,7 @@
     },
     {
       "bild": ["wicket"],
-      "geschichte": "Leia trifft den kleinen Ewok Wicket. Er bringt die Rebellen in sein Dorf hoch oben in den Bäumen. Dort stehen 7 Baumhäuser, und in jedem wohnen 9 Ewoks.",
+      "geschichte": "Wicket bringt Leia und die Rebellen in sein Dorf hoch oben in den Bäumen. Dort stehen 7 Baumhäuser, und in jedem wohnen 9 Ewoks.",
       "frage": "Wie viele Ewoks wohnen im Dorf?",
       "rechnung": "7 * 9",
       "loesung": 63,

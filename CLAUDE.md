@@ -7,7 +7,8 @@ Lernspiel für einen Jungen am Anfang der 4. Klasse: Mathe-Sachaufgaben als Gesc
 - Kapitel prüfen: `node pruefe.js`
 - Spielstand zurücksetzen: `welten/<welt>/spielstand.json` löschen
 - Admin-Modus: http://localhost:8642/admin – alle Kapitel offen, „Weiter ▶“ ohne Rechnen, Lösung + Tipp sichtbar, nichts wird gespeichert; dort auch „🖼️ Bildergalerie“ (alle Bilder, je Bild die Aufgaben, in denen es erscheinen kann; unbenutzte rot gestrichelt)
-- Abzeichen & Punkte: http://localhost:8642/abzeichen
+- Abzeichen & Punkte: http://localhost:8642/abzeichen · Hologramm-Archiv: http://localhost:8642/archiv
+- Admin-Passwort: `einstellungen.json` → `{ "adminPasswort": "…" }` (nicht im Git; ohne Datei ist /admin offen; nach Änderung Server neu starten)
 - Flugsimulator (Zufallsaufgaben je Rechenart, unbegrenzt, keine Punkte, Serien-Rekord): Knopf in der Übersicht
 - Fehlerstatistik (je Rechenart + schwierigste Aufgaben): im Admin-Modus „📊 Statistik“
 
@@ -42,11 +43,13 @@ Wenn der Vater z. B. „Mach 5 neue Kapitel über Hoth“ sagt:
    - `vorschau`: festes Vorschaubild für die Übersicht, Pfad relativ zu `bilder/` (Ordner `Kapitelbilder/`, Quelle in `Kapitelbilder/QUELLEN.txt` eintragen). Bilder frei lizenziert z. B. von Wikimedia Commons; Wookieepedia blockt Downloads.
    - **Teilen mit Rest**: Feld `"rest": N` (N > 0) – nur dann erscheint das zweite Eingabefeld „Rest“. `rechnung` muss `Ausdruck / Zahl` sein (Plus/Minus links in Klammern), `loesung` ist das ganze Ergebnis. Frage nennt beides („… wie viele bleiben übrig?“).
    - **Größen & Einheiten**: Feld `"art": "einheiten"` (für die Statistik). Im Zahlenraum bis 500 bleiben: min↔s, h↔min, m↔cm (kein km↔m).
+   - `belohnung`: Bild fürs Hologramm-Archiv, frei beim ersten Abschluss des Kapitels. Als Kopie in `Kapitelbilder/Belohnung/NN.jpg` (max. 1600 px breit) ablegen, Quelle in `Kapitelbilder/Belohnung/QUELLEN.txt`. Gern bisher ungenutzte Bilder (Admin-Galerie zeigt sie).
+   - `vorschau`: als `Kapitelbilder/NN.jpg` mit 480 px Breite ablegen (große Bilder vorher verkleinern).
    - `bonus`: ein Knobel-Rätsel nach der letzten Aufgabe (`{ "geschichte", "frage", "loesung", "tipp" }`, optional `bild`). Lösen gibt Gold-Abzeichen und +20 Punkte. Lösung ganzzahlig 0–500 und **eindeutig** – vorher per Skript durchprobieren (z. B. alle Zahlen 0–500 gegen die Bedingungen prüfen). Gute Typen: Zahl erraten aus Bedingungen, Zahlenfolgen, Teile-Aufgaben, Zaunpfahl-Problem, Köpfe-und-Beine.
 5. **Prüfen:** `node pruefe.js` ausführen und alle FEHLER und WARNUNGEN beheben, bevor du fertig meldest.
 
 ## Neue Welt
 
-Ordner `welten/<id>/` mit `welt.json` (`name`, `helfer`, `farben`: hintergrund, flaeche, akzent, text, tipp), `bilder/` und `kapitel/`.
+Ordner `welten/<id>/` mit `welt.json` (`name`, `helfer`, optional `helferBild` = fester Pfad des Tipp-Bilds, `farben`: hintergrund, flaeche, akzent, text, tipp), `bilder/` und `kapitel/`.
 
 Das Bild des Helfers (Tipp-Box) ist ein Bild in `bilder/`, dessen Pfad den Helfernamen enthält (z. B. `Yoda.png`). Ohne ein solches Bild erscheint 🟢.

@@ -1,10 +1,11 @@
 {
   "titel": "Die imperiale Flotte kommt",
   "vorschau": "Kapitelbilder/05.webp",
+  "belohnung": "Kapitelbilder/Belohnung/05.jpg",
   "abzeichen": { "name": "Flotten-Späher", "symbol": "🔭" },
   "aufgaben": [
     {
-      "bild": ["sternzerstörer", "star destroyer"],
+      "bild": ["hoth sonde", "sternzerstörer/"],
       "geschichte": "Eine Suchdrohne hat die Rebellen entdeckt! Darth Vaders Flotte springt aus dem Hyperraum: 5 Sternzerstörer. In jedem warten 4 Staffeln TIE-Fighter auf den Start.",
       "frage": "Wie viele Staffeln TIE-Fighter sind das?",
       "rechnung": "5 * 4",
