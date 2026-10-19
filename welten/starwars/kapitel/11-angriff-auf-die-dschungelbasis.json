@@ -31,12 +31,12 @@
       "tipp": "Von allen Bombern die abgeschossenen abziehen du musst. Erst 20 weg, dann noch 9."
     },
     {
-      "bild": ["transporter", "nebulon"],
-      "geschichte": "Die Basis muss evakuiert werden! 360 Rebellen müssen zu den Rettungsschiffen. In jede Fähre zur Nebulon-B-Fregatte passen 40 Rebellen.",
-      "frage": "Wie viele Fähren werden gebraucht?",
+      "bild": ["transporter"],
+      "geschichte": "Die Basis muss evakuiert werden! 360 Rebellen müssen in die Rettungs-Transporter. In jeden Transporter passen 40 Rebellen.",
+      "frage": "Wie viele Transporter werden gebraucht?",
       "rechnung": "360 / 40",
       "loesung": 9,
-      "merke": "9 Fähren für die Evakuierung",
+      "merke": "9 Transporter für die Evakuierung",
       "tipp": "Wie oft die 40 in 360 passt, du herausfinden musst. Ohne die Nullen es leichter geht, hmm."
     },
     {
@@ -50,7 +50,7 @@
     },
     {
       "bild": ["tempel"],
-      "geschichte": "Der Schutzschild über dem Tempel hält bis zu 150 Bomben aus – und er hält! Alle Fähren entkommen sicher zur Fregatte.",
+      "geschichte": "Der Schutzschild über dem Tempel hält bis zu 150 Bomben aus – und er hält! Alle Transporter starten und entkommen sicher ins Weltall.",
       "frage": "Wie viele Bomben hätte der Schild noch zusätzlich aushalten können?",
       "rechnung": "150 - 104",
       "loesung": 46,

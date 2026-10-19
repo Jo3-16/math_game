@@ -4,8 +4,8 @@
   "abzeichen": { "name": "Konvoi-Beschützer", "symbol": "🛰️" },
   "aufgaben": [
     {
-      "bild": ["transporter", "nebulon"],
-      "geschichte": "Die Fähren haben alle 360 Rebellen aus der Dschungelbasis gerettet. Jetzt werden sie gerecht auf 8 große Transporter verteilt, die zu einem neuen Versteck fliegen sollen.",
+      "bild": ["transporter"],
+      "geschichte": "Alle 360 Rebellen aus der Dschungelbasis sind gerettet! Im Weltall steigen sie in 8 große Langstrecken-Transporter um – gerecht verteilt –, die zu einem neuen Versteck fliegen sollen.",
       "frage": "Wie viele Rebellen fliegen in jedem Transporter?",
       "rechnung": "360 / 8",
       "loesung": 45,
