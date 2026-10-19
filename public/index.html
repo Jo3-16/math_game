@@ -18,9 +18,32 @@
       <h1 id="weltname"></h1>
       <div class="punkte"><button id="spielername" class="spielername" title="Namen ändern"></button> ⭐ <span id="gesamt-uebersicht">0</span> Punkte</div>
     </header>
+    <nav class="links">
+      <a href="/abzeichen">🏅 Abzeichen &amp; Punkte</a>
+      <button id="galerie-knopf" class="link" hidden>🖼️ Bildergalerie</button>
+    </nav>
     <div id="kapitel" class="raster"></div>
     <h2>Abzeichen</h2>
     <div id="abzeichen" class="abzeichen"></div>
+  </main>
+
+  <main id="ruhmeshalle" hidden>
+    <header class="kopf">
+      <h1>Abzeichen &amp; Punkte</h1>
+      <div class="punkte"><span id="ruhm-name" class="spielername"></span> ⭐ <span id="ruhm-punkte">0</span> Punkte</div>
+    </header>
+    <p id="ruhm-zusammenfassung"></p>
+    <div id="ruhm-abzeichen" class="abzeichen ruhm"></div>
+    <p><a href="/">← Zurück zur Übersicht</a></p>
+  </main>
+
+  <main id="galerie" hidden>
+    <header class="kopf">
+      <h1>Bildergalerie</h1>
+      <button id="galerie-zurueck" class="link">← Zurück zur Übersicht</button>
+    </header>
+    <p id="galerie-zusammenfassung"></p>
+    <div id="galerie-inhalt"></div>
   </main>
 
   <main id="aufgabe" hidden>

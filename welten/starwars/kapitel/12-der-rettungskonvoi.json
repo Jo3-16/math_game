@@ -40,7 +40,7 @@
       "tipp": "Jeder dritte – also alle Angreifer durch 3 teilen du musst. Erst 30 durch 3, dann den Rest."
     },
     {
-      "bild": ["interceptor vs", "x-wing"],
+      "bild": ["interceptor vs", "x-wing/"],
       "geschichte": "Jetzt kommen 4 X-Wings zu Hilfe! Jeder X-Wing schießt 7 TIE-Interceptoren ab.",
       "frage": "Wie viele TIE-Interceptoren sind jetzt noch übrig?",
       "rechnung": "54 - 18 - 4 * 7",

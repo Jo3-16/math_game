@@ -4,7 +4,7 @@
   "abzeichen": { "name": "Echo-Basis-Mechaniker", "symbol": "🔧" },
   "aufgaben": [
     {
-      "bild": ["x-wing"],
+      "bild": ["x-wing/"],
       "geschichte": "Die Rebellen haben sich auf dem Eisplaneten Hoth versteckt. In der großen Hangarhalle der Echo-Basis stehen die X-Wings in 6 Reihen, in jeder Reihe 7 Stück.",
       "frage": "Wie viele X-Wings stehen im Hangar?",
       "rechnung": "6 * 7",
@@ -13,7 +13,7 @@
       "tipp": "6 Reihen mit je 7 X-Wings. Das Einmaleins mit 7 dir hilft, junger Padawan."
     },
     {
-      "bild": ["x-wing"],
+      "bild": ["x-wing/"],
       "geschichte": "Auf Hoth ist es eisig kalt! Damit die Triebwerke nicht einfrieren, braucht jeder X-Wing im Hangar 5 Liter Frostschutz.",
       "frage": "Wie viele Liter Frostschutz brauchen alle X-Wings zusammen?",
       "rechnung": "42 * 5",
@@ -40,7 +40,7 @@
       "tipp": "Seine Hälfte der Schrauben du schon kennst. Die 25 vom Hyperantrieb noch dazuzählen du musst."
     },
     {
-      "bild": ["x-wing"],
+      "bild": ["x-wing/"],
       "geschichte": "In der Echo-Basis leben 450 Rebellen. 4 Gruppen mit je 30 Rebellen gehen auf Patrouille in den Schnee.",
       "frage": "Wie viele Rebellen bleiben in der Basis?",
       "rechnung": "450 - 4 * 30",

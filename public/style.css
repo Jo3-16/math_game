@@ -84,6 +84,18 @@ form { display: flex; gap: 12px; }
   padding: 12px 24px; background: var(--flaeche); border-top: 2px solid var(--akzent); font-size: 18px;
 }
 .ergebnis { background: var(--hintergrund); border-radius: 999px; padding: 4px 14px; }
+.links { display: flex; gap: 24px; margin: -8px 0 20px; }
+.links a, .links button.link { color: var(--akzent); font-size: 20px; margin: 0; opacity: 1; text-decoration: none; }
+.abzeichen.ruhm div { height: auto; min-height: var(--kachelbild-hoehe); }
+.abzeichen.ruhm div.offen { opacity: .35; filter: grayscale(1); }
+.abzeichen.ruhm small { opacity: .8; margin-top: 4px; }
+a { color: var(--akzent); }
+.galerie-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.galerie-raster figure { margin: 0; background: var(--flaeche); border-radius: 12px; padding: 8px; font-size: 14px; overflow-wrap: anywhere; }
+.galerie-raster figure.unbenutzt { outline: 2px dashed #ff8a80; }
+.galerie-raster img { width: 100%; height: 130px; object-fit: cover; border-radius: 8px; display: block; }
+.galerie-raster figcaption { margin-top: 6px; }
+.galerie-raster small { color: var(--akzent); }
 .admin-leiste { display: flex; justify-content: space-between; align-items: center; gap: 16px; border: 2px dashed #ff8a80; border-radius: 8px; padding: 8px 12px; margin-bottom: 16px; }
 .tipp {
   display: flex; align-items: center; gap: 16px;

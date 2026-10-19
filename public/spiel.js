@@ -1,7 +1,7 @@
 import { findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName } from './logik.js';
 
 const $ = id => document.getElementById(id);
-const ANSICHTEN = ['auswahl', 'uebersicht', 'aufgabe'];
+const ANSICHTEN = ['auswahl', 'uebersicht', 'aufgabe', 'ruhmeshalle', 'galerie'];
 // Admin-Modus (/admin): alle Kapitel offen, Aufgaben überspringen, Lösung sichtbar, nichts wird gespeichert.
 const ADMIN = location.pathname === '/admin';
 
@@ -38,7 +38,9 @@ async function ladeWelt(id) {
   for (const [name, wert] of Object.entries(welt.farben ?? {})) document.documentElement.style.setProperty(`--${name}`, wert);
   document.title = welt.name;
   $('weltname').textContent = welt.name + (ADMIN ? ' – Admin-Modus' : '');
-  zeigeUebersicht();
+  $('galerie-knopf').hidden = !ADMIN;
+  if (location.pathname === '/abzeichen') zeigeRuhmeshalle();
+  else zeigeUebersicht();
 }
 
 function zeigeUebersicht() {
@@ -58,7 +60,7 @@ function zeigeUebersicht() {
       b.append(vorschau);
     }
     const text = element('div');
-    text.append(element('small', '', `Kapitel ${Number(k.id.match(/^\d+/)?.[0] ?? i + 1)}`), element('b', '', k.titel), element('small', '', zeile));
+    text.append(element('small', '', `Kapitel ${kapitelNummer(k, i)}`), element('b', '', k.titel), element('small', '', zeile));
     b.append(text);
     if (ADMIN) b.onclick = () => starteKapitel(i, true);
     else if (status[i] === 'gesperrt') b.disabled = true;
@@ -187,6 +189,58 @@ function naechsteAufgabe() {
 }
 
 $('admin-weiter').onclick = naechsteAufgabe;
+
+const kapitelNummer = (k, i) => Number(k.id.match(/^\d+/)?.[0] ?? i + 1);
+
+function zeigeRuhmeshalle() {
+  const erreicht = welt.kapitel.filter(k => stand.abzeichen.includes(k.id)).length;
+  $('ruhm-name').textContent = stand.name;
+  $('ruhm-punkte').textContent = gesamtPunkte(stand);
+  $('ruhm-zusammenfassung').textContent = `${erreicht} von ${welt.kapitel.length} Abzeichen gesammelt`;
+  $('ruhm-abzeichen').replaceChildren(...welt.kapitel.map((k, i) => {
+    const hat = stand.abzeichen.includes(k.id);
+    const d = element('div', hat ? '' : 'offen');
+    const punkte = `Kapitel ${kapitelNummer(k, i)} · ${stand.kapitel[k.id]?.punkte ?? 0}/${k.aufgaben.length * 15} Punkte`;
+    d.append(element('span', '', k.abzeichen.symbol), hat ? k.abzeichen.name : '???', element('small', '', punkte));
+    d.title = k.titel;
+    return d;
+  }));
+  zeige('ruhmeshalle');
+}
+
+// Admin: alle Bilder nach Ordnern, mit den Aufgaben, in denen sie erscheinen können.
+function zeigeGalerie() {
+  const verwendet = new Map(welt.bilder.map(p => [p, []]));
+  welt.kapitel.forEach((k, i) => k.aufgaben.forEach((a, j) => {
+    for (const p of findeBilder(welt.bilder, a.bild)) verwendet.get(p).push(`K${kapitelNummer(k, i)}·A${j + 1}`);
+  }));
+  for (const p of findeBilder(welt.bilder, [welt.helfer])) verwendet.get(p).push('Tipp-Bild');
+  const ordner = new Map();
+  for (const p of [...welt.bilder].sort()) {
+    const name = p.includes('/') ? p.split('/')[0] : '(Hauptordner)';
+    if (name !== 'Kapitelbilder') (ordner.get(name) ?? ordner.set(name, []).get(name)).push(p);
+  }
+  const unbenutzt = [...verwendet].filter(([p, wo]) => !wo.length && !p.startsWith('Kapitelbilder/')).length;
+  $('galerie-zusammenfassung').textContent = `${welt.bilder.length} Bilder in ${ordner.size} Ordnern · ${unbenutzt} werden in keiner Aufgabe verwendet`;
+  $('galerie-inhalt').replaceChildren(...[...ordner].flatMap(([name, pfade]) => {
+    const raster = element('div', 'galerie-raster');
+    raster.append(...pfade.map(p => {
+      const f = element('figure', verwendet.get(p).length ? '' : 'unbenutzt');
+      const img = element('img');
+      img.loading = 'lazy';
+      img.src = pfadUrl(p);
+      img.alt = '';
+      const wo = verwendet.get(p);
+      f.append(img, element('figcaption', '', p.split('/').pop()), element('small', '', wo.length ? wo.join(', ') : 'nicht verwendet'));
+      return f;
+    }));
+    return [element('h2', '', `${name} (${pfade.length})`), raster];
+  }));
+  zeige('galerie');
+}
+
+$('galerie-knopf').onclick = zeigeGalerie;
+$('galerie-zurueck').onclick = zeigeUebersicht;
 
 function zeigeKapitelEnde(kapitel) {
   $('overlay-symbol').textContent = kapitel.abzeichen.symbol;

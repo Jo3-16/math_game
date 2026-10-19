@@ -69,3 +69,10 @@ test('spielername', () => {
   assert.equal(mitName(leererStand(), '   ').name, 'C3-Jo');
   assert.equal(mitName(leererStand(), 'X'.repeat(40)).name.length, 20);
 });
+
+test('findeBilder mit ordner-suchwort', () => {
+  const p = ['X-Wing/01_Trench-Run.png', 'X-Wing/Hoth/02.png', 'Dagobah/06_X-Wing_im_Sumpf.png', 'X-wing_SWB.webp'];
+  assert.deepEqual(findeBilder(p, ['x-wing/']), ['X-Wing/01_Trench-Run.png', 'X-Wing/Hoth/02.png']);
+  assert.deepEqual(findeBilder(p, ['x wing/', 'sumpf']), ['X-Wing/01_Trench-Run.png', 'X-Wing/Hoth/02.png', 'Dagobah/06_X-Wing_im_Sumpf.png']);
+  assert.deepEqual(findeBilder(p, ['wing/']), []); // Ordnername muss ganz passen
+});

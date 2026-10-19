@@ -79,3 +79,7 @@ test('admin-seite liefert das spiel', async () => {
   assert.equal(antwort.status, 200);
   assert.equal(await antwort.text(), '<!doctype html>');
 });
+
+test('abzeichen-seite liefert das spiel', async () => {
+  assert.equal(await (await fetch(`${url}/abzeichen`)).text(), '<!doctype html>');
+});

@@ -4,7 +4,7 @@
   "abzeichen": { "name": "Sternzerstörer-Jäger", "symbol": "🏅" },
   "aufgaben": [
     {
-      "bild": ["x-wing"],
+      "bild": ["x-wing/"],
       "geschichte": "Alarm auf Yavin 4! Die Rot-Staffel startet mit 12 X-Wings. Im Weltall teilen sie sich in 4 gleich große Gruppen auf, um den Feind von allen Seiten anzugreifen.",
       "frage": "Wie viele X-Wings fliegen in jeder Gruppe?",
       "rechnung": "12 / 4",

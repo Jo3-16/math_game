@@ -40,7 +40,7 @@
       "tipp": "Die TIE-Fighter und die TIE-Bomber zusammenzählen du musst. Beide Zahlen du schon kennst."
     },
     {
-      "bild": ["x-wing"],
+      "bild": ["x-wing/"],
       "geschichte": "Die Rebellen haben nur 57 Jäger, um sich zu verteidigen. Das wird ein harter Kampf!",
       "frage": "Wie viele Jäger hat das Imperium mehr als die Rebellen?",
       "rechnung": "285 - 57",

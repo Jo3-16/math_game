@@ -10,9 +10,12 @@ export function normalisiere(text) {
     .trim();
 }
 
+// Suchwort mit "/" am Ende ("x-wing/") trifft nur Bilder im gleichnamigen Ordner, sonst: Pfad enthält Suchwort.
 export function findeBilder(pfade, suchwoerter) {
-  const woerter = suchwoerter.map(normalisiere).filter(Boolean);
-  return pfade.filter(p => woerter.some(w => normalisiere(p).includes(w)));
+  const ordner = suchwoerter.filter(w => w.endsWith('/')).map(w => normalisiere(w.slice(0, -1)));
+  const woerter = suchwoerter.filter(w => !w.endsWith('/')).map(normalisiere).filter(Boolean);
+  return pfade.filter(p => ordner.includes(normalisiere(p.split('/')[0])) && p.includes('/')
+    || woerter.some(w => normalisiere(p).includes(w)));
 }
 
 // Kleiner Parser statt eval: prüft jede Zahl und jedes Zwischenergebnis.

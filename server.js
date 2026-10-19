@@ -80,7 +80,7 @@ export function starte({ wurzel = PROJEKT, port = PORT } = {}) {
     if (teile[0] === 'welten' && teile[2] === 'bilder' && teile.length > 3) {
       datei = path.join(await weltOrdner(teile[1]), 'bilder', ...teile.slice(3));
     } else {
-      const seite = teile.length === 0 || (teile.length === 1 && teile[0] === 'admin');
+      const seite = teile.length === 0 || (teile.length === 1 && ['admin', 'abzeichen'].includes(teile[0]));
       datei = path.join(wurzel, 'public', ...(seite ? ['index.html'] : teile));
     }
     return [200, await fs.readFile(datei), TYPEN[path.extname(datei).toLowerCase()] ?? 'application/octet-stream'];

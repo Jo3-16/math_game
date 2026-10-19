@@ -4,7 +4,7 @@
   "abzeichen": { "name": "Held von Hoth", "symbol": "🛡️" },
   "aufgaben": [
     {
-      "bild": ["x-wing"],
+      "bild": ["x-wing/"],
       "geschichte": "Riesige AT-AT-Kampfläufer stapfen durch den Schnee auf die Echo-Basis zu! Die Rebellen starten zur Verteidigung: 8 Gruppen mit je 3 X-Wings.",
       "frage": "Wie viele X-Wings starten?",
       "rechnung": "8 * 3",
@@ -40,7 +40,7 @@
       "tipp": "Zuerst ausrechnen, wie viel alle Treffer zusammen kosten. Mal 10 – eine Null dranhängen du musst. Dann von 400 abziehen."
     },
     {
-      "bild": ["x-wing"],
+      "bild": ["x-wing/"],
       "geschichte": "Der Schild hält! Jetzt schlagen die X-Wings zurück. Jeder der 24 X-Wings feuert 4 Salven ab. Jede dritte Salve trifft einen AT-AT.",
       "frage": "Wie viele Salven treffen?",
       "rechnung": "24 * 4 / 3",
