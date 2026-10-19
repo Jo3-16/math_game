@@ -69,9 +69,17 @@ export function punkteFuer(fehlversuche) {
   return fehlversuche < TIPP_AB ? 15 : 10;
 }
 
-// Spielstand: { kapitel: { [id]: { geloest, punkte, fertig } }, abzeichen: [id] }
+// Spielstand: { name, kapitel: { [id]: { geloest, punkte, fertig } }, abzeichen: [id] }
+export const STANDARD_NAME = 'C3-Jo';
+
 export function leererStand() {
-  return { kapitel: {}, abzeichen: [] };
+  return { name: STANDARD_NAME, kapitel: {}, abzeichen: [] };
+}
+
+// Setzt den Spielernamen (gekürzt, nie leer); ohne neuen Namen wird nur ein fehlender ergänzt.
+export function mitName(stand, neuerName = stand.name) {
+  const name = String(neuerName ?? '').trim().slice(0, 20) || STANDARD_NAME;
+  return { ...stand, name };
 }
 
 export function kapitelStatus(stand, kapitelIds) {

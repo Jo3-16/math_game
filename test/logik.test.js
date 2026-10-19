@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte } from '../public/logik.js';
+import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName } from '../public/logik.js';
 
 test('normalisiere', () => {
   assert.equal(normalisiere('X-wing_SWB.webp'), 'x wing swb.webp');
@@ -59,4 +59,13 @@ test('aufgabeGeloest bis Kapitelende', () => {
   assert.deepEqual(s.abzeichen, ['a']);
   assert.equal(vorher.kapitel.a.geloest, 1); // nicht mutiert
   assert.equal(gesamtPunkte(s), 25);
+});
+
+test('spielername', () => {
+  assert.equal(leererStand().name, 'C3-Jo');
+  assert.equal(aufgabeGeloest({ ...leererStand(), name: 'Luke' }, 'a', 5, 0).name, 'Luke');
+  assert.equal(mitName({ kapitel: {}, abzeichen: [] }).name, 'C3-Jo'); // alter Spielstand ohne Namen
+  assert.equal(mitName(leererStand(), '  Rey  ').name, 'Rey');
+  assert.equal(mitName(leererStand(), '   ').name, 'C3-Jo');
+  assert.equal(mitName(leererStand(), 'X'.repeat(40)).name.length, 20);
 });

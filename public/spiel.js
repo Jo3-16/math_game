@@ -1,4 +1,4 @@
-import { findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte } from './logik.js';
+import { findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName } from './logik.js';
 
 const $ = id => document.getElementById(id);
 const ANSICHTEN = ['auswahl', 'uebersicht', 'aufgabe'];
@@ -32,6 +32,7 @@ async function ladeWelt(id) {
   weltId = id;
   welt = await (await fetch(`/api/welten/${encodeURIComponent(id)}`)).json();
   stand = (await (await fetch(`/api/welten/${encodeURIComponent(id)}/spielstand`)).json()) ?? leererStand();
+  stand = mitName(stand);
   for (const [name, wert] of Object.entries(welt.farben ?? {})) document.documentElement.style.setProperty(`--${name}`, wert);
   document.title = welt.name;
   $('weltname').textContent = welt.name;
@@ -72,6 +73,7 @@ function zeigeUebersicht() {
     : [element('p', '', "Noch keine Abzeichen – auf geht's!")]));
 
   $('gesamt-uebersicht').textContent = gesamtPunkte(stand);
+  $('spielername').textContent = stand.name;
   zeige('uebersicht');
 }
 
@@ -106,6 +108,7 @@ function zeigeAufgabe() {
   const punkte = kapitel.aufgaben.map((_, i) => (i < aufgabeIndex ? '●' : i === aufgabeIndex ? '◉' : '○')).join(' ');
   $('fortschritt').textContent = `Aufgabe ${aufgabeIndex + 1}/${kapitel.aufgaben.length}  ${punkte}`;
   $('gesamt-aufgabe').textContent = gesamtPunkte(stand);
+  $('spielername-aufgabe').textContent = stand.name;
   $('geschichte').textContent = aufgabe.geschichte;
   $('frage').textContent = aufgabe.frage;
   $('meldung').textContent = '';
@@ -187,6 +190,14 @@ function zeigeKapitelEnde(kapitel) {
 $('overlay-weiter').onclick = () => {
   $('overlay').hidden = true;
   zeigeUebersicht();
+};
+
+$('spielername').onclick = () => {
+  const neu = prompt('Wie heißt der Pilot?', stand.name);
+  if (neu === null) return;
+  stand = mitName(stand, neu);
+  speichern();
+  $('spielername').textContent = stand.name;
 };
 
 $('zurueck').onclick = () => {
