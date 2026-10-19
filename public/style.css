@@ -30,7 +30,7 @@ button.link { background: none; color: var(--text); opacity: .7; font-weight: no
 .kopf { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; }
 #aufgabe .kopf { flex-direction: column-reverse; align-items: flex-start; gap: 4px; margin-bottom: 32px; } /* Name + Punkte über der Überschrift */
 #uebersicht > .kopf { flex-direction: column; align-items: stretch; gap: 8px; } /* Titel oben über die ganze Breite */
-#uebersicht > .kopf .punkte { align-self: flex-end; white-space: normal; text-align: right; }
+#uebersicht > .kopf .punkte { align-self: flex-start; white-space: normal; text-align: left; }
 .punkte { color: var(--akzent); font-weight: bold; font-size: 24px; white-space: nowrap; }
 .spielername { color: var(--text); margin-right: 12px; }
 button.spielername { background: none; padding: 0; color: var(--text); font-size: inherit; }
