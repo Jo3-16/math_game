@@ -1,0 +1,69 @@
+{
+  "titel": "Die großen Raumschlachten",
+  "vorschau": "Kapitelbilder/17.jpg",
+  "belohnung": "Kapitelbilder/Belohnung/17.jpg",
+  "abzeichen": { "name": "Flotten-Admiral", "symbol": "🌌" },
+  "aufgaben": [
+    {
+      "bild": ["coruscant"],
+      "geschichte": "Admiral Ackbar öffnet für dich das Holo-Archiv der Rebellen. Dort sind die größten Raumschlachten gespeichert. Die älteste ist die Schlacht um Coruscant: Dort kämpften 8 Kreuzer der Republik, jeder mit 45 Geschütztürmen.",
+      "frage": "Wie viele Geschütztürme hatten die 8 Kreuzer zusammen?",
+      "rechnung": "8 * 45",
+      "loesung": 360,
+      "merke": "360 Geschütztürme bei Coruscant",
+      "tipp": "8 mal 45 – erst 8 mal 40, dann 8 mal 5, und beides zusammenzählen du musst."
+    },
+    {
+      "bild": ["schlacht von yavin", "y-wing yavin"],
+      "geschichte": "Das nächste Hologramm zeigt die Schlacht von Yavin. 22 X-Wings und 8 Y-Wings flogen gegen den ersten Todesstern. Jeder Jäger hatte 2 Protonentorpedos an Bord.",
+      "frage": "Wie viele Protonentorpedos hatten alle Jäger zusammen?",
+      "rechnung": "(22 + 8) * 2",
+      "loesung": 60,
+      "merke": "60 Protonentorpedos bei Yavin",
+      "tipp": "Zuerst alle Jäger zusammenzählen: X-Wings und Y-Wings. Dann verdoppeln du musst."
+    },
+    {
+      "bild": ["hammerhai", "rebellenflotte ueber scarif", "nebulon-b schlacht scarif", "y-wing scarif"],
+      "geschichte": "Bei der Schlacht von Scarif rammte ein kleines Hammerhai-Schiff einen Sternzerstörer gegen einen zweiten! Die Rebellen hatten 96 Jäger dabei, gerecht verteilt auf 8 Staffeln.",
+      "frage": "Wie viele Jäger flogen in jeder Staffel?",
+      "rechnung": "96 / 8",
+      "loesung": 12,
+      "merke": "12 Jäger pro Staffel bei Scarif",
+      "tipp": "96 auf 8 Staffeln verteilen du musst. Erst 80 durch 8, dann 16 durch 8 – und beides zusammen."
+    },
+    {
+      "bild": ["b-wings", "sternzerstoerer formation", "executor und sternzerstoerer", "imperiale flotte am", "imperiale sternenflotte"],
+      "geschichte": "Über Endor greifen B-Wings einen Sternzerstörer an. Sein Schutzschild hat 470 Punkte, und jeder Treffer eines B-Wings zieht 30 Punkte ab.",
+      "frage": "Wie viele volle Treffer zu je 30 Punkten passen in den Schild – und wie viele Punkte bleiben übrig?",
+      "rechnung": "470 / 30",
+      "loesung": 15,
+      "rest": 20,
+      "merke": "15 volle Treffer, 20 Punkte übrig",
+      "tipp": "Wie oft passt die 30 ganz in 470? 10 Treffer sind 300 – wie viele Dreißiger passen noch in den Rest? Was übrig bleibt, der Rest ist."
+    },
+    {
+      "bild": ["schlacht von endor rebellenflotte", "rebellenflotte endor", "home one", "falcon fliegt durch", "todesstern ii", "raumschlacht endor gemaelde"],
+      "geschichte": "Bei derselben Schlacht führte Admiral Ackbars Flaggschiff Home One die ganze Rebellenflotte an: 12 Mon-Calamari-Kreuzer und dazu 3-mal so viele Fregatten.",
+      "frage": "Wie viele große Schiffe waren es zusammen?",
+      "rechnung": "12 + 12 * 3",
+      "loesung": 48,
+      "merke": "48 große Schiffe bei Endor",
+      "tipp": "Zuerst die Fregatten ausrechnen: 3-mal so viele wie Kreuzer. Dann die Kreuzer dazuzählen du musst."
+    },
+    {
+      "bild": ["exegol", "galaxisflotte"],
+      "geschichte": "Das letzte Hologramm zeigt eine Schlacht viele Jahre später, über dem Planeten Exegol. Dort kam die riesige Galaxisflotte zu Hilfe: Zuerst sprangen 250 Schiffe aus dem Hyperraum, danach noch 4 Wellen mit je 60 Schiffen.",
+      "frage": "Wie viele Schiffe kamen insgesamt zu Hilfe?",
+      "rechnung": "250 + 4 * 60",
+      "loesung": 490,
+      "merke": "490 Schiffe bei Exegol",
+      "tipp": "Zuerst die 4 Wellen ausrechnen: 4 mal 60. Dann die ersten 250 Schiffe dazuzählen du musst."
+    }
+  ],
+  "bonus": {
+    "geschichte": "Ackbar verrät dir die Geheimnummer des Holo-Archivs: Sie liegt zwischen 40 und 60, lässt sich durch 7 teilen, und ihre beiden Ziffern ergeben zusammen 11.",
+    "frage": "Wie lautet die Geheimnummer?",
+    "loesung": 56,
+    "tipp": "Schreib alle Zahlen der Siebenerreihe zwischen 40 und 60 auf. Bei welcher ergeben die Ziffern zusammen 11?"
+  }
+}
