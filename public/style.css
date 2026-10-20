@@ -128,6 +128,11 @@ a { color: var(--akzent); }
 .overlay-belohnung figcaption { color: #8fdcff; margin-top: 6px; }
 .sim-abzeichen { display: block; font-size: 28px; letter-spacing: 4px; margin: 4px 0; }
 .sim-abzeichen .fehlt { opacity: .2; filter: grayscale(1); }
+button.holo { width: 100%; text-align: left; font: inherit; font-weight: normal; cursor: zoom-in; }
+.bildansicht { position: fixed; inset: 0; background: rgba(0, 0, 0, .92); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; z-index: 10; }
+.bildansicht img { max-width: 100%; max-height: calc(100vh - 140px); border-radius: 10px; box-shadow: 0 0 30px rgba(80, 200, 255, .5); }
+.bildansicht p { margin: 0; color: var(--akzent); font-size: 20px; }
+#bildansicht-zurueck { align-self: flex-start; }
 .admin-leiste { display: flex; justify-content: space-between; align-items: center; gap: 16px; border: 2px dashed #ff8a80; border-radius: 8px; padding: 8px 12px; margin-bottom: 16px; }
 .tipp {
   display: flex; align-items: center; gap: 16px;

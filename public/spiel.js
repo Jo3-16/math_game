@@ -434,12 +434,12 @@ function zeigeArchiv() {
   $('archiv-zusammenfassung').textContent = `${frei} von ${mit.length} Hologrammen freigeschaltet – jedes geschaffte Kapitel bringt ein neues.`;
   $('archiv-inhalt').replaceChildren(...mit.map(([k, i]) => {
     const offen = stand.kapitel[k.id]?.fertig;
-    const f = element(offen ? 'a' : 'figure', offen ? 'holo' : 'holo gesperrt');
+    const f = element(offen ? 'button' : 'figure', offen ? 'holo' : 'holo gesperrt');
     const img = element('img');
     img.src = pfadUrl(k.belohnung);
     img.alt = offen ? k.titel : '';
     img.loading = 'lazy';
-    if (offen) { f.href = img.src; f.target = '_blank'; }
+    if (offen) f.onclick = () => zeigeBildansicht(img.src, `Kapitel ${kapitelNummer(k, i)} · ${k.titel}`);
     f.append(img, element('span', '', offen ? `Kapitel ${kapitelNummer(k, i)} · ${k.titel}` : `🔒 Kapitel ${kapitelNummer(k, i)}`));
     return f;
   }));
@@ -457,6 +457,18 @@ function simulatorAbzeichenZeile(art) {
   }));
   return zeile;
 }
+
+// Großansicht eines Archiv-Bildes über der Seite, schließen mit Zurück, Esc oder Klick daneben.
+function zeigeBildansicht(src, titel) {
+  $('bildansicht-bild').src = src;
+  $('bildansicht-titel').textContent = titel;
+  $('bildansicht').hidden = false;
+  $('bildansicht-zurueck').focus();
+}
+const schliesseBildansicht = () => { $('bildansicht').hidden = true; };
+$('bildansicht-zurueck').onclick = schliesseBildansicht;
+$('bildansicht').onclick = e => { if (e.target === $('bildansicht')) schliesseBildansicht(); };
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('bildansicht').hidden) schliesseBildansicht(); });
 
 function zeigeSimulatorMenu() {
   $('simulator-arten').replaceChildren(...SIMULATOR_ARTEN.map(a => {
