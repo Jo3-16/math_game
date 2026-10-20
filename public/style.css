@@ -115,8 +115,12 @@ a { color: var(--akzent); }
 .holo { display: block; margin: 0; background: var(--flaeche); border-radius: 12px; padding: 8px; color: var(--text); text-decoration: none; }
 .holo img { width: 100%; height: 220px; object-fit: cover; border-radius: 8px; display: block; }
 .holo span { display: block; margin-top: 8px; font-size: 16px; }
-.holo.gesperrt img { filter: grayscale(1) blur(14px) brightness(.6) sepia(1) hue-rotate(160deg) saturate(3); opacity: .45; }
-.holo.gesperrt { box-shadow: inset 0 0 30px rgba(80, 200, 255, .25); }
+.holo.gesperrt img { filter: grayscale(1) blur(3px) brightness(.95) sepia(1) hue-rotate(160deg) saturate(2.5); opacity: .8; }
+.holo.gesperrt { position: relative; box-shadow: inset 0 0 30px rgba(80, 200, 255, .25); }
+.holo.gesperrt::after { /* Hologramm-Scanlinien über dem Bild */
+  content: ""; position: absolute; top: 8px; left: 8px; right: 8px; height: 220px; border-radius: 8px; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(120, 220, 255, .14) 0 2px, transparent 2px 5px);
+}
 .overlay-belohnung { margin: 0 0 16px; }
 .overlay-belohnung img { max-width: 420px; max-height: 240px; border-radius: 10px; box-shadow: 0 0 24px rgba(80, 200, 255, .6); }
 .overlay-belohnung figcaption { color: #8fdcff; margin-top: 6px; }
