@@ -8,5 +8,26 @@
     "akzent": "#ffe81f",
     "text": "#e8e6d9",
     "tipp": "#1f3b1f"
-  }
+  },
+  "reihenfolge": [
+    "pilotentraining",
+    "angriff-auf-den-sternzerstoerer",
+    "der-grabenlauf",
+    "heimkehr-nach-yavin-4",
+    "die-echo-basis",
+    "die-imperiale-flotte",
+    "die-schlacht-um-hoth",
+    "flucht-mit-dem-millennium-falcon",
+    "im-asteroidenfeld",
+    "training-auf-dagobah",
+    "falle-in-der-wolkenstadt",
+    "angriff-auf-die-dschungelbasis",
+    "der-rettungskonvoi",
+    "speeder-jagd-auf-endor",
+    "die-ewoks-von-endor",
+    "die-schlacht-von-endor",
+    "han-solos-schmuggelfahrt",
+    "die-grossen-raumschlachten",
+    "poe-und-die-black-one"
+  ]
 }

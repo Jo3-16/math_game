@@ -1,7 +1,7 @@
 {
   "titel": "Pilotentraining",
-  "vorschau": "Kapitelbilder/00.jpg",
-  "belohnung": "Kapitelbilder/Belohnung/00.jpg",
+  "vorschau": "Kapitelbilder/pilotentraining.jpg",
+  "belohnung": "Kapitelbilder/Belohnung/pilotentraining.jpg",
   "abzeichen": { "name": "Rebellen-Pilot", "symbol": "🎖️" },
   "aufgaben": [
     {

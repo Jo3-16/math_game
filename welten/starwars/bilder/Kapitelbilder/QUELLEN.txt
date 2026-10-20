@@ -1,20 +1,20 @@
 Kapitel-Vorschaubilder (auf 480 px verkleinert) – Quelle je Datei (Wikimedia Commons: freie Lizenzen, Details auf der Dateiseite):
-00.jpg: Kopie von X-Wing/04_RogueOne_Red_One.png (eigene Sammlung)
-01.jpg: Kopie von Sternzerstörer/ImpStarDestroyer-SWI125-Mac.jpg (eigene Sammlung)
-02.jpg: Kopie von X-Wing/01_ANH_Trench-Run.png (eigene Sammlung)
-03.jpg: Kopie von Yavin-4/01_ANH_Dschungel_Tempel_Ausguck.png (eigene Sammlung)
-04.jpg: Kopie von Snowspeeder/05_Art_Snowspeeder_Hoth_Staffel.jpg (eigene Sammlung)
-05.webp: https://commons.wikimedia.org/wiki/File:TIE_Fighter.webp
-06.jpg: Kopie von Hoth/07_ESB_Schlacht_um_Hoth.jpg (eigene Sammlung)
-07.webp: https://commons.wikimedia.org/wiki/File:Millennium_Falcon.webp
-08.jpg: https://commons.wikimedia.org/wiki/File:243_Ida_large.jpg
-09.jpg: Kopie von Dagobah/06_ESB_X-Wing_im_Sumpf.png (eigene Sammlung)
-10.jpg: Kopie von Wolkenstadt-Bespin/01_ESB_Wolkenstadt_ueber_Wolken.png (eigene Sammlung)
-11.jpg: Kopie von TIE-Bomber/08_Artwork_Angriff_auf_Planet.png (eigene Sammlung)
-12.jpg: Kopie von TIE-Interceptor/03_ROTJ_TIE-Interceptor_Endor_Rebellenkreuzer.png (eigene Sammlung)
-13.jpg: Kopie von Speeder-Bikes/05_Art_Speeder-Bike_Endor_Verfolgung.png (eigene Sammlung)
-14.jpg: Kopie von Ewoks/06_ROTJ_Ewoks_Baumdorf.jpg (eigene Sammlung)
-15.jpg: Kopie von Todesstern/08_ROTJ_Todesstern2_Schlacht_Endor.jpg (eigene Sammlung)
-16.jpg: Kopie von Tatooine/03_Tatooine_Doppelsonnen.jpg (eigene Sammlung)
-17.jpg: Kopie von Raumschlachten/03_ROTJ_Raumschlacht_Endor_Gemaelde.png (eigene Sammlung)
-18.jpg: https://commons.wikimedia.org/wiki/File:Star_Wars_Launch_Bay_Poe_Dameron's_Helmet.jpg
+pilotentraining.jpg: Kopie von X-Wing/04_RogueOne_Red_One.png (eigene Sammlung)
+angriff-auf-den-sternzerstoerer.jpg: Kopie von Sternzerstörer/ImpStarDestroyer-SWI125-Mac.jpg (eigene Sammlung)
+der-grabenlauf.jpg: Kopie von X-Wing/01_ANH_Trench-Run.png (eigene Sammlung)
+heimkehr-nach-yavin-4.jpg: Kopie von Yavin-4/01_ANH_Dschungel_Tempel_Ausguck.png (eigene Sammlung)
+die-echo-basis.jpg: Kopie von Snowspeeder/05_Art_Snowspeeder_Hoth_Staffel.jpg (eigene Sammlung)
+die-imperiale-flotte.webp: https://commons.wikimedia.org/wiki/File:TIE_Fighter.webp
+die-schlacht-um-hoth.jpg: Kopie von Hoth/07_ESB_Schlacht_um_Hoth.jpg (eigene Sammlung)
+flucht-mit-dem-millennium-falcon.webp: https://commons.wikimedia.org/wiki/File:Millennium_Falcon.webp
+im-asteroidenfeld.jpg: https://commons.wikimedia.org/wiki/File:243_Ida_large.jpg
+training-auf-dagobah.jpg: Kopie von Dagobah/06_ESB_X-Wing_im_Sumpf.png (eigene Sammlung)
+falle-in-der-wolkenstadt.jpg: Kopie von Wolkenstadt-Bespin/01_ESB_Wolkenstadt_ueber_Wolken.png (eigene Sammlung)
+angriff-auf-die-dschungelbasis.jpg: Kopie von TIE-Bomber/08_Artwork_Angriff_auf_Planet.png (eigene Sammlung)
+der-rettungskonvoi.jpg: Kopie von TIE-Interceptor/03_ROTJ_TIE-Interceptor_Endor_Rebellenkreuzer.png (eigene Sammlung)
+speeder-jagd-auf-endor.jpg: Kopie von Speeder-Bikes/05_Art_Speeder-Bike_Endor_Verfolgung.png (eigene Sammlung)
+die-ewoks-von-endor.jpg: Kopie von Ewoks/06_ROTJ_Ewoks_Baumdorf.jpg (eigene Sammlung)
+die-schlacht-von-endor.jpg: Kopie von Todesstern/08_ROTJ_Todesstern2_Schlacht_Endor.jpg (eigene Sammlung)
+han-solos-schmuggelfahrt.jpg: Kopie von Tatooine/03_Tatooine_Doppelsonnen.jpg (eigene Sammlung)
+die-grossen-raumschlachten.jpg: Kopie von Raumschlachten/03_ROTJ_Raumschlacht_Endor_Gemaelde.png (eigene Sammlung)
+poe-und-die-black-one.jpg: https://commons.wikimedia.org/wiki/File:Star_Wars_Launch_Bay_Poe_Dameron's_Helmet.jpg

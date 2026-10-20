@@ -1,7 +1,7 @@
 import {
   findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName,
   rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, BONUS_PUNKTE,
-  rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, RECHENART_NAMEN,
+  rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, RECHENART_NAMEN, migriereStand,
 } from './logik.js';
 
 const $ = id => document.getElementById(id);
@@ -25,7 +25,7 @@ function element(tag, klasse, text) {
   return e;
 }
 
-const kapitelNummer = (k, i) => Number(k.id.match(/^\d+/)?.[0] ?? i + 1);
+const kapitelNummer = (k, i) => i; // Position in der Reihenfolge aus welt.json (Pilotentraining = 0)
 const sterneText = n => '⭐'.repeat(n) + '☆'.repeat(3 - n);
 const maxPunkte = k => k.aufgaben.length * 15 + (k.bonus ? BONUS_PUNKTE : 0);
 const rangText = () => { const r = rang(gesamtPunkte(stand)); return `${r.symbol} ${r.name}`; };
@@ -83,7 +83,7 @@ async function ladeWelt(id) {
   weltId = id;
   welt = await (await fetch(`/api/welten/${encodeURIComponent(id)}`)).json();
   stand = (await (await fetch(`/api/welten/${encodeURIComponent(id)}/spielstand`)).json()) ?? leererStand();
-  stand = mitName(stand);
+  stand = mitName(migriereStand(stand));
   for (const [name, wert] of Object.entries(welt.farben ?? {})) document.documentElement.style.setProperty(`--${name}`, wert);
   document.title = welt.name;
   $('weltname').textContent = welt.name + (ADMIN ? ' – Admin-Modus' : '');

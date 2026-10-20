@@ -15,9 +15,10 @@ before(async () => {
   };
   datei('public/index.html', '<!doctype html>');
   datei('einstellungen.json', JSON.stringify({ adminPasswort: 'geheim' }));
-  datei('welten/testwelt/welt.json', JSON.stringify({ name: 'Test', helfer: 'Yoda', farben: {} }));
-  datei('welten/testwelt/kapitel/02-b.json', JSON.stringify({ titel: 'B' }));
-  datei('welten/testwelt/kapitel/01-a.json', JSON.stringify({ titel: 'A' }));
+  datei('welten/testwelt/welt.json', JSON.stringify({ name: 'Test', helfer: 'Yoda', farben: {}, reihenfolge: ['b', 'a'] }));
+  datei('welten/testwelt/kapitel/a.json', JSON.stringify({ titel: 'A' }));
+  datei('welten/testwelt/kapitel/b.json', JSON.stringify({ titel: 'B' }));
+  datei('welten/testwelt/kapitel/c.json', JSON.stringify({ titel: 'C' }));
   datei('welten/testwelt/bilder/Sternzerstörer/tie fighter.jpg', 'bild');
   datei('welten/testwelt/bilder/x.webp', 'bild');
   datei('welten/testwelt/bilder/notiz.txt', 'kein bild');
@@ -38,8 +39,8 @@ test('welten auflisten', async () => {
 test('welt laden', async () => {
   const w = await (await fetch(`${url}/api/welten/testwelt`)).json();
   assert.equal(w.helfer, 'Yoda');
-  assert.deepEqual(w.kapitel.map(k => k.id), ['01-a', '02-b']);
-  assert.equal(w.kapitel[0].titel, 'A');
+  assert.deepEqual(w.kapitel.map(k => k.id), ['b', 'a', 'c']); // Reihenfolge aus welt.json, Rest hinten
+  assert.equal(w.kapitel[0].titel, 'B');
   assert.deepEqual(w.bilder.sort(), ['Sternzerstörer/tie fighter.jpg', 'x.webp']);
 });
 

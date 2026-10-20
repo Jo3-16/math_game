@@ -21,6 +21,12 @@ export async function bilderListe(ordner) {
     .filter(e => BILD_ENDUNGEN.includes(path.extname(e).toLowerCase()));
 }
 
+// Kapitel-Kennungen (Dateiname ohne .json) in der Reihenfolge aus welt.json; nicht aufgeführte alphabetisch hinten.
+export function kapitelReihenfolge(dateien, reihenfolge = []) {
+  const ids = dateien.filter(d => d.endsWith('.json')).map(d => d.slice(0, -5));
+  return [...reihenfolge.filter(id => ids.includes(id)), ...ids.filter(id => !reihenfolge.includes(id)).sort()];
+}
+
 const leseJson = async datei => JSON.parse(await fs.readFile(datei, 'utf8'));
 
 // Ein Pfadsegment ist nur erlaubt, wenn es nach dem Dekodieren nicht aus seinem Ordner herausführt.
@@ -65,10 +71,9 @@ export function starte({ wurzel = PROJEKT, port = PORT } = {}) {
       const ordner = await weltOrdner(teile[2]);
       if (teile.length === 3 && req.method === 'GET') {
         const welt = await leseJson(path.join(ordner, 'welt.json'));
-        const dateien = (await fs.readdir(path.join(ordner, 'kapitel')).catch(() => []))
-          .filter(d => d.endsWith('.json')).sort();
+        const ids = kapitelReihenfolge(await fs.readdir(path.join(ordner, 'kapitel')).catch(() => []), welt.reihenfolge);
         const kapitel = [];
-        for (const d of dateien) kapitel.push({ id: d.slice(0, -5), ...await leseJson(path.join(ordner, 'kapitel', d)) });
+        for (const id of ids) kapitel.push({ id, ...await leseJson(path.join(ordner, 'kapitel', id + '.json')) });
         return [200, { ...welt, kapitel, bilder: await bilderListe(path.join(ordner, 'bilder')) }];
       }
       if (teile.length === 4 && teile[3] === 'spielstand') {

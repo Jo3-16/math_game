@@ -22,6 +22,11 @@ export async function pruefeWelt(weltOrdner) {
   }
   const dateien = (await fs.readdir(path.join(weltOrdner, 'kapitel')).catch(() => []))
     .filter(d => d.endsWith('.json')).sort();
+  if (Array.isArray(welt?.reihenfolge)) {
+    const ids = dateien.map(d => d.slice(0, -5));
+    for (const id of welt.reihenfolge) if (!ids.includes(id)) fehler.push(`welt.json: reihenfolge nennt "${id}", aber kapitel/${id}.json fehlt`);
+    for (const id of ids) if (!welt.reihenfolge.includes(id)) warnungen.push(`kapitel/${id}.json steht nicht in der reihenfolge in welt.json (wird hinten angehängt)`);
+  }
 
   for (const datei of dateien) {
     let kapitel;

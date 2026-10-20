@@ -274,3 +274,15 @@ export function erzeugeAufgabe(art, zufall = Math.random) {
   }
   throw new Error(`Unbekannte Rechenart ${art}`);
 }
+
+// Alte Spielstände nutzten "NN-name" als Kapitel-Kennung – heute ist es nur "name".
+const ohneNummer = id => id.replace(/^\d+-/, '');
+export function migriereStand(stand) {
+  const neu = structuredClone(stand);
+  neu.kapitel = Object.fromEntries(Object.entries(neu.kapitel ?? {}).map(([id, k]) => [ohneNummer(id), k]));
+  neu.abzeichen = (neu.abzeichen ?? []).map(ohneNummer);
+  if (neu.statistik?.aufgaben) {
+    neu.statistik.aufgaben = Object.fromEntries(Object.entries(neu.statistik.aufgaben).map(([s, n]) => [ohneNummer(s), n]));
+  }
+  return neu;
+}

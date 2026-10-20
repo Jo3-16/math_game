@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN } from '../public/logik.js';
+import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand } from '../public/logik.js';
 
 test('normalisiere', () => {
   assert.equal(normalisiere('X-wing_SWB.webp'), 'x wing swb.webp');
@@ -159,4 +159,19 @@ test('erzeugeAufgabe', () => {
       assert.ok(a.frage && a.tipp && !new RegExp(`(^|\\D)${a.loesung}(\\D|$)`).test(a.tipp), `${art}: ${a.frage} / ${a.tipp}`);
     }
   }
+});
+
+test('migriereStand: alte Kapitel-Kennungen mit Nummer werden zu Namen', () => {
+  const alt = {
+    name: 'Rey',
+    kapitel: { '00-pilotentraining': { geloest: 6, punkte: 90, fertig: true }, 'angriff': { geloest: 1, punkte: 15, fertig: false } },
+    abzeichen: ['00-pilotentraining'],
+    statistik: { arten: { mal: { aufgaben: 1, fehlversuche: 2, mitTipp: 1 } }, aufgaben: { '01-angriff#1': 2, 'angriff#Bonus': 1 } },
+  };
+  const neu = migriereStand(alt);
+  assert.deepEqual(Object.keys(neu.kapitel), ['pilotentraining', 'angriff']);
+  assert.deepEqual(neu.abzeichen, ['pilotentraining']);
+  assert.deepEqual(neu.statistik.aufgaben, { 'angriff#1': 2, 'angriff#Bonus': 1 });
+  assert.equal(alt.abzeichen[0], '00-pilotentraining'); // nicht mutiert
+  assert.deepEqual(migriereStand(leererStand()), leererStand());
 });

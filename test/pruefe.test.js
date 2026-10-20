@@ -135,3 +135,11 @@ test('belohnung muss existieren', async () => {
   fs.writeFileSync(datei, JSON.stringify({ ...kapitel, belohnung: 'Kapitelbilder/fehlt.jpg' }));
   assert.match((await pruefeWelt(ordner)).fehler[0], /Belohnung/);
 });
+
+test('reihenfolge: unbekanntes kapitel ist fehler, fehlender eintrag warnung', async () => {
+  const basis = { name: 'W', helfer: 'Yoda', farben: {} };
+  assert.deepEqual(await pruefeWelt(welt(vier(), { ...basis, reihenfolge: ['01-test'] })), { fehler: [], warnungen: [] });
+  const r = await pruefeWelt(welt(vier(), { ...basis, reihenfolge: ['gibts-nicht'] }));
+  assert.match(r.fehler[0], /gibts-nicht/);
+  assert.match(r.warnungen[0], /01-test/);
+});

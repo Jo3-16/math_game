@@ -18,12 +18,12 @@ Wenn der Vater z. B. „Mach 5 neue Kapitel über Hoth“ sagt:
 
 1. **Bilder ansehen:** alle Dateien unter `welten/<welt>/bilder/` rekursiv auflisten. Ein Suchwort passt, wenn der Pfad (Ordner + Dateiname) es enthält – Groß/klein egal, `_` `-` Leerzeichen gelten gleich, ä = ae. Suchwort mit `/` am Ende (z. B. `x-wing/`) trifft nur Bilder im gleichnamigen Ordner – damit Fehltreffer aus fremden Ordnern vermeiden. **Nur Suchwörter verwenden, zu denen es Bilder gibt.** Fehlen Bilder für ein Thema, dem Vater sagen, welche er sammeln könnte.
    **Fehltreffer prüfen** – bei jeder Arbeit mit Bildern (neue Kapitel, neue Suchwörter, neue Bilder oder Ordner): für jedes Suchwort aller Kapitel auflisten, welche Bilder es trifft, und Treffer aus fremden Ordnern melden (z. B. `sternzerstörer` trifft `Transporter/…_Flucht_vor_Sternzerstoerer.png`). Passt ein Treffer nicht zur Geschichte: Suchwort eingrenzen oder dem Vater das Umbenennen der Datei vorschlagen.
-2. **Datei:** `welten/<welt>/kapitel/NN-titel-ohne-umlaute.json`, NN = nächste freie Nummer (zweistellig, `00` ist erlaubt); die Nummer im Dateinamen ist die angezeigte Kapitelnummer.
+2. **Datei und Reihenfolge:** `welten/<welt>/kapitel/<name>.json` – `<name>` ist die feste Kennung des Kapitels (klein, ohne Umlaute, mit Bindestrichen, z. B. `der-grabenlauf`). Spielstand, Statistik und Bilder beziehen sich auf diesen Namen, darum nie umbenennen. **Die Reihenfolge steht nur in `welt.json` unter `reihenfolge`** – neues Kapitel dort an der gewünschten Stelle eintragen. Die angezeigte Kapitelnummer ist die Position in dieser Liste (erstes Kapitel = 0).
 3. **Format:**
    ```json
    {
      "titel": "…",
-     "vorschau": "Kapitelbilder/NN.jpg",
+     "vorschau": "Kapitelbilder/<name>.jpg",
      "abzeichen": { "name": "…", "symbol": "ein Emoji" },
      "aufgaben": [
        { "bild": ["suchwort", "alternative"], "geschichte": "…", "frage": "…?",
@@ -43,8 +43,8 @@ Wenn der Vater z. B. „Mach 5 neue Kapitel über Hoth“ sagt:
    - `vorschau`: festes Vorschaubild für die Übersicht, Pfad relativ zu `bilder/` (Ordner `Kapitelbilder/`, Quelle in `Kapitelbilder/QUELLEN.txt` eintragen). Bilder frei lizenziert z. B. von Wikimedia Commons; Wookieepedia blockt Downloads.
    - **Teilen mit Rest**: Feld `"rest": N` (N > 0) – nur dann erscheint das zweite Eingabefeld „Rest“. `rechnung` muss `Ausdruck / Zahl` sein (Plus/Minus links in Klammern), `loesung` ist das ganze Ergebnis. Frage nennt beides („… wie viele bleiben übrig?“).
    - **Größen & Einheiten**: Feld `"art": "einheiten"` (für die Statistik). Hier sind Zahlen bis 9999 erlaubt (sonst 500): km↔m, m↔cm, h↔min, min↔s.
-   - `belohnung`: Bild fürs Hologramm-Archiv, frei beim ersten Abschluss des Kapitels. Als Kopie in `Kapitelbilder/Belohnung/NN.jpg` (max. 1600 px breit) ablegen, Quelle in `Kapitelbilder/Belohnung/QUELLEN.txt`. Gern bisher ungenutzte Bilder (Admin-Galerie zeigt sie).
-   - `vorschau`: als `Kapitelbilder/NN.jpg` mit 480 px Breite ablegen (große Bilder vorher verkleinern).
+   - `belohnung`: Bild fürs Hologramm-Archiv, frei beim ersten Abschluss des Kapitels. Als Kopie in `Kapitelbilder/Belohnung/<name>.jpg` (max. 1600 px breit) ablegen, Quelle in `Kapitelbilder/Belohnung/QUELLEN.txt`. Gern bisher ungenutzte Bilder (Admin-Galerie zeigt sie).
+   - `vorschau`: als `Kapitelbilder/<name>.jpg` mit 480 px Breite ablegen (große Bilder vorher verkleinern).
    - `bonus`: ein Knobel-Rätsel nach der letzten Aufgabe (`{ "geschichte", "frage", "loesung", "tipp" }`, optional `bild`). Lösen gibt Gold-Abzeichen und +20 Punkte. Lösung ganzzahlig 0–500 und **eindeutig** – vorher per Skript durchprobieren (z. B. alle Zahlen 0–500 gegen die Bedingungen prüfen). Gute Typen: Zahl erraten aus Bedingungen, Zahlenfolgen, Teile-Aufgaben, Zaunpfahl-Problem, Köpfe-und-Beine.
 5. **Prüfen:** `node pruefe.js` ausführen und alle FEHLER und WARNUNGEN beheben, bevor du fertig meldest.
 
