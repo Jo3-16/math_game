@@ -1,0 +1,69 @@
+{
+  "titel": "Schiffskunde: Die großen Schiffe",
+  "vorschau": "Kapitelbilder/schiffskunde.jpg",
+  "belohnung": "Kapitelbilder/Belohnung/schiffskunde.jpg",
+  "abzeichen": { "name": "Schiffskundler", "symbol": "📡" },
+  "aufgaben": [
+    {
+      "bild": ["sternzerstörer/"],
+      "geschichte": "Zweites Training: Schiffskunde! Zuerst das größte Schiff des Imperiums – der Sternzerstörer. Er ist über 1600 Meter lang, so lang wie 16 Fußballfelder hintereinander. In seinem Hangar warten 6 Staffeln TIE-Fighter mit je 12 Jägern.",
+      "frage": "Wie viele TIE-Fighter trägt ein Sternzerstörer?",
+      "rechnung": "6 * 12",
+      "loesung": 72,
+      "merke": "72 TIE-Fighter in einem Sternzerstörer",
+      "tipp": "6 Staffeln mit je 12 Jägern. Erst 6 mal 10, dann 6 mal 2, und beides zusammenzählen du musst."
+    },
+    {
+      "bild": ["sternzerstörer/", "sternzerstoerer formation"],
+      "geschichte": "Ein Sternzerstörer ist schwer bewaffnet: Er hat 60 Turbolaser und 60 Ionenkanonen. Dazu kommen 10 Traktorstrahlen, mit denen er andere Schiffe einfangen kann.",
+      "frage": "Wie viele Waffen und Traktorstrahlen hat er zusammen?",
+      "rechnung": "60 + 60 + 10",
+      "loesung": 130,
+      "merke": "130 Waffen und Traktorstrahlen",
+      "tipp": "Alle drei Zahlen zusammenzählen du musst. Erst die beiden Sechziger."
+    },
+    {
+      "bild": ["nebulon-b-fregatte/"],
+      "geschichte": "Jetzt die Schiffe der Rebellen. Die Nebulon-B-Fregatte ist 300 Meter lang und wird oft als fliegendes Krankenhaus benutzt. Ein Rebellen-Transporter ist dagegen nur 90 Meter lang.",
+      "frage": "Wie viele Meter ist die Fregatte länger als der Transporter?",
+      "rechnung": "300 - 90",
+      "loesung": 210,
+      "merke": "Fregatte 210 Meter länger",
+      "tipp": "Von der Länge der Fregatte die Länge des Transporters abziehen du musst. Erst 100 weg, dann 10 wieder dazu, hmm."
+    },
+    {
+      "bild": ["nebulon-b-fregatte/"],
+      "geschichte": "Im Krankenhaus der Fregatte stehen 175 Betten. Sie werden auf Krankenzimmer mit je 8 Betten verteilt.",
+      "frage": "Wie viele volle Krankenzimmer gibt es – und wie viele Betten bleiben übrig?",
+      "rechnung": "175 / 8",
+      "loesung": 21,
+      "rest": 7,
+      "merke": "21 volle Zimmer, 7 Betten übrig",
+      "tipp": "Wie oft passt die 8 ganz in 175? 8 mal 20 ist 160 – passt noch ein Achter in den Rest? Was übrig bleibt, der Rest ist."
+    },
+    {
+      "bild": ["mon-calamari-cruiser/"],
+      "geschichte": "Das größte Schiff der Rebellen ist der Mon-Calamari-Kreuzer, wie Admiral Ackbars Home One. Er trägt 10 Staffeln Jäger mit je 12 Schiffen. Gerade sind 35 Jäger zur Reparatur in der Werkstatt.",
+      "frage": "Wie viele Jäger sind startbereit?",
+      "rechnung": "10 * 12 - 35",
+      "loesung": 85,
+      "merke": "85 startbereite Jäger",
+      "tipp": "Zuerst alle Jäger zählen: 10 mal 12. Dann die Jäger in der Werkstatt abziehen du musst."
+    },
+    {
+      "bild": ["transporter/"],
+      "geschichte": "Zum Schluss die Transporter: Sie bringen Vorräte, Waffen und Ersatzteile. Ein Transporter hat 450 Kisten geladen, ein zweiter 380 Kisten.",
+      "frage": "Wie viele Kisten transportieren beide zusammen?",
+      "rechnung": "450 + 380",
+      "loesung": 830,
+      "merke": "830 Kisten Fracht",
+      "tipp": "Erst die Hunderter zusammenzählen, dann die Zehner – und schau, ob die Zehner zusammen mehr als 100 ergeben."
+    }
+  ],
+  "bonus": {
+    "geschichte": "Im Simulator stellst du eine Übungsflotte aus 5 Schiffen zusammen: Sternzerstörer mit je 6 Staffeln und Fregatten mit je 2 Staffeln. Zusammen haben sie 18 Staffeln.",
+    "frage": "Wie viele Sternzerstörer sind in der Flotte?",
+    "loesung": 2,
+    "tipp": "Probier es aus: Wären alle 5 Schiffe Fregatten, wie viele Staffeln wären das? Jeder Sternzerstörer bringt 4 Staffeln mehr."
+  }
+}

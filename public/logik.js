@@ -215,7 +215,7 @@ export const SIMULATOR_ARTEN = [
   { id: 'mal', name: 'Einmaleins' },
   { id: 'geteilt', name: 'Teilen' },
   { id: 'rest', name: 'Teilen mit Rest' },
-  { id: 'plusminus', name: 'Plus & Minus bis 500' },
+  { id: 'plusminus', name: 'Plus & Minus bis 999' },
   { id: 'einheiten', name: 'Größen & Einheiten' },
 ];
 
@@ -253,10 +253,10 @@ export function erzeugeAufgabe(art, zufall = Math.random) {
   if (art === 'plusminus') {
     const tipp = 'Erst die Hunderter, dann die Zehner, dann die Einer du rechnen musst.';
     if (zufall() < 0.5) {
-      const a = zahl(zufall, 20, 400), b = zahl(zufall, 10, 500 - a);
+      const a = zahl(zufall, 20, 800), b = zahl(zufall, 10, MAX_PLUSMINUS - a);
       return { art, geschichte: `Der Millennium Falcon fliegt ${a} Kilometer und danach noch ${b} Kilometer.`, frage: 'Wie viele Kilometer fliegt er insgesamt?', bild: ['millennium-falcon/'], rechnung: `${a} + ${b}`, loesung: a + b, tipp };
     }
-    const a = zahl(zufall, 60, 500), b = zahl(zufall, 10, a - 1);
+    const a = zahl(zufall, 60, MAX_PLUSMINUS), b = zahl(zufall, 10, a - 1);
     return { art, geschichte: `Ein Sternzerstörer hat ${a} Energiepunkte. ${b} davon werden zerstört.`, frage: 'Wie viele Energiepunkte bleiben übrig?', bild: ['sternzerstörer/'], rechnung: `${a} - ${b}`, loesung: a - b, tipp };
   }
   if (art === 'einheiten') {
@@ -285,4 +285,13 @@ export function migriereStand(stand) {
     neu.statistik.aufgaben = Object.fromEntries(Object.entries(neu.statistik.aufgaben).map(([s, n]) => [ohneNummer(s), n]));
   }
   return neu;
+}
+
+export const MAX_PLUSMINUS = 999;
+
+// Zahlenraum je Aufgabe: reine Plus/Minus-Aufgaben bis 999, Einheiten bis 9999, alles andere bis 500.
+export function maxFuer(aufgabe) {
+  if (aufgabe.art === 'einheiten') return MAX_EINHEITEN;
+  const arten = rechenarten(aufgabe);
+  return arten.length === 1 && arten[0] === 'plusminus' ? MAX_PLUSMINUS : MAX_ZAHL;
 }

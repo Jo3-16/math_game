@@ -25,7 +25,7 @@ function element(tag, klasse, text) {
   return e;
 }
 
-const kapitelNummer = (k, i) => i; // Position in der Reihenfolge aus welt.json (Pilotentraining = 0)
+const kapitelNummer = (k, i) => i + 1; // Position in der Reihenfolge aus welt.json, gezählt ab 1
 const sterneText = n => '⭐'.repeat(n) + '☆'.repeat(3 - n);
 const maxPunkte = k => k.aufgaben.length * 15 + (k.bonus ? BONUS_PUNKTE : 0);
 const rangText = () => { const r = rang(gesamtPunkte(stand)); return `${r.symbol} ${r.name}`; };

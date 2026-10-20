@@ -143,3 +143,9 @@ test('reihenfolge: unbekanntes kapitel ist fehler, fehlender eintrag warnung', a
   assert.match(r.fehler[0], /gibts-nicht/);
   assert.match(r.warnungen[0], /01-test/);
 });
+
+test('plus/minus bis 999 erlaubt, mal nicht', async () => {
+  assert.equal((await pruefeWelt(welt(vier({ rechnung: '600 + 300', loesung: 900, merke: '900 Kisten' })))).fehler.length, 0);
+  assert.equal((await pruefeWelt(welt(vier({ rechnung: '25 * 30', loesung: 750, merke: '750 Kisten' })))).fehler.length, 1);
+  assert.equal((await pruefeWelt(welt(vier({ rechnung: '600 + 500', loesung: 1100, merke: '1100 Kisten' })))).fehler.length, 1);
+});

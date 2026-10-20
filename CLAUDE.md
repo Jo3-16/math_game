@@ -18,7 +18,7 @@ Wenn der Vater z. B. „Mach 5 neue Kapitel über Hoth“ sagt:
 
 1. **Bilder ansehen:** alle Dateien unter `welten/<welt>/bilder/` rekursiv auflisten. Ein Suchwort passt, wenn der Pfad (Ordner + Dateiname) es enthält – Groß/klein egal, `_` `-` Leerzeichen gelten gleich, ä = ae. Suchwort mit `/` am Ende (z. B. `x-wing/`) trifft nur Bilder im gleichnamigen Ordner – damit Fehltreffer aus fremden Ordnern vermeiden. **Nur Suchwörter verwenden, zu denen es Bilder gibt.** Fehlen Bilder für ein Thema, dem Vater sagen, welche er sammeln könnte.
    **Fehltreffer prüfen** – bei jeder Arbeit mit Bildern (neue Kapitel, neue Suchwörter, neue Bilder oder Ordner): für jedes Suchwort aller Kapitel auflisten, welche Bilder es trifft, und Treffer aus fremden Ordnern melden (z. B. `sternzerstörer` trifft `Transporter/…_Flucht_vor_Sternzerstoerer.png`). Passt ein Treffer nicht zur Geschichte: Suchwort eingrenzen oder dem Vater das Umbenennen der Datei vorschlagen.
-2. **Datei und Reihenfolge:** `welten/<welt>/kapitel/<name>.json` – `<name>` ist die feste Kennung des Kapitels (klein, ohne Umlaute, mit Bindestrichen, z. B. `der-grabenlauf`). Spielstand, Statistik und Bilder beziehen sich auf diesen Namen, darum nie umbenennen. **Die Reihenfolge steht nur in `welt.json` unter `reihenfolge`** – neues Kapitel dort an der gewünschten Stelle eintragen. Die angezeigte Kapitelnummer ist die Position in dieser Liste (erstes Kapitel = 0).
+2. **Datei und Reihenfolge:** `welten/<welt>/kapitel/<name>.json` – `<name>` ist die feste Kennung des Kapitels (klein, ohne Umlaute, mit Bindestrichen, z. B. `der-grabenlauf`). Spielstand, Statistik und Bilder beziehen sich auf diesen Namen, darum nie umbenennen. **Die Reihenfolge steht nur in `welt.json` unter `reihenfolge`** – neues Kapitel dort an der gewünschten Stelle eintragen. Die angezeigte Kapitelnummer ist die Position in dieser Liste (gezählt ab 1).
 3. **Format:**
    ```json
    {
@@ -33,8 +33,8 @@ Wenn der Vater z. B. „Mach 5 neue Kapitel über Hoth“ sagt:
    ```
 4. **Regeln:**
    - 4 bis 6 Aufgaben pro Kapitel, eine zusammenhängende Handlung; Aufgaben bauen aufeinander auf (spätere nutzen frühere Ergebnisse).
-   - Niveau Anfang 4. Klasse, gemischt: Einmaleins, Malnehmen mit Zehnerzahlen, Teilen ohne Rest, Plus/Minus bis 500, Verdoppeln/Halbieren, zwei- und mehrschrittige Aufgaben.
-   - Alle Zahlen, Zwischenergebnisse und Lösungen ganzzahlig, 0 bis 500.
+   - Niveau Anfang 4. Klasse, gemischt: Einmaleins, Malnehmen mit Zehnerzahlen, Teilen ohne Rest, Plus/Minus bis 999, Verdoppeln/Halbieren, zwei- und mehrschrittige Aufgaben.
+   - Alle Zahlen, Zwischenergebnisse und Lösungen ganzzahlig: reine Plus/Minus-Aufgaben 0 bis 999, Einheiten 0 bis 9999, alle anderen (mit Mal oder Geteilt) 0 bis 500. Das Prüfskript kennt diese Grenzen (`maxFuer` in `public/logik.js`).
    - `rechnung` nur mit Zahlen, `+ - * /` und Klammern; sie muss genau den Rechenweg der Geschichte abbilden.
    - Geschichte kurz (2–3 Sätze), spannend, kindgerecht; die Frage separat und eindeutig.
    - `tipp` spricht der Helfer der Welt (Star Wars: Yoda, in Yoda-Sprache), zeigt den Rechenweg an, **verrät nie das Ergebnis**.

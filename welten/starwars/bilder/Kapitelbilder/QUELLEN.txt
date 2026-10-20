@@ -22,3 +22,4 @@ die-geheimen-plaene.jpg: Kopie von Leia/01_ANH_Leia_Tantive_IV.png (eigene Samml
 abenteuer-auf-tatooine.jpg: Kopie von Tatooine/07_ANH_Lars_Farm.png (eigene Sammlung)
 die-cantina-von-mos-eisley.jpg: Kopie von Han-Solo/01_ANH_Han_Solo_Cantina.jpg (eigene Sammlung)
 gefangen-im-todesstern.jpg: Kopie von Todesstern/01_ANH_Todesstern_im_All.png (eigene Sammlung)
+schiffskunde.jpg: Kopie von Nebulon-B-Fregatte/06_ROTJ_Nebulon-B_Flotte_Sprung.png (eigene Sammlung)

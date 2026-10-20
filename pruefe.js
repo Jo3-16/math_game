@@ -2,7 +2,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { rechne, rechneMitRest, findeBilder, MAX_EINHEITEN } from './public/logik.js';
+import { rechne, rechneMitRest, findeBilder, maxFuer } from './public/logik.js';
 import { bilderListe } from './server.js';
 
 const FELDER = ['geschichte', 'frage', 'rechnung', 'tipp', 'merke'];
@@ -61,7 +61,7 @@ export async function pruefeWelt(weltOrdner) {
       if (fehlend.length) return fehler.push(`${wo}: fehlt oder leer: ${fehlend.join(', ')}`);
 
       const mitRest = a.rest !== undefined;
-      const ergebnis = mitRest ? rechneMitRest(a.rechnung) : rechne(a.rechnung, a.art === 'einheiten' ? MAX_EINHEITEN : undefined);
+      const ergebnis = mitRest ? rechneMitRest(a.rechnung) : rechne(a.rechnung, maxFuer(a));
       if (ergebnis.fehler) fehler.push(`${wo}: Rechnung "${a.rechnung}": ${ergebnis.fehler}`);
       else if (ergebnis.wert !== a.loesung) fehler.push(`${wo}: "${a.rechnung}" ergibt ${ergebnis.wert}, nicht ${a.loesung}`);
       else if (mitRest && (ergebnis.rest !== a.rest || a.rest === 0)) {

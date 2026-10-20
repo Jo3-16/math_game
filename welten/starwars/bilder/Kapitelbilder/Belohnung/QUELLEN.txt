@@ -22,3 +22,4 @@ die-geheimen-plaene.jpg: Kopie von Darth-Vader/01_ANH_Vader_Tantive_IV.jpg (eige
 abenteuer-auf-tatooine.jpg: Kopie von Luke-Skywalker/01_ANH_Luke_mit_Obi-Wan_Tatooine.jpg (eigene Sammlung, verkleinert)
 die-cantina-von-mos-eisley.jpg: Kopie von Obi-Wan-Kenobi/03_ANH_Obi-Wan_Mos_Eisley.png (eigene Sammlung, verkleinert)
 gefangen-im-todesstern.jpg: Kopie von Obi-Wan-Kenobi/05_ANH_Obi-Wan_Duell_Vader.png (eigene Sammlung, verkleinert)
+schiffskunde.jpg: Kopie von Mon-Calamari-Cruiser/10_Battlefront2_Liberty_Nebel.jpg (eigene Sammlung, verkleinert)

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand } from '../public/logik.js';
+import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer } from '../public/logik.js';
 
 test('normalisiere', () => {
   assert.equal(normalisiere('X-wing_SWB.webp'), 'x wing swb.webp');
@@ -152,7 +152,7 @@ test('erzeugeAufgabe', () => {
   for (const art of SIMULATOR_ARTEN.map(a => a.id)) {
     for (let i = 0; i < 200; i++) {
       const a = erzeugeAufgabe(art, zufall);
-      const r = a.rest !== undefined ? rechneMitRest(a.rechnung) : rechne(a.rechnung);
+      const r = a.rest !== undefined ? rechneMitRest(a.rechnung) : rechne(a.rechnung, maxFuer(a));
       assert.ok(!r.fehler, `${art}: ${a.rechnung} – ${r.fehler}`);
       assert.equal(r.wert, a.loesung, a.rechnung);
       if (a.rest !== undefined) assert.ok(r.rest === a.rest && a.rest > 0, a.rechnung);
@@ -174,4 +174,20 @@ test('migriereStand: alte Kapitel-Kennungen mit Nummer werden zu Namen', () => {
   assert.deepEqual(neu.statistik.aufgaben, { 'angriff#1': 2, 'angriff#Bonus': 1 });
   assert.equal(alt.abzeichen[0], '00-pilotentraining'); // nicht mutiert
   assert.deepEqual(migriereStand(leererStand()), leererStand());
+});
+
+test('maxFuer: plus/minus bis 999, einheiten bis 9999, sonst 500', () => {
+  assert.equal(maxFuer({ rechnung: '600 + 300' }), 999);
+  assert.equal(maxFuer({ rechnung: '950 - 120 - 30' }), 999);
+  assert.equal(maxFuer({ rechnung: '240 - 12 * 15' }), 500); // gemischt mit Mal
+  assert.equal(maxFuer({ rechnung: '25 / 4', rest: 1 }), 500);
+  assert.equal(maxFuer({ rechnung: '3 * 1000 + 450', art: 'einheiten' }), 9999);
+});
+
+test('simulator plus/minus nutzt den zahlenraum bis 999', () => {
+  let x = 7;
+  const zufall = () => (x = (x * 9301 + 49297) % 233280) / 233280;
+  const loesungen = Array.from({ length: 300 }, () => erzeugeAufgabe('plusminus', zufall).loesung);
+  assert.ok(loesungen.some(l => l > 500), 'auch Ergebnisse über 500');
+  assert.ok(loesungen.every(l => l >= 0 && l <= 999));
 });
