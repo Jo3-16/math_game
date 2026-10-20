@@ -308,3 +308,22 @@ export function maxFuer(aufgabe) {
   const arten = rechenarten(aufgabe);
   return arten.length === 1 && arten[0] === 'plusminus' ? MAX_PLUSMINUS : MAX_ZAHL;
 }
+
+// Flugsimulator-Abzeichen: je Rechenart bei 5, 10, 20 und 40 gelösten Aufgaben.
+export const SIMULATOR_STUFEN = [
+  { ab: 5, name: 'Bronze', symbol: '🥉' },
+  { ab: 10, name: 'Silber', symbol: '🥈' },
+  { ab: 20, name: 'Gold', symbol: '🥇' },
+  { ab: 40, name: 'Meister', symbol: '🏆' },
+];
+
+export const simulatorStufen = anzahl => SIMULATOR_STUFEN.filter(s => anzahl >= s.ab);
+
+// Zählt eine gelöste Simulator-Aufgabe; liefert das dabei neu erreichte Abzeichen (oder null).
+export function simulatorAufgabeGeloest(stand, art) {
+  const anzahl = (stand.simulatorGeloest?.[art] ?? 0) + 1;
+  return {
+    stand: { ...stand, simulatorGeloest: { ...stand.simulatorGeloest, [art]: anzahl } },
+    neuesAbzeichen: SIMULATOR_STUFEN.find(s => s.ab === anzahl) ?? null,
+  };
+}

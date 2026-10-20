@@ -2,6 +2,7 @@ import {
   findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName,
   rang, mitRang, RAENGE, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, BONUS_PUNKTE,
   rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, RECHENART_NAMEN, migriereStand,
+  SIMULATOR_STUFEN, simulatorAufgabeGeloest,
 } from './logik.js';
 
 const $ = id => document.getElementById(id);
@@ -157,6 +158,15 @@ function zeigeRaenge() {
   }));
   const max = welt.kapitel.reduce((summe, k) => summe + maxPunkte(k), 0);
   $('raenge-info').textContent = `Höchstens erreichbar: ${max} Punkte in ${welt.kapitel.length} Kapiteln. Ein einmal erreichter Rang bleibt erhalten.`;
+  // Simulator-Stufen je Rechenart: gelöste Aufgaben und welche Stufen erreicht sind
+  const kopf2 = element('tr');
+  for (const t of ['Rechenart', 'gelöst', ...SIMULATOR_STUFEN.map(st => `${st.symbol} ${st.name} (ab ${st.ab})`)]) kopf2.append(element('th', '', t));
+  $('sim-stufen-tabelle').replaceChildren(kopf2, ...SIMULATOR_ARTEN.map(a => {
+    const n = stand.simulatorGeloest?.[a.id] ?? 0;
+    const tr = element('tr');
+    for (const t of [a.name, n, ...SIMULATOR_STUFEN.map(st => (n >= st.ab ? '✓' : `noch ${st.ab - n}`))]) tr.append(element('td', '', t));
+    return tr;
+  }));
   $('admin-raenge').hidden = false;
 }
 
@@ -203,7 +213,7 @@ function zeigeAufgabe() {
   if (simulatorArt) {
     const rekord = stand.simulatorRekord?.[simulatorArt] ?? 0;
     $('kapiteltitel').textContent = `Flugsimulator – ${SIMULATOR_ARTEN.find(a => a.id === simulatorArt).name}`;
-    $('fortschritt').textContent = `🎮 Serie: ${serie} ohne Fehler · Rekord: ${rekord}`;
+    $('fortschritt').textContent = `🎮 Serie: ${serie} ohne Fehler · Rekord: ${rekord} · ${stand.simulatorGeloest?.[simulatorArt] ?? 0} gelöst`;
   } else {
     $('kapiteltitel').textContent = kapitel.titel + (ADMIN ? ' (Admin)' : wiederholung ? ' (Wiederholung)' : '');
     const punkte = kapitel.aufgaben.map((_, i) => (i < aufgabeIndex ? '●' : i === aufgabeIndex ? '◉' : '○')).join(' ');
@@ -288,10 +298,16 @@ $('antwort-form').onsubmit = event => {
   if (simulatorArt) {
     if (fehlversuche === 0) serie++;
     const rekord = Math.max(stand.simulatorRekord?.[simulatorArt] ?? 0, serie);
-    if (!ADMIN) stand = { ...stand, simulatorRekord: { ...stand.simulatorRekord, [simulatorArt]: rekord } };
+    let neues = null;
+    if (!ADMIN) {
+      stand = { ...stand, simulatorRekord: { ...stand.simulatorRekord, [simulatorArt]: rekord } };
+      ({ stand, neuesAbzeichen: neues } = simulatorAufgabeGeloest(stand, simulatorArt));
+    }
     speichern();
-    meldung(fehlversuche === 0 ? `Richtig! Serie: ${serie}` : 'Richtig!', 'richtig');
-    weiterTimer = setTimeout(() => { simAufgabe = erzeugeAufgabe(simulatorArt); zeigeAufgabe(); }, 1200);
+    const name = SIMULATOR_ARTEN.find(a => a.id === simulatorArt).name;
+    meldung((fehlversuche === 0 ? `Richtig! Serie: ${serie}` : 'Richtig!')
+      + (neues ? ` – Neues Abzeichen: ${name} ${neues.name} ${neues.symbol}!` : ''), 'richtig');
+    weiterTimer = setTimeout(() => { simAufgabe = erzeugeAufgabe(simulatorArt); zeigeAufgabe(); }, neues ? 3000 : 1200);
     return;
   }
   if (imBonus(kapitel)) {
@@ -364,6 +380,11 @@ function zeigeRuhmeshalle() {
     ? `Noch ${r.naechster.ab - punkte} Punkte bis zum Rang ${r.naechster.symbol} ${r.naechster.name}!`
     : 'Höchster Rang erreicht – du bist ein Großmeister! 🌟';
   $('ruhm-abzeichen').replaceChildren(...welt.kapitel.map((k, i) => abzeichenKarte(k, i, true)));
+  $('ruhm-simulator').replaceChildren(...SIMULATOR_ARTEN.map(a => {
+    const d = element('div');
+    d.append(simulatorAbzeichenZeile(a.id), a.name, element('small', '', `${stand.simulatorGeloest?.[a.id] ?? 0} gelöst`));
+    return d;
+  }));
   zeige('ruhmeshalle');
 }
 
@@ -420,11 +441,24 @@ function zeigeArchiv() {
   zeige('archiv');
 }
 
+// Die vier Simulator-Abzeichen einer Rechenart – erreichte farbig, fehlende blass.
+function simulatorAbzeichenZeile(art) {
+  const anzahl = stand.simulatorGeloest?.[art] ?? 0;
+  const zeile = element('span', 'sim-abzeichen');
+  zeile.append(...SIMULATOR_STUFEN.map(st => {
+    const e = element('span', anzahl >= st.ab ? '' : 'fehlt', st.symbol);
+    e.title = `${st.name}: ab ${st.ab} gelösten Aufgaben`;
+    return e;
+  }));
+  return zeile;
+}
+
 function zeigeSimulatorMenu() {
   $('simulator-arten').replaceChildren(...SIMULATOR_ARTEN.map(a => {
     const b = element('button', 'kachel offen');
     const text = element('div');
-    text.append(element('b', '', a.name), element('small', '', `Rekord: ${stand.simulatorRekord?.[a.id] ?? 0} in Folge`));
+    text.append(element('b', '', a.name), simulatorAbzeichenZeile(a.id),
+      element('small', '', `${stand.simulatorGeloest?.[a.id] ?? 0} gelöst · Rekord: ${stand.simulatorRekord?.[a.id] ?? 0} in Folge`));
     b.append(text);
     b.onclick = () => starteSimulator(a.id);
     return b;

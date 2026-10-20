@@ -124,6 +124,8 @@ a { color: var(--akzent); }
 .overlay-belohnung { margin: 0 0 16px; }
 .overlay-belohnung img { max-width: 420px; max-height: 240px; border-radius: 10px; box-shadow: 0 0 24px rgba(80, 200, 255, .6); }
 .overlay-belohnung figcaption { color: #8fdcff; margin-top: 6px; }
+.sim-abzeichen { display: block; font-size: 28px; letter-spacing: 4px; margin: 4px 0; }
+.sim-abzeichen .fehlt { opacity: .2; filter: grayscale(1); }
 .admin-leiste { display: flex; justify-content: space-between; align-items: center; gap: 16px; border: 2px dashed #ff8a80; border-radius: 8px; padding: 8px 12px; margin-bottom: 16px; }
 .tipp {
   display: flex; align-items: center; gap: 16px;
