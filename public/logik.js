@@ -327,3 +327,12 @@ export function simulatorAufgabeGeloest(stand, art) {
     neuesAbzeichen: SIMULATOR_STUFEN.find(s => s.ab === anzahl) ?? null,
   };
 }
+
+// Falsche Antworten je Aufgabe für die Admin-Statistik (die letzten 10).
+export function mitFalscherAntwort(stand, schluessel, eingabe) {
+  const neu = structuredClone(stand);
+  const st = neu.statistik ??= { arten: {}, aufgaben: {} };
+  st.falsch ??= {};
+  st.falsch[schluessel] = [...(st.falsch[schluessel] ?? []), eingabe].slice(-10);
+  return neu;
+}

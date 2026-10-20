@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer, mitRang, SIMULATOR_STUFEN, simulatorAufgabeGeloest, simulatorStufen } from '../public/logik.js';
+import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer, mitRang, SIMULATOR_STUFEN, simulatorAufgabeGeloest, simulatorStufen, mitFalscherAntwort } from '../public/logik.js';
 
 test('normalisiere', () => {
   assert.equal(normalisiere('X-wing_SWB.webp'), 'x wing swb.webp');
@@ -223,4 +223,14 @@ test('simulator-abzeichen bei 5, 10, 20, 40 gelösten aufgaben je rechenart', ()
   assert.equal(simulatorAufgabeGeloest(s, 'rest').stand.simulatorGeloest.rest, 1); // je Rechenart getrennt
   assert.deepEqual(simulatorStufen(12).map(st => st.name), ['Bronze', 'Silber']);
   assert.deepEqual(simulatorStufen(0), []);
+});
+
+test('mitFalscherAntwort merkt die letzten 10 falschen antworten je aufgabe', () => {
+  let s = mitFalscherAntwort(leererStand(), 'angriff#1', '5');
+  s = mitFalscherAntwort(s, 'angriff#1', '6 Rest 2');
+  assert.deepEqual(s.statistik.falsch, { 'angriff#1': ['5', '6 Rest 2'] });
+  for (let i = 0; i < 12; i++) s = mitFalscherAntwort(s, 'angriff#1', String(i));
+  assert.equal(s.statistik.falsch['angriff#1'].length, 10);
+  assert.equal(s.statistik.falsch['angriff#1'].at(-1), '11');
+  assert.deepEqual(leererStand().statistik, undefined); // unverändert
 });

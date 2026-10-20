@@ -84,7 +84,9 @@ form { display: flex; gap: 12px; }
 .statistik th:first-child, .statistik td:first-child { text-align: left; }
 .statistik tr.schwer td { color: #ff8a80; }
 .statistik tr.aktuell td { color: var(--akzent); font-weight: bold; }
-#statistik-aufgaben li { margin-bottom: 6px; }
+#statistik-aufgaben li { margin-bottom: 18px; line-height: 1.4; }
+#statistik-aufgaben .aufgabe-geschichte { opacity: .75; font-size: 16px; }
+#statistik-aufgaben .falsche-antworten { color: #ff8a80; }
 .meldung { min-height: 1.5em; font-weight: bold; }
 .meldung.richtig { color: #7cdb6a; }
 .meldung.falsch { color: #ff8a80; }

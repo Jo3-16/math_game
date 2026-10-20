@@ -2,7 +2,7 @@ import {
   findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName,
   rang, mitRang, RAENGE, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, BONUS_PUNKTE,
   rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, RECHENART_NAMEN, migriereStand,
-  SIMULATOR_STUFEN, simulatorAufgabeGeloest,
+  SIMULATOR_STUFEN, simulatorAufgabeGeloest, mitFalscherAntwort,
 } from './logik.js';
 
 const $ = id => document.getElementById(id);
@@ -280,6 +280,11 @@ $('antwort-form').onsubmit = event => {
   if (!istRichtig(eingabe, aufgabe.loesung) || (mitRest && !istRichtig(restEingabe, aufgabe.rest))) {
     fehlversuche++;
     serie = 0;
+    if (!ADMIN && !simulatorArt) {
+      const schluessel = `${kapitel.id}#${imBonus(kapitel) ? 'Bonus' : aufgabeIndex + 1}`;
+      stand = mitFalscherAntwort(stand, schluessel, mitRest ? `${eingabe} Rest ${restEingabe}` : eingabe);
+      speichern();
+    }
     ton('falsch');
     meldung("Leider nicht – versuch's nochmal!", 'falsch');
     if (fehlversuche >= TIPP_AB) $('tipp').hidden = false;
@@ -487,17 +492,32 @@ function zeigeStatistik() {
     return tr;
   }) : [(() => { const tr = element('tr'); tr.append(element('td', '', 'Noch keine Daten – es wird ab jetzt mitgezählt.')); return tr; })()]));
 
-  const titel = schluessel => {
+  // Je schwierige Aufgabe: Frage, Rechnung mit richtiger Lösung und die falsch eingegebenen Antworten.
+  const eintrag = (schluessel, n) => {
+    const li = element('li');
     const [id, nr] = schluessel.split('#');
     const i = welt.kapitel.findIndex(k => k.id === id);
     const k = welt.kapitel[i];
-    if (!k) return schluessel;
-    const a = nr === 'Bonus' ? k.bonus : k.aufgaben[Number(nr) - 1];
-    return `Kapitel ${kapitelNummer(k, i)}, ${nr === 'Bonus' ? 'Bonus-Rätsel' : `Aufgabe ${nr}`}: ${a?.frage ?? ''}`;
+    const a = k && (nr === 'Bonus' ? k.bonus : k.aufgaben[Number(nr) - 1]);
+    if (!a) {
+      li.append(`${n} Fehlversuche – ${schluessel}`);
+      return li;
+    }
+    const loesung = a.loesung + (a.rest !== undefined ? ` Rest ${a.rest}` : '');
+    const rechnung = a.rechnung ? `Rechnung: ${a.rechnung.replaceAll('*', '·').replaceAll('/', ':')} = ${loesung}` : `Lösung: ${loesung}`;
+    const falsch = st.falsch?.[schluessel];
+    li.append(
+      element('b', '', `${n} Fehlversuche – Kapitel ${kapitelNummer(k, i)}, ${nr === 'Bonus' ? 'Bonus-Rätsel' : `Aufgabe ${nr}`}: ${a.frage}`),
+      element('div', 'aufgabe-geschichte', a.geschichte),
+      element('div', '', rechnung),
+      element('div', 'falsche-antworten', `Falsch eingegeben: ${falsch?.length ? falsch.join(', ') : '(noch nicht erfasst)'}`),
+    );
+    return li;
   };
-  const schwer = Object.entries(st.aufgaben).sort((x, y) => y[1] - x[1]).slice(0, 10);
+  const anzahl = { ...Object.fromEntries(Object.entries(st.falsch ?? {}).map(([s, l]) => [s, l.length])), ...st.aufgaben };
+  const schwer = Object.entries(anzahl).sort((x, y) => y[1] - x[1]).slice(0, 10);
   $('statistik-aufgaben').replaceChildren(...(schwer.length
-    ? schwer.map(([s, n]) => element('li', '', `${n} Fehlversuche – ${titel(s)}`))
+    ? schwer.map(([s, n]) => eintrag(s, n))
     : [element('li', '', 'Noch keine Fehlversuche erfasst.')]));
   zeige('statistik');
 }
