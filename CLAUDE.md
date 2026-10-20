@@ -65,4 +65,4 @@ Wenn der Vater z. B. „Mach 5 neue Kapitel über Hoth“ sagt:
 
 ## Neue Welt
 
-Ordner `welten/<id>/` mit `welt.json`, `bilder/` und `kapitel/`. `welt.json`: `name`, `helfer` (Name des Tipp-Gebers), optional `helferBild` (fester Pfad des Tipp-Bilds, sonst wird ein Bild gesucht, dessen Pfad den Helfernamen enthält; ohne Bild erscheint 🟢), `farben` (hintergrund, flaeche, akzent, text, tipp) und `reihenfolge` (Liste der Kapitel-Namen).
+Ordner `welten/<id>/` mit `welt.json`, `bilder/` und `kapitel/`. `welt.json`: `name`, `helfer` (Name des Tipp-Gebers), optional `helferBild` (fester Pfad des Tipp-Bilds, am besten eine verkleinerte Kopie in `Kapitelbilder/Helfer/` wie `Kapitelbilder/Helfer/yoda.jpg`, damit es im Git liegt; sonst wird ein Bild gesucht, dessen Pfad den Helfernamen enthält; ohne Bild erscheint 🟢), `farben` (hintergrund, flaeche, akzent, text, tipp) und `reihenfolge` (Liste der Kapitel-Namen).
