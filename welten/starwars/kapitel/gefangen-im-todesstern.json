@@ -1,0 +1,70 @@
+{
+  "titel": "Gefangen im Todesstern",
+  "vorschau": "Kapitelbilder/gefangen-im-todesstern.jpg",
+  "belohnung": "Kapitelbilder/Belohnung/gefangen-im-todesstern.jpg",
+  "abzeichen": { "name": "Todesstern-Ausbrecher", "symbol": "🗝️" },
+  "aufgaben": [
+    {
+      "bild": ["stormtrooper verkleidung"],
+      "geschichte": "Han und Luke verkleiden sich als Sturmtruppen und schleichen zum Gefängnis, wo Prinzessin Leia gefangen ist. Bis zum Gefängnisblock sind es 45 Ebenen. Der Aufzug fährt jede Sekunde 3 Ebenen.",
+      "frage": "Wie viele Sekunden dauert die Fahrt?",
+      "rechnung": "45 / 3",
+      "loesung": 15,
+      "merke": "15 Sekunden im Aufzug",
+      "tipp": "Wie oft die 3 in 45 passt, du herausfinden musst. Erst 30 durch 3, dann 15 durch 3."
+    },
+    {
+      "bild": ["todesstern-terminal", "todesstern konsole"],
+      "geschichte": "R2-D2 steckt sich in einen Computer des Todessterns und sucht nach Leia. In 6 Datenspeichern sind jeweils 75 Gefängniszellen verzeichnet.",
+      "frage": "Wie viele Zellen durchsucht R2-D2?",
+      "rechnung": "6 * 75",
+      "loesung": 450,
+      "merke": "450 Zellen durchsucht",
+      "tipp": "6 mal 75 – erst 6 mal 70, dann 6 mal 5, und beides zusammenzählen du musst."
+    },
+    {
+      "bild": ["sturmtruppen todesstern"],
+      "geschichte": "Leia ist befreit! Doch jetzt greifen Sturmtruppen an: 9 Trupps mit je 5 Soldaten.",
+      "frage": "Wie viele Sturmtruppen greifen an?",
+      "rechnung": "9 * 5",
+      "loesung": 45,
+      "merke": "45 Sturmtruppen greifen an",
+      "tipp": "9 Trupps mit je 5 Soldaten. Die Fünferreihe dir hilft."
+    },
+    {
+      "bild": ["todesstern-terminal"],
+      "geschichte": "Leia schießt ein Loch in die Wand, alle springen in eine Müllpresse – und die Wände kommen näher! Der Raum ist 230 Zentimeter breit. Bei jedem Ruck schieben sich die Wände 25 Zentimeter zusammen.",
+      "frage": "Wie viele volle Rucke sind möglich – und wie viele Zentimeter bleiben übrig? (Zum Glück stoppt R2-D2 die Presse vorher!)",
+      "rechnung": "230 / 25",
+      "loesung": 9,
+      "rest": 5,
+      "merke": "9 Rucke, 5 cm Rest – R2-D2 stoppt die Presse!",
+      "tipp": "Wie oft passt die 25 ganz in 230? Vier 25er sind 100. Was übrig bleibt, der Rest ist."
+    },
+    {
+      "bild": ["obi-wan duell"],
+      "geschichte": "Ben Kenobi kämpft mit dem Lichtschwert gegen Darth Vader, damit die anderen zum Falcon fliehen können. Das Duell dauert 3 Minuten und 40 Sekunden.",
+      "frage": "Wie viele Sekunden dauert das Duell?",
+      "art": "einheiten",
+      "rechnung": "3 * 60 + 40",
+      "loesung": 220,
+      "merke": "220 Sekunden Lichtschwert-Duell",
+      "tipp": "Eine Minute hat 60 Sekunden. Erst die Minuten umrechnen, dann die Sekunden dazuzählen du musst."
+    },
+    {
+      "bild": ["todesstern und ties", "vader tie cockpit"],
+      "geschichte": "Der Falcon flieht aus dem Todesstern! 4 TIE-Fighter jagen hinterher. Han und Luke sitzen an den Geschützen und schießen jeder 2 TIE-Fighter ab.",
+      "frage": "Wie viele TIE-Fighter verfolgen den Falcon danach noch?",
+      "rechnung": "4 - 2 * 2",
+      "loesung": 0,
+      "merke": "0 TIE-Fighter – alle erwischt!",
+      "tipp": "Zuerst ausrechnen, wie viele Han und Luke zusammen abschießen. Dann von den 4 abziehen."
+    }
+  ],
+  "bonus": {
+    "geschichte": "Leias Zellennummer ist dreistellig. Alle drei Ziffern sind gleich, die Zahl ist gerade und kleiner als 300.",
+    "frage": "Welche Nummer hat Leias Zelle?",
+    "loesung": 222,
+    "tipp": "Dreistellig mit drei gleichen Ziffern: 111, 222, 333 … Welche davon ist gerade und kleiner als 300?"
+  }
+}

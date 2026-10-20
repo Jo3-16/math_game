@@ -18,3 +18,7 @@ die-schlacht-von-endor.jpg: Kopie von Todesstern/08_ROTJ_Todesstern2_Schlacht_En
 han-solos-schmuggelfahrt.jpg: Kopie von Tatooine/03_Tatooine_Doppelsonnen.jpg (eigene Sammlung)
 die-grossen-raumschlachten.jpg: Kopie von Raumschlachten/03_ROTJ_Raumschlacht_Endor_Gemaelde.png (eigene Sammlung)
 poe-und-die-black-one.jpg: https://commons.wikimedia.org/wiki/File:Star_Wars_Launch_Bay_Poe_Dameron's_Helmet.jpg
+die-geheimen-plaene.jpg: Kopie von Leia/01_ANH_Leia_Tantive_IV.png (eigene Sammlung)
+abenteuer-auf-tatooine.jpg: Kopie von Tatooine/07_ANH_Lars_Farm.png (eigene Sammlung)
+die-cantina-von-mos-eisley.jpg: Kopie von Han-Solo/01_ANH_Han_Solo_Cantina.jpg (eigene Sammlung)
+gefangen-im-todesstern.jpg: Kopie von Todesstern/01_ANH_Todesstern_im_All.png (eigene Sammlung)

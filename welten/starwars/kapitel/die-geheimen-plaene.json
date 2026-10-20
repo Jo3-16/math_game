@@ -1,0 +1,60 @@
+{
+  "titel": "Die geheimen Pläne",
+  "vorschau": "Kapitelbilder/die-geheimen-plaene.jpg",
+  "belohnung": "Kapitelbilder/Belohnung/die-geheimen-plaene.jpg",
+  "abzeichen": { "name": "Planhüter", "symbol": "💾" },
+  "aufgaben": [
+    {
+      "bild": ["vader tantive", "sturmtruppen tantive"],
+      "geschichte": "Ein riesiger Sternzerstörer jagt das kleine Rebellenschiff Tantive IV und zieht es heran. Darth Vader schickt 6 Trupps Sturmtruppen an Bord, jeder Trupp hat 8 Soldaten.",
+      "frage": "Wie viele Sturmtruppen stürmen das Schiff?",
+      "rechnung": "6 * 8",
+      "loesung": 48,
+      "merke": "48 Sturmtruppen an Bord",
+      "tipp": "6 Trupps mit je 8 Soldaten. Das Einmaleins mit 8 dir hilft."
+    },
+    {
+      "bild": ["leia tantive", "r2-d2 tantive"],
+      "geschichte": "Prinzessin Leia versteckt schnell die geheimen Pläne des Todessterns in R2-D2. Die Pläne sind 360 Seiten lang und werden in 8 gleich große Datenblöcke aufgeteilt.",
+      "frage": "Wie viele Seiten passen in einen Datenblock?",
+      "rechnung": "360 / 8",
+      "loesung": 45,
+      "merke": "45 Seiten pro Datenblock",
+      "tipp": "360 auf 8 Blöcke verteilen du musst. Erst 320 durch 8, dann den Rest durch 8, hmm."
+    },
+    {
+      "bild": ["c-3po r2-d2 tantive"],
+      "geschichte": "R2-D2 und C-3PO fliehen in einer Rettungskapsel zum Wüstenplaneten Tatooine. Die Kapsel hat 150 Energieeinheiten. Der Flug verbraucht 4-mal je 35 Einheiten.",
+      "frage": "Wie viele Energieeinheiten sind nach der Landung noch übrig?",
+      "rechnung": "150 - 4 * 35",
+      "loesung": 10,
+      "merke": "10 Energieeinheiten übrig",
+      "tipp": "Zuerst ausrechnen, wie viel der Flug verbraucht: 4 mal 35. Dann von 150 abziehen du musst."
+    },
+    {
+      "bild": ["c-3po tatooine duenen", "r2-d2 c-3po tatooine", "duenenmeer"],
+      "geschichte": "Die Droiden landen mitten in der Wüste. C-3PO schafft an einem Tag 30 Kilometer. Bis zur nächsten Farm sind es 100 Kilometer.",
+      "frage": "Wie viele ganze Tage läuft C-3PO – und wie viele Kilometer fehlen danach noch?",
+      "rechnung": "100 / 30",
+      "loesung": 3,
+      "rest": 10,
+      "merke": "3 Tage, dann fehlen noch 10 km",
+      "tipp": "Wie oft passt die 30 ganz in 100? Was dann noch fehlt, der Rest ist."
+    },
+    {
+      "bild": ["sandcrawler", "jawas"],
+      "geschichte": "Doch kleine Jawas fangen die beiden Droiden und bringen sie in ihren riesigen Sandcrawler. Darin stehen schon 7 Reihen mit je 9 Droiden.",
+      "frage": "Wie viele Droiden sind im Sandcrawler, wenn R2-D2 und C-3PO dazukommen?",
+      "rechnung": "7 * 9 + 2",
+      "loesung": 65,
+      "merke": "65 Droiden im Sandcrawler",
+      "tipp": "Zuerst die Droiden in den Reihen: 7 mal 9. Dann R2-D2 und C-3PO dazuzählen du musst."
+    }
+  ],
+  "bonus": {
+    "geschichte": "R2-D2 piept einen Geheimcode: Die Zahl ist zweistellig, gerade, lässt sich durch 9 teilen und ist kleiner als 30.",
+    "frage": "Wie lautet R2-D2s Geheimcode?",
+    "loesung": 18,
+    "tipp": "Schreib die Neunerreihe auf. Welche Zahl darin ist zweistellig, gerade und kleiner als 30?"
+  }
+}

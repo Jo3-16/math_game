@@ -18,3 +18,7 @@ die-schlacht-von-endor.jpg: Kopie von Executor/10_ROTJ_Executor_Absturz_Todesste
 han-solos-schmuggelfahrt.jpg: Kopie von Tatooine/02_ANH_Falke_verlaesst_Tatooine.png (eigene Sammlung, verkleinert)
 die-grossen-raumschlachten.jpg: Kopie von Raumschlachten/18_TROS_Ankunft_der_Galaxisflotte.png (eigene Sammlung, verkleinert)
 poe-und-die-black-one.jpg: Kopie von X-Wing/08_TLJ_Black_One.jpg (eigene Sammlung, verkleinert)
+die-geheimen-plaene.jpg: Kopie von Darth-Vader/01_ANH_Vader_Tantive_IV.jpg (eigene Sammlung, verkleinert)
+abenteuer-auf-tatooine.jpg: Kopie von Luke-Skywalker/01_ANH_Luke_mit_Obi-Wan_Tatooine.jpg (eigene Sammlung, verkleinert)
+die-cantina-von-mos-eisley.jpg: Kopie von Obi-Wan-Kenobi/03_ANH_Obi-Wan_Mos_Eisley.png (eigene Sammlung, verkleinert)
+gefangen-im-todesstern.jpg: Kopie von Obi-Wan-Kenobi/05_ANH_Obi-Wan_Duell_Vader.png (eigene Sammlung, verkleinert)

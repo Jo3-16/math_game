@@ -1,0 +1,70 @@
+{
+  "titel": "Abenteuer auf Tatooine",
+  "vorschau": "Kapitelbilder/abenteuer-auf-tatooine.jpg",
+  "belohnung": "Kapitelbilder/Belohnung/abenteuer-auf-tatooine.jpg",
+  "abzeichen": { "name": "Wüstenläufer", "symbol": "🏜️" },
+  "aufgaben": [
+    {
+      "bild": ["lars farm", "jawas"],
+      "geschichte": "Auf der Farm von Onkel Owen bieten die Jawas ihre Droiden an. Owen kauft R2-D2 für 85 Credits und C-3PO für 120 Credits. Er bezahlt mit einem 250-Credit-Chip.",
+      "frage": "Wie viele Credits bekommt Owen zurück?",
+      "rechnung": "250 - 85 - 120",
+      "loesung": 45,
+      "merke": "45 Credits Wechselgeld",
+      "tipp": "Zuerst ausrechnen, wie viel beide Droiden zusammen kosten. Dann von 250 abziehen du musst."
+    },
+    {
+      "bild": ["c-3po oelbad"],
+      "geschichte": "C-3PO ist ganz voller Sand und darf ein Ölbad nehmen. In die Wanne passen 96 Liter Öl. Luke füllt sie mit Kanistern, in jeden passen 8 Liter.",
+      "frage": "Wie viele Kanister braucht Luke?",
+      "rechnung": "96 / 8",
+      "loesung": 12,
+      "merke": "12 Kanister Öl",
+      "tipp": "Wie oft passt die 8 in 96? Erst 80 durch 8, dann 16 durch 8 – und beides zusammen."
+    },
+    {
+      "bild": ["jundland"],
+      "geschichte": "In der Nacht büxt R2-D2 aus! Luke sucht ihn mit dem Landspeeder in den Jundland-Schluchten. Er fliegt 4 Schluchten ab, jede ist 75 Meter lang.",
+      "frage": "Wie viele Meter fliegt Luke insgesamt ab?",
+      "rechnung": "4 * 75",
+      "loesung": 300,
+      "merke": "300 Meter Schluchten abgesucht",
+      "tipp": "4 mal 75 – verdoppeln und nochmal verdoppeln du kannst."
+    },
+    {
+      "bild": ["obi-wan tatooine felsen", "luke mit obi-wan"],
+      "geschichte": "Der alte Ben Kenobi findet Luke und R2-D2. Er erzählt Luke von den Jedi und der Macht. Ben ist 57 Jahre alt, Luke erst 19.",
+      "frage": "Wie viele Jahre ist Ben älter als Luke?",
+      "rechnung": "57 - 19",
+      "loesung": 38,
+      "merke": "Ben ist 38 Jahre älter",
+      "tipp": "Von 57 die 19 abziehen du musst. Tipp: Erst 20 abziehen und dann 1 wieder dazu."
+    },
+    {
+      "bild": ["sandtruppen", "sturmtruppen durchsuchung"],
+      "geschichte": "Das Imperium sucht die Droiden! 100 Sandtruppen werden in Suchtrupps zu je 6 Soldaten aufgeteilt.",
+      "frage": "Wie viele volle Suchtrupps gibt es – und wie viele Soldaten bleiben übrig?",
+      "rechnung": "100 / 6",
+      "loesung": 16,
+      "rest": 4,
+      "merke": "16 Suchtrupps, 4 Soldaten übrig",
+      "tipp": "Wie oft passt die 6 ganz in 100? 6 mal 10 ist 60 – wie viele Sechser passen noch in den Rest? Was übrig bleibt, der Rest ist."
+    },
+    {
+      "bild": ["blick auf mos eisley", "mos eisley stadt"],
+      "geschichte": "Luke und Ben fahren mit dem Landspeeder zur Raumhafenstadt Mos Eisley. Die Fahrt dauert 2 Stunden und 15 Minuten.",
+      "frage": "Wie viele Minuten dauert die Fahrt?",
+      "art": "einheiten",
+      "rechnung": "2 * 60 + 15",
+      "loesung": 135,
+      "merke": "135 Minuten bis Mos Eisley",
+      "tipp": "Eine Stunde hat 60 Minuten. Erst die 2 Stunden umrechnen, dann die 15 Minuten dazu."
+    }
+  ],
+  "bonus": {
+    "geschichte": "Zum Abendessen gibt es blaue Milch: 24 Gläser für Luke, Onkel Owen und Tante Beru. Luke trinkt doppelt so viel wie Beru, Owen sogar dreimal so viel wie Beru.",
+    "frage": "Wie viele Gläser trinkt Luke?",
+    "loesung": 8,
+    "tipp": "Beru trinkt 1 Teil, Luke 2 Teile, Owen 3 Teile – zusammen 6 gleiche Teile sind 24 Gläser. Wie groß ist ein Teil?"
+  }
+}

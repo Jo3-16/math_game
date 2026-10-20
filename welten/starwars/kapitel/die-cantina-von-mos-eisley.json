@@ -1,0 +1,70 @@
+{
+  "titel": "Die Cantina von Mos Eisley",
+  "vorschau": "Kapitelbilder/die-cantina-von-mos-eisley.jpg",
+  "belohnung": "Kapitelbilder/Belohnung/die-cantina-von-mos-eisley.jpg",
+  "abzeichen": { "name": "Cantina-Gast", "symbol": "🎺" },
+  "aufgaben": [
+    {
+      "bild": ["mos eisley strasse", "sturmtruppen mos eisley"],
+      "geschichte": "In Mos Eisley wimmelt es von Sturmtruppen. An jeder der 8 Straßenecken stehen 4 von ihnen und kontrollieren alle Reisenden.",
+      "frage": "Wie viele Sturmtruppen stehen an den Straßenecken?",
+      "rechnung": "8 * 4",
+      "loesung": 32,
+      "merke": "32 Sturmtruppen in den Straßen",
+      "tipp": "8 Ecken mit je 4 Sturmtruppen. Die Viererreihe dir hilft."
+    },
+    {
+      "bild": ["han solo cantina"],
+      "geschichte": "In der lauten Cantina treffen Luke und Ben den Piloten Han Solo. Han verlangt 450 Credits für den Flug nach Alderaan. Ben zahlt sofort 200 Credits, den Rest bei der Ankunft.",
+      "frage": "Wie viele Credits muss Ben später noch zahlen?",
+      "rechnung": "450 - 200",
+      "loesung": 250,
+      "merke": "250 Credits zahlt Ben später",
+      "tipp": "Von 450 die 200 abziehen du musst. Erst die Hunderter."
+    },
+    {
+      "bild": ["chewbacca dejarik"],
+      "geschichte": "An Bord des Millennium Falcon spielt Chewbacca mit R2-D2 Hologramm-Schach. Ein Spiel dauert 12 Minuten, und die beiden spielen 9 Spiele hintereinander.",
+      "frage": "Wie viele Minuten spielen sie insgesamt?",
+      "rechnung": "9 * 12",
+      "loesung": 108,
+      "merke": "108 Minuten Hologramm-Schach",
+      "tipp": "9 mal 12 – erst 9 mal 10, dann 9 mal 2, und beides zusammenzählen du musst."
+    },
+    {
+      "bild": ["docking bay 94"],
+      "geschichte": "In Hangar 94 lädt Chewbacca 230 Kisten in den Falcon. In jeden Laderaum passen 40 Kisten.",
+      "frage": "Wie viele Laderäume werden voll – und wie viele Kisten bleiben übrig?",
+      "rechnung": "230 / 40",
+      "loesung": 5,
+      "rest": 30,
+      "merke": "5 volle Laderäume, 30 Kisten übrig",
+      "tipp": "Wie oft passt die 40 ganz in 230? Denk an die Viererreihe mit einer Null dran. Was übrig bleibt, der Rest ist."
+    },
+    {
+      "bild": ["falke verlaesst tatooine"],
+      "geschichte": "Sturmtruppen stürmen den Hangar! Der Falcon startet in letzter Sekunde. Der Sprung in den Hyperraum braucht 180 Sekunden Vorbereitung – die Sternzerstörer sind aber erst in 4 Minuten da.",
+      "frage": "Wie viele Sekunden Vorsprung hat der Falcon?",
+      "art": "einheiten",
+      "rechnung": "4 * 60 - 180",
+      "loesung": 60,
+      "merke": "60 Sekunden Vorsprung",
+      "tipp": "Erst die 4 Minuten in Sekunden umrechnen: Eine Minute hat 60 Sekunden. Dann die Vorbereitungszeit abziehen."
+    },
+    {
+      "bild": ["todesstern im all"],
+      "geschichte": "Bei Alderaan finden sie nur noch Trümmer – und eine riesige Raumstation: den Todesstern! Ein Traktorstrahl zieht den Falcon heran. Er ist 480 Kilometer entfernt und wird jede Minute 60 Kilometer näher gezogen.",
+      "frage": "Nach wie vielen Minuten ist der Falcon im Todesstern?",
+      "rechnung": "480 / 60",
+      "loesung": 8,
+      "merke": "8 Minuten bis zum Todesstern",
+      "tipp": "Wie oft die 60 in 480 passt, du herausfinden musst. Ohne die Nullen es leichter geht."
+    }
+  ],
+  "bonus": {
+    "geschichte": "In der Cantina spielt die Band. Jedes Lied dauert 3 Minuten, und zwischen zwei Liedern macht die Band 1 Minute Pause. Sie spielt 6 Lieder hintereinander.",
+    "frage": "Wie viele Minuten dauert es vom Anfang des ersten bis zum Ende des letzten Liedes?",
+    "loesung": 23,
+    "tipp": "Zähl die Lieder und die Pausen getrennt. Achtung: Bei 6 Liedern gibt es nicht 6 Pausen dazwischen!"
+  }
+}
