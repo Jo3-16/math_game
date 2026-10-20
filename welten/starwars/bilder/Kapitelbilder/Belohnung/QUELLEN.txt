@@ -2,7 +2,7 @@ Belohnungsbilder für das Hologramm-Archiv – Quelle je Datei:
 00.jpg: Kopie von Y-Wing/02_ANH_Y-Wing_Todesstern_Graben.png (eigene Sammlung, verkleinert)
 01.jpg: Kopie von Sternzerstörer/star_wars___star_destroyer_e___leaving_kamino_by_bb22andy-da2f0hr-Mac.png (eigene Sammlung, verkleinert)
 02.jpg: Kopie von Todesstern/02_ANH_Todesstern_Yavin.png (eigene Sammlung, verkleinert)
-03.jpg: Kopie von X-Wing/08_TLJ_Black_One.jpg (eigene Sammlung, verkleinert)
+03.jpg: Kopie von Yavin-4/08_ANH_Gasriese_Yavin_Todesstern.png (eigene Sammlung, verkleinert)
 04.jpg: Kopie von Hoth/10_ESB_Hoth_Konzept_Ionenkanone.jpg (eigene Sammlung, verkleinert)
 05.jpg: Kopie von Executor/06_ESB_Executor_Flotte.jpg (eigene Sammlung, verkleinert)
 06.jpg: Kopie von Snowspeeder/07_Art_Snowspeeder_Schleppseil_AT-AT.png (eigene Sammlung, verkleinert)
@@ -17,3 +17,4 @@ Belohnungsbilder für das Hologramm-Archiv – Quelle je Datei:
 15.jpg: Kopie von Executor/10_ROTJ_Executor_Absturz_Todesstern.jpg (eigene Sammlung, verkleinert)
 16.jpg: Kopie von Tatooine/02_ANH_Falke_verlaesst_Tatooine.png (eigene Sammlung, verkleinert)
 17.jpg: Kopie von Raumschlachten/18_TROS_Ankunft_der_Galaxisflotte.png (eigene Sammlung, verkleinert)
+18.jpg: Kopie von X-Wing/08_TLJ_Black_One.jpg (eigene Sammlung, verkleinert)

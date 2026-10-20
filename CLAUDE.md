@@ -42,7 +42,7 @@ Wenn der Vater z. B. „Mach 5 neue Kapitel über Hoth“ sagt:
    - Texte auf Deutsch.
    - `vorschau`: festes Vorschaubild für die Übersicht, Pfad relativ zu `bilder/` (Ordner `Kapitelbilder/`, Quelle in `Kapitelbilder/QUELLEN.txt` eintragen). Bilder frei lizenziert z. B. von Wikimedia Commons; Wookieepedia blockt Downloads.
    - **Teilen mit Rest**: Feld `"rest": N` (N > 0) – nur dann erscheint das zweite Eingabefeld „Rest“. `rechnung` muss `Ausdruck / Zahl` sein (Plus/Minus links in Klammern), `loesung` ist das ganze Ergebnis. Frage nennt beides („… wie viele bleiben übrig?“).
-   - **Größen & Einheiten**: Feld `"art": "einheiten"` (für die Statistik). Im Zahlenraum bis 500 bleiben: min↔s, h↔min, m↔cm (kein km↔m).
+   - **Größen & Einheiten**: Feld `"art": "einheiten"` (für die Statistik). Hier sind Zahlen bis 9999 erlaubt (sonst 500): km↔m, m↔cm, h↔min, min↔s.
    - `belohnung`: Bild fürs Hologramm-Archiv, frei beim ersten Abschluss des Kapitels. Als Kopie in `Kapitelbilder/Belohnung/NN.jpg` (max. 1600 px breit) ablegen, Quelle in `Kapitelbilder/Belohnung/QUELLEN.txt`. Gern bisher ungenutzte Bilder (Admin-Galerie zeigt sie).
    - `vorschau`: als `Kapitelbilder/NN.jpg` mit 480 px Breite ablegen (große Bilder vorher verkleinern).
    - `bonus`: ein Knobel-Rätsel nach der letzten Aufgabe (`{ "geschichte", "frage", "loesung", "tipp" }`, optional `bild`). Lösen gibt Gold-Abzeichen und +20 Punkte. Lösung ganzzahlig 0–500 und **eindeutig** – vorher per Skript durchprobieren (z. B. alle Zahlen 0–500 gegen die Bedingungen prüfen). Gute Typen: Zahl erraten aus Bedingungen, Zahlenfolgen, Teile-Aufgaben, Zaunpfahl-Problem, Köpfe-und-Beine.

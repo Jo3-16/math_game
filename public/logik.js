@@ -1,6 +1,7 @@
 // Reine Spiellogik – wird vom Browser, vom Prüfskript und von den Tests genutzt.
 
 export const MAX_ZAHL = 500;
+export const MAX_EINHEITEN = 9999; // Einheiten-Aufgaben dürfen größer werden (km ↔ m)
 export const TIPP_AB = 2;
 
 export function normalisiere(text) {
@@ -19,13 +20,13 @@ export function findeBilder(pfade, suchwoerter) {
 }
 
 // Kleiner Parser statt eval: prüft jede Zahl und jedes Zwischenergebnis.
-export function rechne(rechnung) {
+export function rechne(rechnung, max = MAX_ZAHL) {
   const tokens = String(rechnung).match(/\d+|[+\-*/()]|\S/g) ?? [];
   let i = 0;
   const pruefe = (wert, was) => {
     if (!Number.isInteger(wert)) throw new Error(`${was} geht nicht ohne Rest auf`);
     if (wert < 0) throw new Error(`${was} ist negativ`);
-    if (wert > MAX_ZAHL) throw new Error(`${was} ist größer als ${MAX_ZAHL}`);
+    if (wert > max) throw new Error(`${was} ist größer als ${max}`);
     return wert;
   };
   const faktor = () => {

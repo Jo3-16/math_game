@@ -29,6 +29,8 @@ test('rechne', () => {
   assert.ok(rechne('(3 + 4').fehler);
   assert.ok(rechne('3 4').fehler);
   assert.ok(rechne('').fehler);
+  assert.deepEqual(rechne('3 * 1000 + 450', 9999), { wert: 3450 }); // Einheiten: bis 9999
+  assert.ok(rechne('10 * 1000', 9999).fehler);
 });
 
 test('istRichtig', () => {

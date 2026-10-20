@@ -1,0 +1,65 @@
+{
+  "titel": "Heimkehr nach Yavin 4",
+  "vorschau": "Kapitelbilder/03.jpg",
+  "belohnung": "Kapitelbilder/Belohnung/03.jpg",
+  "abzeichen": { "name": "Held von Yavin", "symbol": "🏅" },
+  "aufgaben": [
+    {
+      "bild": ["yavin-4/"],
+      "art": "einheiten",
+      "geschichte": "Der Todesstern ist zerstört! Luke fliegt mit seinem X-Wing zurück zur Rebellenbasis auf Yavin 4. Die letzte Strecke im Tiefflug über den Dschungel ist 3 Kilometer und 450 Meter lang.",
+      "frage": "Wie viele Meter ist die Strecke im Tiefflug lang?",
+      "rechnung": "3 * 1000 + 450",
+      "loesung": 3450,
+      "merke": "3450 m Tiefflug von Luke",
+      "tipp": "Ein Kilometer 1000 Meter hat. Erst die 3 Kilometer in Meter umrechnen, dann die 450 Meter dazuzählen du musst."
+    },
+    {
+      "bild": ["dschungel raumschiffe"],
+      "art": "einheiten",
+      "geschichte": "Auch die anderen Piloten kehren heim. Wedges Tiefflug über den Dschungel ist nur 2 Kilometer lang.",
+      "frage": "Wie viele Meter länger ist Lukes Tiefflug als der von Wedge?",
+      "rechnung": "3450 - 2 * 1000",
+      "loesung": 1450,
+      "merke": "1450 m länger als Wedge",
+      "tipp": "Wedges 2 Kilometer zuerst in Meter umrechnen du musst. Dann von Lukes Strecke abziehen."
+    },
+    {
+      "bild": ["anh r2-d2"],
+      "art": "einheiten",
+      "geschichte": "Oh nein, R2-D2 wurde im Graben getroffen! Die Mechaniker reparieren ihn. Das dauert 2 Stunden und 15 Minuten.",
+      "frage": "Wie viele Minuten dauert die Reparatur?",
+      "rechnung": "2 * 60 + 15",
+      "loesung": 135,
+      "merke": "135 Minuten Reparatur",
+      "tipp": "Eine Stunde 60 Minuten hat. Erst die Stunden umrechnen, dann die 15 Minuten dazu, hmm."
+    },
+    {
+      "bild": ["massassi tempel"],
+      "art": "einheiten",
+      "geschichte": "Im großen Tempel wird eine Siegesfeier vorbereitet. Sie beginnt in 4 Stunden. R2-D2 soll unbedingt dabei sein – aber zuerst muss er repariert werden.",
+      "frage": "Wie viele Minuten bleiben nach der Reparatur noch bis zur Feier?",
+      "rechnung": "4 * 60 - 135",
+      "loesung": 105,
+      "merke": "105 Minuten bis zur Feier",
+      "tipp": "Die 4 Stunden in Minuten umrechnen du musst. Dann die Zeit für die Reparatur abziehen."
+    },
+    {
+      "bild": ["thronsaal tempel", "medaillenzeremonie"],
+      "art": "einheiten",
+      "geschichte": "Im Thronsaal liegt ein langer Teppich bis zu Prinzessin Leia, die Luke und Han die Medaillen überreicht. Der Teppich ist 48 Meter lang.",
+      "frage": "Wie viele Zentimeter ist der Teppich lang?",
+      "rechnung": "48 * 100",
+      "loesung": 4800,
+      "merke": "4800 cm Teppich",
+      "tipp": "Ein Meter 100 Zentimeter hat. Die 48 Meter mal 100 rechnen du musst – zwei Nullen anhängen."
+    }
+  ],
+  "bonus": {
+    "bild": ["thronsaal tempel"],
+    "geschichte": "Am 48 Meter langen Teppich stehen auf einer Seite Wachen. Die erste steht ganz am Anfang, die letzte ganz am Ende, und dazwischen steht alle 6 Meter eine Wache.",
+    "frage": "Wie viele Wachen stehen auf dieser Seite des Teppichs?",
+    "loesung": 9,
+    "tipp": "Wie viele 6-Meter-Abstände in 48 Meter passen, zähle zuerst. Aber Vorsicht: Am Anfang steht auch eine Wache, junger Padawan."
+  }
+}
