@@ -15,14 +15,13 @@ Ziel: `welten/<welt>/bilder/<Thema>/` mit N guten Bildern (Standard 10). Die Bil
 - **Figuren:** die Figur ist klar das Hauptmotiv.
 - **Orte:** der Ort dominiert (Landschaft, Stadt, Planet aus dem All).
 - **Kindgerecht:** nichts Blutiges oder sehr Gruseliges (z. B. kein Leia-Sklavinnenkostüm, keine Opfer von Machtblitzen).
-- **Ära:** das Spiel spielt vor allem in Episode IV–VI – diese bevorzugen, andere nur ergänzend.
+- **Ära:** das Spiel spielt vor allem in Episode IV–VI – diese bevorzugen, andere nur ergänzend. **Ausnahme Raumschiffe:** Schiffe, die es auch in Episode IV–VI gibt (X-Wing, Y-Wing, TIE, Sternzerstörer, Korvette, Transporter …), dürfen gleichberechtigt aus anderen Filmen/Serien kommen, z. B. Rogue One – Hauptsache, das Schiff ist dasselbe Modell.
 - Keine Fast-Duplikate. Lieber weniger Bilder liefern als schlechte auffüllen – und das sagen.
 
 ## Dateinamen
 
 - Ordner: `Thema-mit-Bindestrichen` (z. B. `TIE-Interceptor`, `Wolkenstadt-Bespin`), keine Umlaute.
 - Dateien: `NN_Film_Thema_Beschreibung.ext`, z. B. `01_ESB_AT-AT_Hoth.png` (Film-Kürzel ANH/ESB/ROTJ/RO/ROTS/TFA/TLJ/TROS, sonst `Art`, `Rebels`, `Mando` …). Umlaute als ae/oe/ue.
-- **Nie „Yoda“ im Pfad**, außer im Ordner `Yoda/` – die Tipp-Box nimmt jedes Bild, dessen Pfad den Helfernamen enthält.
 - Bei „noch weitere“: vorhandene Dateien ansehen, Nummerierung fortsetzen, nichts doppelt.
 - Keine Wörter in Dateinamen, die als Suchwörter anderer Kapitel Fehltreffer erzeugen (siehe CLAUDE.md → „Fehltreffer prüfen“).
 
@@ -57,7 +56,7 @@ file -b datei.png   # muss PNG oder JPEG sein, kein HTML/WebP
 4. Kandidaten (etwa doppelt so viele wie gebraucht) in einen **eigenen** Zwischenordner im Scratchpad laden, nicht ins Projekt.
 5. **Jeden Kandidaten mit dem Read-Tool ansehen** – Dateinamen auf Wookieepedia sind oft irreführend (Lego, Comics, Spielgrafiken).
 6. Nur die guten Bilder mit dem endgültigen Namen in den Zielordner kopieren. Keine Pakete installieren (kein `pip install`).
-7. Nachzählen (`ls Ordner | wc -l`) und prüfen, dass kein neuer Pfad „Yoda“ enthält.
+7. Nachzählen (`ls Ordner | wc -l`).
 
 Viele Themen auf einmal: je Agent 1–3 Themen parallel starten, jeder mit eigenem Zwischenordner, und diese Regeln mitgeben.
 
