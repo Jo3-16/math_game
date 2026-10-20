@@ -1,6 +1,6 @@
 import {
   findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName,
-  rang, mitRang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, BONUS_PUNKTE,
+  rang, mitRang, RAENGE, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, BONUS_PUNKTE,
   rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, RECHENART_NAMEN, migriereStand,
 } from './logik.js';
 
@@ -140,7 +140,24 @@ function zeigeUebersicht() {
   $('gesamt-uebersicht').textContent = gesamtPunkte(stand);
   $('spielername').textContent = stand.name;
   $('rang-uebersicht').textContent = rangText();
+  if (ADMIN) zeigeRaenge();
   zeige('uebersicht');
+}
+
+// Admin: alle Ränge mit Grenzen, der aktuelle Rang des Spielers und die höchstens erreichbaren Punkte.
+function zeigeRaenge() {
+  const punkte = gesamtPunkte(stand);
+  const aktuell = rang(punkte, stand.rangIndex ?? 0).index;
+  const kopf = element('tr');
+  for (const t of ['Rang', 'ab Punkten', '']) kopf.append(element('th', '', t));
+  $('raenge-tabelle').replaceChildren(kopf, ...RAENGE.map((r, i) => {
+    const tr = element('tr', i === aktuell ? 'aktuell' : '');
+    for (const t of [`${r.symbol} ${r.name}`, r.ab, i === aktuell ? `← ${stand.name} (${punkte} Punkte)` : '']) tr.append(element('td', '', t));
+    return tr;
+  }));
+  const max = welt.kapitel.reduce((summe, k) => summe + maxPunkte(k), 0);
+  $('raenge-info').textContent = `Höchstens erreichbar: ${max} Punkte in ${welt.kapitel.length} Kapiteln. Ein einmal erreichter Rang bleibt erhalten.`;
+  $('admin-raenge').hidden = false;
 }
 
 function starteKapitel(index, alsWiederholung) {

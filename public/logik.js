@@ -114,7 +114,7 @@ export function gesamtPunkte(stand) {
 
 export const BONUS_PUNKTE = 20;
 
-const RAENGE = [
+export const RAENGE = [
   { name: 'Jüngling', symbol: '🌱', ab: 0 },
   { name: 'Padawan', symbol: '🟢', ab: 200 },
   { name: 'Jedi-Ritter', symbol: '⚔️', ab: 600 },
