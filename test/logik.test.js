@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer } from '../public/logik.js';
+import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer, mitRang } from '../public/logik.js';
 
 test('normalisiere', () => {
   assert.equal(normalisiere('X-wing_SWB.webp'), 'x wing swb.webp');
@@ -80,11 +80,28 @@ test('findeBilder mit ordner-suchwort', () => {
 });
 
 test('rang nach gesamtpunkten', () => {
-  assert.deepEqual(rang(0), { name: 'Jüngling', symbol: '🌱', naechster: { name: 'Padawan', ab: 150 } });
-  assert.equal(rang(149).name, 'Jüngling');
-  assert.equal(rang(150).name, 'Padawan');
-  assert.equal(rang(500).name, 'Jedi-Ritter');
-  assert.deepEqual(rang(1000), { name: 'Jedi-Meister', symbol: '🧙', naechster: null });
+  assert.deepEqual(rang(0), { index: 0, name: 'Jüngling', symbol: '🌱', naechster: { name: 'Padawan', symbol: '🟢', ab: 200 } });
+  assert.equal(rang(199).name, 'Jüngling');
+  assert.equal(rang(200).name, 'Padawan');
+  assert.equal(rang(600).name, 'Jedi-Ritter');
+  assert.equal(rang(1200).name, 'Jedi-Meister');
+  assert.deepEqual(rang(2000), { index: 4, name: 'Großmeister', symbol: '🌟', naechster: null });
+});
+
+test('rang: nie degradieren', () => {
+  assert.equal(rang(160, 1).name, 'Padawan'); // gespeicherter Rang zählt, auch wenn die Punkte nicht mehr reichen
+  assert.equal(rang(700, 1).name, 'Jedi-Ritter'); // höherer Rang aus Punkten gewinnt
+});
+
+test('mitRang merkt den höchsten Rang', () => {
+  const punkte = p => ({ ...leererStand(), kapitel: { a: { geloest: 1, punkte: p, fertig: false } } });
+  // alter Spielstand ohne gespeicherten Rang: einmalig nach den alten Grenzen (150/500/1000)
+  assert.equal(mitRang(punkte(160)).rangIndex, 1);
+  assert.equal(mitRang(punkte(90)).rangIndex, 0);
+  // mit gespeichertem Rang gelten die neuen Grenzen, aber es geht nie nach unten
+  assert.equal(mitRang({ ...punkte(160), rangIndex: 0 }).rangIndex, 0);
+  assert.equal(mitRang({ ...punkte(160), rangIndex: 2 }).rangIndex, 2);
+  assert.equal(mitRang({ ...punkte(650), rangIndex: 1 }).rangIndex, 2);
 });
 
 test('sterne', () => {

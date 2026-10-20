@@ -1,6 +1,6 @@
 import {
   findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName,
-  rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, BONUS_PUNKTE,
+  rang, mitRang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, BONUS_PUNKTE,
   rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, RECHENART_NAMEN, migriereStand,
 } from './logik.js';
 
@@ -28,7 +28,7 @@ function element(tag, klasse, text) {
 const kapitelNummer = (k, i) => i + 1; // Position in der Reihenfolge aus welt.json, gezählt ab 1
 const sterneText = n => '⭐'.repeat(n) + '☆'.repeat(3 - n);
 const maxPunkte = k => k.aufgaben.length * 15 + (k.bonus ? BONUS_PUNKTE : 0);
-const rangText = () => { const r = rang(gesamtPunkte(stand)); return `${r.symbol} ${r.name}`; };
+const rangText = () => { const r = rang(gesamtPunkte(stand), stand.rangIndex ?? 0); return `${r.symbol} ${r.name}`; };
 
 // --- Ton: im Browser erzeugt, an/aus wird im Browser gemerkt ---
 let audio;
@@ -83,7 +83,7 @@ async function ladeWelt(id) {
   weltId = id;
   welt = await (await fetch(`/api/welten/${encodeURIComponent(id)}`)).json();
   stand = (await (await fetch(`/api/welten/${encodeURIComponent(id)}/spielstand`)).json()) ?? leererStand();
-  stand = mitName(migriereStand(stand));
+  stand = mitRang(mitName(migriereStand(stand)));
   for (const [name, wert] of Object.entries(welt.farben ?? {})) document.documentElement.style.setProperty(`--${name}`, wert);
   document.title = welt.name;
   $('weltname').textContent = welt.name + (ADMIN ? ' – Admin-Modus' : '');
@@ -228,6 +228,7 @@ function meldung(text, klasse) {
 
 async function speichern() {
   if (ADMIN) return;
+  stand = mitRang(stand); // höchsten erreichten Rang festhalten
   try {
     const antwort = await fetch(`/api/welten/${encodeURIComponent(weltId)}/spielstand`, { method: 'PUT', body: JSON.stringify(stand) });
     if (!antwort.ok) throw new Error(antwort.status);
@@ -337,14 +338,14 @@ function zeigeRuhmeshalle() {
   const erreicht = welt.kapitel.filter(k => stand.abzeichen.includes(k.id)).length;
   const gold = welt.kapitel.filter(k => stand.kapitel[k.id]?.bonus).length;
   const punkte = gesamtPunkte(stand);
-  const r = rang(punkte);
+  const r = rang(punkte, stand.rangIndex ?? 0);
   $('ruhm-name').textContent = stand.name;
   $('ruhm-rang').textContent = `${r.symbol} ${r.name}`;
   $('ruhm-punkte').textContent = punkte;
   $('ruhm-zusammenfassung').textContent = `${erreicht} von ${welt.kapitel.length} Abzeichen gesammelt · ${gold} davon in Gold 🥇`;
   $('ruhm-naechster').textContent = r.naechster
-    ? `Noch ${r.naechster.ab - punkte} Punkte bis zum Rang ${rang(r.naechster.ab).symbol} ${r.naechster.name}!`
-    : 'Höchster Rang erreicht – du bist ein Jedi-Meister! 🧙';
+    ? `Noch ${r.naechster.ab - punkte} Punkte bis zum Rang ${r.naechster.symbol} ${r.naechster.name}!`
+    : 'Höchster Rang erreicht – du bist ein Großmeister! 🌟';
   $('ruhm-abzeichen').replaceChildren(...welt.kapitel.map((k, i) => abzeichenKarte(k, i, true)));
   zeige('ruhmeshalle');
 }

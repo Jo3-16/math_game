@@ -116,15 +116,28 @@ export const BONUS_PUNKTE = 20;
 
 const RAENGE = [
   { name: 'Jüngling', symbol: '🌱', ab: 0 },
-  { name: 'Padawan', symbol: '🟢', ab: 150 },
-  { name: 'Jedi-Ritter', symbol: '⚔️', ab: 500 },
-  { name: 'Jedi-Meister', symbol: '🧙', ab: 1000 },
+  { name: 'Padawan', symbol: '🟢', ab: 200 },
+  { name: 'Jedi-Ritter', symbol: '⚔️', ab: 600 },
+  { name: 'Jedi-Meister', symbol: '🧙', ab: 1200 },
+  { name: 'Großmeister', symbol: '🌟', ab: 2000 },
 ];
+// Grenzen bis Oktober 2026 – nur für Spielstände ohne gespeicherten Rang, damit niemand absteigt.
+const ALTE_GRENZEN = [0, 150, 500, 1000];
 
-export function rang(punkte) {
-  const i = RAENGE.findLastIndex(r => punkte >= r.ab);
+const rangIndexFuer = (punkte, grenzen) => grenzen.findLastIndex(ab => punkte >= ab);
+
+// Rang aus Punkten – aber nie unter dem schon erreichten Rang (mindestens = gespeicherter Index).
+export function rang(punkte, mindestens = 0) {
+  const i = Math.max(rangIndexFuer(punkte, RAENGE.map(r => r.ab)), mindestens);
   const naechster = RAENGE[i + 1];
-  return { name: RAENGE[i].name, symbol: RAENGE[i].symbol, naechster: naechster ? { name: naechster.name, ab: naechster.ab } : null };
+  return { index: i, name: RAENGE[i].name, symbol: RAENGE[i].symbol, naechster: naechster ? { name: naechster.name, symbol: naechster.symbol, ab: naechster.ab } : null };
+}
+
+// Merkt den höchsten erreichten Rang im Spielstand (stand.rangIndex), damit er nie sinkt.
+export function mitRang(stand) {
+  const punkte = gesamtPunkte(stand);
+  const bisher = stand.rangIndex ?? rangIndexFuer(punkte, ALTE_GRENZEN);
+  return { ...stand, rangIndex: rang(punkte, bisher).index };
 }
 
 // 3 Sterne: alles ohne Tipp, 2: mindestens die Hälfte, sonst 1.

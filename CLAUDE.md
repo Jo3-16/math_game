@@ -8,7 +8,7 @@ Lernspiel für einen Jungen am Anfang der 4. Klasse: Mathe-Sachaufgaben als Gesc
 - Admin-Modus: http://localhost:8642/admin – alle Kapitel offen, „Weiter ▶“ ohne Rechnen, Lösung + Tipp sichtbar, nichts wird gespeichert; dazu „🖼️ Bildergalerie“ (je Bild die Aufgaben, in denen es erscheinen kann; unbenutzte rot gestrichelt) und „📊 Statistik“ (Fehlversuche je Rechenart, schwierigste Aufgaben)
 - Admin-Passwort (optional): `einstellungen.json` → `{ "adminPasswort": "…" }` (nicht im Git; ohne Datei ist /admin offen)
 - Weitere Seiten: Abzeichen & Punkte `/abzeichen`, Hologramm-Archiv `/archiv`, Flugsimulator (Zufallsaufgaben je Rechenart, keine Punkte, Serien-Rekord) über die Übersicht
-- Spielmechanik: 10 Punkte je Aufgabe, +5 ohne Tipp (Tipp ab 2 Fehlversuchen), Bonus-Rätsel +20 und Gold-Abzeichen, 1–3 Sterne je Kapitel, Ränge Jüngling/Padawan (150)/Jedi-Ritter (500)/Jedi-Meister (1000)
+- Spielmechanik: 10 Punkte je Aufgabe, +5 ohne Tipp (Tipp ab 2 Fehlversuchen), Bonus-Rätsel +20 und Gold-Abzeichen, 1–3 Sterne je Kapitel, Ränge Jüngling/Padawan (200)/Jedi-Ritter (600)/Jedi-Meister (1200)/Großmeister (2000) – der höchste erreichte Rang wird im Spielstand gemerkt (`rangIndex`), niemand steigt ab
 
 ## Code
 
