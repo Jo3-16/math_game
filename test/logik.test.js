@@ -234,3 +234,10 @@ test('mitFalscherAntwort merkt die letzten 10 falschen antworten je aufgabe', ()
   assert.equal(s.statistik.falsch['angriff#1'].at(-1), '11');
   assert.deepEqual(leererStand().statistik, undefined); // unverändert
 });
+
+test('findeBilder sucht nie in Kapitelbilder/ (Vorschau, Belohnung, Helfer)', () => {
+  const p = ['Poe/01_Poe.jpg', 'Kapitelbilder/poe-und-die-black-one.jpg', 'Kapitelbilder/Belohnung/poe-und-die-black-one.jpg', 'Kapitelbilder/Helfer/yoda.jpg', 'Yoda/Yoda.png'];
+  assert.deepEqual(findeBilder(p, ['poe']), ['Poe/01_Poe.jpg']);
+  assert.deepEqual(findeBilder(p, ['yoda']), ['Yoda/Yoda.png']);
+  assert.deepEqual(findeBilder(p, ['kapitelbilder/']), []);
+});
