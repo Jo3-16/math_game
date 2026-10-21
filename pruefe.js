@@ -2,7 +2,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { rechne, rechneMitRest, findeBilder, maxFuer } from './public/logik.js';
+import { rechne, rechneMitRest, findeBilder, maxFuer, verteileBilder } from './public/logik.js';
 import { bilderListe } from './server.js';
 
 const FELDER = ['geschichte', 'frage', 'rechnung', 'tipp', 'merke'];
@@ -72,6 +72,11 @@ export async function pruefeWelt(weltOrdner) {
         fehler.push(`${wo}: merke "${a.merke}" enthält die Lösung ${a.loesung} nicht`);
       }
       if (!findeBilder(bilder, a.bild).length) warnungen.push(`${wo}: kein Bild zu ${a.bild.join(', ')}`);
+    });
+    const verteilt = verteileBilder(bilder, kapitel.aufgaben, () => 0);
+    verteilt.forEach((b, i) => {
+      const vorher = verteilt.indexOf(b);
+      if (b && vorher < i) warnungen.push(`${datei} Aufgabe ${i + 1}: zu wenig Bilder – zeigt dasselbe Bild wie Aufgabe ${vorher + 1} (${b})`);
     });
   }
   return { fehler, warnungen };

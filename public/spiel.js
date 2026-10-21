@@ -2,7 +2,7 @@ import {
   findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName,
   rang, mitRang, RAENGE, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, BONUS_PUNKTE,
   rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, RECHENART_NAMEN, migriereStand,
-  SIMULATOR_STUFEN, simulatorAufgabeGeloest, mitFalscherAntwort,
+  SIMULATOR_STUFEN, simulatorAufgabeGeloest, mitFalscherAntwort, verteileBilder,
 } from './logik.js';
 
 const $ = id => document.getElementById(id);
@@ -12,6 +12,7 @@ const ADMIN = location.pathname === '/admin';
 
 let welt, weltId, stand;
 let kapitelIndex, aufgabeIndex, fehlversuche, wiederholung, wartet, weiterTimer;
+let kapitelBilder = []; // je Aufgabe des Kapitels ein Bild, möglichst ohne Wiederholung
 let ohneTipp, laufSterne; // im aktuellen Durchlauf ohne Tipp gelöste Aufgaben, Sterne dieses Durchlaufs
 let simulatorArt = null, simAufgabe, serie = 0; // Flugsimulator: gewählte Rechenart, aktuelle Zufallsaufgabe, Serie ohne Fehler
 
@@ -173,6 +174,7 @@ function zeigeRaenge() {
 function starteKapitel(index, alsWiederholung) {
   simulatorArt = null;
   kapitelIndex = index;
+  kapitelBilder = verteileBilder(welt.bilder, welt.kapitel[index].aufgaben);
   wiederholung = alsWiederholung;
   ohneTipp = 0;
   laufSterne = 0;
@@ -206,7 +208,8 @@ function zeigeAufgabe() {
   fehlversuche = 0;
   wartet = false;
 
-  const url = bildUrl(aufgabe.bild);
+  const pfad = kapitelBilder[Math.min(aufgabeIndex, kapitelBilder.length - 1)]; // Bonus: Bild der letzten Aufgabe
+  const url = simulatorArt ? bildUrl(aufgabe.bild) : pfad ? pfadUrl(pfad) : '';
   $('bild').hidden = !url;
   if (url) $('bild').src = url;
 

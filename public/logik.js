@@ -22,6 +22,28 @@ export function findeBilder(pfade, suchwoerter) {
     || woerter.some(w => normalisiere(p).includes(w))));
 }
 
+// Ein Bild je Aufgabe eines Kapitels, möglichst ohne Wiederholung (Zuordnung über Austauschpfade).
+// Wo es nicht anders geht, bekommt eine Aufgabe ein schon vergebenes Bild; ohne Treffer null.
+export function verteileBilder(pfade, aufgaben, zufall = Math.random) {
+  const kandidaten = aufgaben.map(a => {
+    const t = findeBilder(pfade, a.bild ?? []);
+    for (let i = t.length - 1; i > 0; i--) { const j = Math.floor(zufall() * (i + 1)); [t[i], t[j]] = [t[j], t[i]]; }
+    return t;
+  });
+  const besitzer = new Map();
+  const belege = (i, gesehen) => kandidaten[i].some(b => {
+    if (gesehen.has(b)) return false;
+    gesehen.add(b);
+    if (besitzer.has(b) && !belege(besitzer.get(b), gesehen)) return false;
+    besitzer.set(b, i);
+    return true;
+  });
+  kandidaten.forEach((_, i) => belege(i, new Set()));
+  const ergebnis = kandidaten.map(k => k[0] ?? null);
+  for (const [b, i] of besitzer) ergebnis[i] = b;
+  return ergebnis;
+}
+
 // Kleiner Parser statt eval: prüft jede Zahl und jedes Zwischenergebnis.
 export function rechne(rechnung, max = MAX_ZAHL) {
   const tokens = String(rechnung).match(/\d+|[+\-*/()]|\S/g) ?? [];

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer, mitRang, SIMULATOR_STUFEN, simulatorAufgabeGeloest, simulatorStufen, mitFalscherAntwort } from '../public/logik.js';
+import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer, mitRang, SIMULATOR_STUFEN, simulatorAufgabeGeloest, simulatorStufen, mitFalscherAntwort, verteileBilder } from '../public/logik.js';
 
 test('normalisiere', () => {
   assert.equal(normalisiere('X-wing_SWB.webp'), 'x wing swb.webp');
@@ -240,4 +240,17 @@ test('findeBilder sucht nie in Kapitelbilder/ (Vorschau, Belohnung, Helfer)', ()
   assert.deepEqual(findeBilder(p, ['poe']), ['Poe/01_Poe.jpg']);
   assert.deepEqual(findeBilder(p, ['yoda']), ['Yoda/Yoda.png']);
   assert.deepEqual(findeBilder(p, ['kapitelbilder/']), []);
+});
+
+test('verteileBilder: möglichst jedes Bild nur einmal im Kapitel', () => {
+  const pfade = ['X-Wing/a.png', 'X-Wing/b.png', 'Yoda/c.png'];
+  const aufgaben = [{ bild: ['x-wing/', 'yoda/'] }, { bild: ['x-wing/'] }, { bild: ['a.png'] }, { bild: ['endor'] }];
+  for (let n = 0; n < 20; n++) {
+    const b = verteileBilder(pfade, aufgaben);
+    assert.equal(b[2], 'X-Wing/a.png');
+    assert.equal(b[1], 'X-Wing/b.png'); // weicht aus, weil Aufgabe 3 nur a.png hat
+    assert.equal(b[0], 'Yoda/c.png');
+    assert.equal(b[3], null);
+  }
+  assert.deepEqual(verteileBilder(['X-Wing/a.png'], [{ bild: ['x-wing/'] }, { bild: ['x-wing/'] }]), ['X-Wing/a.png', 'X-Wing/a.png']);
 });

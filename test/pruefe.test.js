@@ -14,6 +14,7 @@ function welt(aufgaben, welt = { name: 'W', helfer: 'Yoda', farben: {} }) {
   fs.mkdirSync(path.join(ordner, 'kapitel'));
   fs.mkdirSync(path.join(ordner, 'bilder'));
   fs.writeFileSync(path.join(ordner, 'bilder', 'X-Wing.jpg'), '');
+  for (const n of [2, 3, 4, 5, 6]) fs.writeFileSync(path.join(ordner, 'bilder', `X-Wing-${n}.jpg`), ''); // genug Bilder für ein Kapitel ohne Wiederholung
   fs.writeFileSync(path.join(ordner, 'welt.json'), JSON.stringify(welt));
   fs.writeFileSync(path.join(ordner, 'kapitel', '01-test.json'),
     JSON.stringify({ titel: 'T', abzeichen: { name: 'A', symbol: '🏅' }, aufgaben }));
@@ -148,4 +149,11 @@ test('plus/minus bis 999 erlaubt, mal nicht', async () => {
   assert.equal((await pruefeWelt(welt(vier({ rechnung: '600 + 300', loesung: 900, merke: '900 Kisten' })))).fehler.length, 0);
   assert.equal((await pruefeWelt(welt(vier({ rechnung: '25 * 30', loesung: 750, merke: '750 Kisten' })))).fehler.length, 1);
   assert.equal((await pruefeWelt(welt(vier({ rechnung: '600 + 500', loesung: 1100, merke: '1100 Kisten' })))).fehler.length, 1);
+});
+
+test('zu wenig bilder für ein kapitel ist warnung', async () => {
+  const r = await pruefeWelt(welt([aufgabe({ bild: ['x-wing.jpg'] }), aufgabe({ bild: ['x-wing.jpg'] }), aufgabe(), aufgabe()]));
+  assert.deepEqual(r.fehler, []);
+  assert.equal(r.warnungen.length, 1);
+  assert.match(r.warnungen[0], /Aufgabe 2: zu wenig Bilder – zeigt dasselbe Bild wie Aufgabe 1/);
 });
