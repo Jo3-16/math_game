@@ -5,7 +5,7 @@
   "abzeichen": { "name": "Planhüter", "symbol": "💾" },
   "aufgaben": [
     {
-      "bild": ["vader tantive", "sturmtruppen tantive"],
+      "bild": ["sturmtruppen tantive"],
       "geschichte": "Ein riesiger Sternzerstörer jagt das kleine Rebellenschiff Tantive IV und zieht es heran. Darth Vader schickt 6 Trupps Sturmtruppen an Bord, jeder Trupp hat 8 Soldaten.",
       "frage": "Wie viele Sturmtruppen stürmen das Schiff?",
       "rechnung": "6 * 8",
