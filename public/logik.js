@@ -233,6 +233,7 @@ export const SIMULATOR_ARTEN = [
   { id: 'rest', name: 'Teilen mit Rest' },
   { id: 'plusminus', name: 'Plus & Minus bis 999' },
   { id: 'einheiten', name: 'Größen & Einheiten' },
+  { id: 'logik', name: 'Logik-Rätsel' },
 ];
 
 const zahl = (zufall, von, bis) => von + Math.floor(zufall() * (bis - von + 1));
@@ -287,6 +288,38 @@ export function erzeugeAufgabe(art, zufall = Math.random) {
     }
     const m = zahl(zufall, 1, 4), cm = zahl(zufall, 1, 99);
     return { art, geschichte: `Ein Kabel für den X-Wing ist ${m} Meter und ${cm} Zentimeter lang.`, frage: 'Wie viele Zentimeter sind das?', bild: ['x-wing/'], rechnung: `${m} * 100 + ${cm}`, loesung: m * 100 + cm, tipp: 'Ein Meter hat 100 Zentimeter. Erst die Meter umrechnen, dann die Zentimeter dazu.' };
+  }
+  if (art === 'logik') {
+    // Tipps ohne Zahlen, damit sie nie die Lösung verraten.
+    const typ = zahl(zufall, 0, 4);
+    if (typ === 0) {
+      const folge = eins(zufall, ['plus', 'minus', 'doppelt']);
+      const s = folge === 'doppelt' ? zahl(zufall, 2, 15) : folge === 'plus' ? zahl(zufall, 2, 50) : zahl(zufall, 100, 200);
+      const d = zahl(zufall, 3, folge === 'plus' ? 25 : 15);
+      const glied = i => (folge === 'doppelt' ? s * 2 ** i : folge === 'plus' ? s + i * d : s - i * d);
+      const zahlen = [0, 1, 2, 3].map(glied);
+      return { art, geschichte: `R2-D2 piept eine geheime Zahlenfolge: ${zahlen.join(', ')}, …`, frage: 'Welche Zahl kommt als Nächstes?', bild: ['r2-d2'],
+        rechnung: folge === 'doppelt' ? `${zahlen[3]} * 2` : `${zahlen[3]} ${folge === 'plus' ? '+' : '-'} ${d}`, loesung: glied(4),
+        tipp: 'Schau genau, wie von Zahl zu Zahl es sich verändert. Immer gleich es weitergeht.' };
+    }
+    if (typ === 1) {
+      const a = zahl(zufall, 2, 9), x = zahl(zufall, 3, 40), b = zahl(zufall, 1, 30);
+      return { art, geschichte: `Yoda denkt sich eine Zahl. Er nimmt sie mal ${a} und zählt dann ${b} dazu. Heraus kommt ${a * x + b}.`, frage: 'Welche Zahl hat Yoda sich gedacht?', bild: ['yoda/'],
+        rechnung: `(${a * x + b} - ${b}) / ${a}`, loesung: x, tipp: 'Rückwärts rechnen du musst: Was dazugezählt wurde, wieder wegnehmen. Dann teilen statt malnehmen.' };
+    }
+    if (typ === 2) {
+      const k = zahl(zufall, 5, 20), y = zahl(zufall, 1, k - 1), beine = 2 * k + 2 * y;
+      return { art, geschichte: `Auf einer Farm auf Tatooine sind Menschen und Banthas. Zusammen haben sie ${k} Köpfe und ${beine} Beine. Ein Mensch hat zwei Beine, ein Bantha vier.`, frage: 'Wie viele Banthas sind auf der Farm?', bild: ['tatooine/'],
+        rechnung: `(${beine} - 2 * ${k}) / 2`, loesung: y, tipp: 'Gib zuerst jedem Kopf zwei Beine. Die übrigen Beine gehören den Banthas – jeder Bantha hat zwei mehr.' };
+    }
+    if (typ === 3) {
+      const a = eins(zufall, [2, 5, 10, 20]), n = zahl(zufall, 3, 20);
+      return { art, geschichte: `Die Landebahn der Rebellenbasis ist ${a * n} Meter lang. Alle ${a} Meter steht eine Lampe – auch ganz am Anfang und ganz am Ende.`, frage: 'Wie viele Lampen stehen an der Landebahn?', bild: ['x-wing/'],
+        rechnung: `${a * n} / ${a} + 1`, loesung: n + 1, tipp: 'Vorsicht, eine Falle das ist! Zähle erst die Abstände. Am Anfang auch eine Lampe steht.' };
+    }
+    const h = zahl(zufall, 10, 200), d = zahl(zufall, 5, 100);
+    return { art, geschichte: `Han und Chewbacca haben zusammen ${2 * h + d} Credits. Chewbacca hat ${d} Credits mehr als Han.`, frage: 'Wie viele Credits hat Han?', bild: ['chewbacca/'],
+      rechnung: `(${2 * h + d} - ${d}) / 2`, loesung: h, tipp: 'Nimm erst weg, was Chewbacca mehr hat. Den Rest dann gerecht halbieren du musst.' };
   }
   throw new Error(`Unbekannte Rechenart ${art}`);
 }
