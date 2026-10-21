@@ -476,6 +476,13 @@ function zeigeSimulatorMenu() {
     const text = element('div');
     text.append(element('b', '', a.name), simulatorAbzeichenZeile(a.id),
       element('small', '', `${stand.simulatorGeloest?.[a.id] ?? 0} gelöst · Rekord: ${stand.simulatorRekord?.[a.id] ?? 0} in Folge`));
+    const bild = `Kapitelbilder/Simulator/${a.id}.jpg`;
+    if (welt.bilder.includes(bild)) {
+      const vorschau = element('img', 'vorschau');
+      vorschau.src = pfadUrl(bild);
+      vorschau.alt = '';
+      b.append(vorschau);
+    }
     b.append(text);
     b.onclick = () => starteSimulator(a.id);
     return b;

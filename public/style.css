@@ -39,6 +39,7 @@ button.spielername::after { content: " ✏️"; font-size: .8em; }
 /* Übersicht */
 :root { --kachelbild-breite: 180px; --kachelbild-hoehe: 130px; } /* Vorschaubild = Abzeichen-Größe */
 .raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 16px; }
+#simulator-arten { --kachelbild-breite: 270px; --kachelbild-hoehe: 195px; grid-template-columns: repeat(auto-fill, minmax(min(480px, 100%), 1fr)); } /* Cockpit-Bilder 50 % größer */
 .kachel {
   text-align: left; background: var(--flaeche); color: var(--text); font-weight: normal;
   border: 2px solid transparent; border-radius: 12px; padding: 16px; min-height: 110px;
