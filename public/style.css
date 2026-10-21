@@ -29,6 +29,7 @@ button.link { background: none; color: var(--akzent); opacity: 1; font-weight: n
 
 .kopf { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; }
 #aufgabe .kopf { flex-direction: column-reverse; align-items: flex-start; gap: 4px; margin-bottom: 32px; } /* Name + Punkte über der Überschrift */
+#zurueck { display: block; margin: 0 0 12px auto; } /* oben rechts wie auf den anderen Seiten */
 #uebersicht > .kopf { flex-direction: column; align-items: stretch; gap: 8px; } /* Titel oben über die ganze Breite */
 #uebersicht > .kopf .punkte { align-self: flex-start; white-space: normal; text-align: left; }
 .punkte { color: var(--akzent); font-weight: bold; font-size: 24px; white-space: nowrap; }
