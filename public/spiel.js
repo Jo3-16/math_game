@@ -440,7 +440,7 @@ function zeigeArchiv() {
     img.alt = offen ? k.titel : '';
     img.loading = 'lazy';
     if (offen) f.onclick = () => zeigeBildansicht(img.src, `Kapitel ${kapitelNummer(k, i)} · ${k.titel}`);
-    f.append(img, element('span', '', offen ? `Kapitel ${kapitelNummer(k, i)} · ${k.titel}` : `🔒 Kapitel ${kapitelNummer(k, i)}`));
+    f.append(img, element('span', '', `${offen ? '' : '🔒 '}Kapitel ${kapitelNummer(k, i)} · ${k.titel}`));
     return f;
   }));
   zeige('archiv');
