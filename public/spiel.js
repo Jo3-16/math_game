@@ -4,6 +4,7 @@ import {
   rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, RECHENART_NAMEN, migriereStand,
   SIMULATOR_STUFEN, simulatorAufgabeGeloest, mitFalscherAntwort, verteileBilder,
 } from './logik.js';
+import { ICON_SETS, ICONS } from './icons.js';
 
 const $ = id => document.getElementById(id);
 const ANSICHTEN = ['auswahl', 'uebersicht', 'aufgabe', 'ruhmeshalle', 'galerie', 'simulator', 'statistik', 'archiv'];
@@ -30,7 +31,37 @@ function element(tag, klasse, text) {
 const kapitelNummer = (k, i) => i + 1; // Position in der Reihenfolge aus welt.json, gezählt ab 1
 const sterneText = n => '⭐'.repeat(n) + '☆'.repeat(3 - n);
 const maxPunkte = k => k.aufgaben.length * 15 + (k.bonus ? BONUS_PUNKTE : 0);
-const rangText = () => { const r = rang(gesamtPunkte(stand), stand.rangIndex ?? 0); return `${r.symbol} ${r.name}`; };
+// Rang als Icon + Name, z. B. für die Kopfzeilen
+function zeigeRang(ziel, r = rang(gesamtPunkte(stand), stand.rangIndex ?? 0)) { ziel.replaceChildren(ikon(`rang-${r.index}`, r.symbol), ` ${r.name}`); }
+
+// --- Icons: gewähltes Set steht im Spielstand (stand.icons); ohne passendes Icon erscheint das Emoji ---
+const iconSet = () => ICON_SETS.find(s => s.id === stand?.icons)?.id ?? 'emoji';
+function ikon(begriff, emoji) {
+  const set = iconSet();
+  if (!ICONS[begriff]?.[set]) return element('span', 'emoji', emoji);
+  const i = element('span', 'ic');
+  i.style.setProperty('--i', `url("/icons/${set}/${begriff}.svg")`);
+  if (set !== 'plaketten') return i;
+  const hex = element('span', 'hex');
+  hex.append(i);
+  return hex;
+}
+function wendeIconsAn() {
+  document.body.dataset.icons = iconSet();
+  for (const e of document.querySelectorAll('[data-icon]')) {
+    e.dataset.emoji ??= e.textContent;
+    e.replaceChildren(ikon(e.dataset.icon, e.dataset.emoji));
+  }
+  $('icon-knopf').replaceChildren(ikon('icons', '🎨'), ' Icons: ', ICON_SETS.find(s => s.id === iconSet()).name);
+  zeigeTonKnopf();
+}
+$('icon-knopf').onclick = () => {
+  const i = ICON_SETS.findIndex(s => s.id === iconSet());
+  stand = { ...stand, icons: ICON_SETS[(i + 1) % ICON_SETS.length].id };
+  speichern();
+  wendeIconsAn();
+  zeigeUebersicht();
+};
 
 // --- Ton: im Browser erzeugt, an/aus wird im Browser gemerkt ---
 let audio;
@@ -38,7 +69,7 @@ function tonAn() {
   try { return localStorage.getItem('ton') !== 'aus'; } catch { return true; }
 }
 function zeigeTonKnopf() {
-  for (const b of document.querySelectorAll('.ton-knopf')) b.textContent = tonAn() ? '🔊' : '🔇';
+  for (const b of document.querySelectorAll('.ton-knopf')) b.replaceChildren(tonAn() ? ikon('ton', '🔊') : ikon('ton-aus', '🔇'));
 }
 function ton(art) {
   if (!tonAn()) return;
@@ -91,6 +122,7 @@ async function ladeWelt(id) {
   $('weltname').textContent = welt.name + (ADMIN ? ' – Admin-Modus' : '');
   $('galerie-knopf').hidden = !ADMIN;
   $('statistik-knopf').hidden = !ADMIN;
+  wendeIconsAn();
   if (location.pathname === '/abzeichen') zeigeRuhmeshalle();
   else if (location.pathname === '/archiv') zeigeArchiv();
   else zeigeUebersicht();
@@ -100,11 +132,12 @@ function abzeichenKarte(k, i, mitDetails) {
   const s = stand.kapitel[k.id];
   const hat = stand.abzeichen.includes(k.id);
   const d = element('div', [hat ? '' : 'offen', s?.bonus ? 'gold' : ''].join(' ').trim());
-  d.append(element('span', '', k.abzeichen.symbol), hat || !mitDetails ? k.abzeichen.name : '???');
+  d.append(element('span', '', ''), hat || !mitDetails ? k.abzeichen.name : ' '); // noch nicht verdient: Name bleibt geheim, Zeile bleibt frei
   if (mitDetails) {
     d.append(element('small', '', `Kapitel ${kapitelNummer(k, i)} · ${s?.punkte ?? 0}/${maxPunkte(k)} Punkte`));
     if (hat) d.append(element('small', '', sterneText(kapitelSterne(s, k.aufgaben.length)) + (s?.bonus ? ' 🥇' : '')));
   }
+  d.firstChild.append(ikon(k.id, k.abzeichen.symbol));
   d.title = k.titel + (s?.bonus ? ' – Gold-Abzeichen' : '');
   return d;
 }
@@ -141,7 +174,7 @@ function zeigeUebersicht() {
 
   $('gesamt-uebersicht').textContent = gesamtPunkte(stand);
   $('spielername').textContent = stand.name;
-  $('rang-uebersicht').textContent = rangText();
+  zeigeRang($('rang-uebersicht'));
   if (ADMIN) zeigeRaenge();
   zeige('uebersicht');
 }
@@ -154,7 +187,10 @@ function zeigeRaenge() {
   for (const t of ['Rang', 'ab Punkten', '']) kopf.append(element('th', '', t));
   $('raenge-tabelle').replaceChildren(kopf, ...RAENGE.map((r, i) => {
     const tr = element('tr', i === aktuell ? 'aktuell' : '');
-    for (const t of [`${r.symbol} ${r.name}`, r.ab, i === aktuell ? `← ${stand.name} (${punkte} Punkte)` : '']) tr.append(element('td', '', t));
+    const name = element('td');
+    name.append(ikon(`rang-${i}`, r.symbol), ` ${r.name}`);
+    tr.append(name);
+    for (const t of [r.ab, i === aktuell ? `← ${stand.name} (${punkte} Punkte)` : '']) tr.append(element('td', '', t));
     return tr;
   }));
   const max = welt.kapitel.reduce((summe, k) => summe + maxPunkte(k), 0);
@@ -225,7 +261,7 @@ function zeigeAufgabe() {
   }
   $('gesamt-aufgabe').textContent = gesamtPunkte(stand);
   $('spielername-aufgabe').textContent = stand.name;
-  $('rang-aufgabe').textContent = rangText();
+  zeigeRang($('rang-aufgabe'));
   const bisher = simulatorArt ? [] : kapitel.aufgaben.slice(0, aufgabeIndex).map(a => element('span', 'ergebnis', `✔ ${a.merke}`));
   $('ergebnisse').replaceChildren(...bisher);
   $('ergebnisse').hidden = !bisher.length;
@@ -381,12 +417,11 @@ function zeigeRuhmeshalle() {
   const punkte = gesamtPunkte(stand);
   const r = rang(punkte, stand.rangIndex ?? 0);
   $('ruhm-name').textContent = stand.name;
-  $('ruhm-rang').textContent = `${r.symbol} ${r.name}`;
+  zeigeRang($('ruhm-rang'), r);
   $('ruhm-punkte').textContent = punkte;
   $('ruhm-zusammenfassung').textContent = `${erreicht} von ${welt.kapitel.length} Abzeichen gesammelt · ${gold} davon in Gold 🥇`;
-  $('ruhm-naechster').textContent = r.naechster
-    ? `Noch ${r.naechster.ab - punkte} Punkte bis zum Rang ${r.naechster.symbol} ${r.naechster.name}!`
-    : 'Höchster Rang erreicht – du bist ein Großmeister! 🌟';
+  if (r.naechster) $('ruhm-naechster').replaceChildren(`Noch ${r.naechster.ab - punkte} Punkte bis zum Rang `, ikon(`rang-${r.index + 1}`, r.naechster.symbol), ` ${r.naechster.name}!`);
+  else $('ruhm-naechster').textContent = 'Höchster Rang erreicht – du bist ein Großmeister! 🌟';
   $('ruhm-abzeichen').replaceChildren(...welt.kapitel.map((k, i) => abzeichenKarte(k, i, true)));
   $('ruhm-simulator').replaceChildren(...SIMULATOR_ARTEN.map(a => {
     const d = element('div');
@@ -552,7 +587,7 @@ for (const b of document.querySelectorAll('.zur-uebersicht')) b.onclick = zeigeU
 function zeigeKapitelEnde(kapitel) {
   const s = stand.kapitel[kapitel.id];
   const gold = Boolean(s?.bonus);
-  $('overlay-symbol').textContent = kapitel.abzeichen.symbol;
+  $('overlay-symbol').replaceChildren(ikon(kapitel.id, kapitel.abzeichen.symbol));
   $('overlay-symbol').classList.toggle('gold', gold);
   $('overlay-sterne').textContent = laufSterne ? sterneText(laufSterne) : '';
   const goldText = gold ? ' 🥇 Gold-Abzeichen!' : kapitel.bonus ? ' Löse das Bonus-Rätsel für Gold!' : '';

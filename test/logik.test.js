@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer, mitRang, SIMULATOR_STUFEN, simulatorAufgabeGeloest, simulatorStufen, mitFalscherAntwort, verteileBilder, RECHENART_NAMEN } from '../public/logik.js';
+import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer, mitRang, SIMULATOR_STUFEN, simulatorAufgabeGeloest, simulatorStufen, mitFalscherAntwort, verteileBilder, RECHENART_NAMEN, RAENGE } from '../public/logik.js';
 
 test('normalisiere', () => {
   assert.equal(normalisiere('X-wing_SWB.webp'), 'x wing swb.webp');
@@ -84,8 +84,10 @@ test('rang nach gesamtpunkten', () => {
   assert.equal(rang(199).name, 'Jüngling');
   assert.equal(rang(200).name, 'Padawan');
   assert.equal(rang(600).name, 'Jedi-Ritter');
+  assert.equal(rang(899).name, 'Jedi-Ritter');
+  assert.equal(rang(900).name, 'Jedi-Wächter');
   assert.equal(rang(1200).name, 'Jedi-Meister');
-  assert.deepEqual(rang(2000), { index: 4, name: 'Großmeister', symbol: '🌟', naechster: null });
+  assert.deepEqual(rang(2000), { index: 5, name: 'Großmeister', symbol: '🌟', naechster: null });
 });
 
 test('rang: nie degradieren', () => {
@@ -102,6 +104,15 @@ test('mitRang merkt den höchsten Rang', () => {
   assert.equal(mitRang({ ...punkte(160), rangIndex: 0 }).rangIndex, 0);
   assert.equal(mitRang({ ...punkte(160), rangIndex: 2 }).rangIndex, 2);
   assert.equal(mitRang({ ...punkte(650), rangIndex: 1 }).rangIndex, 2);
+  assert.equal(mitRang(punkte(1100)).rangIndex, 4); // alt ab 1000: Jedi-Meister, nicht Wächter
+});
+
+test('migriereStand: gespeicherte Ränge ab Jedi-Meister rücken hinter den neuen Jedi-Wächter', () => {
+  const alt = rangIndex => ({ ...leererStand(), rangListe: undefined, rangIndex });
+  assert.equal(migriereStand(alt(2)).rangIndex, 2); // Jedi-Ritter bleibt
+  assert.equal(migriereStand(alt(3)).rangIndex, 4); // Jedi-Meister
+  assert.equal(migriereStand(alt(4)).rangIndex, 5); // Großmeister
+  assert.equal(migriereStand(migriereStand(alt(3))).rangIndex, 4); // nur einmal
 });
 
 test('sterne', () => {
@@ -257,4 +268,17 @@ test('verteileBilder: möglichst jedes Bild nur einmal im Kapitel', () => {
 
 test('jede Simulator-Übung hat einen Namen für die Statistik', () => {
   for (const a of SIMULATOR_ARTEN) assert.ok(RECHENART_NAMEN[a.id], a.id);
+});
+
+test('jedes Kapitel und jeder Rang hat in jedem Icon-Set ein geladenes Icon', async () => {
+  const fs = await import('node:fs');
+  const { ICON_SETS, ICONS } = await import('../public/icons.js');
+  const welt = JSON.parse(fs.readFileSync(new URL('../welten/starwars/welt.json', import.meta.url)));
+  const begriffe = [...welt.reihenfolge, ...RAENGE.map((_, i) => `rang-${i}`)];
+  for (const set of ICON_SETS.filter(s => s.prefix)) {
+    for (const b of begriffe) {
+      assert.ok(ICONS[b]?.[set.id], `${b} fehlt in public/icons.js (${set.id})`);
+      assert.ok(fs.existsSync(new URL(`../public/icons/${set.id}/${b}.svg`, import.meta.url)), `${set.id}/${b}.svg fehlt – node icons-laden.js`);
+    }
+  }
 });

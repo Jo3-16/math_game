@@ -18,13 +18,14 @@
     <header class="kopf hud-panel">
       <h1 id="weltname"></h1>
       <div class="punkte">
-        <button id="spielername" class="spielername" title="Namen ändern"></button> <a href="/abzeichen" class="punkte-link" title="Abzeichen &amp; Punkte"><span id="rang-uebersicht" class="rang"></span> ⭐ <span id="gesamt-uebersicht">0</span> Punkte</a>
-        <a href="/abzeichen" class="kopf-link">🏅 Abzeichen &amp; Punkte</a>
-        <a href="/archiv" class="kopf-link">🛰️ Archiv</a>
-        <button id="simulator-knopf" class="link kopf-link">🎮 Flugsimulator</button>
-        <button id="galerie-knopf" class="link kopf-link" hidden>🖼️ Bildergalerie</button>
-        <button id="statistik-knopf" class="link kopf-link" hidden>📊 Statistik</button>
+        <button id="spielername" class="spielername" title="Namen ändern"></button> <a href="/abzeichen" class="punkte-link" title="Abzeichen &amp; Punkte"><span id="rang-uebersicht" class="rang"></span> <span data-icon="punkte">⭐</span> <span id="gesamt-uebersicht">0</span> Punkte</a>
+        <a href="/abzeichen" class="kopf-link"><span data-icon="abzeichen">🏅</span> Abzeichen &amp; Punkte</a>
+        <a href="/archiv" class="kopf-link"><span data-icon="archiv">🛰️</span> Archiv</a>
+        <button id="simulator-knopf" class="link kopf-link"><span data-icon="simulator">🎮</span> Flugsimulator</button>
+        <button id="galerie-knopf" class="link kopf-link" hidden><span data-icon="galerie">🖼️</span> Bildergalerie</button>
+        <button id="statistik-knopf" class="link kopf-link" hidden><span data-icon="statistik">📊</span> Statistik</button>
         <button class="link kopf-link ton-knopf" title="Ton an/aus"></button>
+        <button id="icon-knopf" class="link kopf-link" title="Icons wechseln"></button>
       </div>
     </header>
     <div id="kapitel" class="raster"></div>
@@ -47,16 +48,16 @@
         <h1>Abzeichen &amp; Punkte</h1>
         <a href="/">← Zurück zur Übersicht</a>
       </div>
-      <div class="punkte"><span id="ruhm-name" class="spielername"></span> <span id="ruhm-rang" class="rang"></span> ⭐ <span id="ruhm-punkte">0</span> Punkte</div>
+      <div class="punkte"><span id="ruhm-name" class="spielername"></span> <span id="ruhm-rang" class="rang"></span> <span data-icon="punkte">⭐</span> <span id="ruhm-punkte">0</span> Punkte</div>
       <p id="ruhm-zusammenfassung"></p>
       <p id="ruhm-naechster"></p>
     </header>
     <section class="hud-panel abzeichen-panel">
-      <h2>🏅 Kapitel-Abzeichen</h2>
+      <h2><span data-icon="abzeichen">🏅</span> Kapitel-Abzeichen</h2>
       <div id="ruhm-abzeichen" class="abzeichen ruhm"></div>
     </section>
     <section class="hud-panel abzeichen-panel">
-      <h2>🎮 Flugsimulator-Abzeichen</h2>
+      <h2><span data-icon="simulator">🎮</span> Flugsimulator-Abzeichen</h2>
       <p>Bronze ab 5, Silber ab 10, Gold ab 20 und Meister ab 40 gelösten Aufgaben je Rechenart.</p>
       <div id="ruhm-simulator" class="abzeichen ruhm"></div>
     </section>
@@ -65,7 +66,7 @@
   <main id="archiv" hidden>
     <header class="hud-panel seiten-kopf">
       <div class="kopf">
-        <h1>🛰️ Hologramm-Archiv</h1>
+        <h1><span data-icon="archiv">🛰️</span> Hologramm-Archiv</h1>
         <a href="/">← Zurück zur Übersicht</a>
       </div>
       <p id="archiv-zusammenfassung"></p>
@@ -76,7 +77,7 @@
   <main id="simulator" hidden>
     <header class="hud-panel seiten-kopf">
       <div class="kopf">
-        <h1>🎮 Flugsimulator</h1>
+        <h1><span data-icon="simulator">🎮</span> Flugsimulator</h1>
         <button class="link zur-uebersicht">← Zurück zur Übersicht</button>
       </div>
       <p>Jeder Pilot ist nur so gut wie sein schwächster Bereich. Hier trainierst du gezielt einzelne Fähigkeiten, bis du sie im Schlaf beherrschst – so wirst du ein echtes Flieger-Ass!</p>
@@ -87,7 +88,7 @@
 
   <main id="statistik" hidden>
     <header class="kopf">
-      <h1>📊 Statistik</h1>
+      <h1><span data-icon="statistik">📊</span> Statistik</h1>
       <button class="link zur-uebersicht">← Zurück zur Übersicht</button>
     </header>
     <h2>Nach Rechenart</h2>
@@ -114,7 +115,7 @@
           <div id="kapiteltitel" class="kapiteltitel"></div>
           <div id="fortschritt" class="fortschritt"></div>
         </div>
-        <div class="punkte"><span id="spielername-aufgabe" class="spielername"></span> <span id="rang-aufgabe" class="rang"></span> ⭐ <span id="gesamt-aufgabe">0</span> <button class="link kopf-link ton-knopf" title="Ton an/aus"></button></div>
+        <div class="punkte"><span id="spielername-aufgabe" class="spielername"></span> <span id="rang-aufgabe" class="rang"></span> <span data-icon="punkte">⭐</span> <span id="gesamt-aufgabe">0</span> <button class="link kopf-link ton-knopf" title="Ton an/aus"></button></div>
       </header>
       <p id="geschichte" class="geschichte"></p>
       <p id="frage" class="frage"></p>

@@ -1,0 +1,5 @@
+Icons für Menü, Ränge und Abzeichen – Quelle je Set (über Iconify, https://iconify.design):
+silhouetten/: game-icons.net – Lorc, Delapouite u. a., CC BY 3.0
+duotone/: Phosphor Icons, MIT-Lizenz
+neon/: Tabler Icons, MIT-Lizenz
+plaketten/: Material Design Icons, Apache-2.0-Lizenz

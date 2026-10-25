@@ -7,8 +7,9 @@ Lernspiel für einen Jungen am Anfang der 4. Klasse: Mathe-Sachaufgaben als Gesc
 - Spielstand zurücksetzen: `welten/<welt>/spielstand.json` löschen (alte Spielstände mit Kapitel-Kennungen wie `01-name` werden beim Laden automatisch auf `name` umgestellt)
 - Admin-Modus: http://localhost:8642/admin – alle Kapitel offen, „Weiter ▶“ ohne Rechnen, Lösung + Tipp sichtbar, nichts wird gespeichert; dazu „🖼️ Bildergalerie“ (je Bild die Aufgaben, in denen es erscheinen kann; unbenutzte rot gestrichelt) und „📊 Statistik“ (Fehlversuche je Rechenart, schwierigste Aufgaben)
 - Admin-Passwort (optional): `einstellungen.json` → `{ "adminPasswort": "…" }` (nicht im Git; ohne Datei ist /admin offen)
+- Icons: Knopf „🎨 Icons“ in der Übersicht schaltet zwischen Emojis und vier Icon-Sets um (im Spielstand gemerkt: `icons`); Zuordnung in `public/icons.js`, SVGs in `public/icons/<set>/`
 - Weitere Seiten: Abzeichen & Punkte `/abzeichen`, Hologramm-Archiv `/archiv`, Flugsimulator (Zufallsaufgaben je Rechenart, keine Punkte, zählt richtige und falsche Antworten: `simulatorGeloest`, `simulatorFalsch`) über die Übersicht
-- Spielmechanik: 10 Punkte je Aufgabe, +5 ohne Tipp (Tipp ab 2 Fehlversuchen), Bonus-Rätsel +20 und Gold-Abzeichen, 1–3 Sterne je Kapitel, Ränge Jüngling/Padawan (200)/Jedi-Ritter (600)/Jedi-Meister (1200)/Großmeister (2000) – der höchste erreichte Rang wird im Spielstand gemerkt (`rangIndex`), niemand steigt ab; Flugsimulator-Abzeichen je Rechenart: Bronze 5 / Silber 10 / Gold 20 / Meister 40 gelöste Aufgaben (`simulatorGeloest`)
+- Spielmechanik: 10 Punkte je Aufgabe, +5 ohne Tipp (Tipp ab 2 Fehlversuchen), Bonus-Rätsel +20 und Gold-Abzeichen, 1–3 Sterne je Kapitel, Ränge Jüngling/Padawan (200)/Jedi-Ritter (600)/Jedi-Wächter (900)/Jedi-Meister (1200)/Großmeister (2000) – der höchste erreichte Rang wird im Spielstand gemerkt (`rangIndex`), niemand steigt ab (`rangListe` 2 = Liste mit Jedi-Wächter, ältere Stände werden beim Laden umgestellt); Flugsimulator-Abzeichen je Rechenart: Bronze 5 / Silber 10 / Gold 20 / Meister 40 gelöste Aufgaben (`simulatorGeloest`)
 
 ## Code
 
@@ -56,12 +57,13 @@ Wenn der Vater z. B. „Mach 5 neue Kapitel über Hoth“ sagt:
    - **Größen & Einheiten**: Feld `"art": "einheiten"` (für Statistik und Zahlenraum bis 9999): km↔m, m↔cm, h↔min, min↔s.
    - `bonus`: Knobel-Rätsel nach der letzten Aufgabe (optional `bild`). Lösen gibt Gold-Abzeichen und +20 Punkte. Lösung ganzzahlig 0–500 und **eindeutig** – vorher per Skript durchprobieren. Gute Typen: Zahl aus Bedingungen erraten, Zahlenfolgen, Teile-Aufgaben, Zaunpfahl-Problem, Köpfe-und-Beine.
    - Texte auf Deutsch.
-5. **Kapitelbilder** (beide als Kopie, damit sie fest bleiben; Quelle in der jeweiligen `QUELLEN.txt` eintragen):
+5. **Abzeichen-Icon:** in `public/icons.js` unter `ICONS` die Kapitel-Kennung mit je einem Icon-Namen für alle vier Sets eintragen (passende Namen auf https://icon-sets.iconify.design suchen: game-icons, ph mit `-duotone`, tabler, mdi), dann `node icons-laden.js` – das lädt die SVGs nach `public/icons/`. Ohne Eintrag erscheint das Emoji `abzeichen.symbol`.
+6. **Kapitelbilder** (beide als Kopie, damit sie fest bleiben; Quelle in der jeweiligen `QUELLEN.txt` eintragen):
    - `vorschau`: `Kapitelbilder/<name>.jpg`, 480 px breit – Bild für die Übersicht.
    - `belohnung`: `Kapitelbilder/Belohnung/<name>.jpg`, max. 1600 px breit – fürs Hologramm-Archiv, frei beim ersten Abschluss. Gern bisher ungenutzte Bilder (Admin-Galerie zeigt sie).
    - Verkleinern ohne ImageMagick: PowerShell mit `System.Drawing` (Bild laden, auf Zielbreite zeichnen, Hintergrund `#0b0f1a` für transparente PNGs, als JPG Qualität 85 speichern).
    - Externe Bilder nur frei lizenziert (z. B. Wikimedia Commons); Wookieepedia blockt Downloads.
-6. **Prüfen:** `node pruefe.js` ausführen und alle FEHLER und WARNUNGEN beheben, `npm test` laufen lassen, bevor du fertig meldest.
+7. **Prüfen:** `node pruefe.js` ausführen und alle FEHLER und WARNUNGEN beheben, `npm test` laufen lassen, bevor du fertig meldest.
 
 ## Neue Welt
 

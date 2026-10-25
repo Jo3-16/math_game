@@ -102,7 +102,7 @@ export function punkteFuer(fehlversuche) {
 export const STANDARD_NAME = 'C3-Jo';
 
 export function leererStand() {
-  return { name: STANDARD_NAME, kapitel: {}, abzeichen: [] };
+  return { name: STANDARD_NAME, kapitel: {}, abzeichen: [], rangListe: RANG_LISTE };
 }
 
 // Setzt den Spielernamen (gekürzt, nie leer); ohne neuen Namen wird nur ein fehlender ergänzt.
@@ -143,11 +143,15 @@ export const RAENGE = [
   { name: 'Jüngling', symbol: '🌱', ab: 0 },
   { name: 'Padawan', symbol: '🟢', ab: 200 },
   { name: 'Jedi-Ritter', symbol: '⚔️', ab: 600 },
+  { name: 'Jedi-Wächter', symbol: '🛡️', ab: 900 },
   { name: 'Jedi-Meister', symbol: '🧙', ab: 1200 },
   { name: 'Großmeister', symbol: '🌟', ab: 2000 },
 ];
 // Grenzen bis Oktober 2026 – nur für Spielstände ohne gespeicherten Rang, damit niemand absteigt.
-const ALTE_GRENZEN = [0, 150, 500, 1000];
+// Damals gab es den Jedi-Wächter (Index 3) noch nicht: ab 1000 Punkten war man gleich Jedi-Meister.
+const ALTE_GRENZEN = [0, 150, 500, Infinity, 1000];
+// Version der Rangliste im Spielstand: 2 = mit Jedi-Wächter zwischen Ritter und Meister.
+const RANG_LISTE = 2;
 
 const rangIndexFuer = (punkte, grenzen) => grenzen.findLastIndex(ab => punkte >= ab);
 
@@ -427,6 +431,9 @@ export function migriereStand(stand) {
   const neu = structuredClone(stand);
   neu.kapitel = Object.fromEntries(Object.entries(neu.kapitel ?? {}).map(([id, k]) => [ohneNummer(id), k]));
   neu.abzeichen = (neu.abzeichen ?? []).map(ohneNummer);
+  // Rangliste 1 kannte den Jedi-Wächter nicht – gespeicherte Ränge ab Jedi-Meister rücken eins weiter.
+  if ((neu.rangListe ?? 1) < 2 && neu.rangIndex >= 3) neu.rangIndex++;
+  neu.rangListe = RANG_LISTE;
   if (neu.statistik?.aufgaben) {
     neu.statistik.aufgaben = Object.fromEntries(Object.entries(neu.statistik.aufgaben).map(([s, n]) => [ohneNummer(s), n]));
   }

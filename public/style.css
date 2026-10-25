@@ -213,3 +213,18 @@ button.holo { width: 100%; text-align: left; font: inherit; font-weight: normal;
   #aufgabe { grid-template-columns: 1fr; }
   .bildrahmen { height: 40vh; }
 }
+
+/* Icon-Sets (Übersicht → 🎨 Icons): Icons sind SVG-Masken und nehmen die Textfarbe an */
+.ic { display: inline-block; width: 1.2em; height: 1.2em; vertical-align: -.25em; background: currentColor;
+  -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+.abzeichen .ic, .abzeichen .hex { margin: 0 auto; }
+.overlay-symbol .ic { width: 1em; height: 1em; }
+body[data-icons="silhouetten"] .ic { color: var(--hud); filter: drop-shadow(0 0 5px var(--hud)); }
+body[data-icons="silhouetten"] .abzeichen .ic, body[data-icons="silhouetten"] .overlay-symbol .ic { color: #ffd54a; filter: drop-shadow(0 0 6px rgba(255, 213, 74, .6)); }
+body[data-icons="duotone"] .ic { color: var(--hud); filter: drop-shadow(0 0 4px rgba(61, 224, 255, .5)); }
+body[data-icons="neon"] .ic { color: #7ff3ff; filter: drop-shadow(0 0 3px var(--hud)) drop-shadow(0 0 10px var(--hud)); }
+.hex { display: inline-grid; place-items: center; width: 1.6em; height: 1.45em; vertical-align: middle; background: linear-gradient(160deg, #1d5b7a, #0a2233);
+  clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0 50%); box-shadow: inset 0 0 0 2px var(--hud); }
+.hex .ic { width: .85em; height: .85em; vertical-align: 0; color: #e8fbff; }
+.abzeichen .hex, .overlay-symbol .hex { display: grid; background: linear-gradient(160deg, #ffd54a, #b8860b); }
+.abzeichen .hex .ic, .overlay-symbol .hex .ic { color: #2a1d00; }
