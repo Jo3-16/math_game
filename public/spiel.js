@@ -14,7 +14,7 @@ let welt, weltId, stand;
 let kapitelIndex, aufgabeIndex, fehlversuche, wiederholung, wartet, weiterTimer;
 let kapitelBilder = []; // je Aufgabe des Kapitels ein Bild, möglichst ohne Wiederholung
 let ohneTipp, laufSterne; // im aktuellen Durchlauf ohne Tipp gelöste Aufgaben, Sterne dieses Durchlaufs
-let simulatorArt = null, simAufgabe, serie = 0; // Flugsimulator: gewählte Rechenart, aktuelle Zufallsaufgabe, Serie ohne Fehler
+let simulatorArt = null, simAufgabe; // Flugsimulator: gewählte Rechenart, aktuelle Zufallsaufgabe
 
 function zeige(ansicht) {
   for (const a of ANSICHTEN) $(a).hidden = a !== ansicht;
@@ -214,9 +214,8 @@ function zeigeAufgabe() {
   if (url) $('bild').src = url;
 
   if (simulatorArt) {
-    const rekord = stand.simulatorRekord?.[simulatorArt] ?? 0;
     $('kapiteltitel').textContent = `Flugsimulator – ${SIMULATOR_ARTEN.find(a => a.id === simulatorArt).name}`;
-    $('fortschritt').textContent = `🎮 Serie: ${serie} ohne Fehler · Rekord: ${rekord} · ${stand.simulatorGeloest?.[simulatorArt] ?? 0} gelöst`;
+    $('fortschritt').textContent = `🎮 ${simulatorBilanz(simulatorArt)}`;
   } else {
     $('kapiteltitel').textContent = kapitel.titel + (ADMIN ? ' (Admin)' : wiederholung ? ' (Wiederholung)' : '');
     const punkte = kapitel.aufgaben.map((_, i) => (i < aufgabeIndex ? '●' : i === aufgabeIndex ? '◉' : '○')).join(' ');
@@ -282,7 +281,11 @@ $('antwort-form').onsubmit = event => {
 
   if (!istRichtig(eingabe, aufgabe.loesung) || (mitRest && !istRichtig(restEingabe, aufgabe.rest))) {
     fehlversuche++;
-    serie = 0;
+    if (!ADMIN && simulatorArt) {
+      stand = { ...stand, simulatorFalsch: { ...stand.simulatorFalsch, [simulatorArt]: (stand.simulatorFalsch?.[simulatorArt] ?? 0) + 1 } };
+      speichern();
+      $('fortschritt').textContent = `🎮 ${simulatorBilanz(simulatorArt)}`;
+    }
     if (!ADMIN && !simulatorArt) {
       const schluessel = `${kapitel.id}#${imBonus(kapitel) ? 'Bonus' : aufgabeIndex + 1}`;
       stand = mitFalscherAntwort(stand, schluessel, mitRest ? `${eingabe} Rest ${restEingabe}` : eingabe);
@@ -304,16 +307,13 @@ $('antwort-form').onsubmit = event => {
     stand = mitStatistik(stand, rechenarten(aufgabe), fehlversuche, schluessel);
   }
   if (simulatorArt) {
-    if (fehlversuche === 0) serie++;
-    const rekord = Math.max(stand.simulatorRekord?.[simulatorArt] ?? 0, serie);
     let neues = null;
     if (!ADMIN) {
-      stand = { ...stand, simulatorRekord: { ...stand.simulatorRekord, [simulatorArt]: rekord } };
       ({ stand, neuesAbzeichen: neues } = simulatorAufgabeGeloest(stand, simulatorArt));
     }
     speichern();
     const name = SIMULATOR_ARTEN.find(a => a.id === simulatorArt).name;
-    meldung((fehlversuche === 0 ? `Richtig! Serie: ${serie}` : 'Richtig!')
+    meldung('Richtig!'
       + (neues ? ` – Neues Abzeichen: ${name} ${neues.name} ${neues.symbol}!` : ''), 'richtig');
     weiterTimer = setTimeout(() => { simAufgabe = erzeugeAufgabe(simulatorArt); zeigeAufgabe(); }, neues ? 3000 : 1200);
     return;
@@ -478,7 +478,7 @@ function zeigeSimulatorMenu() {
     const b = element('button', 'kachel offen');
     const text = element('div');
     text.append(element('b', '', a.name), simulatorAbzeichenZeile(a.id),
-      element('small', '', `${stand.simulatorGeloest?.[a.id] ?? 0} gelöst · Rekord: ${stand.simulatorRekord?.[a.id] ?? 0} in Folge`));
+      element('small', '', simulatorBilanz(a.id)));
     const bild = `Kapitelbilder/Simulator/${a.id}.jpg`;
     if (welt.bilder.includes(bild)) {
       const vorschau = element('img', 'vorschau');
@@ -493,9 +493,10 @@ function zeigeSimulatorMenu() {
   zeige('simulator');
 }
 
+const simulatorBilanz = art => `✅ ${stand.simulatorGeloest?.[art] ?? 0} richtig · ❌ ${stand.simulatorFalsch?.[art] ?? 0} falsch`;
+
 function starteSimulator(art) {
   simulatorArt = art;
-  serie = 0;
   simAufgabe = erzeugeAufgabe(art);
   zeigeAufgabe();
 }
@@ -510,7 +511,7 @@ function zeigeStatistik() {
   for (const t of ['Rechenart', 'Gelöst', 'Fehlversuche', 'Ø pro Aufgabe', 'Mit Tipp']) kopf.append(element('th', '', t));
   $('statistik-arten').replaceChildren(kopf, ...(zeilen.length ? zeilen.map(z => {
     const tr = element('tr', z.schnitt >= 1 ? 'schwer' : '');
-    for (const t of [RECHENART_NAMEN[z.art] ?? z.art, z.aufgaben, z.fehlversuche, z.schnitt.toFixed(1), `${Math.round(100 * z.mitTipp / z.aufgaben)} %`]) tr.append(element('td', '', t));
+    for (const t of [RECHENART_NAMEN[z.art] ?? z.art, z.aufgaben, z.fehlversuche, `${Math.round(100 * z.schnitt)} %`,`${Math.round(100 * z.mitTipp / z.aufgaben)} %`]) tr.append(element('td', '', t));
     return tr;
   }) : [(() => { const tr = element('tr'); tr.append(element('td', '', 'Noch keine Daten – es wird ab jetzt mitgezählt.')); return tr; })()]));
 
