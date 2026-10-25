@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer, mitRang, SIMULATOR_STUFEN, simulatorAufgabeGeloest, simulatorStufen, mitFalscherAntwort, verteileBilder } from '../public/logik.js';
+import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer, mitRang, SIMULATOR_STUFEN, simulatorAufgabeGeloest, simulatorStufen, mitFalscherAntwort, verteileBilder, RECHENART_NAMEN } from '../public/logik.js';
 
 test('normalisiere', () => {
   assert.equal(normalisiere('X-wing_SWB.webp'), 'x wing swb.webp');
@@ -253,4 +253,8 @@ test('verteileBilder: möglichst jedes Bild nur einmal im Kapitel', () => {
     assert.equal(b[3], null);
   }
   assert.deepEqual(verteileBilder(['X-Wing/a.png'], [{ bild: ['x-wing/'] }, { bild: ['x-wing/'] }]), ['X-Wing/a.png', 'X-Wing/a.png']);
+});
+
+test('jede Simulator-Übung hat einen Namen für die Statistik', () => {
+  for (const a of SIMULATOR_ARTEN) assert.ok(RECHENART_NAMEN[a.id], a.id);
 });

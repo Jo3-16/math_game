@@ -220,7 +220,7 @@ export function rechneMitRest(rechnung) {
 
 export const RECHENART_NAMEN = {
   mal: 'Malnehmen', geteilt: 'Teilen', rest: 'Teilen mit Rest', plusminus: 'Plus & Minus',
-  einheiten: 'Größen & Einheiten', raetsel: 'Bonus-Rätsel',
+  einheiten: 'Größen & Einheiten', raetsel: 'Bonus-Rätsel', logik: 'Logik-Rätsel',
 };
 
 export function rechenarten(aufgabe) {
