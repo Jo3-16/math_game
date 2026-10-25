@@ -1,5 +1,5 @@
 :root {
-  --hintergrund: #0b0f1a;
+  --hintergrund: #05070d;
   --flaeche: #111827;
   --akzent: #ffe81f;
   --text: #e8e6d9;
@@ -44,8 +44,6 @@ button.link { background: none; color: var(--akzent); opacity: 1; font-weight: n
 #uebersicht > .kopf .punkte { align-self: flex-start; white-space: normal; text-align: left; }
 .punkte { color: var(--akzent); font-weight: bold; font-size: 24px; white-space: nowrap; }
 .spielername { color: var(--text); margin-right: 12px; }
-button.spielername { background: none; padding: 0; color: var(--text); font-size: inherit; }
-button.spielername::after { content: " ✏️"; font-size: .8em; }
 
 /* Übersicht */
 :root { --kachelbild-breite: 180px; --kachelbild-hoehe: 130px; } /* Vorschaubild = Abzeichen-Größe */
@@ -145,7 +143,7 @@ button.holo { width: 100%; text-align: left; font: inherit; font-weight: normal;
 .bildansicht { position: fixed; inset: 0; background: rgba(0, 0, 0, .92); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; z-index: 10; }
 .bildansicht img { max-width: 100%; max-height: calc(100vh - 140px); border-radius: 10px; box-shadow: 0 0 30px rgba(80, 200, 255, .5); }
 .bildansicht p { margin: 0; color: var(--akzent); font-size: 20px; }
-#bildansicht-zurueck { align-self: flex-start; }
+#bildansicht-zurueck { position: absolute; top: 24px; right: 24px; }
 .admin-leiste { display: flex; justify-content: space-between; align-items: center; gap: 16px; border: 2px dashed #ff8a80; border-radius: 8px; padding: 8px 12px; margin-bottom: 16px; }
 .tipp {
   display: flex; align-items: center; gap: 16px;
@@ -180,7 +178,6 @@ button.holo { width: 100%; text-align: left; font: inherit; font-weight: normal;
 .abzeichen-panel { margin-top: 32px; }
 .seiten-kopf { font-family: 'Exo 2', system-ui, sans-serif; }
 .seiten-kopf .kopf { margin-bottom: 8px; }
-.seiten-kopf .kopf a, .seiten-kopf .kopf .link { text-decoration: none; font-size: 15px; margin: 0; }
 .seiten-kopf p { margin: 8px 0 0; }
 .seiten-kopf + .raster, .seiten-kopf + .archiv-raster { margin-top: 28px; }
 /* Flugsimulator-Kacheln und Archiv-Hologramme wie Cockpit-Anzeigen */
@@ -195,7 +192,10 @@ button.holo { width: 100%; text-align: left; font: inherit; font-weight: normal;
 #aufgabe .kopf { margin-bottom: 16px; }
 #aufgabe .punkte { white-space: normal; font-size: 22px; } /* sonst schneidet das schmale Panel den Ton-Knopf ab */
 #aufgabe .kapiteltitel { font-family: 'Orbitron', sans-serif; font-size: 30px; letter-spacing: 1px; margin: 12px 0 8px; text-shadow: 0 0 14px rgba(255, 232, 31, .4); }
-#aufgabe .fortschritt, #zurueck, .seiten-kopf .kopf a, .seiten-kopf .kopf .link { color: var(--hud); font-family: 'Orbitron', sans-serif; font-size: 13px; letter-spacing: 1px; opacity: 1; }
+#aufgabe .fortschritt { color: var(--hud); font-family: 'Orbitron', sans-serif; font-size: 13px; letter-spacing: 1px; }
+/* Alle Zurück-Knöpfe gleich: Cyan, Orbitron, oben rechts */
+.zurueck-knopf, button.zurueck-knopf { color: var(--hud); font-family: 'Orbitron', sans-serif; font-size: 15px; font-weight: normal; letter-spacing: 1px; opacity: 1;
+  text-decoration: none; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; }
 #aufgabe .geschichte { font-size: 20px; }
 #aufgabe .frage { font-size: 21px; }
 #antwort, #antwort-rest {
@@ -219,12 +219,23 @@ button.holo { width: 100%; text-align: left; font: inherit; font-weight: normal;
   -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
 .abzeichen .ic, .abzeichen .hex { margin: 0 auto; }
 .overlay-symbol .ic { width: 1em; height: 1em; }
-body[data-icons="silhouetten"] .ic { color: var(--hud); filter: drop-shadow(0 0 5px var(--hud)); }
-body[data-icons="silhouetten"] .abzeichen .ic, body[data-icons="silhouetten"] .overlay-symbol .ic { color: #ffd54a; filter: drop-shadow(0 0 6px rgba(255, 213, 74, .6)); }
-body[data-icons="duotone"] .ic { color: var(--hud); filter: drop-shadow(0 0 4px rgba(61, 224, 255, .5)); }
-body[data-icons="neon"] .ic { color: #7ff3ff; filter: drop-shadow(0 0 3px var(--hud)) drop-shadow(0 0 10px var(--hud)); }
+.ic-silhouetten { color: var(--hud); filter: drop-shadow(0 0 5px var(--hud)); }
+.abzeichen .ic-silhouetten, .overlay-symbol .ic-silhouetten { color: #ffd54a; filter: drop-shadow(0 0 6px rgba(255, 213, 74, .6)); }
+.ic-duotone { color: var(--hud); filter: drop-shadow(0 0 4px rgba(61, 224, 255, .5)); }
+.ic-neon { color: #7ff3ff; filter: drop-shadow(0 0 3px var(--hud)) drop-shadow(0 0 10px var(--hud)); }
 .hex { display: inline-grid; place-items: center; width: 1.6em; height: 1.45em; vertical-align: middle; background: linear-gradient(160deg, #1d5b7a, #0a2233);
   clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0 50%); box-shadow: inset 0 0 0 2px var(--hud); }
 .hex .ic { width: .85em; height: .85em; vertical-align: 0; color: #e8fbff; }
 .abzeichen .hex, .overlay-symbol .hex { display: grid; background: linear-gradient(160deg, #ffd54a, #b8860b); }
 .abzeichen .hex .ic, .overlay-symbol .hex .ic { color: #2a1d00; }
+
+/* Einstellungen */
+#name-eingabe { font: inherit; font-size: 24px; padding: 6px 12px; width: min(340px, 100%); color: var(--text);
+  background: rgba(0, 0, 0, .5); border: 2px solid var(--hud); box-shadow: inset 0 0 12px rgba(61, 224, 255, .3); }
+.wahl-liste { display: flex; flex-wrap: wrap; gap: 14px; }
+.wahl-knopf { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 150px; padding: 16px; color: var(--text); font-weight: normal;
+  background: rgba(0, 0, 0, .35); border: 2px solid rgba(61, 224, 255, .3); border-radius: 0; }
+.wahl-knopf:hover { border-color: var(--hud); }
+.wahl-knopf.aktiv { border-color: var(--akzent); box-shadow: 0 0 14px rgba(255, 232, 31, .35); }
+.wahl-knopf .beispiel { display: flex; gap: 10px; font-size: 32px; }
+.abzeichen small.datum { color: var(--hud); }

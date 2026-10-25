@@ -96,7 +96,7 @@ export function starte({ wurzel = PROJEKT, port = PORT } = {}) {
       datei = path.join(await weltOrdner(teile[1]), 'bilder', ...teile.slice(3));
     } else {
       if (teile.length === 1 && teile[0] === 'admin' && !adminErlaubt(req)) return [401];
-      const seite = teile.length === 0 || (teile.length === 1 && ['admin', 'abzeichen', 'archiv'].includes(teile[0]));
+      const seite = teile.length === 0 || (teile.length === 1 && ['admin', 'abzeichen', 'archiv', 'einstellungen'].includes(teile[0]));
       datei = path.join(wurzel, 'public', ...(seite ? ['index.html'] : teile));
     }
     return [200, await fs.readFile(datei), TYPEN[path.extname(datei).toLowerCase()] ?? 'application/octet-stream'];

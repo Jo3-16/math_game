@@ -18,7 +18,7 @@ export const ICONS = {
   "ton"                               : { silhouetten: 'speaker', duotone: 'speaker-high-duotone', neon: 'volume', plaketten: 'volume-high' },
   "ton-aus"                           : { silhouetten: 'speaker-off', duotone: 'speaker-slash-duotone', neon: 'volume-off', plaketten: 'volume-off' },
   "punkte"                            : { silhouetten: 'star-formation', duotone: 'star-four-duotone', neon: 'star', plaketten: 'star-shooting' },
-  "icons"                             : { silhouetten: 'palette', duotone: 'palette-duotone', neon: 'palette', plaketten: 'palette' },
+  "einstellungen"                     : { silhouetten: 'cog', duotone: 'gear-six-duotone', neon: 'settings', plaketten: 'cog' },
   "rang-0"                            : { silhouetten: 'sprout', duotone: 'plant-duotone', neon: 'plant', plaketten: 'sprout' },
   "rang-1"                            : { silhouetten: 'rank-1', duotone: 'caret-up-duotone', neon: 'chevron-up', plaketten: 'chevron-up' },
   "rang-2"                            : { silhouetten: 'rank-2', duotone: 'caret-double-up-duotone', neon: 'chevrons-up', plaketten: 'chevron-double-up' },

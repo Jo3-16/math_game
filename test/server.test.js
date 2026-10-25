@@ -99,3 +99,7 @@ test('abzeichen-seite liefert das spiel', async () => {
 test('archiv-seite liefert das spiel', async () => {
   assert.equal(await (await fetch(`${url}/archiv`)).text(), '<!doctype html>');
 });
+
+test('einstellungen-seite liefert das spiel', async () => {
+  assert.equal(await (await fetch(`${url}/einstellungen`)).text(), '<!doctype html>');
+});

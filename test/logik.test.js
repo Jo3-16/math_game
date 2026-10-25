@@ -282,3 +282,10 @@ test('jedes Kapitel und jeder Rang hat in jedem Icon-Set ein geladenes Icon', as
     }
   }
 });
+
+test('aufgabeGeloest merkt das Datum, an dem ein Abzeichen erreicht wurde', () => {
+  let s = aufgabeGeloest(leererStand(), 'a', 1, 0, new Date(2026, 9, 20, 18, 30));
+  assert.deepEqual(s.abzeichenDatum, { a: '2026-10-20' });
+  s = aufgabeGeloest({ ...s, kapitel: { a: { geloest: 0, punkte: 0, fertig: false } } }, 'a', 1, 0, new Date(2026, 9, 25)); // Wiederholung
+  assert.equal(s.abzeichenDatum.a, '2026-10-20'); // bleibt das erste Datum
+});

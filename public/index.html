@@ -18,14 +18,13 @@
     <header class="kopf hud-panel">
       <h1 id="weltname"></h1>
       <div class="punkte">
-        <button id="spielername" class="spielername" title="Namen ändern"></button> <a href="/abzeichen" class="punkte-link" title="Abzeichen &amp; Punkte"><span id="rang-uebersicht" class="rang"></span> <span data-icon="punkte">⭐</span> <span id="gesamt-uebersicht">0</span> Punkte</a>
+        <span id="spielername" class="spielername"></span> <a href="/abzeichen" class="punkte-link" title="Abzeichen &amp; Punkte"><span id="rang-uebersicht" class="rang"></span> <span data-icon="punkte">⭐</span> <span id="gesamt-uebersicht">0</span> Punkte</a>
         <a href="/abzeichen" class="kopf-link"><span data-icon="abzeichen">🏅</span> Abzeichen &amp; Punkte</a>
         <a href="/archiv" class="kopf-link"><span data-icon="archiv">🛰️</span> Archiv</a>
         <button id="simulator-knopf" class="link kopf-link"><span data-icon="simulator">🎮</span> Flugsimulator</button>
         <button id="galerie-knopf" class="link kopf-link" hidden><span data-icon="galerie">🖼️</span> Bildergalerie</button>
         <button id="statistik-knopf" class="link kopf-link" hidden><span data-icon="statistik">📊</span> Statistik</button>
-        <button class="link kopf-link ton-knopf" title="Ton an/aus"></button>
-        <button id="icon-knopf" class="link kopf-link" title="Icons wechseln"></button>
+        <a href="/einstellungen" class="kopf-link"><span data-icon="einstellungen">⚙️</span> Einstellungen</a>
       </div>
     </header>
     <div id="kapitel" class="raster"></div>
@@ -46,7 +45,7 @@
     <header class="hud-panel seiten-kopf">
       <div class="kopf">
         <h1>Abzeichen &amp; Punkte</h1>
-        <a href="/">← Zurück zur Übersicht</a>
+        <a href="/" class="zurueck-knopf">← Zurück</a>
       </div>
       <div class="punkte"><span id="ruhm-name" class="spielername"></span> <span id="ruhm-rang" class="rang"></span> <span data-icon="punkte">⭐</span> <span id="ruhm-punkte">0</span> Punkte</div>
       <p id="ruhm-zusammenfassung"></p>
@@ -63,11 +62,36 @@
     </section>
   </main>
 
+  <main id="einstellungen" hidden>
+    <header class="hud-panel seiten-kopf">
+      <div class="kopf">
+        <h1><span data-icon="einstellungen">⚙️</span> Einstellungen</h1>
+        <a href="/" class="zurueck-knopf">← Zurück</a>
+      </div>
+    </header>
+    <section class="hud-panel abzeichen-panel">
+      <h2>Pilotenname</h2>
+      <form id="name-form" autocomplete="off">
+        <input id="name-eingabe" maxlength="20" aria-label="Pilotenname">
+        <button>Speichern</button>
+      </form>
+      <p id="name-meldung" class="meldung richtig" aria-live="polite"></p>
+    </section>
+    <section class="hud-panel abzeichen-panel">
+      <h2>Icons</h2>
+      <div id="icon-wahl" class="wahl-liste"></div>
+    </section>
+    <section class="hud-panel abzeichen-panel">
+      <h2>Ton</h2>
+      <div id="ton-wahl" class="wahl-liste"></div>
+    </section>
+  </main>
+
   <main id="archiv" hidden>
     <header class="hud-panel seiten-kopf">
       <div class="kopf">
         <h1><span data-icon="archiv">🛰️</span> Hologramm-Archiv</h1>
-        <a href="/">← Zurück zur Übersicht</a>
+        <a href="/" class="zurueck-knopf">← Zurück</a>
       </div>
       <p id="archiv-zusammenfassung"></p>
     </header>
@@ -78,7 +102,7 @@
     <header class="hud-panel seiten-kopf">
       <div class="kopf">
         <h1><span data-icon="simulator">🎮</span> Flugsimulator</h1>
-        <button class="link zur-uebersicht">← Zurück zur Übersicht</button>
+        <button class="link zur-uebersicht zurueck-knopf">← Zurück</button>
       </div>
       <p>Jeder Pilot ist nur so gut wie sein schwächster Bereich. Hier trainierst du gezielt einzelne Fähigkeiten, bis du sie im Schlaf beherrschst – so wirst du ein echtes Flieger-Ass!</p>
       <p>Trainiere so lange du willst – immer neue Aufgaben. Jede gelöste Aufgabe zählt für deine Abzeichen.</p>
@@ -87,9 +111,11 @@
   </main>
 
   <main id="statistik" hidden>
-    <header class="kopf">
-      <h1><span data-icon="statistik">📊</span> Statistik</h1>
-      <button class="link zur-uebersicht">← Zurück zur Übersicht</button>
+    <header class="hud-panel seiten-kopf">
+      <div class="kopf">
+        <h1><span data-icon="statistik">📊</span> Statistik</h1>
+        <button class="link zur-uebersicht zurueck-knopf">← Zurück</button>
+      </div>
     </header>
     <h2>Nach Rechenart</h2>
     <table id="statistik-arten" class="statistik"></table>
@@ -98,9 +124,11 @@
   </main>
 
   <main id="galerie" hidden>
-    <header class="kopf">
-      <h1>Bildergalerie</h1>
-      <button id="galerie-zurueck" class="link">← Zurück zur Übersicht</button>
+    <header class="hud-panel seiten-kopf">
+      <div class="kopf">
+        <h1><span data-icon="galerie">🖼️</span> Bildergalerie</h1>
+        <button id="galerie-zurueck" class="link zurueck-knopf">← Zurück</button>
+      </div>
     </header>
     <p id="galerie-zusammenfassung"></p>
     <div id="galerie-inhalt"></div>
@@ -109,7 +137,7 @@
   <main id="aufgabe" hidden>
     <div class="bildrahmen"><img id="bild" alt=""></div>
     <section class="text hud-panel">
-      <button id="zurueck" class="link">← Zurück zur Übersicht</button>
+      <button id="zurueck" class="link zurueck-knopf">← Zurück</button>
       <header class="kopf">
         <div>
           <div id="kapiteltitel" class="kapiteltitel"></div>
@@ -150,7 +178,7 @@
   </div>
 
   <div id="bildansicht" class="bildansicht" hidden>
-    <button id="bildansicht-zurueck">← Zurück</button>
+    <button id="bildansicht-zurueck" class="link zurueck-knopf">← Zurück</button>
     <img id="bildansicht-bild" alt="">
     <p id="bildansicht-titel"></p>
   </div>

@@ -98,7 +98,7 @@ export function punkteFuer(fehlversuche) {
   return fehlversuche < TIPP_AB ? 15 : 10;
 }
 
-// Spielstand: { name, kapitel: { [id]: { geloest, punkte, fertig } }, abzeichen: [id] }
+// Spielstand: { name, kapitel: { [id]: { geloest, punkte, fertig } }, abzeichen: [id], abzeichenDatum: { [id]: 'JJJJ-MM-TT' } }
 export const STANDARD_NAME = 'C3-Jo';
 
 export function leererStand() {
@@ -121,14 +121,19 @@ export function kapitelStatus(stand, kapitelIds) {
   });
 }
 
-export function aufgabeGeloest(stand, kapitelId, anzahlAufgaben, fehlversuche) {
+const tagVon = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+export function aufgabeGeloest(stand, kapitelId, anzahlAufgaben, fehlversuche, heute = new Date()) {
   const neu = structuredClone(stand);
   const k = neu.kapitel[kapitelId] ??= { geloest: 0, punkte: 0, fertig: false };
   k.geloest += 1;
   k.punkte += punkteFuer(fehlversuche);
   if (k.geloest >= anzahlAufgaben) {
     k.fertig = true;
-    if (!neu.abzeichen.includes(kapitelId)) neu.abzeichen.push(kapitelId);
+    if (!neu.abzeichen.includes(kapitelId)) {
+      neu.abzeichen.push(kapitelId);
+      neu.abzeichenDatum = { ...neu.abzeichenDatum, [kapitelId]: tagVon(heute) };
+    }
   }
   return neu;
 }
@@ -257,7 +262,7 @@ export const SIMULATOR_ARTEN = [
   { id: 'mal', name: 'Einmaleins' },
   { id: 'geteilt', name: 'Teilen' },
   { id: 'rest', name: 'Teilen mit Rest' },
-  { id: 'plusminus', name: 'Plus & Minus bis 999' },
+  { id: 'plusminus', name: 'Plus & Minus' },
   { id: 'einheiten', name: 'Größen & Einheiten' },
   { id: 'logik', name: 'Logik-Rätsel' },
 ];

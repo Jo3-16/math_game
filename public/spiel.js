@@ -7,7 +7,7 @@ import {
 import { ICON_SETS, ICONS } from './icons.js';
 
 const $ = id => document.getElementById(id);
-const ANSICHTEN = ['auswahl', 'uebersicht', 'aufgabe', 'ruhmeshalle', 'galerie', 'simulator', 'statistik', 'archiv'];
+const ANSICHTEN = ['auswahl', 'uebersicht', 'aufgabe', 'ruhmeshalle', 'galerie', 'simulator', 'statistik', 'archiv', 'einstellungen'];
 // Admin-Modus (/admin): alle Kapitel offen, Aufgaben überspringen, Lösung sichtbar, nichts wird gespeichert.
 const ADMIN = location.pathname === '/admin';
 
@@ -36,10 +36,9 @@ function zeigeRang(ziel, r = rang(gesamtPunkte(stand), stand.rangIndex ?? 0)) { 
 
 // --- Icons: gewähltes Set steht im Spielstand (stand.icons); ohne passendes Icon erscheint das Emoji ---
 const iconSet = () => ICON_SETS.find(s => s.id === stand?.icons)?.id ?? 'emoji';
-function ikon(begriff, emoji) {
-  const set = iconSet();
+function ikon(begriff, emoji, set = iconSet()) {
   if (!ICONS[begriff]?.[set]) return element('span', 'emoji', emoji);
-  const i = element('span', 'ic');
+  const i = element('span', `ic ic-${set}`);
   i.style.setProperty('--i', `url("/icons/${set}/${begriff}.svg")`);
   if (set !== 'plaketten') return i;
   const hex = element('span', 'hex');
@@ -47,21 +46,12 @@ function ikon(begriff, emoji) {
   return hex;
 }
 function wendeIconsAn() {
-  document.body.dataset.icons = iconSet();
   for (const e of document.querySelectorAll('[data-icon]')) {
     e.dataset.emoji ??= e.textContent;
     e.replaceChildren(ikon(e.dataset.icon, e.dataset.emoji));
   }
-  $('icon-knopf').replaceChildren(ikon('icons', '🎨'), ' Icons: ', ICON_SETS.find(s => s.id === iconSet()).name);
   zeigeTonKnopf();
 }
-$('icon-knopf').onclick = () => {
-  const i = ICON_SETS.findIndex(s => s.id === iconSet());
-  stand = { ...stand, icons: ICON_SETS[(i + 1) % ICON_SETS.length].id };
-  speichern();
-  wendeIconsAn();
-  zeigeUebersicht();
-};
 
 // --- Ton: im Browser erzeugt, an/aus wird im Browser gemerkt ---
 let audio;
@@ -125,6 +115,7 @@ async function ladeWelt(id) {
   wendeIconsAn();
   if (location.pathname === '/abzeichen') zeigeRuhmeshalle();
   else if (location.pathname === '/archiv') zeigeArchiv();
+  else if (location.pathname === '/einstellungen') zeigeEinstellungen();
   else zeigeUebersicht();
 }
 
@@ -136,6 +127,8 @@ function abzeichenKarte(k, i, mitDetails) {
   if (mitDetails) {
     d.append(element('small', '', `Kapitel ${kapitelNummer(k, i)} · ${s?.punkte ?? 0}/${maxPunkte(k)} Punkte`));
     if (hat) d.append(element('small', '', sterneText(kapitelSterne(s, k.aufgaben.length)) + (s?.bonus ? ' 🥇' : '')));
+    const datum = stand.abzeichenDatum?.[k.id];
+    if (hat && datum) d.append(element('small', 'datum', `erreicht am ${new Date(`${datum}T12:00`).toLocaleDateString('de-DE')}`));
   }
   d.firstChild.append(ikon(k.id, k.abzeichen.symbol));
   d.title = k.titel + (s?.bonus ? ' – Gold-Abzeichen' : '');
@@ -270,7 +263,6 @@ function zeigeAufgabe() {
   $('meldung').textContent = '';
   $('meldung').className = 'meldung';
   $('bonus-ueberspringen').hidden = !bonus;
-  $('zurueck').textContent = simulatorArt ? '← Zurück zum Flugsimulator' : '← Zurück zur Übersicht';
   $('tipp').hidden = !ADMIN;
   $('admin-leiste').hidden = !ADMIN;
   $('admin-loesung').textContent = `Lösung: ${aufgabe.loesung}` + (aufgabe.rest !== undefined ? ` Rest ${aufgabe.rest}` : '')
@@ -610,12 +602,40 @@ $('overlay-weiter').onclick = () => {
   zeigeUebersicht();
 };
 
-$('spielername').onclick = () => {
-  const neu = prompt('Wie heißt der Pilot?', stand.name);
-  if (neu === null) return;
-  stand = mitName(stand, neu);
+// Einstellungen: Pilotenname, Icon-Set und Ton
+function zeigeEinstellungen() {
+  $('name-eingabe').value = stand.name;
+  $('name-meldung').textContent = '';
+  // je Set eine Auswahl mit drei Beispiel-Icons im Stil dieses Sets
+  $('icon-wahl').replaceChildren(...ICON_SETS.map(s => {
+    const b = element('button', `wahl-knopf${s.id === iconSet() ? ' aktiv' : ''}`);
+    const beispiel = element('span', 'beispiel');
+    beispiel.append(ikon('abzeichen', '🏅', s.id), ikon('simulator', '🎮', s.id), ikon('pilotentraining', '🎖️', s.id));
+    b.append(beispiel, element('b', '', s.name));
+    b.onclick = () => { stand = { ...stand, icons: s.id }; speichern(); wendeIconsAn(); zeigeEinstellungen(); };
+    return b;
+  }));
+  $('ton-wahl').replaceChildren(...[[true, 'ton', '🔊', 'An'], [false, 'ton-aus', '🔇', 'Aus']].map(([an, begriff, emoji, name]) => {
+    const b = element('button', `wahl-knopf${tonAn() === an ? ' aktiv' : ''}`);
+    const beispiel = element('span', 'beispiel');
+    beispiel.append(ikon(begriff, emoji));
+    b.append(beispiel, element('b', '', name));
+    b.onclick = () => {
+      try { localStorage.setItem('ton', an ? 'an' : 'aus'); } catch { /* egal */ }
+      zeigeTonKnopf();
+      zeigeEinstellungen();
+      if (an) ton('richtig');
+    };
+    return b;
+  }));
+  zeige('einstellungen');
+}
+$('name-form').onsubmit = e => {
+  e.preventDefault();
+  stand = mitName(stand, $('name-eingabe').value);
   speichern();
-  $('spielername').textContent = stand.name;
+  $('name-eingabe').value = stand.name;
+  $('name-meldung').textContent = `Gespeichert – willkommen an Bord, ${stand.name}!`;
 };
 
 $('zurueck').onclick = () => {
