@@ -15,7 +15,7 @@
   </main>
 
   <main id="uebersicht" hidden>
-    <header class="kopf">
+    <header class="kopf hud-panel">
       <h1 id="weltname"></h1>
       <div class="punkte">
         <button id="spielername" class="spielername" title="Namen ändern"></button> <a href="/abzeichen" class="punkte-link" title="Abzeichen &amp; Punkte"><span id="rang-uebersicht" class="rang"></span> ⭐ <span id="gesamt-uebersicht">0</span> Punkte</a>
@@ -28,8 +28,10 @@
       </div>
     </header>
     <div id="kapitel" class="raster"></div>
-    <h2>Abzeichen</h2>
-    <div id="abzeichen" class="abzeichen"></div>
+    <section class="hud-panel abzeichen-panel">
+      <h2>Abzeichen</h2>
+      <div id="abzeichen" class="abzeichen"></div>
+    </section>
     <section id="admin-raenge" hidden>
       <h2>Ränge</h2>
       <table id="raenge-tabelle" class="statistik"></table>
@@ -40,35 +42,46 @@
   </main>
 
   <main id="ruhmeshalle" hidden>
-    <header class="kopf">
-      <h1>Abzeichen &amp; Punkte</h1>
-      <a href="/">← Zurück zur Übersicht</a>
+    <header class="hud-panel seiten-kopf">
+      <div class="kopf">
+        <h1>Abzeichen &amp; Punkte</h1>
+        <a href="/">← Zurück zur Übersicht</a>
+      </div>
+      <div class="punkte"><span id="ruhm-name" class="spielername"></span> <span id="ruhm-rang" class="rang"></span> ⭐ <span id="ruhm-punkte">0</span> Punkte</div>
+      <p id="ruhm-zusammenfassung"></p>
+      <p id="ruhm-naechster"></p>
     </header>
-    <div class="punkte"><span id="ruhm-name" class="spielername"></span> <span id="ruhm-rang" class="rang"></span> ⭐ <span id="ruhm-punkte">0</span> Punkte</div>
-    <p id="ruhm-zusammenfassung"></p>
-    <p id="ruhm-naechster"></p>
-    <div id="ruhm-abzeichen" class="abzeichen ruhm"></div>
-    <h2>🎮 Flugsimulator-Abzeichen</h2>
-    <p>Bronze ab 5, Silber ab 10, Gold ab 20 und Meister ab 40 gelösten Aufgaben je Rechenart.</p>
-    <div id="ruhm-simulator" class="abzeichen ruhm"></div>
+    <section class="hud-panel abzeichen-panel">
+      <h2>🏅 Kapitel-Abzeichen</h2>
+      <div id="ruhm-abzeichen" class="abzeichen ruhm"></div>
+    </section>
+    <section class="hud-panel abzeichen-panel">
+      <h2>🎮 Flugsimulator-Abzeichen</h2>
+      <p>Bronze ab 5, Silber ab 10, Gold ab 20 und Meister ab 40 gelösten Aufgaben je Rechenart.</p>
+      <div id="ruhm-simulator" class="abzeichen ruhm"></div>
+    </section>
   </main>
 
   <main id="archiv" hidden>
-    <header class="kopf">
-      <h1>🛰️ Hologramm-Archiv</h1>
-      <a href="/">← Zurück zur Übersicht</a>
+    <header class="hud-panel seiten-kopf">
+      <div class="kopf">
+        <h1>🛰️ Hologramm-Archiv</h1>
+        <a href="/">← Zurück zur Übersicht</a>
+      </div>
+      <p id="archiv-zusammenfassung"></p>
     </header>
-    <p id="archiv-zusammenfassung"></p>
     <div id="archiv-inhalt" class="archiv-raster"></div>
   </main>
 
   <main id="simulator" hidden>
-    <header class="kopf">
-      <h1>🎮 Flugsimulator</h1>
-      <button class="link zur-uebersicht">← Zurück zur Übersicht</button>
+    <header class="hud-panel seiten-kopf">
+      <div class="kopf">
+        <h1>🎮 Flugsimulator</h1>
+        <button class="link zur-uebersicht">← Zurück zur Übersicht</button>
+      </div>
+      <p>Jeder Pilot ist nur so gut wie sein schwächster Bereich. Hier trainierst du gezielt einzelne Fähigkeiten, bis du sie im Schlaf beherrschst – so wirst du ein echtes Flieger-Ass!</p>
+      <p>Trainiere so lange du willst – immer neue Aufgaben. Wie lang wird deine Serie ohne Fehler?</p>
     </header>
-    <p>Jeder Pilot ist nur so gut wie sein schwächster Bereich. Hier trainierst du gezielt einzelne Fähigkeiten, bis du sie im Schlaf beherrschst – so wirst du ein echtes Flieger-Ass!</p>
-    <p>Trainiere so lange du willst – immer neue Aufgaben. Wie lang wird deine Serie ohne Fehler?</p>
     <div id="simulator-arten" class="raster"></div>
   </main>
 
@@ -94,7 +107,7 @@
 
   <main id="aufgabe" hidden>
     <div class="bildrahmen"><img id="bild" alt=""></div>
-    <section class="text">
+    <section class="text hud-panel">
       <button id="zurueck" class="link">← Zurück zur Übersicht</button>
       <header class="kopf">
         <div>
