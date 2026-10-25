@@ -268,6 +268,7 @@ export function erzeugeAufgabe(art, zufall = Math.random) {
       [`${a} Staffeln mit je ${b} X-Wings starten zum Übungsflug.`, 'Wie viele X-Wings starten?', ['x-wing/']],
       [`R2-D2 prüft ${a} Kisten mit je ${b} Ersatzteilen.`, 'Wie viele Ersatzteile prüft er?', ['r2-d2']],
       [`${a} Trupps mit je ${b} Sturmtruppen marschieren vorbei.`, 'Wie viele Sturmtruppen sind es?', ['sturmtruppen']],
+      [`${a} Korvetten der Rebellen haben je ${b} Rettungskapseln an Bord.`, 'Wie viele Rettungskapseln sind es zusammen?', ['corellianische-korvette/']],
     ]);
     return { art, geschichte, frage, bild, rechnung: `${a} * ${b}`, loesung: a * b, tipp: `${a} mal ${b} – das Einmaleins mit ${b} dir hilft.` };
   }
@@ -280,6 +281,7 @@ export function erzeugeAufgabe(art, zufall = Math.random) {
       const [geschichte, frage, bild] = eins(zufall, [
         [`${a} Rebellen werden gerecht auf ${b} Transporter verteilt.`, 'Wie viele Rebellen sind in jedem Transporter?', ['transporter']],
         [`Wicket teilt ${a} Beeren gerecht unter ${b} Ewoks auf.`, 'Wie viele Beeren bekommt jeder Ewok?', ['ewoks/']],
+        [`${a} Rebellen gehen gerecht verteilt an Bord von ${b} Korvetten.`, 'Wie viele Rebellen sind auf jeder Korvette?', ['corellianische-korvette/']],
       ]);
       return { art, geschichte, frage, bild, rechnung: `${a} / ${b}`, loesung: q, tipp: `Welche Zahl mal ${b} ergibt ${a}, hmm?` };
     }
@@ -299,49 +301,122 @@ export function erzeugeAufgabe(art, zufall = Math.random) {
     return { art, geschichte: `Ein Sternzerstörer hat ${a} Energiepunkte. ${b} davon werden zerstört.`, frage: 'Wie viele Energiepunkte bleiben übrig?', bild: ['sternzerstörer/'], rechnung: `${a} - ${b}`, loesung: a - b, tipp };
   }
   if (art === 'einheiten') {
-    const typ = zahl(zufall, 0, 2);
+    const typ = zahl(zufall, 0, 3);
     if (typ === 0) {
-      const m = zahl(zufall, 1, 7), s = zahl(zufall, 1, 59);
-      return { art, geschichte: `Der Sprung in den Hyperraum dauert ${m} Minuten und ${s} Sekunden.`, frage: 'Wie viele Sekunden sind das?', bild: ['hyperraum'], rechnung: `${m} * 60 + ${s}`, loesung: m * 60 + s, tipp: 'Eine Minute hat 60 Sekunden. Erst die Minuten umrechnen, dann die Sekunden dazu.' };
+      const m = zahl(zufall, 2, 7), s = zahl(zufall, 2, 59);
+      const [geschichte, bild] = eins(zufall, [
+        [`Der Sprung in den Hyperraum dauert ${m} Minuten und ${s} Sekunden.`, ['hyperraum']],
+        [`R2-D2 repariert den Antrieb des X-Wings in ${m} Minuten und ${s} Sekunden.`, ['r2-d2']],
+        [`Luke balanciert bei Yodas Training ${m} Minuten und ${s} Sekunden auf einer Hand.`, ['dagobah/']],
+        [`Die Ewoks brauchen ${m} Minuten und ${s} Sekunden, um eine Falle aufzubauen.`, ['ewoks/']],
+      ]);
+      return { art, geschichte, frage: 'Wie viele Sekunden sind das?', bild, rechnung: `${m} * 60 + ${s}`, loesung: m * 60 + s, tipp: 'Eine Minute hat 60 Sekunden. Erst die Minuten umrechnen, dann die Sekunden dazu.' };
     }
     if (typ === 1) {
-      const h = zahl(zufall, 2, 8);
-      return { art, geschichte: `Der Flug nach Tatooine dauert ${h} Stunden.`, frage: 'Wie viele Minuten sind das?', bild: ['tatooine/'], rechnung: `${h} * 60`, loesung: h * 60, tipp: 'Eine Stunde hat 60 Minuten. Mal rechnen du musst.' };
+      const h = zahl(zufall, 2, 8), min = eins(zufall, [0, 0, zahl(zufall, 5, 55)]);
+      const [flug, bild] = eins(zufall, [
+        ['von Hoth nach Dagobah', ['dagobah/']], ['von Dagobah zur Wolkenstadt', ['wolkenstadt-bespin/']],
+        ['von Tatooine zum Todesstern', ['todesstern/']], ['vom Todesstern nach Yavin 4', ['yavin-4/']],
+        ['von Yavin 4 nach Hoth', ['hoth/']], ['von der Wolkenstadt zur Rebellenflotte', ['mon-calamari-cruiser/']],
+        ['von der Rebellenflotte nach Endor', ['endor/']], ['von Alderaan nach Tatooine', ['tatooine/']],
+      ]);
+      const dauer = min ? `${h} Stunden und ${min} Minuten` : `${h} Stunden`;
+      return { art, geschichte: `Der Flug ${flug} dauert ${dauer}.`, frage: 'Wie viele Minuten sind das?', bild,
+        rechnung: min ? `${h} * 60 + ${min}` : `${h} * 60`, loesung: h * 60 + min,
+        tipp: min ? 'Eine Stunde hat 60 Minuten. Erst die Stunden umrechnen, dann die Minuten dazu.' : 'Eine Stunde hat 60 Minuten. Mal rechnen du musst.' };
+    }
+    if (typ === 2) {
+      const km = zahl(zufall, 1, 9), m = zahl(zufall, 10, 990);
+      const [weg, bild] = eins(zufall, [
+        ['Von Mos Eisley bis zur Farm der Lars-Familie', ['tatooine/']], ['Von der Echo-Basis bis zum Schildgenerator', ['hoth/']],
+        ['Vom Landeplatz bis zum Baumdorf der Ewoks', ['ewoks/']], ['Vom Massassi-Tempel bis zum Dschungelfluss', ['yavin-4/']],
+        ['Von Yodas Hütte bis zum Sumpf mit dem X-Wing', ['dagobah/']], ['Von der Landeplattform bis zur Karbonitkammer der Wolkenstadt', ['wolkenstadt-bespin/']],
+        ['Über die Oberfläche des Todessterns bis zum Lüftungsschacht', ['todesstern/']],
+      ]);
+      return { art, geschichte: `${weg} sind es ${km} Kilometer und ${m} Meter.`, frage: 'Wie viele Meter sind das?', bild,
+        rechnung: `${km} * 1000 + ${m}`, loesung: km * 1000 + m, tipp: 'Ein Kilometer hat 1000 Meter. Erst die Kilometer umrechnen, dann die Meter dazu.' };
     }
     const m = zahl(zufall, 1, 4), cm = zahl(zufall, 1, 99);
-    return { art, geschichte: `Ein Kabel für den X-Wing ist ${m} Meter und ${cm} Zentimeter lang.`, frage: 'Wie viele Zentimeter sind das?', bild: ['x-wing/'], rechnung: `${m} * 100 + ${cm}`, loesung: m * 100 + cm, tipp: 'Ein Meter hat 100 Zentimeter. Erst die Meter umrechnen, dann die Zentimeter dazu.' };
+    const [ding, bild] = eins(zufall, [
+      ['Das Laserkabel im Flügel eines X-Wings', ['x-wing/']], ['Das Abschleppseil eines Snowspeeders', ['snowspeeder/']],
+      ['Ein Ersatzrohr für den Millennium Falcon', ['millennium-falcon/']], ['Das Datenkabel, an das R2-D2 sich anschließt,', ['r2-d2']],
+      ['Das Seil einer Ewok-Falle', ['ewoks/']], ['Eine Antenne des Y-Wings', ['y-wing/']], ['Ein Metallträger, den Chewbacca schleppt,', ['chewbacca/']],
+    ]);
+    return { art, geschichte: `${ding} ist ${m} Meter und ${cm} Zentimeter lang.`, frage: 'Wie viele Zentimeter sind das?', bild, rechnung: `${m} * 100 + ${cm}`, loesung: m * 100 + cm, tipp: 'Ein Meter hat 100 Zentimeter. Erst die Meter umrechnen, dann die Zentimeter dazu.' };
   }
   if (art === 'logik') {
     // Tipps ohne Zahlen, damit sie nie die Lösung verraten.
     const typ = zahl(zufall, 0, 4);
     if (typ === 0) {
       const folge = eins(zufall, ['plus', 'minus', 'doppelt']);
-      const s = folge === 'doppelt' ? zahl(zufall, 2, 15) : folge === 'plus' ? zahl(zufall, 2, 50) : zahl(zufall, 100, 200);
-      const d = zahl(zufall, 3, folge === 'plus' ? 25 : 15);
+      const s = folge === 'doppelt' ? zahl(zufall, 2, 10) : folge === 'plus' ? zahl(zufall, 2, 30) : zahl(zufall, 50, 120);
+      const d = zahl(zufall, 2, folge === 'plus' ? 12 : 10);
       const glied = i => (folge === 'doppelt' ? s * 2 ** i : folge === 'plus' ? s + i * d : s - i * d);
-      const zahlen = [0, 1, 2, 3].map(glied);
-      return { art, geschichte: `R2-D2 piept eine geheime Zahlenfolge: ${zahlen.join(', ')}, …`, frage: 'Welche Zahl kommt als Nächstes?', bild: ['r2-d2'],
-        rechnung: folge === 'doppelt' ? `${zahlen[3]} * 2` : `${zahlen[3]} ${folge === 'plus' ? '+' : '-'} ${d}`, loesung: glied(4),
+      const zahlen = [0, 1, 2, 3].map(glied).join(', ');
+      const [geschichte, bild] = eins(zufall, [
+        [`R2-D2 piept eine geheime Zahlenfolge: ${zahlen}, …`, ['r2-d2']],
+        [`Ein Funkspruch der Rebellen enthält diesen Code: ${zahlen}, …`, ['x-wing/']],
+        [`Auf Darth Vaders Geheimcode stehen die Zahlen ${zahlen}, …`, ['darth-vader/']],
+        [`Die Ewoks trommeln eine Botschaft: ${zahlen}, …`, ['ewoks/']],
+        [`C-3PO entschlüsselt eine imperiale Nachricht: ${zahlen}, …`, ['c-3po/']],
+        [`Die Tantive IV funkt einen geheimen Notruf: ${zahlen}, …`, ['corellianische-korvette/']],
+      ]);
+      return { art, geschichte, frage: 'Welche Zahl kommt als Nächstes?', bild,
+        rechnung: folge === 'doppelt' ? `${glied(3)} * 2` : `${glied(3)} ${folge === 'plus' ? '+' : '-'} ${d}`, loesung: glied(4),
         tipp: 'Schau genau, wie von Zahl zu Zahl es sich verändert. Immer gleich es weitergeht.' };
     }
     if (typ === 1) {
-      const a = zahl(zufall, 2, 9), x = zahl(zufall, 3, 40), b = zahl(zufall, 1, 30);
-      return { art, geschichte: `Yoda denkt sich eine Zahl. Er nimmt sie mal ${a} und zählt dann ${b} dazu. Heraus kommt ${a * x + b}.`, frage: 'Welche Zahl hat Yoda sich gedacht?', bild: ['yoda/'],
+      const a = zahl(zufall, 2, 5), x = zahl(zufall, 2, 20), b = zahl(zufall, 1, 20);
+      const [wer, er, bild] = eins(zufall, [
+        ['Yoda', 'Er', ['yoda/']], ['Obi-Wan', 'Er', ['obi-wan-kenobi/']], ['Prinzessin Leia', 'Sie', ['leia/']],
+        ['Lando', 'Er', ['lando-calrissian/']], ['Han Solo', 'Er', ['han-solo/']],
+      ]);
+      return { art, geschichte: `${wer} denkt sich eine Zahl. ${er} nimmt sie mal ${a} und zählt dann ${b} dazu. Heraus kommt ${a * x + b}.`, frage: `Welche Zahl hat ${wer} sich gedacht?`, bild,
         rechnung: `(${a * x + b} - ${b}) / ${a}`, loesung: x, tipp: 'Rückwärts rechnen du musst: Was dazugezählt wurde, wieder wegnehmen. Dann teilen statt malnehmen.' };
     }
     if (typ === 2) {
-      const k = zahl(zufall, 5, 20), y = zahl(zufall, 1, k - 1), beine = 2 * k + 2 * y;
-      return { art, geschichte: `Auf einer Farm auf Tatooine sind Menschen und Banthas. Zusammen haben sie ${k} Köpfe und ${beine} Beine. Ein Mensch hat zwei Beine, ein Bantha vier.`, frage: 'Wie viele Banthas sind auf der Farm?', bild: ['tatooine/'],
-        rechnung: `(${beine} - 2 * ${k}) / 2`, loesung: y, tipp: 'Gib zuerst jedem Kopf zwei Beine. Die übrigen Beine gehören den Banthas – jeder Bantha hat zwei mehr.' };
+      const k = zahl(zufall, 4, 12), y = zahl(zufall, 1, k - 1), beine = 2 * k + 2 * y;
+      const [geschichte, frage, bild] = eins(zufall, [
+        [`Auf einer Farm auf Tatooine sind Menschen und Banthas. Zusammen haben sie ${k} Köpfe und ${beine} Beine. Ein Mensch hat zwei Beine, ein Bantha vier.`, 'Wie viele Banthas sind auf der Farm?', ['tatooine/']],
+        [`In einer imperialen Halle stehen AT-STs und AT-ATs. Zusammen haben sie ${k} Köpfe und ${beine} Beine. Ein AT-ST hat zwei Beine, ein AT-AT vier.`, 'Wie viele AT-ATs stehen in der Halle?', ['at-at/', 'at-st/']],
+        [`Durch die Wüste ziehen Jawas mit ihren Dewbacks. Zusammen haben sie ${k} Köpfe und ${beine} Beine. Ein Jawa hat zwei Beine, ein Dewback vier.`, 'Wie viele Dewbacks sind es?', ['tatooine/']],      ]);
+      return { art, geschichte, frage, bild,
+        rechnung: `(${beine} - 2 * ${k}) / 2`, loesung: y, tipp: 'Gib zuerst jedem Kopf zwei Beine. Die übrigen Beine gehören denen mit vier Beinen – jeder hat zwei mehr.' };
     }
     if (typ === 3) {
-      const a = eins(zufall, [2, 5, 10, 20]), n = zahl(zufall, 3, 20);
-      return { art, geschichte: `Die Landebahn der Rebellenbasis ist ${a * n} Meter lang. Alle ${a} Meter steht eine Lampe – auch ganz am Anfang und ganz am Ende.`, frage: 'Wie viele Lampen stehen an der Landebahn?', bild: ['x-wing/'],
-        rechnung: `${a * n} / ${a} + 1`, loesung: n + 1, tipp: 'Vorsicht, eine Falle das ist! Zähle erst die Abstände. Am Anfang auch eine Lampe steht.' };
+      const a = eins(zufall, [2, 5, 10]), n = zahl(zufall, 3, 10);
+      const [geschichte, frage, bild] = eins(zufall, [
+        [`Die Landebahn der Rebellenbasis ist ${a * n} Meter lang. Alle ${a} Meter steht eine Lampe – auch ganz am Anfang und ganz am Ende.`, 'Wie viele Lampen stehen an der Landebahn?', ['x-wing/']],
+        [`Der Laserzaun um die Echo-Basis ist ${a * n} Meter lang. Alle ${a} Meter steht ein Pfosten – auch ganz am Anfang und ganz am Ende.`, 'Wie viele Pfosten hat der Zaun?', ['hoth/']],
+        [`Eine Brücke in der Wolkenstadt ist ${a * n} Meter lang. Alle ${a} Meter leuchtet eine Laterne – auch ganz am Anfang und ganz am Ende.`, 'Wie viele Laternen hat die Brücke?', ['wolkenstadt-bespin/']],
+        [`Die Hängebrücke im Ewok-Dorf ist ${a * n} Meter lang. Alle ${a} Meter brennt eine Fackel – auch ganz am Anfang und ganz am Ende.`, 'Wie viele Fackeln brennen an der Brücke?', ['ewoks/']],
+        [`Der Graben des Todessterns ist auf einem Stück ${a * n} Meter lang. Alle ${a} Meter steht ein Geschützturm – auch ganz am Anfang und ganz am Ende.`, 'Wie viele Geschütztürme stehen dort?', ['todesstern/']],
+        [`Ein Gang der Tantive IV ist ${a * n} Meter lang. Alle ${a} Meter ist eine Tür – auch ganz am Anfang und ganz am Ende.`, 'Wie viele Türen hat der Gang?', ['corellianische-korvette/']],
+      ]);
+      return { art, geschichte, frage, bild,
+        rechnung: `${a * n} / ${a} + 1`, loesung: n + 1, tipp: 'Vorsicht, eine Falle das ist! Zähle erst die Abstände. Am Anfang auch einer steht.' };
     }
-    const h = zahl(zufall, 10, 200), d = zahl(zufall, 5, 100);
-    return { art, geschichte: `Han und Chewbacca haben zusammen ${2 * h + d} Credits. Chewbacca hat ${d} Credits mehr als Han.`, frage: 'Wie viele Credits hat Han?', bild: ['chewbacca/'],
-      rechnung: `(${2 * h + d} - ${d}) / 2`, loesung: h, tipp: 'Nimm erst weg, was Chewbacca mehr hat. Den Rest dann gerecht halbieren du musst.' };
+    const h = zahl(zufall, 5, 60), d = zahl(zufall, 2, 30), summe = 2 * h + d;
+    // [Geschichte, Frage nach dem kleineren Teil, Frage nach dem größeren Teil, Bild]
+    const [geschichte, frageKlein, frageGross, bild] = eins(zufall, [
+      [`Han und Chewbacca haben zusammen ${summe} Credits. Chewbacca hat ${d} Credits mehr als Han.`, 'Wie viele Credits hat Han?', 'Wie viele Credits hat Chewbacca?', ['chewbacca/']],
+      [`Die Rote und die Goldene Staffel feuern zusammen ${summe} Protonentorpedos ab. Die Rote Staffel feuert ${d} Torpedos mehr ab als die Goldene.`, 'Wie viele Torpedos feuert die Goldene Staffel ab?', 'Wie viele Torpedos feuert die Rote Staffel ab?', ['x-wing/', 'y-wing/']],
+      [`Zwei Sternzerstörer haben zusammen ${summe} TIE-Jäger an Bord. Die Devastator hat ${d} TIE-Jäger mehr als die Avenger.`, 'Wie viele TIE-Jäger hat die Avenger?', 'Wie viele TIE-Jäger hat die Devastator?', ['sternzerstörer/']],
+      [`Zwei Transporter bringen zusammen ${summe} Kisten Vorräte zur Echo-Basis. Der zweite Transporter hat ${d} Kisten mehr geladen als der erste.`, 'Wie viele Kisten hat der erste Transporter geladen?', 'Wie viele Kisten hat der zweite Transporter geladen?', ['transporter']],
+      [`Ein X-Wing und ein Y-Wing fliegen zusammen ${summe} Kilometer auf Patrouille. Der X-Wing fliegt ${d} Kilometer weiter als der Y-Wing.`, 'Wie viele Kilometer fliegt der Y-Wing?', 'Wie viele Kilometer fliegt der X-Wing?', ['x-wing/', 'y-wing/']],
+      [`Zwei Rebellenkreuzer haben zusammen ${summe} Piloten an Bord. Die Home One hat ${d} Piloten mehr als die Liberty.`, 'Wie viele Piloten hat die Liberty?', 'Wie viele Piloten hat die Home One?', ['mon-calamari-cruiser/']],
+      [`R2-D2 und C-3PO reparieren zusammen ${summe} Schaltkreise. R2-D2 schafft ${d} Schaltkreise mehr als C-3PO.`, 'Wie viele Schaltkreise repariert C-3PO?', 'Wie viele Schaltkreise repariert R2-D2?', ['r2-d2', 'c-3po/']],
+      [`Zwei Ewok-Dörfer sammeln zusammen ${summe} Beeren. Das Baumdorf sammelt ${d} Beeren mehr als das Walddorf.`, 'Wie viele Beeren sammelt das Walddorf?', 'Wie viele Beeren sammelt das Baumdorf?', ['ewoks/']],
+      [`Zwei Trupps haben zusammen ${summe} Sturmtruppen. Im ersten Trupp sind ${d} Sturmtruppen mehr als im zweiten.`, 'Wie viele Sturmtruppen sind im zweiten Trupp?', 'Wie viele Sturmtruppen sind im ersten Trupp?', ['sturmtruppen']],
+      [`Luke und Leia sammeln zusammen ${summe} Energiezellen für die Rebellen. Leia sammelt ${d} Energiezellen mehr als Luke.`, 'Wie viele Energiezellen sammelt Luke?', 'Wie viele Energiezellen sammelt Leia?', ['leia/', 'luke-skywalker/']],
+      [`Der Millennium Falcon und ein TIE-Jäger feuern zusammen ${summe} Laserschüsse ab. Der Falcon feuert ${d} Schüsse mehr ab als der TIE-Jäger.`, 'Wie viele Schüsse feuert der TIE-Jäger ab?', 'Wie viele Schüsse feuert der Falcon ab?', ['millennium-falcon/', 'tie-fighter/']],
+      [`Zwei Korvetten der Rebellen bringen zusammen ${summe} Rebellen in Sicherheit. Die Tantive IV rettet ${d} Rebellen mehr als die zweite Korvette.`, 'Wie viele Rebellen rettet die zweite Korvette?', 'Wie viele Rebellen rettet die Tantive IV?', ['corellianische-korvette/']],
+    ]);
+    const nachGross = zufall() < 0.5;
+    return { art, geschichte, frage: nachGross ? frageGross : frageKlein, bild,
+      rechnung: nachGross ? `(${summe} - ${d}) / 2 + ${d}` : `(${summe} - ${d}) / 2`, loesung: nachGross ? h + d : h,
+      tipp: nachGross ? 'Nimm erst den Unterschied weg und halbiere gerecht. Dann den Unterschied wieder dazu du zählst.'
+        : 'Nimm erst den Unterschied weg. Den Rest dann gerecht halbieren du musst.' };
   }
   throw new Error(`Unbekannte Rechenart ${art}`);
 }
