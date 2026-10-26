@@ -1,7 +1,7 @@
 {
   "titel": "Flucht mit dem Millennium Falcon",
-  "vorschau": "Kapitelbilder/flucht-mit-dem-millennium-falcon.webp",
-  "belohnung": "Kapitelbilder/Belohnung/flucht-mit-dem-millennium-falcon.jpg",
+  "vorschau": "spielbilder/Kapitelbilder/flucht-mit-dem-millennium-falcon.webp",
+  "belohnung": "spielbilder/Belohnung/flucht-mit-dem-millennium-falcon.jpg",
   "abzeichen": { "name": "Hyperraum-Held", "symbol": "⚡" },
   "aufgaben": [
     {

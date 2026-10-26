@@ -2,7 +2,7 @@ import {
   findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName,
   rang, mitRang, RAENGE, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, BONUS_PUNKTE,
   rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, RECHENART_NAMEN, migriereStand,
-  SIMULATOR_STUFEN, simulatorAufgabeGeloest, mitFalscherAntwort, verteileBilder,
+  SIMULATOR_STUFEN, simulatorAufgabeGeloest, ZWEI_FELDER, loesungText, mitFalscherAntwort, verteileBilder,
 } from './logik.js';
 import { ICON_SETS, ICONS } from './icons.js';
 
@@ -265,9 +265,12 @@ function zeigeAufgabe() {
   $('bonus-ueberspringen').hidden = !bonus;
   $('tipp').hidden = !ADMIN;
   $('admin-leiste').hidden = !ADMIN;
-  $('admin-loesung').textContent = `Lösung: ${aufgabe.loesung}` + (aufgabe.rest !== undefined ? ` Rest ${aufgabe.rest}` : '')
+  $('admin-loesung').textContent = `Lösung: ${loesungText(aufgabe)}`
     + (aufgabe.rechnung ? `  (${aufgabe.rechnung})` : '');
-  $('rest-teil').hidden = aufgabe.rest === undefined;
+  const zwei = ZWEI_FELDER[aufgabe.format];
+  $('rest-teil').hidden = aufgabe.rest === undefined && !zwei;
+  $('rest-vor').textContent = zwei?.vor ?? 'Rest';
+  $('rest-nach').textContent = zwei?.nach ?? '';
   $('antwort-rest').value = '';
   const helferUrl = welt.helferBild ? pfadUrl(welt.helferBild) : bildUrl([welt.helfer]);
   $('helfer-bild').hidden = !helferUrl;
@@ -303,11 +306,15 @@ $('antwort-form').onsubmit = event => {
   if (!eingabe) return;
   const kapitel = welt.kapitel[kapitelIndex];
   const aufgabe = aktuelleAufgabe(kapitel);
-  const mitRest = aufgabe.rest !== undefined;
+  const zwei = ZWEI_FELDER[aufgabe.format]; // Uhrzeit oder Geld: Lösung in Minuten bzw. Cent
+  const mitRest = aufgabe.rest !== undefined || !!zwei;
   const restEingabe = $('antwort-rest').value.trim();
   if (mitRest && !restEingabe) return $('antwort-rest').focus(); // erst beide Felder ausfüllen
 
-  if (!istRichtig(eingabe, aufgabe.loesung) || (mitRest && !istRichtig(restEingabe, aufgabe.rest))) {
+  const richtig = zwei
+    ? istRichtig(eingabe, Math.floor(aufgabe.loesung / zwei.faktor)) && istRichtig(restEingabe, aufgabe.loesung % zwei.faktor)
+    : istRichtig(eingabe, aufgabe.loesung) && (!mitRest || istRichtig(restEingabe, aufgabe.rest));
+  if (!richtig) {
     fehlversuche++;
     if (!ADMIN && simulatorArt) {
       stand = { ...stand, simulatorFalsch: { ...stand.simulatorFalsch, [simulatorArt]: (stand.simulatorFalsch?.[simulatorArt] ?? 0) + 1 } };
@@ -433,9 +440,9 @@ function zeigeGalerie() {
   const ordner = new Map();
   for (const p of [...welt.bilder].sort()) {
     const name = p.includes('/') ? p.split('/')[0] : '(Hauptordner)';
-    if (name !== 'Kapitelbilder') (ordner.get(name) ?? ordner.set(name, []).get(name)).push(p);
+    if (name !== 'spielbilder') (ordner.get(name) ?? ordner.set(name, []).get(name)).push(p);
   }
-  const unbenutzt = [...verwendet].filter(([p, wo]) => !wo.length && !p.startsWith('Kapitelbilder/')).length;
+  const unbenutzt = [...verwendet].filter(([p, wo]) => !wo.length && !p.startsWith('spielbilder/')).length;
   $('galerie-zusammenfassung').textContent = `${welt.bilder.length} Bilder in ${ordner.size} Ordnern · ${unbenutzt} werden in keiner Aufgabe verwendet`;
   $('galerie-inhalt').replaceChildren(...[...ordner].flatMap(([name, pfade]) => {
     const raster = element('div', 'galerie-raster');
@@ -506,7 +513,7 @@ function zeigeSimulatorMenu() {
     const text = element('div');
     text.append(element('b', '', a.name), simulatorAbzeichenZeile(a.id),
       element('small', '', simulatorBilanz(a.id)));
-    const bild = `Kapitelbilder/Simulator/${a.id}.jpg`;
+    const bild = `spielbilder/Simulator/${a.id}.jpg`;
     if (welt.bilder.includes(bild)) {
       const vorschau = element('img', 'vorschau');
       vorschau.src = pfadUrl(bild);
@@ -553,7 +560,7 @@ function zeigeStatistik() {
       li.append(`${n} Fehlversuche – ${schluessel}`);
       return li;
     }
-    const loesung = a.loesung + (a.rest !== undefined ? ` Rest ${a.rest}` : '');
+    const loesung = loesungText(a);
     const rechnung = a.rechnung ? `Rechnung: ${a.rechnung.replaceAll('*', '·').replaceAll('/', ':')} = ${loesung}` : `Lösung: ${loesung}`;
     const falsch = st.falsch?.[schluessel];
     li.append(

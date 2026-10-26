@@ -1,7 +1,7 @@
 {
   "titel": "Han Solos Schmuggelfahrt",
-  "vorschau": "Kapitelbilder/han-solos-schmuggelfahrt.jpg",
-  "belohnung": "Kapitelbilder/Belohnung/han-solos-schmuggelfahrt.jpg",
+  "vorschau": "spielbilder/Kapitelbilder/han-solos-schmuggelfahrt.jpg",
+  "belohnung": "spielbilder/Belohnung/han-solos-schmuggelfahrt.jpg",
   "abzeichen": { "name": "Schmuggler-Profi", "symbol": "📦" },
   "aufgaben": [
     {

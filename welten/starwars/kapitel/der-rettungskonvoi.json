@@ -1,7 +1,7 @@
 {
   "titel": "Der Rettungskonvoi",
-  "vorschau": "Kapitelbilder/der-rettungskonvoi.jpg",
-  "belohnung": "Kapitelbilder/Belohnung/der-rettungskonvoi.jpg",
+  "vorschau": "spielbilder/Kapitelbilder/der-rettungskonvoi.jpg",
+  "belohnung": "spielbilder/Belohnung/der-rettungskonvoi.jpg",
   "abzeichen": { "name": "Konvoi-Beschützer", "symbol": "🛰️" },
   "aufgaben": [
     {

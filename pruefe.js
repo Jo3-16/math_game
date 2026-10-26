@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { rechne, rechneMitRest, findeBilder, maxFuer, verteileBilder } from './public/logik.js';
-import { bilderListe } from './server.js';
+import { weltBilder } from './server.js';
 
 const FELDER = ['geschichte', 'frage', 'rechnung', 'tipp', 'merke'];
 const leer = wert => typeof wert !== 'string' || !wert.trim();
@@ -16,7 +16,7 @@ export async function pruefeWelt(weltOrdner) {
     fehler.push('welt.json: fehlt, ist kaputt oder ohne name/helfer/farben');
   }
 
-  const bilder = await bilderListe(path.join(weltOrdner, 'bilder'));
+  const bilder = await weltBilder(weltOrdner);
   if (welt?.helferBild !== undefined && !bilder.includes(welt.helferBild)) {
     fehler.push(`welt.json: helferBild "${welt.helferBild}" gibt es nicht im Bilder-Ordner`);
   }

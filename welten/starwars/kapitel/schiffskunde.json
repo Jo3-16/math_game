@@ -1,7 +1,7 @@
 {
   "titel": "Schiffskunde: Die großen Schiffe",
-  "vorschau": "Kapitelbilder/schiffskunde.jpg",
-  "belohnung": "Kapitelbilder/Belohnung/schiffskunde.jpg",
+  "vorschau": "spielbilder/Kapitelbilder/schiffskunde.jpg",
+  "belohnung": "spielbilder/Belohnung/schiffskunde.jpg",
   "abzeichen": { "name": "Schiffskundler", "symbol": "📡" },
   "aufgaben": [
     {

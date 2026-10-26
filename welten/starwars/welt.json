@@ -1,7 +1,7 @@
 {
   "name": "Star Wars – Mathe Missionen",
   "helfer": "Yoda",
-  "helferBild": "Kapitelbilder/Helfer/yoda.jpg",
+  "helferBild": "spielbilder/Helfer/yoda.jpg",
   "farben": {
     "hintergrund": "#05070d",
     "flaeche": "#111827",

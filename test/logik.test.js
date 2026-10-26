@@ -246,11 +246,11 @@ test('mitFalscherAntwort merkt die letzten 10 falschen antworten je aufgabe', ()
   assert.deepEqual(leererStand().statistik, undefined); // unverändert
 });
 
-test('findeBilder sucht nie in Kapitelbilder/ (Vorschau, Belohnung, Helfer)', () => {
-  const p = ['Poe/01_Poe.jpg', 'Kapitelbilder/poe-und-die-black-one.jpg', 'Kapitelbilder/Belohnung/poe-und-die-black-one.jpg', 'Kapitelbilder/Helfer/yoda.jpg', 'Yoda/Yoda.png'];
+test('findeBilder sucht nie in spielbilder/ (Vorschau, Belohnung, Helfer)', () => {
+  const p = ['Poe/01_Poe.jpg', 'spielbilder/poe-und-die-black-one.jpg', 'spielbilder/Belohnung/poe-und-die-black-one.jpg', 'spielbilder/Helfer/yoda.jpg', 'Yoda/Yoda.png'];
   assert.deepEqual(findeBilder(p, ['poe']), ['Poe/01_Poe.jpg']);
   assert.deepEqual(findeBilder(p, ['yoda']), ['Yoda/Yoda.png']);
-  assert.deepEqual(findeBilder(p, ['kapitelbilder/']), []);
+  assert.deepEqual(findeBilder(p, ['spielbilder/']), []);
 });
 
 test('verteileBilder: möglichst jedes Bild nur einmal im Kapitel', () => {

@@ -5,3 +5,5 @@ rest.jpg: Wookieepedia File:Darth-vader-tie-fighter-in-cockpit.png (ANH-Standbil
 plusminus.jpg: Kopie von TIE-Interceptor/01_ROTJ_TIE-Interceptors_Endor_Falcon-Cockpit.jpg (eigene Sammlung, Blick aus dem Falken)
 einheiten.jpg: Wookieepedia File:MF Cockpit TFA.png (TFA-Standbild, Cockpit des Millennium Falken)
 logik.jpg: Wookieepedia File:GeramsCockpit-RO.png (Rogue-One-Standbild, Pilot im Cockpit)
+uhrzeit.jpg: Kopie von Tatooine/02_ANH_Falke_verlaesst_Tatooine.png (eigene Sammlung)
+geld.jpg: Kopie von Tatooine/06_ANH_Mos_Eisley_Strasse.png (eigene Sammlung)

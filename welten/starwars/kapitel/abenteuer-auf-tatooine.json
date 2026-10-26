@@ -1,7 +1,7 @@
 {
   "titel": "Abenteuer auf Tatooine",
-  "vorschau": "Kapitelbilder/abenteuer-auf-tatooine.jpg",
-  "belohnung": "Kapitelbilder/Belohnung/abenteuer-auf-tatooine.jpg",
+  "vorschau": "spielbilder/Kapitelbilder/abenteuer-auf-tatooine.jpg",
+  "belohnung": "spielbilder/Belohnung/abenteuer-auf-tatooine.jpg",
   "abzeichen": { "name": "Wüstenläufer", "symbol": "🏜️" },
   "aufgaben": [
     {

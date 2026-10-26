@@ -1,7 +1,7 @@
 {
   "titel": "Die geheimen Pläne",
-  "vorschau": "Kapitelbilder/die-geheimen-plaene.jpg",
-  "belohnung": "Kapitelbilder/Belohnung/die-geheimen-plaene.jpg",
+  "vorschau": "spielbilder/Kapitelbilder/die-geheimen-plaene.jpg",
+  "belohnung": "spielbilder/Belohnung/die-geheimen-plaene.jpg",
   "abzeichen": { "name": "Planhüter", "symbol": "💾" },
   "aufgaben": [
     {

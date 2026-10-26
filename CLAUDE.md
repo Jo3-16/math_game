@@ -18,21 +18,21 @@ Lernspiel für einen Jungen am Anfang der 4. Klasse: Mathe-Sachaufgaben als Gesc
 - `public/spiel.js`, `index.html`, `style.css` – Oberfläche
 - `pruefe.js` – prüft alle Kapitel (Rechnungen, Zahlenräume, Felder, Bilder, Reihenfolge)
 - `test/` – `node:test`-Tests
-- Bilder: nur `welten/<welt>/bilder/Kapitelbilder/` ist im Git; die übrigen Bilder sammelt der Vater lokal
+- Bilder: `welten/<welt>/spielbilder/` (feste Bilder: `Kapitelbilder/` = Vorschau, `Belohnung/`, `Helfer/`, `Simulator/`) ist im Git; `welten/<welt>/bilder/` sammelt der Vater lokal (nicht im Git). Pfade in JSON beginnen mit `spielbilder/…`; der Server sucht sie neben `bilder/`
 
 ## Neue Kapitel erzeugen
 
 Wenn der Vater z. B. „Mach 5 neue Kapitel über Hoth“ sagt:
 
-1. **Bilder ansehen:** alle Dateien unter `welten/<welt>/bilder/` rekursiv auflisten. Ein Suchwort passt, wenn der Pfad (Ordner + Dateiname) es enthält – Groß/klein egal, `_` `-` Leerzeichen gelten gleich, ä = ae. Suchwort mit `/` am Ende (z. B. `x-wing/`) trifft nur Bilder im gleichnamigen Ordner. `Kapitelbilder/` (Vorschau, Belohnung, Helfer) wird von der Suche nie erfasst. **Nur Suchwörter verwenden, zu denen es Bilder gibt.** Fehlen Bilder für ein Thema, dem Vater sagen, welche er sammeln könnte.
+1. **Bilder ansehen:** alle Dateien unter `welten/<welt>/bilder/` rekursiv auflisten. Ein Suchwort passt, wenn der Pfad (Ordner + Dateiname) es enthält – Groß/klein egal, `_` `-` Leerzeichen gelten gleich, ä = ae. Suchwort mit `/` am Ende (z. B. `x-wing/`) trifft nur Bilder im gleichnamigen Ordner. `welten/<welt>/spielbilder/` (Vorschau, Belohnung, Helfer, Simulator) wird von der Suche nie erfasst. **Nur Suchwörter verwenden, zu denen es Bilder gibt.** Fehlen Bilder für ein Thema, dem Vater sagen, welche er sammeln könnte.
    **Fehltreffer prüfen** – bei jeder Arbeit mit Bildern (neue Kapitel, neue Suchwörter, neue Bilder oder Ordner): für jedes Suchwort aller Kapitel auflisten, welche Bilder es trifft, und Treffer aus fremden Ordnern melden (z. B. `sternzerstörer` trifft `Transporter/…_Flucht_vor_Sternzerstoerer.png`). Passt ein Treffer nicht zur Geschichte: Suchwort eingrenzen (Ordner-Suchwort oder genauerer Dateinamen-Teil) oder dem Vater das Umbenennen der Datei vorschlagen.
 2. **Datei und Reihenfolge:** `welten/<welt>/kapitel/<name>.json` – `<name>` ist die feste Kennung (klein, ohne Umlaute, mit Bindestrichen, z. B. `der-grabenlauf`). Spielstand, Statistik und Bilder beziehen sich darauf, darum nie umbenennen. **Die Reihenfolge steht nur in `welt.json` unter `reihenfolge`** – neues Kapitel dort an der gewünschten Stelle eintragen. Die angezeigte Kapitelnummer ist die Position in dieser Liste (gezählt ab 1).
 3. **Format:**
    ```json
    {
      "titel": "…",
-     "vorschau": "Kapitelbilder/<name>.jpg",
-     "belohnung": "Kapitelbilder/Belohnung/<name>.jpg",
+     "vorschau": "spielbilder/Kapitelbilder/<name>.jpg",
+     "belohnung": "spielbilder/Belohnung/<name>.jpg",
      "abzeichen": { "name": "…", "symbol": "ein Emoji" },
      "aufgaben": [
        { "bild": ["suchwort", "ordner/"], "geschichte": "…", "frage": "…?",
@@ -59,12 +59,12 @@ Wenn der Vater z. B. „Mach 5 neue Kapitel über Hoth“ sagt:
    - Texte auf Deutsch.
 5. **Abzeichen-Icon:** in `public/icons.js` unter `ICONS` die Kapitel-Kennung mit je einem Icon-Namen für alle vier Sets eintragen (passende Namen auf https://icon-sets.iconify.design suchen: game-icons, ph mit `-duotone`, tabler, mdi), dann `node icons-laden.js` – das lädt die SVGs nach `public/icons/`. Ohne Eintrag erscheint das Emoji `abzeichen.symbol`.
 6. **Kapitelbilder** (beide als Kopie, damit sie fest bleiben; Quelle in der jeweiligen `QUELLEN.txt` eintragen):
-   - `vorschau`: `Kapitelbilder/<name>.jpg`, 480 px breit – Bild für die Übersicht.
-   - `belohnung`: `Kapitelbilder/Belohnung/<name>.jpg`, max. 1600 px breit – fürs Hologramm-Archiv, frei beim ersten Abschluss. Gern bisher ungenutzte Bilder (Admin-Galerie zeigt sie).
+   - `vorschau`: `spielbilder/Kapitelbilder/<name>.jpg`, 480 px breit – Bild für die Übersicht.
+   - `belohnung`: `spielbilder/Belohnung/<name>.jpg`, max. 1600 px breit – fürs Hologramm-Archiv, frei beim ersten Abschluss. Gern bisher ungenutzte Bilder (Admin-Galerie zeigt sie).
    - Verkleinern ohne ImageMagick: PowerShell mit `System.Drawing` (Bild laden, auf Zielbreite zeichnen, Hintergrund `#05070d` für transparente PNGs, als JPG Qualität 85 speichern).
    - Externe Bilder nur frei lizenziert (z. B. Wikimedia Commons); Wookieepedia blockt Downloads.
 7. **Prüfen:** `node pruefe.js` ausführen und alle FEHLER und WARNUNGEN beheben, `npm test` laufen lassen, bevor du fertig meldest.
 
 ## Neue Welt
 
-Ordner `welten/<id>/` mit `welt.json`, `bilder/` und `kapitel/`. `welt.json`: `name`, `helfer` (Name des Tipp-Gebers), optional `helferBild` (fester Pfad des Tipp-Bilds, am besten eine verkleinerte Kopie in `Kapitelbilder/Helfer/` wie `Kapitelbilder/Helfer/yoda.jpg`, damit es im Git liegt; sonst wird ein Bild gesucht, dessen Pfad den Helfernamen enthält; ohne Bild erscheint 🟢), `farben` (hintergrund, flaeche, akzent, text, tipp) und `reihenfolge` (Liste der Kapitel-Namen).
+Ordner `welten/<id>/` mit `welt.json`, `bilder/`, `spielbilder/` und `kapitel/`. `welt.json`: `name`, `helfer` (Name des Tipp-Gebers), optional `helferBild` (fester Pfad des Tipp-Bilds, am besten eine verkleinerte Kopie in `spielbilder/Helfer/` wie `spielbilder/Helfer/yoda.jpg`, damit es im Git liegt; sonst wird ein Bild gesucht, dessen Pfad den Helfernamen enthält; ohne Bild erscheint 🟢), `farben` (hintergrund, flaeche, akzent, text, tipp) und `reihenfolge` (Liste der Kapitel-Namen).

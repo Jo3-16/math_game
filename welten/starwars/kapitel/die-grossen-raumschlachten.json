@@ -1,7 +1,7 @@
 {
   "titel": "Die großen Raumschlachten",
-  "vorschau": "Kapitelbilder/die-grossen-raumschlachten.jpg",
-  "belohnung": "Kapitelbilder/Belohnung/die-grossen-raumschlachten.jpg",
+  "vorschau": "spielbilder/Kapitelbilder/die-grossen-raumschlachten.jpg",
+  "belohnung": "spielbilder/Belohnung/die-grossen-raumschlachten.jpg",
   "abzeichen": { "name": "Flotten-Admiral", "symbol": "🌌" },
   "aufgaben": [
     {

@@ -73,7 +73,7 @@ test('vorschaubild fehlt als datei', async () => {
   const ordner = welt(vier());
   const datei = path.join(ordner, 'kapitel', '01-test.json');
   const kapitel = JSON.parse(fs.readFileSync(datei, 'utf8'));
-  fs.writeFileSync(datei, JSON.stringify({ ...kapitel, vorschau: 'Kapitelbilder/gibtsnicht.jpg' }));
+  fs.writeFileSync(datei, JSON.stringify({ ...kapitel, vorschau: 'spielbilder/gibtsnicht.jpg' }));
   assert.match((await pruefeWelt(ordner)).fehler[0], /Vorschaubild/);
 });
 
@@ -133,7 +133,7 @@ test('belohnung muss existieren', async () => {
   const kapitel = JSON.parse(fs.readFileSync(datei, 'utf8'));
   fs.writeFileSync(datei, JSON.stringify({ ...kapitel, belohnung: 'X-Wing.jpg' }));
   assert.deepEqual(await pruefeWelt(ordner), { fehler: [], warnungen: [] });
-  fs.writeFileSync(datei, JSON.stringify({ ...kapitel, belohnung: 'Kapitelbilder/fehlt.jpg' }));
+  fs.writeFileSync(datei, JSON.stringify({ ...kapitel, belohnung: 'spielbilder/fehlt.jpg' }));
   assert.match((await pruefeWelt(ordner)).fehler[0], /Belohnung/);
 });
 

@@ -1,7 +1,7 @@
 {
   "titel": "Die imperiale Flotte kommt",
-  "vorschau": "Kapitelbilder/die-imperiale-flotte.webp",
-  "belohnung": "Kapitelbilder/Belohnung/die-imperiale-flotte.jpg",
+  "vorschau": "spielbilder/Kapitelbilder/die-imperiale-flotte.webp",
+  "belohnung": "spielbilder/Belohnung/die-imperiale-flotte.jpg",
   "abzeichen": { "name": "Flotten-Späher", "symbol": "🔭" },
   "aufgaben": [
     {

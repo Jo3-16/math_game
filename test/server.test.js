@@ -22,6 +22,7 @@ before(async () => {
   datei('welten/testwelt/bilder/Sternzerstörer/tie fighter.jpg', 'bild');
   datei('welten/testwelt/bilder/x.webp', 'bild');
   datei('welten/testwelt/bilder/notiz.txt', 'kein bild');
+  datei('welten/testwelt/spielbilder/Belohnung/a.jpg', 'belohnung');
   server = await starte({ wurzel, port: 0 });
   url = `http://127.0.0.1:${server.address().port}`;
 });
@@ -41,7 +42,7 @@ test('welt laden', async () => {
   assert.equal(w.helfer, 'Yoda');
   assert.deepEqual(w.kapitel.map(k => k.id), ['b', 'a', 'c']); // Reihenfolge aus welt.json, Rest hinten
   assert.equal(w.kapitel[0].titel, 'B');
-  assert.deepEqual(w.bilder.sort(), ['Sternzerstörer/tie fighter.jpg', 'x.webp']);
+  assert.deepEqual(w.bilder.sort(), ['Sternzerstörer/tie fighter.jpg', 'spielbilder/Belohnung/a.jpg', 'x.webp']);
 });
 
 test('unbekannte welt', async () => {
@@ -55,9 +56,14 @@ test('bild mit umlaut und leerzeichen', async () => {
   assert.equal(await antwort.text(), 'bild');
 });
 
+test('kapitelbilder liegen neben bilder/', async () => {
+  const antwort = await fetch(`${url}/welten/testwelt/bilder/spielbilder/Belohnung/a.jpg`);
+  assert.equal(await antwort.text(), 'belohnung');
+});
+
 test('pfad-ausbruch', async () => {
   fs.writeFileSync(path.join(wurzel, 'geheim.txt'), 'geheim');
-  for (const p of ['/welten/testwelt/bilder/..%2F..%2F..%2Fgeheim.txt', '/..%2Fgeheim.txt', '/%2e%2e/geheim.txt', '/api/welten/..%2F..', '/welten/testwelt/welt.json'])
+  for (const p of ['/welten/testwelt/bilder/..%2F..%2F..%2Fgeheim.txt', '/welten/testwelt/bilder/spielbilder/..%2F..%2F..%2Fgeheim.txt', '/..%2Fgeheim.txt', '/%2e%2e/geheim.txt', '/api/welten/..%2F..', '/welten/testwelt/welt.json'])
     assert.equal((await fetch(url + p)).status, 404, p);
 });
 

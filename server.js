@@ -21,6 +21,12 @@ export async function bilderListe(ordner) {
     .filter(e => BILD_ENDUNGEN.includes(path.extname(e).toLowerCase()));
 }
 
+// Alle Bilder einer Welt: bilder/ (gesammelt, nicht im Git) und spielbilder/ (fest, im Git) – Pfade wie "X-Wing/a.jpg" oder "spielbilder/a.jpg".
+export async function weltBilder(weltOrdner) {
+  const feste = await bilderListe(path.join(weltOrdner, 'spielbilder'));
+  return [...await bilderListe(path.join(weltOrdner, 'bilder')), ...feste.map(p => `spielbilder/${p}`)];
+}
+
 // Kapitel-Kennungen (Dateiname ohne .json) in der Reihenfolge aus welt.json; nicht aufgeführte alphabetisch hinten.
 export function kapitelReihenfolge(dateien, reihenfolge = []) {
   const ids = dateien.filter(d => d.endsWith('.json')).map(d => d.slice(0, -5));
@@ -74,7 +80,7 @@ export function starte({ wurzel = PROJEKT, port = PORT } = {}) {
         const ids = kapitelReihenfolge(await fs.readdir(path.join(ordner, 'kapitel')).catch(() => []), welt.reihenfolge);
         const kapitel = [];
         for (const id of ids) kapitel.push({ id, ...await leseJson(path.join(ordner, 'kapitel', id + '.json')) });
-        return [200, { ...welt, kapitel, bilder: await bilderListe(path.join(ordner, 'bilder')) }];
+        return [200, { ...welt, kapitel, bilder: await weltBilder(ordner) }];
       }
       if (teile.length === 4 && teile[3] === 'spielstand') {
         const datei = path.join(ordner, 'spielstand.json');
@@ -93,7 +99,8 @@ export function starte({ wurzel = PROJEKT, port = PORT } = {}) {
 
     let datei;
     if (teile[0] === 'welten' && teile[2] === 'bilder' && teile.length > 3) {
-      datei = path.join(await weltOrdner(teile[1]), 'bilder', ...teile.slice(3));
+      const fest = teile[3] === 'spielbilder'; // spielbilder/ liegt neben bilder/, nicht darin
+      datei = path.join(await weltOrdner(teile[1]), ...(fest ? [] : ['bilder']), ...teile.slice(3));
     } else {
       if (teile.length === 1 && teile[0] === 'admin' && !adminErlaubt(req)) return [401];
       const seite = teile.length === 0 || (teile.length === 1 && ['admin', 'abzeichen', 'archiv', 'einstellungen'].includes(teile[0]));

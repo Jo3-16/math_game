@@ -1,7 +1,7 @@
 {
   "titel": "Falle in der Wolkenstadt",
-  "vorschau": "Kapitelbilder/falle-in-der-wolkenstadt.jpg",
-  "belohnung": "Kapitelbilder/Belohnung/falle-in-der-wolkenstadt.jpg",
+  "vorschau": "spielbilder/Kapitelbilder/falle-in-der-wolkenstadt.jpg",
+  "belohnung": "spielbilder/Belohnung/falle-in-der-wolkenstadt.jpg",
   "abzeichen": { "name": "Wolkenstadt-Entkommer", "symbol": "☁️" },
   "aufgaben": [
     {

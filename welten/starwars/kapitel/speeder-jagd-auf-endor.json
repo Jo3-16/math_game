@@ -1,7 +1,7 @@
 {
   "titel": "Speeder-Jagd auf Endor",
-  "vorschau": "Kapitelbilder/speeder-jagd-auf-endor.jpg",
-  "belohnung": "Kapitelbilder/Belohnung/speeder-jagd-auf-endor.jpg",
+  "vorschau": "spielbilder/Kapitelbilder/speeder-jagd-auf-endor.jpg",
+  "belohnung": "spielbilder/Belohnung/speeder-jagd-auf-endor.jpg",
   "abzeichen": { "name": "Speeder-Ass", "symbol": "🏍️" },
   "aufgaben": [
     {

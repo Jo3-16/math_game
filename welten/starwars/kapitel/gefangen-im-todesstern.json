@@ -1,7 +1,7 @@
 {
   "titel": "Gefangen im Todesstern",
-  "vorschau": "Kapitelbilder/gefangen-im-todesstern.jpg",
-  "belohnung": "Kapitelbilder/Belohnung/gefangen-im-todesstern.jpg",
+  "vorschau": "spielbilder/Kapitelbilder/gefangen-im-todesstern.jpg",
+  "belohnung": "spielbilder/Belohnung/gefangen-im-todesstern.jpg",
   "abzeichen": { "name": "Todesstern-Ausbrecher", "symbol": "🗝️" },
   "aufgaben": [
     {

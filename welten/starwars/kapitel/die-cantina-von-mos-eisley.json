@@ -1,7 +1,7 @@
 {
   "titel": "Die Cantina von Mos Eisley",
-  "vorschau": "Kapitelbilder/die-cantina-von-mos-eisley.jpg",
-  "belohnung": "Kapitelbilder/Belohnung/die-cantina-von-mos-eisley.jpg",
+  "vorschau": "spielbilder/Kapitelbilder/die-cantina-von-mos-eisley.jpg",
+  "belohnung": "spielbilder/Belohnung/die-cantina-von-mos-eisley.jpg",
   "abzeichen": { "name": "Cantina-Gast", "symbol": "🎺" },
   "aufgaben": [
     {

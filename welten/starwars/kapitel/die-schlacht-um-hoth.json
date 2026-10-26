@@ -1,7 +1,7 @@
 {
   "titel": "Die Schlacht um Hoth",
-  "vorschau": "Kapitelbilder/die-schlacht-um-hoth.jpg",
-  "belohnung": "Kapitelbilder/Belohnung/die-schlacht-um-hoth.jpg",
+  "vorschau": "spielbilder/Kapitelbilder/die-schlacht-um-hoth.jpg",
+  "belohnung": "spielbilder/Belohnung/die-schlacht-um-hoth.jpg",
   "abzeichen": { "name": "Held von Hoth", "symbol": "🛡️" },
   "aufgaben": [
     {

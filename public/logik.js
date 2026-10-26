@@ -12,8 +12,8 @@ export function normalisiere(text) {
 }
 
 // Suchwort mit "/" am Ende ("x-wing/") trifft nur Bilder im gleichnamigen Ordner, sonst: Pfad enthält Suchwort.
-// Kapitelbilder/ (Vorschau-, Belohnungs- und Helfer-Bilder) ist nie Teil der Suche – die werden über ihren festen Pfad geladen.
-export const FESTE_BILDER = 'Kapitelbilder/';
+// spielbilder/ (Kapitel-Vorschau, Belohnung, Helfer, Simulator) ist nie Teil der Suche – die werden über ihren festen Pfad geladen.
+export const FESTE_BILDER = 'spielbilder/';
 export function findeBilder(pfade, suchwoerter) {
   const ordner = suchwoerter.filter(w => w.endsWith('/')).map(w => normalisiere(w.slice(0, -1)));
   const woerter = suchwoerter.filter(w => !w.endsWith('/')).map(normalisiere).filter(Boolean);
@@ -229,8 +229,18 @@ export function rechneMitRest(rechnung) {
 
 export const RECHENART_NAMEN = {
   mal: 'Malnehmen', geteilt: 'Teilen', rest: 'Teilen mit Rest', plusminus: 'Plus & Minus',
-  einheiten: 'Größen & Einheiten', raetsel: 'Bonus-Rätsel', logik: 'Logik-Rätsel',
+  einheiten: 'Größen & Einheiten', raetsel: 'Bonus-Rätsel', logik: 'Logik-Rätsel', uhrzeit: 'Uhrzeiten', geld: 'Geld',
 };
+
+// Antworten in zwei Feldern: Lösung in Minuten bzw. Cent, eingegeben als Stunden : Minuten bzw. Euro , Cent.
+export const ZWEI_FELDER = { uhrzeit: { faktor: 60, vor: ':', nach: 'Uhr' }, geld: { faktor: 100, vor: ',', nach: '€' } };
+
+export function zweiteilig(wert, format) {
+  const z = ZWEI_FELDER[format];
+  return `${Math.floor(wert / z.faktor)}${z.vor}${String(wert % z.faktor).padStart(2, '0')} ${z.nach}`;
+}
+
+export const loesungText = a => (ZWEI_FELDER[a.format] ? zweiteilig(a.loesung, a.format) : a.loesung + (a.rest !== undefined ? ` Rest ${a.rest}` : ''));
 
 export function rechenarten(aufgabe) {
   if (aufgabe.art) return [aufgabe.art];
@@ -265,6 +275,8 @@ export const SIMULATOR_ARTEN = [
   { id: 'plusminus', name: 'Plus & Minus' },
   { id: 'einheiten', name: 'Größen & Einheiten' },
   { id: 'logik', name: 'Logik-Rätsel' },
+  { id: 'uhrzeit', name: 'Uhrzeiten' },
+  { id: 'geld', name: 'Geld' },
 ];
 
 const zahl = (zufall, von, bis) => von + Math.floor(zufall() * (bis - von + 1));
@@ -352,6 +364,45 @@ export function erzeugeAufgabe(art, zufall = Math.random) {
       ['Das Seil einer Ewok-Falle', ['ewoks/']], ['Eine Antenne des Y-Wings', ['y-wing/']], ['Ein Metallträger, den Chewbacca schleppt,', ['chewbacca/']],
     ]);
     return { art, geschichte: `${ding} ist ${m} Meter und ${cm} Zentimeter lang.`, frage: 'Wie viele Zentimeter sind das?', bild, rechnung: `${m} * 100 + ${cm}`, loesung: m * 100 + cm, tipp: 'Ein Meter hat 100 Zentimeter. Erst die Meter umrechnen, dann die Zentimeter dazu.' };
+  }
+  if (art === 'uhrzeit') {
+    const typ = zahl(zufall, 0, 2), d = zahl(zufall, 3, 19) * 5; // Flugdauer 15–95 Minuten
+    const h = zahl(zufall, 7, 20), m = zahl(zufall, 0, 11) * 5;
+    const [flug, bild] = eins(zufall, [
+      ['von Hoth nach Dagobah', ['dagobah/']], ['von Dagobah zur Wolkenstadt', ['wolkenstadt-bespin/']],
+      ['von Tatooine zum Todesstern', ['todesstern/']], ['vom Todesstern nach Yavin 4', ['yavin-4/']],
+      ['von der Rebellenflotte nach Endor', ['endor/']], ['von Alderaan nach Tatooine', ['tatooine/']],
+    ]);
+    const uhr = (t) => zweiteilig(t, 'uhrzeit');
+    if (typ === 0) {
+      return { art, format: 'uhrzeit', geschichte: `Der Flug ${flug} startet um ${uhr(h * 60 + m)} und dauert ${d} Minuten.`, frage: 'Um wie viel Uhr kommt das Schiff an?', bild,
+        rechnung: `${h} * 60 + ${m} + ${d}`, loesung: h * 60 + m + d, tipp: 'Erst bis zur vollen Stunde du rechnest. Dann die übrigen Minuten dazu.' };
+    }
+    if (typ === 1) {
+      const d2 = zahl(zufall, 4, 30) * 5, ende = h * 60 + m + d2; // 20–150 Minuten
+      return { art, geschichte: `Der Flug ${flug} startet um ${uhr(h * 60 + m)} und landet um ${uhr(ende)}.`, frage: 'Wie viele Minuten dauert der Flug?', bild,
+        rechnung: `${Math.floor(ende / 60)} * 60 + ${ende % 60} - (${h} * 60 + ${m})`, loesung: d2,
+        tipp: 'Bis zur nächsten vollen Stunde zuerst, dann die ganzen Stunden, dann die übrigen Minuten. Alles zusammenzählen du musst.' };
+    }
+    return { art, format: 'uhrzeit', geschichte: `Nach ${d} Minuten Flug ${flug} landet das Schiff um ${uhr(h * 60 + m)}.`, frage: 'Um wie viel Uhr ist es gestartet?', bild,
+      rechnung: `${h} * 60 + ${m} - ${d}`, loesung: h * 60 + m - d, tipp: 'Rückwärts rechnen du musst. Erst zurück bis zur vollen Stunde, dann die übrigen Minuten.' };
+  }
+  if (art === 'geld') {
+    const n = zahl(zufall, 2, 5), p = zahl(zufall, 3, 40) * 10; // Preis 0,30–4,00 €
+    const euro = (c) => zweiteilig(c, 'geld');
+    const [wer, ware, bild] = eins(zufall, [
+      ['Luke', 'Gläser Blaue Milch', ['tatooine/']], ['Han Solo', 'Energiezellen', ['mos-eisley']],
+      ['Onkel Owen', 'Ersatzteile bei den Jawas', ['jawa']], ['C-3PO', 'Dosen Öl', ['oelbad']],
+      ['Chewbacca', 'Bantha-Würstchen', ['chewbacca/']], ['R2-D2', 'Schaltkreise', ['r2-d2']],
+    ]);
+    const geschichte = `${wer} kauft in Mos Eisley ${n} ${ware}. Eins kostet ${euro(p)}.`;
+    if (zufall() < 0.5) {
+      return { art, format: 'geld', geschichte, frage: 'Wie viel muss er zusammen bezahlen?', bild,
+        rechnung: `${n} * ${p}`, loesung: n * p, tipp: 'Erst die Euro malnehmen, dann die Cent. Hundert Cent ein Euro sind.' };
+    }
+    const schein = [5, 10, 20, 50].find(e => e * 100 > n * p);
+    return { art, format: 'geld', geschichte: `${geschichte} Er bezahlt mit einem ${schein}-Euro-Schein.`, frage: 'Wie viel Wechselgeld bekommt er zurück?', bild,
+      rechnung: `${schein} * 100 - ${n} * ${p}`, loesung: schein * 100 - n * p, tipp: 'Erst ausrechnen, was alles kostet. Dann bis zum Schein du ergänzen musst.' };
   }
   if (art === 'logik') {
     // Tipps ohne Zahlen, damit sie nie die Lösung verraten.
@@ -449,7 +500,7 @@ export const MAX_PLUSMINUS = 999;
 
 // Zahlenraum je Aufgabe: reine Plus/Minus-Aufgaben bis 999, Einheiten bis 9999, alles andere bis 500.
 export function maxFuer(aufgabe) {
-  if (aufgabe.art === 'einheiten') return MAX_EINHEITEN;
+  if (['einheiten', 'uhrzeit', 'geld'].includes(aufgabe.art)) return MAX_EINHEITEN;
   const arten = rechenarten(aufgabe);
   return arten.length === 1 && arten[0] === 'plusminus' ? MAX_PLUSMINUS : MAX_ZAHL;
 }
