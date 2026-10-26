@@ -29,6 +29,8 @@ body {
 
 main { padding: 24px; max-width: 1400px; margin: 0 auto; }
 h1, h2 { color: var(--akzent); margin: 0 0 16px; }
+@font-face { font-family: 'Star Jedi'; src: url(fonts/starjedi.ttf); } /* Boba Fonts, frei für privat */
+#weltname { font-family: 'Star Jedi', system-ui, sans-serif; font-weight: normal; letter-spacing: 2px; }
 h2 { margin-top: 32px; }
 
 button {

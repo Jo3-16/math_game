@@ -10,7 +10,7 @@ const PORT = 8642;
 const PROJEKT = path.dirname(fileURLToPath(import.meta.url));
 const TYPEN = {
   '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8',
-  '.json': 'application/json; charset=utf-8', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.svg': 'image/svg+xml',
+  '.json': 'application/json; charset=utf-8', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.ttf': 'font/ttf',
 };
 export const BILD_ENDUNGEN = ['.jpg', '.jpeg', '.png', '.webp'];
 
