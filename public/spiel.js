@@ -483,7 +483,7 @@ function zeigeArchiv() {
   zeige('archiv');
 }
 
-// Die vier Simulator-Abzeichen einer Rechenart – erreichte farbig, fehlende blass.
+// Die Simulator-Abzeichen einer Rechenart – erreichte farbig, fehlende blass.
 function simulatorAbzeichenZeile(art) {
   const anzahl = stand.simulatorGeloest?.[art] ?? 0;
   const zeile = element('span', 'sim-abzeichen');

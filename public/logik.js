@@ -505,12 +505,13 @@ export function maxFuer(aufgabe) {
   return arten.length === 1 && arten[0] === 'plusminus' ? MAX_PLUSMINUS : MAX_ZAHL;
 }
 
-// Flugsimulator-Abzeichen: je Rechenart bei 5, 10, 20 und 40 gelösten Aufgaben.
+// Flugsimulator-Abzeichen: je Rechenart bei 5, 10, 25, 50 und 100 gelösten Aufgaben.
 export const SIMULATOR_STUFEN = [
   { ab: 5, name: 'Bronze', symbol: '🥉' },
   { ab: 10, name: 'Silber', symbol: '🥈' },
-  { ab: 20, name: 'Gold', symbol: '🥇' },
-  { ab: 40, name: 'Meister', symbol: '🏆' },
+  { ab: 25, name: 'Gold', symbol: '🥇' },
+  { ab: 50, name: 'Meister', symbol: '🏆' },
+  { ab: 100, name: 'Großmeister', symbol: '👑' },
 ];
 
 export const simulatorStufen = anzahl => SIMULATOR_STUFEN.filter(s => anzahl >= s.ab);

@@ -220,17 +220,17 @@ test('simulator plus/minus nutzt den zahlenraum bis 999', () => {
   assert.ok(loesungen.every(l => l >= 0 && l <= 999));
 });
 
-test('simulator-abzeichen bei 5, 10, 20, 40 gelösten aufgaben je rechenart', () => {
-  assert.deepEqual(SIMULATOR_STUFEN.map(s => s.ab), [5, 10, 20, 40]);
+test('simulator-abzeichen bei 5, 10, 25, 50, 100 gelösten aufgaben je rechenart', () => {
+  assert.deepEqual(SIMULATOR_STUFEN.map(s => s.ab), [5, 10, 25, 50, 100]);
   let s = leererStand();
   const neu = [];
-  for (let i = 0; i < 40; i++) {
+  for (let i = 0; i < 100; i++) {
     const r = simulatorAufgabeGeloest(s, 'mal');
     s = r.stand;
     if (r.neuesAbzeichen) neu.push(`${s.simulatorGeloest.mal}:${r.neuesAbzeichen.name}`);
   }
-  assert.deepEqual(neu, ['5:Bronze', '10:Silber', '20:Gold', '40:Meister']);
-  assert.equal(simulatorAufgabeGeloest(s, 'mal').neuesAbzeichen, null); // nach 40 kommt nichts mehr
+  assert.deepEqual(neu, ['5:Bronze', '10:Silber', '25:Gold', '50:Meister', '100:Großmeister']);
+  assert.equal(simulatorAufgabeGeloest(s, 'mal').neuesAbzeichen, null); // nach 100 kommt nichts mehr
   assert.equal(simulatorAufgabeGeloest(s, 'rest').stand.simulatorGeloest.rest, 1); // je Rechenart getrennt
   assert.deepEqual(simulatorStufen(12).map(st => st.name), ['Bronze', 'Silber']);
   assert.deepEqual(simulatorStufen(0), []);
