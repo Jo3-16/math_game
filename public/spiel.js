@@ -141,7 +141,7 @@ function zeigeUebersicht() {
     const s = stand.kapitel[k.id];
     const b = element('button', `kachel ${status[i]}`);
     const zeile = {
-      fertig: `✅ ${s?.punkte ?? 0}/${maxPunkte(k)} Punkte ${sterneText(kapitelSterne(s, k.aufgaben.length))}${s?.bonus ? ' 🥇' : ''} – nochmal spielen`,
+      fertig: `✅ ${s?.punkte ?? 0}/${maxPunkte(k)} ${sterneText(kapitelSterne(s, k.aufgaben.length))}${s?.bonus ? ' 🥇' : ''}`,
       offen: `▶️ ${s?.geloest ?? 0}/${k.aufgaben.length} gelöst`,
       gesperrt: '🔒 gesperrt',
     }[status[i]];

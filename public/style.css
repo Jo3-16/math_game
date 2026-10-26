@@ -54,6 +54,7 @@ button.link { background: none; color: var(--akzent); opacity: 1; font-weight: n
   border: 2px solid transparent; border-radius: 12px; padding: 16px; min-height: 110px;
 }
 .kachel { display: flex; align-items: center; gap: 16px; }
+#kapitel .kachel { align-items: flex-start; } /* Kapiteltext oben neben dem Bild */
 .kachel .vorschau { width: var(--kachelbild-breite); height: var(--kachelbild-hoehe); object-fit: cover; border-radius: 12px; flex-shrink: 0; }
 .kachel b { display: block; margin: 4px 0; }
 .kachel small { opacity: .8; }
