@@ -1,0 +1,73 @@
+{
+  "titel": "Die Evakuierung von Hoth",
+  "vorschau": "spielbilder/Kapitelbilder/die-evakuierung-von-hoth.jpg",
+  "belohnung": "spielbilder/Belohnung/die-evakuierung-von-hoth.jpg",
+  "abzeichen": { "name": "Evakuierungs-Held", "symbol": "🚀" },
+  "aufgaben": [
+    {
+      "bild": ["at-ats vor echo basis"],
+      "art": "uhrzeit",
+      "format": "uhrzeit",
+      "geschichte": "Alarm in der Echo-Basis! Um 6:45 Uhr meldet der Scanner: Imperiale Walker sind gelandet. General Rieekan rechnet nach: In 1 Stunde und 50 Minuten erreichen sie den Schildgenerator.",
+      "frage": "Um wie viel Uhr sind die Walker am Schildgenerator?",
+      "rechnung": "6 * 60 + 45 + 1 * 60 + 50",
+      "loesung": 515,
+      "merke": "Walker um 8:35 Uhr am Schild",
+      "tipp": "Erst die Stunde dazuzählen, dann die Minuten. Werden es mehr als 60 Minuten, eine Stunde weiterrücken du musst."
+    },
+    {
+      "bild": ["eisebene"],
+      "art": "einheiten",
+      "geschichte": "Die Walker stapfen langsam über die Eisebene. Bis zur Basis sind es noch 7 Kilometer und 250 Meter. Jeder Schritt bringt sie näher.",
+      "frage": "Wie viele Meter sind das?",
+      "rechnung": "7 * 1000 + 250",
+      "loesung": 7250,
+      "merke": "7250 Meter bis zur Basis",
+      "tipp": "Ein Kilometer hat 1000 Meter. Erst die Kilometer umrechnen, dann die Meter dazu."
+    },
+    {
+      "bild": ["ionenkanone"],
+      "geschichte": "Die große Ionenkanone soll die Sternzerstörer im Orbit lahmlegen, damit die Transporter entkommen. Für jeden startenden Transporter sind 2 Schüsse nötig – und 30 Transporter sollen starten.",
+      "frage": "Wie viele Schüsse muss die Ionenkanone abgeben?",
+      "rechnung": "2 * 30",
+      "loesung": 60,
+      "merke": "60 Schüsse der Ionenkanone",
+      "tipp": "2 Schüsse für jeden der 30 Transporter. Verdoppeln du musst."
+    },
+    {
+      "bild": ["hoth konzept schlacht", "schlacht um hoth"],
+      "geschichte": "Im Hangar warten 250 Rebellen auf ihren Abflug. In jeden Transporter passen 40 Personen. Die vollen Transporter starten sofort.",
+      "frage": "Wie viele Transporter werden voll – und wie viele Rebellen müssen auf den nächsten warten?",
+      "rechnung": "250 / 40",
+      "loesung": 6,
+      "rest": 10,
+      "merke": "6 volle Transporter, 10 warten",
+      "tipp": "Wie oft passt 40 in 250? In Vierzigerschritten zählen du kannst. Was nicht mehr in einen vollen Transporter passt, der Rest ist."
+    },
+    {
+      "bild": ["luke snowspeeder"],
+      "geschichte": "Lukes Staffel hält die Walker mit 12 Snowspeedern auf. 4 Speeder werden abgeschossen, und 3 müssen mit Schaden zurück in die Basis.",
+      "frage": "Wie viele Snowspeeder kämpfen weiter?",
+      "rechnung": "12 - 4 - 3",
+      "loesung": 5,
+      "merke": "5 Snowspeeder kämpfen weiter",
+      "tipp": "Zweimal wegnehmen du musst: erst die abgeschossenen, dann die beschädigten."
+    },
+    {
+      "bild": ["x-wings ueber hoth"],
+      "geschichte": "Die letzten X-Wings starten als Begleitschutz. Jeder X-Wing begleitet 5 Transporter. Alle 30 Transporter sollen beschützt werden.",
+      "frage": "Wie viele X-Wings werden gebraucht?",
+      "rechnung": "30 / 5",
+      "loesung": 6,
+      "merke": "6 X-Wings als Begleitschutz",
+      "tipp": "30 Transporter in Fünfergruppen aufteilen du musst. Die Fünferreihe dir hilft."
+    }
+  ],
+  "bonus": {
+    "bild": ["hoth planet"],
+    "geschichte": "Im letzten Transporter sitzen Rebellen und Tauntauns durcheinander. Han zählt: 10 Köpfe und 28 Beine. Ein Rebell hat 2 Beine, ein Tauntaun hat 4.",
+    "frage": "Wie viele Tauntauns sind im Transporter?",
+    "loesung": 4,
+    "tipp": "Stell dir vor, alle hätten nur 2 Beine. Die Beine, die dann übrig bleiben, den Tauntauns gehören – je 2 mehr pro Tauntaun."
+  }
+}

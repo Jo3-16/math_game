@@ -1,0 +1,75 @@
+{
+  "titel": "Lichtschwert-Training auf dem Falken",
+  "vorschau": "spielbilder/Kapitelbilder/lichtschwert-training.jpg",
+  "belohnung": "spielbilder/Belohnung/lichtschwert-training.jpg",
+  "abzeichen": { "name": "Lichtschwert-Schüler", "symbol": "⚔️" },
+  "aufgaben": [
+    {
+      "bild": ["obi-wan mos eisley"],
+      "art": "geld",
+      "format": "geld",
+      "geschichte": "Bevor der Millennium Falke startet, kauft Obi-Wan in Mos Eisley noch 3 Energiezellen für die kleine Übungsdrohne. Eine Zelle kostet 1,30 €. Er bezahlt mit einem 10-Euro-Schein.",
+      "frage": "Wie viel Wechselgeld bekommt Obi-Wan zurück?",
+      "rechnung": "10 * 100 - 3 * 130",
+      "loesung": 610,
+      "merke": "6,10 € Wechselgeld",
+      "tipp": "Erst ausrechnen, was die drei Zellen zusammen kosten. Dann vom Schein abziehen du musst. Hundert Cent ein Euro sind."
+    },
+    {
+      "bild": ["obi-wan portrait"],
+      "art": "uhrzeit",
+      "format": "uhrzeit",
+      "geschichte": "Um 14:20 Uhr springt der Falke in den Hyperraum. Han sagt: „Bis Alderaan brauchen wir 2 Stunden und 35 Minuten.“ Obi-Wan nickt: „Genug Zeit für eine Lektion, Luke.“",
+      "frage": "Um wie viel Uhr kommt der Falke bei Alderaan an?",
+      "rechnung": "14 * 60 + 20 + 2 * 60 + 35",
+      "loesung": 1015,
+      "merke": "Ankunft um 16:55 Uhr",
+      "tipp": "Erst die Stunden dazuzählen, dann die Minuten. Werden es mehr als 60 Minuten, eine Stunde weiterrücken du musst."
+    },
+    {
+      "bild": ["obi-wan lichtschwert"],
+      "geschichte": "Obi-Wan zündet das Lichtschwert und lässt die Übungsdrohne durch den Raum schweben. Sie schießt 6 Salven, und jede Salve besteht aus 8 kleinen Blitzen.",
+      "frage": "Wie viele Blitze schießt die Drohne insgesamt?",
+      "rechnung": "6 * 8",
+      "loesung": 48,
+      "merke": "48 Blitze der Drohne",
+      "tipp": "6 Salven mit je 8 Blitzen. Die Achterreihe dir hilft."
+    },
+    {
+      "bild": ["obi luke"],
+      "geschichte": "Luke setzt den Helm mit dem Blendschutz auf und vertraut der Macht. Von den 48 Blitzen pariert er 29 mit dem Lichtschwert – die anderen treffen ihn am Bein.",
+      "frage": "Wie viele Blitze treffen Luke?",
+      "rechnung": "48 - 29",
+      "loesung": 19,
+      "merke": "19 Treffer",
+      "tipp": "Von allen Blitzen die parierten wegnehmen du musst. Erst bis zur nächsten Zehnerzahl, dann den Rest."
+    },
+    {
+      "bild": ["ben luke"],
+      "geschichte": "C-3PO zählt mit: Obi-Wan teilt die 48 Blitze in Runden ein. In jeder Runde feuert die Drohne 7 Blitze, dann macht Luke eine kurze Pause.",
+      "frage": "Wie viele volle Runden übt Luke – und wie viele Blitze bleiben für eine letzte kurze Runde übrig?",
+      "rechnung": "48 / 7",
+      "loesung": 6,
+      "rest": 6,
+      "merke": "6 Runden, 6 Blitze übrig",
+      "tipp": "Die Siebenerreihe du brauchst: Wie oft passt 7 in 48 hinein? Was nicht mehr passt, der Rest ist."
+    },
+    {
+      "bild": ["luke mit obi-wan"],
+      "art": "einheiten",
+      "geschichte": "„Spür die Macht, Luke!“ Obi-Wan stellt die Drohne weiter weg: Sie schwebt jetzt 3 Meter und 40 Zentimeter von Luke entfernt. Trotzdem pariert Luke drei Blitze hintereinander!",
+      "frage": "Wie viele Zentimeter ist die Drohne entfernt?",
+      "rechnung": "3 * 100 + 40",
+      "loesung": 340,
+      "merke": "340 Zentimeter Abstand",
+      "tipp": "Ein Meter hat 100 Zentimeter. Erst die Meter umrechnen, dann die Zentimeter dazu."
+    }
+  ],
+  "bonus": {
+    "bild": ["luke jedi"],
+    "geschichte": "Obi-Wan lächelt: „Ein Jedi denkt auch mit dem Kopf. Ich habe eine Zahl im Sinn: Sie ist kleiner als 50, sie steht in der Sechserreihe und in der Neunerreihe – und sie ist nicht 18.“",
+    "frage": "Welche Zahl meint Obi-Wan?",
+    "loesung": 36,
+    "tipp": "Zahlen suchen du musst, die in der Sechserreihe und in der Neunerreihe stehen. Unter 50 nur zwei es gibt – die kleinere es nicht ist."
+  }
+}

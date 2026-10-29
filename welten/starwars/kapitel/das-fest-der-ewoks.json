@@ -1,0 +1,75 @@
+{
+  "titel": "Das Fest der Ewoks",
+  "vorschau": "spielbilder/Kapitelbilder/das-fest-der-ewoks.jpg",
+  "belohnung": "spielbilder/Belohnung/das-fest-der-ewoks.jpg",
+  "abzeichen": { "name": "Fest-Ewok", "symbol": "🎉" },
+  "aufgaben": [
+    {
+      "bild": ["ewok fest"],
+      "art": "uhrzeit",
+      "format": "uhrzeit",
+      "geschichte": "Der Todesstern ist zerstört, das Imperium besiegt! Die Ewoks feiern im Baumdorf. Das Fest beginnt um 19:35 Uhr, und der große Tanz dauert 1 Stunde und 50 Minuten.",
+      "frage": "Um wie viel Uhr endet der Tanz?",
+      "rechnung": "19 * 60 + 35 + 1 * 60 + 50",
+      "loesung": 1285,
+      "merke": "Tanz endet um 21:25 Uhr",
+      "tipp": "Erst die Stunde dazuzählen, dann die Minuten. Werden es mehr als 60 Minuten, eine Stunde weiterrücken du musst."
+    },
+    {
+      "bild": ["ewok dorf nacht"],
+      "geschichte": "Es wird dunkel im Wald. Die Ewoks zünden Fackeln an: An 8 Baumhäusern hängen je 7 Fackeln.",
+      "frage": "Wie viele Fackeln brennen im Dorf?",
+      "rechnung": "8 * 7",
+      "loesung": 56,
+      "merke": "56 Fackeln brennen",
+      "tipp": "8 Baumhäuser mit je 7 Fackeln. Die Siebenerreihe dir hilft."
+    },
+    {
+      "bild": ["ewok dorf baeume"],
+      "geschichte": "Chewbacca hat 95 gebratene Fische zum Fest mitgebracht. Jede Ewok-Familie bekommt 8 Fische. Was übrig bleibt, isst Chewie selbst.",
+      "frage": "Wie viele Familien bekommen Fische – und wie viele bleiben für Chewie übrig?",
+      "rechnung": "95 / 8",
+      "loesung": 11,
+      "rest": 7,
+      "merke": "11 Familien, 7 Fische für Chewie",
+      "tipp": "Die Achterreihe du brauchst: Wie oft passt 8 in 95? Was nicht mehr für eine ganze Familie reicht, der Rest ist."
+    },
+    {
+      "bild": ["leia luke ewokdorf"],
+      "art": "geld",
+      "format": "geld",
+      "geschichte": "Leia und Luke sitzen auf der Hängebrücke und schauen zu. Han hat beim Händler der Rebellenflotte Feuerwerk gekauft: 5 Raketen zu je 1,60 €. Er bezahlt mit einem 10-Euro-Schein.",
+      "frage": "Wie viel Wechselgeld bekommt Han zurück?",
+      "rechnung": "10 * 100 - 5 * 160",
+      "loesung": 200,
+      "merke": "2,00 € Wechselgeld",
+      "tipp": "Erst ausrechnen, was die fünf Raketen zusammen kosten. Dann vom Schein abziehen du musst. Hundert Cent ein Euro sind."
+    },
+    {
+      "bild": ["luke endor"],
+      "art": "einheiten",
+      "geschichte": "Luke geht noch einmal allein in den Wald, um Abschied von seinem Vater zu nehmen. Der Weg vom Dorf bis zur Lichtung ist 1 Kilometer und 350 Meter lang.",
+      "frage": "Wie viele Meter geht Luke?",
+      "rechnung": "1 * 1000 + 350",
+      "loesung": 1350,
+      "merke": "1350 Meter bis zur Lichtung",
+      "tipp": "Ein Kilometer hat 1000 Meter. Erst den Kilometer umrechnen, dann die Meter dazu."
+    },
+    {
+      "bild": ["geist luke"],
+      "geschichte": "Als Luke zurückkommt, sieht er die Geister von Obi-Wan, Yoda und Anakin. Von den 56 Fackeln sind inzwischen 19 erloschen, doch die Ewoks zünden 8 neue an.",
+      "frage": "Wie viele Fackeln brennen jetzt?",
+      "rechnung": "56 - 19 + 8",
+      "loesung": 45,
+      "merke": "45 Fackeln brennen noch",
+      "tipp": "Erst die erloschenen wegnehmen, dann die neuen dazuzählen."
+    }
+  ],
+  "bonus": {
+    "bild": ["ewok fest"],
+    "geschichte": "Drei Ewoks teilen sich 90 Beeren. Wicket bekommt 10 Beeren mehr als Paploo, und Paploo bekommt 10 Beeren mehr als Teebo.",
+    "frage": "Wie viele Beeren bekommt Wicket?",
+    "loesung": 40,
+    "tipp": "Erst die Extra-Beeren beiseitelegen, die Wicket und Paploo mehr bekommen. Den Rest gleich auf drei teilen. Dann Wickets Extra wieder dazu."
+  }
+}

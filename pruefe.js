@@ -2,7 +2,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { rechne, rechneMitRest, findeBilder, maxFuer, verteileBilder } from './public/logik.js';
+import { rechne, rechneMitRest, findeBilder, maxFuer, verteileBilder, ZWEI_FELDER, zweiteilig } from './public/logik.js';
 import { weltBilder } from './server.js';
 
 const FELDER = ['geschichte', 'frage', 'rechnung', 'tipp', 'merke'];
@@ -68,8 +68,12 @@ export async function pruefeWelt(weltOrdner) {
         fehler.push(`${wo}: "${a.rechnung}" hat Rest ${ergebnis.rest}, nicht ${a.rest}` + (a.rest === 0 ? ' (Rest-Aufgaben brauchen einen Rest)' : ''));
       }
 
-      if (!new RegExp(`(^|\\D)${a.loesung}(\\D|$)`).test(a.merke)) {
-        fehler.push(`${wo}: merke "${a.merke}" enthält die Lösung ${a.loesung} nicht`);
+      // Uhrzeit/Geld (format): Lösung in Minuten bzw. Cent, merke zeigt sie als "10:15 Uhr" bzw. "3,20 €".
+      const zwei = ZWEI_FELDER[a.format];
+      const loesungAnzeige = zwei ? zweiteilig(a.loesung, a.format) : String(a.loesung);
+      if (a.format !== undefined && !zwei) fehler.push(`${wo}: unbekanntes format "${a.format}" (erlaubt: ${Object.keys(ZWEI_FELDER).join(', ')})`);
+      else if (zwei ? !a.merke.includes(loesungAnzeige) : !new RegExp(`(^|\\D)${a.loesung}(\\D|$)`).test(a.merke)) {
+        fehler.push(`${wo}: merke "${a.merke}" enthält die Lösung ${loesungAnzeige} nicht`);
       }
       if (!findeBilder(bilder, a.bild).length) warnungen.push(`${wo}: kein Bild zu ${a.bild.join(', ')}`);
     });

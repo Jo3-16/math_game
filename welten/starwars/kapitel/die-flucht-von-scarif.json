@@ -1,0 +1,73 @@
+{
+  "titel": "Die Flucht von Scarif",
+  "vorschau": "spielbilder/Kapitelbilder/die-flucht-von-scarif.jpg",
+  "belohnung": "spielbilder/Belohnung/die-flucht-von-scarif.jpg",
+  "abzeichen": { "name": "Rogue-One-Pilot", "symbol": "📡" },
+  "aufgaben": [
+    {
+      "bild": ["todesstern jedha"],
+      "geschichte": "Über der Wüstenstadt Jedha erscheint plötzlich der Todesstern und feuert einen Testschuss ab! Jyn und Cassian fliehen mit den Rebellen: 6 Schiffe starten, in jedem sitzen 8 Personen.",
+      "frage": "Wie viele Rebellen entkommen von Jedha?",
+      "rechnung": "6 * 8",
+      "loesung": 48,
+      "merke": "48 Rebellen entkommen von Jedha",
+      "tipp": "6 Schiffe mit je 8 Personen. Die Achterreihe dir hilft."
+    },
+    {
+      "bild": ["pilot im cockpit", "raner"],
+      "art": "uhrzeit",
+      "format": "uhrzeit",
+      "geschichte": "Die Rebellen wollen die Pläne des Todessterns vom Planeten Scarif stehlen. Um 5:50 Uhr starten sie, der Flug dauert 4 Stunden und 40 Minuten.",
+      "frage": "Um wie viel Uhr erreichen sie Scarif?",
+      "rechnung": "5 * 60 + 50 + 4 * 60 + 40",
+      "loesung": 630,
+      "merke": "Ankunft auf Scarif um 10:30 Uhr",
+      "tipp": "Erst die Stunden dazuzählen, dann die Minuten. Werden es mehr als 60 Minuten, eine Stunde weiterrücken du musst."
+    },
+    {
+      "bild": ["luftkampf"],
+      "geschichte": "Über Scarif tobt die Raumschlacht. Die Rebellenflotte hat 75 Jäger im Einsatz. 28 werden abgeschossen, dann springen 13 Jäger als Verstärkung aus dem Hyperraum.",
+      "frage": "Wie viele Jäger kämpfen jetzt für die Rebellen?",
+      "rechnung": "75 - 28 + 13",
+      "loesung": 60,
+      "merke": "60 Jäger kämpfen weiter",
+      "tipp": "Erst die abgeschossenen wegnehmen, dann die Verstärkung dazuzählen."
+    },
+    {
+      "bild": ["todesstern scarif"],
+      "art": "einheiten",
+      "geschichte": "Jyn funkt die Pläne vom Turm hinauf zum Flaggschiff. Die Übertragung dauert 1 Stunde und 5 Minuten – und da erscheint der Todesstern auch über Scarif!",
+      "frage": "Wie viele Minuten dauert die Übertragung?",
+      "rechnung": "1 * 60 + 5",
+      "loesung": 65,
+      "merke": "65 Minuten Übertragung",
+      "tipp": "Eine Stunde hat 60 Minuten. Die übrigen Minuten dazuzählen du musst."
+    },
+    {
+      "bild": ["vader korridor"],
+      "geschichte": "Darth Vader entert das Flaggschiff, um die Pläne zurückzuholen. Im Korridor stellen sich ihm 50 Rebellensoldaten entgegen. Sie bilden Reihen zu je 6 Mann.",
+      "frage": "Wie viele volle Reihen gibt es – und wie viele Soldaten stehen einzeln?",
+      "rechnung": "50 / 6",
+      "loesung": 8,
+      "rest": 2,
+      "merke": "8 Reihen, 2 einzeln",
+      "tipp": "Die Sechserreihe du brauchst: Wie oft passt 6 in 50? Was nicht mehr in eine volle Reihe passt, der Rest ist."
+    },
+    {
+      "bild": ["flucht von der profundity"],
+      "geschichte": "Die Tantive IV entkommt mit den Plänen! An Bord sind 5 Gruppen Soldaten mit je 9 Mann und dazu 7 Offiziere – und Prinzessin Leia hält die Pläne in der Hand.",
+      "frage": "Wie viele Soldaten und Offiziere sind an Bord?",
+      "rechnung": "5 * 9 + 7",
+      "loesung": 52,
+      "merke": "52 Mann auf der Tantive IV",
+      "tipp": "Erst die Soldaten in den Gruppen malnehmen, dann die Offiziere dazuzählen."
+    }
+  ],
+  "bonus": {
+    "bild": ["cockpit blick"],
+    "geschichte": "Der Code für die Pläne ist eine zweistellige Zahl. Ihre beiden Ziffern ergeben zusammen 9, und die Zehnerziffer ist doppelt so groß wie die Einerziffer.",
+    "frage": "Wie lautet der Code?",
+    "loesung": 63,
+    "tipp": "Zwei Ziffern du suchst: Die eine doppelt so groß wie die andere, zusammen ergeben sie neun. Mit kleinen Zahlen probieren du kannst."
+  }
+}

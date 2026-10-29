@@ -1,0 +1,75 @@
+{
+  "titel": "Darth Vader auf der Jagd",
+  "vorschau": "spielbilder/Kapitelbilder/darth-vader-auf-der-jagd.jpg",
+  "belohnung": "spielbilder/Belohnung/darth-vader-auf-der-jagd.jpg",
+  "abzeichen": { "name": "Sith-Jäger", "symbol": "🖤" },
+  "aufgaben": [
+    {
+      "bild": ["vader hoth"],
+      "geschichte": "Nach der Schlacht um Hoth ist Darth Vader wütend: Der Millennium Falke ist entkommen! Von seinem Flaggschiff Executor aus befiehlt er 7 Sternzerstörern, je 9 Suchsonden auszusenden.",
+      "frage": "Wie viele Sonden suchen nach dem Falken?",
+      "rechnung": "7 * 9",
+      "loesung": 63,
+      "merke": "63 Sonden unterwegs",
+      "tipp": "7 Sternzerstörer mit je 9 Sonden. Die Neunerreihe du brauchst – oder 7 mal 10 und dann 7 weniger."
+    },
+    {
+      "bild": ["vader portraet"],
+      "art": "geld",
+      "format": "geld",
+      "geschichte": "Vader ruft die Kopfgeldjäger zusammen. Für jeden brauchbaren Hinweis auf den Falken zahlt das Imperium 2,50 €. Boba Fett meldet 3 Hinweise.",
+      "frage": "Wie viel Geld bekommt Boba Fett?",
+      "rechnung": "3 * 250",
+      "loesung": 750,
+      "merke": "7,50 € Kopfgeld",
+      "tipp": "Dreimal den gleichen Betrag du zusammenzählst. Erst die Euro, dann die Cent – aus hundert Cent ein Euro wird."
+    },
+    {
+      "bild": ["vader bespin"],
+      "art": "uhrzeit",
+      "format": "uhrzeit",
+      "geschichte": "Um 9:40 Uhr meldet eine Sonde: Der Falke fliegt zur Wolkenstadt auf Bespin! Vader startet sofort mit seinem Shuttle. Der Flug dauert 2 Stunden und 45 Minuten.",
+      "frage": "Um wie viel Uhr landet Vader in der Wolkenstadt?",
+      "rechnung": "9 * 60 + 40 + 2 * 60 + 45",
+      "loesung": 745,
+      "merke": "Vader um 12:25 Uhr in der Wolkenstadt",
+      "tipp": "Erst die Stunden dazuzählen, dann die Minuten. Werden es mehr als 60 Minuten, eine Stunde weiterrücken du musst."
+    },
+    {
+      "bild": ["vader ruestung"],
+      "geschichte": "In der Wolkenstadt stellt Vader seine Falle. 75 Sturmtruppen hat er mitgebracht. Sie sollen in Gruppen zu je 8 Soldaten die Gänge bewachen, die übrigen bleiben als Leibwache bei Vader.",
+      "frage": "Wie viele volle Gruppen gibt es – und wie viele Soldaten bleiben bei Vader?",
+      "rechnung": "75 / 8",
+      "loesung": 9,
+      "rest": 3,
+      "merke": "9 Gruppen, 3 Leibwachen",
+      "tipp": "Die Achterreihe du brauchst: Wie oft passt 8 in 75? Was nicht mehr in eine volle Gruppe passt, der Rest ist."
+    },
+    {
+      "bild": ["obiwan vader duell"],
+      "art": "einheiten",
+      "geschichte": "Während Vader auf Luke wartet, übt er mit dem Lichtschwert – wie damals im Duell gegen Obi-Wan. Er trainiert 1 Stunde und 20 Minuten lang.",
+      "frage": "Wie viele Minuten trainiert Vader?",
+      "rechnung": "1 * 60 + 20",
+      "loesung": 80,
+      "merke": "80 Minuten Training",
+      "tipp": "Eine Stunde hat 60 Minuten. Die übrigen Minuten dazuzählen du musst."
+    },
+    {
+      "bild": ["vader todesstern"],
+      "geschichte": "Später meldet Vader dem Imperator: Von den 63 Sonden haben 48 nichts gefunden, und 9 wurden von Rebellen zerstört. Nur die übrigen Sonden haben den Falken aufgespürt.",
+      "frage": "Wie viele Sonden haben den Falken aufgespürt?",
+      "rechnung": "63 - 48 - 9",
+      "loesung": 6,
+      "merke": "6 Sonden fanden den Falken",
+      "tipp": "Zweimal wegnehmen du musst: erst die Sonden ohne Fund, dann die zerstörten."
+    }
+  ],
+  "bonus": {
+    "bild": ["vader tantive"],
+    "geschichte": "Der Zugangscode zu Vaders Kammer ist eine Zahlenfolge: 3, 6, 12, 24, … Welche Zahl kommt als Nächstes?",
+    "frage": "Wie lautet die nächste Zahl des Codes?",
+    "loesung": 48,
+    "tipp": "Schau, wie jede Zahl aus der vorigen entsteht. Immer das Gleiche mit ihr passiert."
+  }
+}

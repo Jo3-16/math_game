@@ -1,0 +1,64 @@
+{
+  "titel": "Der Korvetten-Konvoi",
+  "vorschau": "spielbilder/Kapitelbilder/der-korvetten-konvoi.jpg",
+  "belohnung": "spielbilder/Belohnung/der-korvetten-konvoi.jpg",
+  "abzeichen": { "name": "Konvoi-Beschützer", "symbol": "🛡️" },
+  "aufgaben": [
+    {
+      "bild": ["angedockter ghost"],
+      "art": "einheiten",
+      "geschichte": "Die Rebellen schicken einen Konvoi aus Korvetten mit Medizin zu ihren Basen. Hera dockt mit der Ghost an der ersten Korvette an. Das Beladen dauert 2 Stunden und 35 Minuten.",
+      "frage": "Wie viele Minuten dauert das Beladen?",
+      "rechnung": "2 * 60 + 35",
+      "loesung": 155,
+      "merke": "155 Minuten Beladen",
+      "tipp": "Eine Stunde hat 60 Minuten. Erst die Stunden umrechnen, dann die Minuten dazu."
+    },
+    {
+      "bild": ["phoenix staffel"],
+      "geschichte": "Der Konvoi besteht aus 4 Korvetten. In jede Korvette passen 60 Kisten mit Medizin. Die Phoenix-Staffel fliegt als Begleitschutz nebenher.",
+      "frage": "Wie viele Kisten transportiert der Konvoi?",
+      "rechnung": "4 * 60",
+      "loesung": 240,
+      "merke": "240 Kisten im Konvoi",
+      "tipp": "4 mal 60 du rechnest: Erst 4 mal 6, dann die Null wieder anhängen."
+    },
+    {
+      "bild": ["vor dem waldmond"],
+      "art": "uhrzeit",
+      "format": "uhrzeit",
+      "geschichte": "Um 11:50 Uhr springt der Konvoi in den Hyperraum. Der Flug zum Treffpunkt beim Waldmond dauert 3 Stunden und 25 Minuten.",
+      "frage": "Um wie viel Uhr kommt der Konvoi am Waldmond an?",
+      "rechnung": "11 * 60 + 50 + 3 * 60 + 25",
+      "loesung": 915,
+      "merke": "Ankunft um 15:15 Uhr",
+      "tipp": "Erst die Stunden dazuzählen, dann die Minuten. Werden es mehr als 60 Minuten, eine Stunde weiterrücken du musst."
+    },
+    {
+      "bild": ["konvoi unter angriff"],
+      "geschichte": "Kurz vor dem Ziel: Angriff! 15 TIE-Jäger stürzen sich auf den Konvoi. Die Phoenix-Staffel schießt 6 ab, und 4 weitere drehen ab und fliehen.",
+      "frage": "Wie viele TIE-Jäger greifen noch an?",
+      "rechnung": "15 - 6 - 4",
+      "loesung": 5,
+      "merke": "5 TIE-Jäger greifen noch an",
+      "tipp": "Zweimal wegnehmen du musst: erst die abgeschossenen, dann die geflohenen."
+    },
+    {
+      "bild": ["tantive iv verfolgung"],
+      "geschichte": "Der Konvoi kommt durch! Die 240 Kisten Medizin sollen nun gleichmäßig an 7 Rebellenbasen verteilt werden. Was übrig bleibt, behält Hera auf der Ghost.",
+      "frage": "Wie viele Kisten bekommt jede Basis – und wie viele bleiben auf der Ghost?",
+      "rechnung": "240 / 7",
+      "loesung": 34,
+      "rest": 2,
+      "merke": "34 Kisten je Basis, 2 auf der Ghost",
+      "tipp": "Wie oft passt 7 in 240? Erst eine große Siebenerzahl nahe 240 suchen, dann in Siebenerschritten weiter. Was nicht mehr passt, der Rest ist."
+    }
+  ],
+  "bonus": {
+    "bild": ["tantive iv gekapert"],
+    "geschichte": "Auf der gekaperten Korvette rennen die Sturmtruppen durch den Hauptgang. Der Gang ist 40 Meter lang. Am Anfang und am Ende hängt je eine Lampe, und zwischen zwei Lampen sind immer 5 Meter Abstand.",
+    "frage": "Wie viele Lampen hängen im Gang?",
+    "loesung": 9,
+    "tipp": "Erst die Abstände zählen: Wie oft passen 5 Meter in den Gang? Dann bedenken, dass am Anfang auch schon eine Lampe hängt."
+  }
+}

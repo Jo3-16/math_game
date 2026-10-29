@@ -390,17 +390,21 @@ export function erzeugeAufgabe(art, zufall = Math.random) {
   if (art === 'geld') {
     const n = zahl(zufall, 2, 5), p = zahl(zufall, 3, 40) * 10; // Preis 0,30–4,00 €
     const euro = (c) => zweiteilig(c, 'geld');
-    const [wer, ware, bild] = eins(zufall, [
-      ['Luke', 'Gläser Blaue Milch', ['tatooine/']], ['Han Solo', 'Energiezellen', ['mos-eisley']],
-      ['Onkel Owen', 'Ersatzteile bei den Jawas', ['jawa']], ['C-3PO', 'Dosen Öl', ['oelbad']],
-      ['Chewbacca', 'Bantha-Würstchen', ['chewbacca/']], ['R2-D2', 'Schaltkreise', ['r2-d2']],
+    const [wer, ware] = eins(zufall, [
+      ['Luke', 'Gläser Blaue Milch'], ['Han Solo', 'Energiezellen'], ['Onkel Owen', 'Ersatzteile'],
+      ['C-3PO', 'Dosen Öl'], ['Chewbacca', 'Bantha-Würstchen'], ['R2-D2', 'Schaltkreise'], ['Lando', 'Datenkarten'],
     ]);
-    const geschichte = `${wer} kauft in Mos Eisley ${n} ${ware}. Eins kostet ${euro(p)}.`;
+    const [ort, bild] = eins(zufall, [
+      ['in Mos Eisley', ['mos-eisley']], ['auf dem Markt von Tatooine', ['tatooine/']], ['in der Echo-Basis auf Hoth', ['hoth/']],
+      ['in der Wolkenstadt', ['wolkenstadt-bespin/']], ['im Ewok-Dorf auf Endor', ['endor/']], ['in der Rebellenbasis auf Yavin 4', ['yavin-4/']],
+      ['bei Yoda auf Dagobah', ['dagobah/']], ['in der Kantine des Todessterns', ['todesstern/']],
+    ]);
+    const geschichte = `${wer} kauft ${ort} ${n} ${ware}. Eins kostet ${euro(p)}.`;
     if (zufall() < 0.5) {
       return { art, format: 'geld', geschichte, frage: 'Wie viel muss er zusammen bezahlen?', bild,
         rechnung: `${n} * ${p}`, loesung: n * p, tipp: 'Erst die Euro malnehmen, dann die Cent. Hundert Cent ein Euro sind.' };
     }
-    const schein = [5, 10, 20, 50].find(e => e * 100 > n * p);
+    const schein = eins(zufall, [5, 10, 20, 50].filter(e => e * 100 > n * p).slice(0, 2)); // kleinster oder nächstgrößerer Schein, der reicht
     return { art, format: 'geld', geschichte: `${geschichte} Er bezahlt mit einem ${schein}-Euro-Schein.`, frage: 'Wie viel Wechselgeld bekommt er zurück?', bild,
       rechnung: `${schein} * 100 - ${n} * ${p}`, loesung: schein * 100 - n * p, tipp: 'Erst ausrechnen, was alles kostet. Dann bis zum Schein du ergänzen musst.' };
   }

@@ -157,3 +157,12 @@ test('zu wenig bilder für ein kapitel ist warnung', async () => {
   assert.equal(r.warnungen.length, 1);
   assert.match(r.warnungen[0], /Aufgabe 2: zu wenig Bilder – zeigt dasselbe Bild wie Aufgabe 1/);
 });
+
+test('format uhrzeit/geld: merke zeigt die Lösung als Uhrzeit bzw. Betrag', async () => {
+  const uhr = { art: 'uhrzeit', format: 'uhrzeit', rechnung: '10 * 60 + 30', loesung: 630 };
+  assert.deepEqual(await pruefeWelt(welt(vier({ ...uhr, merke: 'Ankunft um 10:30 Uhr' }))), { fehler: [], warnungen: [] });
+  assert.match((await pruefeWelt(welt(vier({ ...uhr, merke: 'Ankunft um 630' })))).fehler[0], /merke .* 10:30 Uhr/);
+  const geld = { art: 'geld', format: 'geld', rechnung: '4 * 80', loesung: 320 };
+  assert.deepEqual(await pruefeWelt(welt(vier({ ...geld, merke: '3,20 € bezahlt' }))), { fehler: [], warnungen: [] });
+  assert.match((await pruefeWelt(welt(vier({ ...geld, format: 'credits', merke: '3,20 € bezahlt' })))).fehler[0], /unbekanntes format "credits"/);
+});
