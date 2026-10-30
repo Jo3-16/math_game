@@ -51,6 +51,7 @@
     }
   ],
   "bonus": {
+    "bild": ["todesstern yavin"],
     "geschichte": "Im Graben des Todessterns stehen Geschütztürme in einer Reihe. Der erste steht bei Kilometer 5, danach kommt alle 7 Kilometer ein weiterer Turm.",
     "frage": "Bei welchem Kilometer steht der 6. Turm?",
     "loesung": 40,

@@ -5,7 +5,7 @@ Lernspiel für einen Jungen am Anfang der 4. Klasse: Mathe-Sachaufgaben als Gesc
 - Starten: Doppelklick auf `start.bat` (oder `npm start`), dann http://localhost:8642 – nach Änderungen an `server.js` oder `einstellungen.json` Server neu starten, sonst reicht F5
 - Tests: `npm test` · Kapitel prüfen: `node pruefe.js`
 - Spielstand zurücksetzen: `welten/<welt>/spielstand.json` löschen (alte Spielstände mit Kapitel-Kennungen wie `01-name` werden beim Laden automatisch auf `name` umgestellt)
-- Admin-Modus: http://localhost:8642/admin – alle Kapitel offen, „Weiter ▶“ ohne Rechnen, Lösung + Tipp sichtbar, nichts wird gespeichert; dazu „🖼️ Bildergalerie“ (je Bild die Aufgaben, in denen es erscheinen kann; unbenutzte rot gestrichelt) und „📊 Statistik“ (Fehlversuche je Rechenart, schwierigste Aufgaben)
+- Admin-Modus: http://localhost:8642/admin – alle Kapitel offen, „Weiter ▶“ ohne Rechnen, Lösung + Tipp sichtbar, nichts wird gespeichert; dazu „🖼️ Bildergalerie“ (je Bild die Aufgaben, in denen es erscheinen kann; unbenutzte rot gestrichelt), „📊 Statistik“ (Fehlversuche je Rechenart, schwierigste Aufgaben) und das Archiv mit allen Belohnungsbildern
 - Admin-Passwort (optional): `einstellungen.json` → `{ "adminPasswort": "…" }` (nicht im Git; ohne Datei ist /admin offen)
 - Einstellungen `/einstellungen` (⚙️ in der Übersicht): Pilotenname, Icon-Set (Emojis oder vier Icon-Sets, im Spielstand gemerkt: `icons`) und Ton an/aus (im Browser gemerkt); Zuordnung in `public/icons.js`, SVGs in `public/icons/<set>/`
 - Weitere Seiten: Abzeichen & Punkte `/abzeichen`, Hologramm-Archiv `/archiv`, Flugsimulator (Zufallsaufgaben je Rechenart, keine Punkte, zählt richtige und falsche Antworten: `simulatorGeloest`, `simulatorFalsch`) über die Übersicht

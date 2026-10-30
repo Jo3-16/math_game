@@ -24,6 +24,9 @@ export function findeBilder(pfade, suchwoerter) {
 
 // Ein Bild je Aufgabe eines Kapitels, möglichst ohne Wiederholung (Zuordnung über Austauschpfade).
 // Wo es nicht anders geht, bekommt eine Aufgabe ein schon vergebenes Bild; ohne Treffer null.
+// Aufgaben + Bonus-Rätsel als eine Liste fürs Bilderverteilen; der Bonus nimmt ohne eigenes Bild die Suchwörter der letzten Aufgabe – aber ein anderes Bild.
+export const bildAufgaben = kapitel => kapitel.bonus ? [...kapitel.aufgaben, { bild: kapitel.bonus.bild ?? kapitel.aufgaben.at(-1).bild }] : kapitel.aufgaben;
+
 export function verteileBilder(pfade, aufgaben, zufall = Math.random) {
   const kandidaten = aufgaben.map(a => {
     const t = findeBilder(pfade, a.bild ?? []);

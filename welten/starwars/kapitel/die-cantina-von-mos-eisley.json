@@ -62,6 +62,7 @@
     }
   ],
   "bonus": {
+    "bild": ["tatooine/"],
     "geschichte": "In der Cantina spielt die Band. Jedes Lied dauert 3 Minuten, und zwischen zwei Liedern macht die Band 1 Minute Pause. Sie spielt 6 Lieder hintereinander.",
     "frage": "Wie viele Minuten dauert es vom Anfang des ersten bis zum Ende des letzten Liedes?",
     "loesung": 23,

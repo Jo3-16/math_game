@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer, mitRang, SIMULATOR_STUFEN, simulatorAufgabeGeloest, simulatorStufen, mitFalscherAntwort, verteileBilder, RECHENART_NAMEN, RAENGE, mitStelle } from '../public/logik.js';
+import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer, mitRang, SIMULATOR_STUFEN, simulatorAufgabeGeloest, simulatorStufen, mitFalscherAntwort, verteileBilder, bildAufgaben, RECHENART_NAMEN, RAENGE, mitStelle } from '../public/logik.js';
 
 test('normalisiere', () => {
   assert.equal(normalisiere('X-wing_SWB.webp'), 'x wing swb.webp');
@@ -298,4 +298,11 @@ test('mitStelle merkt die Stelle je Kapitel und löscht sie mit null', () => {
   assert.equal(s2.stelle.b.wiederholung, true);
   assert.deepEqual(mitStelle(s2, 'a', null).stelle, { b: s2.stelle.b });
   assert.equal(s.stelle.b, undefined); // ursprünglicher Stand bleibt unverändert
+});
+
+test('bildAufgaben: Bonus bekommt ein anderes Bild als die letzte Aufgabe', () => {
+  const kapitel = { aufgaben: [{ bild: ['x-wing/'] }], bonus: {} };
+  const b = verteileBilder(['X-Wing/a.png', 'X-Wing/b.png'], bildAufgaben(kapitel));
+  assert.equal(b.length, 2);
+  assert.notEqual(b[0], b[1]);
 });

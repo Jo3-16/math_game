@@ -2,7 +2,7 @@ import {
   findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatus, mitStelle, aufgabeGeloest, gesamtPunkte, mitName,
   rang, mitRang, RAENGE, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, BONUS_PUNKTE,
   rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, RECHENART_NAMEN, migriereStand,
-  SIMULATOR_STUFEN, simulatorAufgabeGeloest, ZWEI_FELDER, loesungText, mitFalscherAntwort, verteileBilder,
+  SIMULATOR_STUFEN, simulatorAufgabeGeloest, ZWEI_FELDER, loesungText, mitFalscherAntwort, verteileBilder, bildAufgaben,
 } from './logik.js';
 import { ICON_SETS, ICONS } from './icons.js';
 
@@ -13,7 +13,7 @@ const ADMIN = location.pathname === '/admin';
 
 let welt, weltId, stand;
 let kapitelIndex, aufgabeIndex, fehlversuche, wiederholung, wartet, weiterTimer;
-let kapitelBilder = []; // je Aufgabe des Kapitels ein Bild, möglichst ohne Wiederholung
+let kapitelBilder = []; // je Aufgabe des Kapitels (und Bonus-Rätsel) ein Bild, möglichst ohne Wiederholung
 let ohneTipp, laufSterne; // im aktuellen Durchlauf ohne Tipp gelöste Aufgaben, Sterne dieses Durchlaufs
 let simulatorArt = null, simAufgabe; // Flugsimulator: gewählte Rechenart, aktuelle Zufallsaufgabe
 
@@ -205,7 +205,7 @@ function zeigeRaenge() {
 function starteKapitel(index, alsWiederholung) {
   simulatorArt = null;
   kapitelIndex = index;
-  kapitelBilder = verteileBilder(welt.bilder, welt.kapitel[index].aufgaben);
+  kapitelBilder = verteileBilder(welt.bilder, bildAufgaben(welt.kapitel[index]));
   wiederholung = alsWiederholung;
   ohneTipp = 0;
   laufSterne = 0;
@@ -248,11 +248,11 @@ function pfadUrl(pfad) {
 
 const imBonus = kapitel => !simulatorArt && aufgabeIndex >= kapitel.aufgaben.length;
 
-// Die normale Aufgabe – nach der letzten Aufgabe das Bonus-Rätsel (mit dem Bild der letzten Aufgabe) – oder im Simulator die Zufallsaufgabe.
+// Die normale Aufgabe – nach der letzten Aufgabe das Bonus-Rätsel – oder im Simulator die Zufallsaufgabe.
 function aktuelleAufgabe(kapitel) {
   if (simulatorArt) return simAufgabe;
   if (!imBonus(kapitel)) return kapitel.aufgaben[aufgabeIndex];
-  return { bild: kapitel.aufgaben.at(-1).bild, ...kapitel.bonus };
+  return kapitel.bonus;
 }
 
 function zeigeAufgabe() {
@@ -262,7 +262,7 @@ function zeigeAufgabe() {
   fehlversuche = 0;
   wartet = false;
 
-  const pfad = kapitelBilder[Math.min(aufgabeIndex, kapitelBilder.length - 1)]; // Bonus: Bild der letzten Aufgabe
+  const pfad = kapitelBilder[aufgabeIndex];
   const url = simulatorArt ? bildUrl(aufgabe.bild) : pfad ? pfadUrl(pfad) : '';
   $('bild').hidden = !url;
   if (url) $('bild').src = url;
@@ -489,14 +489,19 @@ function zeigeGalerie() {
 
 $('galerie-knopf').onclick = zeigeGalerie;
 $('galerie-zurueck').onclick = zeigeUebersicht;
+// Im Admin-Modus bleibt das Archiv auf /admin (sonst wäre der Admin-Modus weg).
+if (ADMIN) {
+  $('archiv-link').onclick = e => { e.preventDefault(); zeigeArchiv(); };
+  $('archiv-zurueck').onclick = e => { e.preventDefault(); zeigeUebersicht(); };
+}
 
-// Hologramm-Archiv: jedes fertige Kapitel schaltet sein Belohnungsbild frei.
+// Hologramm-Archiv: jedes fertige Kapitel schaltet sein Belohnungsbild frei (Admin: alle offen).
 function zeigeArchiv() {
   const mit = welt.kapitel.map((k, i) => [k, i]).filter(([k]) => k.belohnung);
   const frei = mit.filter(([k]) => stand.kapitel[k.id]?.fertig).length;
-  $('archiv-zusammenfassung').textContent = `${frei} von ${mit.length} Hologrammen freigeschaltet – jedes geschaffte Kapitel bringt ein neues.`;
+  $('archiv-zusammenfassung').textContent = `${frei} von ${mit.length} Hologrammen freigeschaltet – jedes geschaffte Kapitel bringt ein neues.` + (ADMIN ? ' Admin: alle sichtbar.' : '');
   $('archiv-inhalt').replaceChildren(...mit.map(([k, i]) => {
-    const offen = stand.kapitel[k.id]?.fertig;
+    const offen = ADMIN || stand.kapitel[k.id]?.fertig;
     const f = element(offen ? 'button' : 'figure', offen ? 'holo' : 'holo gesperrt');
     const img = element('img');
     img.src = pfadUrl(k.belohnung);

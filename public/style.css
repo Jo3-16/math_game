@@ -27,7 +27,7 @@ body {
   font: 20px/1.5 system-ui, sans-serif;
 }
 
-main { padding: 24px; max-width: 1400px; margin: 0 auto; }
+main { padding: 24px; max-width: 1800px; margin: 0 auto; }
 h1, h2 { color: var(--akzent); margin: 0 0 16px; }
 @font-face { font-family: 'Star Jedi'; src: url(fonts/starjedi.ttf); } /* Boba Fonts, frei für privat */
 #weltname { font-family: 'Star Jedi', system-ui, sans-serif; font-weight: normal; letter-spacing: 2px; }
@@ -245,3 +245,10 @@ button.holo { width: 100%; text-align: left; font: inherit; font-weight: normal;
 .wahl-knopf.aktiv { border-color: var(--akzent); box-shadow: 0 0 14px rgba(255, 232, 31, .35); }
 .wahl-knopf .beispiel { display: flex; gap: 10px; font-size: 32px; }
 .abzeichen small.datum { color: var(--hud); }
+
+/* Große Bildschirme: weiter 3 Kacheln nebeneinander, dafür größere Bilder */
+@media (min-width: 1700px) {
+  :root { --kachelbild-breite: 240px; --kachelbild-hoehe: 173px; }
+  .raster { grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); }
+  .abzeichen { --kachelbild-breite: 180px; --kachelbild-hoehe: 130px; } /* Abzeichen bleiben klein, dafür mehr pro Zeile */
+}

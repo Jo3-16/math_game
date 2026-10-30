@@ -51,6 +51,7 @@
     }
   ],
   "bonus": {
+    "bild": ["dagobah huette"],
     "geschichte": "Yoda stapelt Steine zu einer Pyramide. In der untersten Reihe liegen 6 Steine, in jeder Reihe darüber 1 Stein weniger – bis ganz oben nur noch 1 Stein liegt.",
     "frage": "Wie viele Steine hat die ganze Pyramide?",
     "loesung": 21,

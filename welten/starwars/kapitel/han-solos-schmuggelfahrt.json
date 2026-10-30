@@ -67,6 +67,7 @@
     }
   ],
   "bonus": {
+    "bild": ["millennium-falcon/"],
     "geschichte": "Im Laderaum stehen Kisten mit Ersatzteilen und Kisten mit Vorräten – zusammen 20 Kisten. Es sind 4 Vorratskisten mehr als Ersatzteilkisten.",
     "frage": "Wie viele Vorratskisten sind im Laderaum?",
     "loesung": 12,

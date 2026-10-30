@@ -60,6 +60,7 @@
     }
   ],
   "bonus": {
+    "bild": ["korvette und falcon fliehen"],
     "geschichte": "Die 8 Transporter des Konvois fliegen in einer langen Reihe hintereinander. Zwischen zwei Transportern sind immer genau 15 Kilometer Abstand.",
     "frage": "Wie viele Kilometer sind es vom ersten bis zum letzten Transporter?",
     "loesung": 105,

@@ -61,6 +61,7 @@
     }
   ],
   "bonus": {
+    "bild": ["speeder-bikes scouts"],
     "geschichte": "Die Scouts parken ihre Speeder-Bikes in Reihen. Stellen sie immer 4 in eine Reihe, bleibt 1 übrig. Stellen sie immer 5 in eine Reihe, bleibt auch 1 übrig. Es sind mehr als 1 und weniger als 30 Speeder-Bikes.",
     "frage": "Wie viele Speeder-Bikes sind es?",
     "loesung": 21,
