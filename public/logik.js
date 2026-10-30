@@ -111,6 +111,15 @@ export function mitName(stand, neuerName = stand.name) {
   return { ...stand, name };
 }
 
+// Stelle eines angefangenen Kapitels, damit man genau dort weitermacht: nächste Aufgabe (= Länge: Bonus-Rätsel),
+// Fehlversuche der aktuellen Aufgabe, Aufgaben ohne Tipp und ob es eine Wiederholung ist. null löscht die Stelle.
+export function mitStelle(stand, kapitelId, stelle) {
+  const alle = { ...stand.stelle };
+  if (stelle) alle[kapitelId] = stelle;
+  else delete alle[kapitelId];
+  return { ...stand, stelle: alle };
+}
+
 export function kapitelStatus(stand, kapitelIds) {
   let offenVergeben = false;
   return kapitelIds.map(id => {

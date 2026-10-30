@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer, mitRang, SIMULATOR_STUFEN, simulatorAufgabeGeloest, simulatorStufen, mitFalscherAntwort, verteileBilder, RECHENART_NAMEN, RAENGE } from '../public/logik.js';
+import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer, mitRang, SIMULATOR_STUFEN, simulatorAufgabeGeloest, simulatorStufen, mitFalscherAntwort, verteileBilder, RECHENART_NAMEN, RAENGE, mitStelle } from '../public/logik.js';
 
 test('normalisiere', () => {
   assert.equal(normalisiere('X-wing_SWB.webp'), 'x wing swb.webp');
@@ -288,4 +288,13 @@ test('aufgabeGeloest merkt das Datum, an dem ein Abzeichen erreicht wurde', () =
   assert.deepEqual(s.abzeichenDatum, { a: '2026-10-20' });
   s = aufgabeGeloest({ ...s, kapitel: { a: { geloest: 0, punkte: 0, fertig: false } } }, 'a', 1, 0, new Date(2026, 9, 25)); // Wiederholung
   assert.equal(s.abzeichenDatum.a, '2026-10-20'); // bleibt das erste Datum
+});
+
+test('mitStelle merkt die Stelle je Kapitel und löscht sie mit null', () => {
+  const s = mitStelle(leererStand(), 'a', { aufgabe: 2, fehlversuche: 1, ohneTipp: 2, wiederholung: false });
+  const s2 = mitStelle(s, 'b', { aufgabe: 0, fehlversuche: 0, ohneTipp: 0, wiederholung: true });
+  assert.equal(s2.stelle.a.aufgabe, 2);
+  assert.equal(s2.stelle.b.wiederholung, true);
+  assert.deepEqual(mitStelle(s2, 'a', null).stelle, { b: s2.stelle.b });
+  assert.equal(s.stelle.b, undefined); // ursprünglicher Stand bleibt unverändert
 });

@@ -1,5 +1,5 @@
 import {
-  findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName,
+  findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatus, mitStelle, aufgabeGeloest, gesamtPunkte, mitName,
   rang, mitRang, RAENGE, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, BONUS_PUNKTE,
   rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, RECHENART_NAMEN, migriereStand,
   SIMULATOR_STUFEN, simulatorAufgabeGeloest, ZWEI_FELDER, loesungText, mitFalscherAntwort, verteileBilder,
@@ -140,7 +140,9 @@ function zeigeUebersicht() {
   $('kapitel').replaceChildren(...welt.kapitel.map((k, i) => {
     const s = stand.kapitel[k.id];
     const b = element('button', `kachel ${status[i]}`);
-    const zeile = {
+    const st = stand.stelle?.[k.id];
+    const weiterText = st && (st.aufgabe >= k.aufgaben.length ? '▶️ weiter beim Bonus-Rätsel' : `▶️ weiter bei Aufgabe ${st.aufgabe + 1}/${k.aufgaben.length}`);
+    const zeile = weiterText && status[i] === 'fertig' ? weiterText : {
       fertig: `✅ ${s?.punkte ?? 0}/${maxPunkte(k)} ${sterneText(kapitelSterne(s, k.aufgaben.length))}${s?.bonus ? ' 🥇' : ''}`,
       offen: `▶️ ${s?.geloest ?? 0}/${k.aufgaben.length} gelöst`,
       gesperrt: '🔒 gesperrt',
@@ -207,8 +209,31 @@ function starteKapitel(index, alsWiederholung) {
   wiederholung = alsWiederholung;
   ohneTipp = 0;
   laufSterne = 0;
-  aufgabeIndex = wiederholung ? 0 : (stand.kapitel[welt.kapitel[index].id]?.geloest ?? 0);
+  const kapitel = welt.kapitel[index];
+  const st = ADMIN ? null : stand.stelle?.[kapitel.id];
+  if (st) {
+    wiederholung = st.wiederholung;
+    ohneTipp = st.ohneTipp;
+  }
+  // Erster Durchgang: gelöste Aufgaben zählen; Wiederholung: gemerkte Stelle
+  aufgabeIndex = wiederholung ? (st?.aufgabe ?? 0) : (stand.kapitel[kapitel.id]?.geloest ?? 0);
+  if (imBonus(kapitel)) {
+    aufgabenGeschafft(kapitel);
+    if (!kapitel.bonus) return zeigeKapitelEnde(kapitel);
+  }
   zeigeAufgabe();
+  if (st?.aufgabe === aufgabeIndex && st.fehlversuche) {
+    fehlversuche = st.fehlversuche;
+    if (fehlversuche >= TIPP_AB) $('tipp').hidden = false;
+  }
+  merkeStelle();
+}
+
+// Hält fest, wo man im Kapitel steht (nicht im Admin-Modus und nicht im Simulator).
+function merkeStelle() {
+  if (ADMIN || simulatorArt) return;
+  stand = mitStelle(stand, welt.kapitel[kapitelIndex].id, { aufgabe: aufgabeIndex, fehlversuche, ohneTipp, wiederholung });
+  speichern();
 }
 
 function bildUrl(suchwoerter) {
@@ -324,7 +349,7 @@ $('antwort-form').onsubmit = event => {
     if (!ADMIN && !simulatorArt) {
       const schluessel = `${kapitel.id}#${imBonus(kapitel) ? 'Bonus' : aufgabeIndex + 1}`;
       stand = mitFalscherAntwort(stand, schluessel, mitRest ? `${eingabe} Rest ${restEingabe}` : eingabe);
-      speichern();
+      merkeStelle();
     }
     ton('falsch');
     meldung("Leider nicht – versuch's nochmal!", 'falsch');
@@ -366,8 +391,9 @@ $('antwort-form').onsubmit = event => {
   }
 
   if (fehlversuche < TIPP_AB) ohneTipp++;
+  if (!ADMIN) stand = mitStelle(stand, kapitel.id, { aufgabe: aufgabeIndex + 1, fehlversuche: 0, ohneTipp, wiederholung });
   if (wiederholung) {
-    speichern(); // Statistik
+    speichern(); // Statistik und Stelle
     meldung('Richtig!', 'richtig');
   } else {
     const plus = punkteFuer(fehlversuche);
@@ -584,6 +610,10 @@ $('statistik-knopf').onclick = zeigeStatistik;
 for (const b of document.querySelectorAll('.zur-uebersicht')) b.onclick = zeigeUebersicht;
 
 function zeigeKapitelEnde(kapitel) {
+  if (!ADMIN && stand.stelle?.[kapitel.id]) {
+    stand = mitStelle(stand, kapitel.id, null); // Kapitel zu Ende: nächstes Mal von vorn
+    speichern();
+  }
   const s = stand.kapitel[kapitel.id];
   const gold = Boolean(s?.bonus);
   $('overlay-symbol').replaceChildren(ikon(kapitel.id, kapitel.abzeichen.symbol));
