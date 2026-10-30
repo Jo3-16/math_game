@@ -1,0 +1,75 @@
+{
+  "titel": "Die Schlacht um Coruscant",
+  "vorschau": "spielbilder/Kapitelbilder/die-schlacht-um-coruscant.jpg",
+  "belohnung": "spielbilder/Belohnung/die-schlacht-um-coruscant.jpg",
+  "abzeichen": { "name": "Held der Republik", "symbol": "🏙️" },
+  "aufgaben": [
+    {
+      "bild": ["coruscant skyline"],
+      "art": "einheiten",
+      "geschichte": "Yoda erzählt weiter: Coruscant ist ein Planet, der ganz von einer einzigen Stadt bedeckt ist. Die höchsten Türme ragen 5 Kilometer und 60 Meter in den Himmel.",
+      "frage": "Wie viele Meter hoch sind die Türme?",
+      "rechnung": "5 * 1000 + 60",
+      "loesung": 5060,
+      "merke": "5060 Meter hohe Türme",
+      "tipp": "Ein Kilometer hat 1000 Meter. Erst die Kilometer umrechnen, dann die Meter dazu."
+    },
+    {
+      "bild": ["venator start ueber coruscant", "venator verband ueber coruscant"],
+      "geschichte": "Feinde greifen Coruscant an! 8 große Kriegsschiffe der Republik starten, und jedes trägt 40 Jäger.",
+      "frage": "Wie viele Jäger bringen die Kriegsschiffe mit?",
+      "rechnung": "8 * 40",
+      "loesung": 320,
+      "merke": "320 Jäger",
+      "tipp": "8 mal 40 du rechnest: Erst 8 mal 4, dann die Null anhängen."
+    },
+    {
+      "bild": ["venator flotte schlacht", "venator bug"],
+      "geschichte": "Die 320 Jäger fliegen in Staffeln mit je 9 Jägern in die Schlacht.",
+      "frage": "Wie viele volle Staffeln gibt es – und wie viele Jäger bleiben übrig?",
+      "rechnung": "320 / 9",
+      "loesung": 35,
+      "rest": 5,
+      "merke": "35 Staffeln, 5 Jäger übrig",
+      "tipp": "Wie oft passt 9 in 320? Erst eine große Neunerzahl nahe 320 suchen, dann in Neunerschritten weiter. Was übrig bleibt, der Rest ist."
+    },
+    {
+      "bild": ["venator breitseite", "hangaroeffnung"],
+      "geschichte": "Die Kanonen der Kriegsschiffe feuern ohne Pause: zuerst 386 Schüsse, dann noch einmal 247.",
+      "frage": "Wie viele Schüsse feuern sie zusammen?",
+      "rechnung": "386 + 247",
+      "loesung": 633,
+      "merke": "633 Schüsse",
+      "tipp": "Erst die Hunderter, dann die Zehner, dann die Einer zusammenzählen."
+    },
+    {
+      "bild": ["senatsgebaeude abend", "senatssaal"],
+      "art": "uhrzeit",
+      "format": "uhrzeit",
+      "geschichte": "Die Schlacht beginnt um 10:35 Uhr und dauert 3 Stunden und 50 Minuten. Dann ist der Kanzler gerettet und der Senat wieder sicher.",
+      "frage": "Um wie viel Uhr ist die Schlacht vorbei?",
+      "rechnung": "10 * 60 + 35 + 3 * 60 + 50",
+      "loesung": 865,
+      "merke": "Schlacht vorbei um 14:25 Uhr",
+      "tipp": "Erst die Stunden dazuzählen, dann die Minuten. Werden es mehr als 60 Minuten, eine Stunde weiterrücken du musst."
+    },
+    {
+      "bild": ["jedi tempel luftbild"],
+      "art": "geld",
+      "format": "geld",
+      "geschichte": "Zur Feier kauft Obi-Wan für die jungen Jedi-Schüler im Tempel 5 Datenbücher, jedes kostet 1,80 €. Er bezahlt mit einem 10-Euro-Schein.",
+      "frage": "Wie viel Wechselgeld bekommt Obi-Wan?",
+      "rechnung": "10 * 100 - 5 * 180",
+      "loesung": 100,
+      "merke": "1,00 € Wechselgeld",
+      "tipp": "Erst ausrechnen, was die fünf Bücher kosten. Dann vom Schein abziehen du musst."
+    }
+  ],
+  "bonus": {
+    "bild": ["coruscant planet aus dem all"],
+    "geschichte": "Ein Jedi-Rätsel: 100, 90, 81, 73, … Welche Zahl kommt als Nächstes?",
+    "frage": "Wie heißt die nächste Zahl?",
+    "loesung": 66,
+    "tipp": "Schau, um wie viel es jedes Mal weniger wird. Jedes Mal um eins weniger abgezogen wird."
+  }
+}

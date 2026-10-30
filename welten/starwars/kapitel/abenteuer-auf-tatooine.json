@@ -5,7 +5,7 @@
   "abzeichen": { "name": "Wüstenläufer", "symbol": "🏜️" },
   "aufgaben": [
     {
-      "bild": ["lars farm", "jawas"],
+      "bild": ["lars farm", "jawas", "sandcrawler droidenverkauf"],
       "geschichte": "Auf der Farm von Onkel Owen bieten die Jawas ihre Droiden an. Owen kauft R2-D2 für 85 Credits und C-3PO für 120 Credits. Er bezahlt mit einem 250-Credit-Chip.",
       "frage": "Wie viele Credits bekommt Owen zurück?",
       "rechnung": "250 - 85 - 120",
@@ -23,7 +23,7 @@
       "tipp": "Wie oft passt die 8 in 96? Erst 80 durch 8, dann 16 durch 8 – und beides zusammen."
     },
     {
-      "bild": ["jundland"],
+      "bild": ["jundland", "landspeeder tusken", "landspeeder geparkt am felsen"],
       "geschichte": "In der Nacht büxt R2-D2 aus! Luke sucht ihn mit dem Landspeeder in den Jundland-Schluchten. Er fliegt 4 Schluchten ab, jede ist 75 Meter lang.",
       "frage": "Wie viele Meter fliegt Luke insgesamt ab?",
       "rechnung": "4 * 75",
@@ -41,7 +41,7 @@
       "tipp": "Von 57 die 19 abziehen du musst. Tipp: Erst 20 abziehen und dann 1 wieder dazu."
     },
     {
-      "bild": ["sandtruppen", "sturmtruppen durchsuchung"],
+      "bild": ["sandtruppen", "sturmtruppen durchsuchung", "landspeeder kontrolle"],
       "geschichte": "Das Imperium sucht die Droiden! 100 Sandtruppen werden in Suchtrupps zu je 6 Soldaten aufgeteilt.",
       "frage": "Wie viele volle Suchtrupps gibt es – und wie viele Soldaten bleiben übrig?",
       "rechnung": "100 / 6",
@@ -51,7 +51,7 @@
       "tipp": "Wie oft passt die 6 ganz in 100? 6 mal 10 ist 60 – wie viele Sechser passen noch in den Rest? Was übrig bleibt, der Rest ist."
     },
     {
-      "bild": ["blick auf mos eisley", "mos eisley stadt"],
+      "bild": ["blick auf mos eisley", "mos eisley stadt", "landspeeder faehrt durch raumhafen", "landspeeder schwebt"],
       "geschichte": "Luke und Ben fahren mit dem Landspeeder zur Raumhafenstadt Mos Eisley. Die Fahrt dauert 2 Stunden und 15 Minuten.",
       "frage": "Wie viele Minuten dauert die Fahrt?",
       "art": "einheiten",

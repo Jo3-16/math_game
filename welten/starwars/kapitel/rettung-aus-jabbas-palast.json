@@ -1,0 +1,75 @@
+{
+  "titel": "Rettung aus Jabbas Palast",
+  "vorschau": "spielbilder/Kapitelbilder/rettung-aus-jabbas-palast.jpg",
+  "belohnung": "spielbilder/Belohnung/rettung-aus-jabbas-palast.jpg",
+  "abzeichen": { "name": "Palast-Befreier", "symbol": "🏜️" },
+  "aufgaben": [
+    {
+      "bild": ["jabbas palast aussenansicht", "jabbas palast felsen"],
+      "art": "einheiten",
+      "geschichte": "Han Solo ist in Karbonit eingefroren und hängt im Palast von Jabba dem Hutten. Luke, Leia, Chewbacca und Lando wollen ihn befreien. Vom Landeplatz bis zum Palast sind es 3 Kilometer und 650 Meter durch die Wüste.",
+      "frage": "Wie viele Meter müssen sie laufen?",
+      "rechnung": "3 * 1000 + 650",
+      "loesung": 3650,
+      "merke": "3650 Meter bis zum Palast",
+      "tipp": "Ein Kilometer hat 1000 Meter. Erst die Kilometer umrechnen, dann die Meter dazu."
+    },
+    {
+      "bild": ["eingangstor sonnenuntergang", "blick aus dem tor"],
+      "art": "uhrzeit",
+      "format": "uhrzeit",
+      "geschichte": "Zuerst schickt Luke die Droiden vor. Um 17:50 Uhr klopfen R2-D2 und C-3PO an das riesige Tor. Sie müssen 35 Minuten warten, bis es sich öffnet.",
+      "frage": "Um wie viel Uhr öffnet sich das Tor?",
+      "rechnung": "17 * 60 + 50 + 35",
+      "loesung": 1105,
+      "merke": "Tor öffnet um 18:25 Uhr",
+      "tipp": "Erst bis zur vollen Stunde du rechnest, dann die übrigen Minuten dazu."
+    },
+    {
+      "bild": ["thronsaal jabba podest", "thronsaal podest"],
+      "geschichte": "Im Thronsaal feiert Jabba ein großes Fest. An 8 Tischen sitzen je 6 Gäste und schmatzen laut.",
+      "frage": "Wie viele Gäste feiern bei Jabba?",
+      "rechnung": "8 * 6",
+      "loesung": 48,
+      "merke": "48 Gäste beim Fest",
+      "tipp": "8 Tische mit je 6 Gästen. Die Sechserreihe du brauchst."
+    },
+    {
+      "bild": ["karbonit nische"],
+      "art": "geld",
+      "format": "geld",
+      "geschichte": "Leia verkleidet sich als Kopfgeldjägerin und bringt Chewbacca als Gefangenen. Jabba bezahlt ihr 3 Säckchen, in jedem sind 12,40 €.",
+      "frage": "Wie viel Geld bekommt Leia?",
+      "rechnung": "3 * 1240",
+      "loesung": 3720,
+      "merke": "37,20 € Kopfgeld",
+      "tipp": "Dreimal den gleichen Betrag du zusammenzählst. Erst die Euro, dann die Cent."
+    },
+    {
+      "bild": ["thronsaal halle treppe", "thronsaal boden gitter", "skiffs ueber der grube", "skiff vor der segelbarke", "segelbarke ueber duenen", "segelbarke und skiff"],
+      "geschichte": "Jabba will Luke und Han in die Grube des Sarlacc werfen. Die 48 Gäste fahren mit hinaus. In jedes Skiff passen 9 Gäste, der Rest fährt auf der Segelbarke.",
+      "frage": "Wie viele Skiffs werden voll – und wie viele Gäste fahren auf der Segelbarke?",
+      "rechnung": "48 / 9",
+      "loesung": 5,
+      "rest": 3,
+      "merke": "5 volle Skiffs, 3 Gäste auf der Barke",
+      "tipp": "Die Neunerreihe du brauchst: Wie oft passt 9 in 48? Was nicht mehr in ein volles Skiff passt, der Rest ist."
+    },
+    {
+      "bild": ["luke lichtschwert segelbarke", "garage segelbarke", "kampf auf dem skiff", "wache faellt vom skiff", "segelbarke explodiert", "skiff rettung am seil", "skiff von oben"],
+      "geschichte": "Über der Grube zieht Luke sein Lichtschwert! Auf der Segelbarke stehen 27 Wachen. Luke besiegt 9, Lando und Han schaffen zusammen 8.",
+      "frage": "Wie viele Wachen kämpfen noch?",
+      "rechnung": "27 - 9 - 8",
+      "loesung": 10,
+      "merke": "10 Wachen kämpfen noch",
+      "tipp": "Zweimal wegnehmen du musst: erst Lukes Wachen, dann die von Lando und Han."
+    }
+  ],
+  "bonus": {
+    "bild": ["halle hologramm"],
+    "geschichte": "Jabba denkt an eine Zahl zwischen 20 und 40. Teilt man sie durch 5 oder durch 7, bleibt nichts übrig.",
+    "frage": "An welche Zahl denkt Jabba?",
+    "loesung": 35,
+    "tipp": "Zahlen suchen du musst, die in der Fünferreihe und in der Siebenerreihe stehen."
+  }
+}

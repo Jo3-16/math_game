@@ -1,0 +1,74 @@
+{
+  "titel": "Die Schlacht von Crait",
+  "vorschau": "spielbilder/Kapitelbilder/die-schlacht-von-crait.jpg",
+  "belohnung": "spielbilder/Belohnung/die-schlacht-von-crait.jpg",
+  "abzeichen": { "name": "Kristallfuchs", "symbol": "🦊" },
+  "aufgaben": [
+    {
+      "bild": ["supremacy angriff", "supremacy mit begleitschiffen"],
+      "art": "uhrzeit",
+      "format": "uhrzeit",
+      "geschichte": "Das riesige Flaggschiff der Ersten Ordnung jagt den Widerstand. Um 22:15 Uhr fliehen die letzten Rebellen in kleinen Fähren, nach 1 Stunde und 20 Minuten erreichen sie den Salzplaneten Crait.",
+      "frage": "Um wie viel Uhr landen sie auf Crait?",
+      "rechnung": "22 * 60 + 15 + 1 * 60 + 20",
+      "loesung": 1415,
+      "merke": "Landung um 23:35 Uhr",
+      "tipp": "Erst die Stunden dazuzählen, dann die Minuten. Werden es mehr als 60 Minuten, eine Stunde weiterrücken du musst."
+    },
+    {
+      "bild": ["basis geschuetz graben"],
+      "geschichte": "In einer alten Rebellenbasis machen sie sich bereit. Die Kämpfer verteilen sich auf 8 Gräben mit je 7 Soldaten.",
+      "frage": "Wie viele Soldaten sind in den Gräben?",
+      "rechnung": "8 * 7",
+      "loesung": 56,
+      "merke": "56 Soldaten in den Gräben",
+      "tipp": "8 Gräben mit je 7 Soldaten. Die Siebenerreihe dir hilft."
+    },
+    {
+      "bild": ["belagerungskanone"],
+      "art": "einheiten",
+      "geschichte": "Die Erste Ordnung bringt eine riesige Kanone mit. Sie steht 4 Kilometer und 70 Meter vor dem Tor der Basis.",
+      "frage": "Wie viele Meter sind das?",
+      "rechnung": "4 * 1000 + 70",
+      "loesung": 4070,
+      "merke": "4070 Meter bis zur Kanone",
+      "tipp": "Ein Kilometer hat 1000 Meter. Erst die Kilometer umrechnen, dann die Meter dazu."
+    },
+    {
+      "bild": ["schuetzengraben basis"],
+      "geschichte": "Die 56 Soldaten bilden Trupps mit je 6 Kämpfern.",
+      "frage": "Wie viele volle Trupps gibt es – und wie viele Soldaten bleiben übrig?",
+      "rechnung": "56 / 6",
+      "loesung": 9,
+      "rest": 2,
+      "merke": "9 Trupps, 2 Soldaten übrig",
+      "tipp": "Die Sechserreihe du brauchst: Wie oft passt 6 in 56? Was übrig bleibt, der Rest ist."
+    },
+    {
+      "bild": ["skispeeder rote spuren", "laeufer roter staub"],
+      "geschichte": "Poe startet mit 14 Skispeedern, die rote Spuren in den weißen Salzboden ziehen. 5 werden abgeschossen, 3 kehren beschädigt um.",
+      "frage": "Wie viele Skispeeder fliegen weiter?",
+      "rechnung": "14 - 5 - 3",
+      "loesung": 6,
+      "merke": "6 Skispeeder fliegen weiter",
+      "tipp": "Zweimal wegnehmen du musst: erst die abgeschossenen, dann die umgekehrten."
+    },
+    {
+      "bild": ["duell klippen", "laeufer sonnenuntergang"],
+      "art": "einheiten",
+      "geschichte": "Da erscheint Luke Skywalker! Er hält die ganze Armee allein auf, damit die Rebellen fliehen können. Er kämpft 1 Stunde und 15 Minuten lang.",
+      "frage": "Wie viele Minuten hält Luke die Armee auf?",
+      "rechnung": "1 * 60 + 15",
+      "loesung": 75,
+      "merke": "75 Minuten",
+      "tipp": "Eine Stunde hat 60 Minuten. Die übrigen Minuten dazuzählen du musst."
+    }
+  ],
+  "bonus": {
+    "bild": ["crait planet aus dem all"],
+    "geschichte": "Kristallfüchse zeigen den Rebellen den Ausgang. Sie laufen in Gruppen: 1, 3, 6, 10, 15, … Wie viele Füchse sind in der nächsten Gruppe?",
+    "frage": "Wie heißt die nächste Zahl?",
+    "loesung": 21,
+    "tipp": "Schau, wie viele jedes Mal dazukommen. Jedes Mal einer mehr dazukommt."
+  }
+}

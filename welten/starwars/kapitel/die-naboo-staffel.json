@@ -1,0 +1,64 @@
+{
+  "titel": "Die Naboo-Staffel",
+  "vorschau": "spielbilder/Kapitelbilder/die-naboo-staffel.jpg",
+  "belohnung": "spielbilder/Belohnung/die-naboo-staffel.jpg",
+  "abzeichen": { "name": "Naboo-Pilot", "symbol": "💛" },
+  "aufgaben": [
+    {
+      "bild": ["im hangar von theed"],
+      "geschichte": "Yoda erzählt aus alten Zeiten: Lange vor Luke wurde der Planet Naboo von einer Droidenarmee besetzt. Im Hangar der Hauptstadt Theed stehen gelbe Sternenjäger in 6 Reihen mit je 7 Jägern.",
+      "frage": "Wie viele Sternenjäger stehen im Hangar?",
+      "rechnung": "6 * 7",
+      "loesung": 42,
+      "merke": "42 Sternenjäger",
+      "tipp": "6 Reihen mit je 7 Jägern. Die Siebenerreihe du brauchst."
+    },
+    {
+      "bild": ["starten aus dem hangar"],
+      "art": "uhrzeit",
+      "format": "uhrzeit",
+      "geschichte": "Um 8:55 Uhr starten die Jäger, sogar der kleine Anakin sitzt in einem Cockpit! Bis zum Droidenkontrollschiff fliegen sie 25 Minuten.",
+      "frage": "Um wie viel Uhr erreichen sie das Kontrollschiff?",
+      "rechnung": "8 * 60 + 55 + 25",
+      "loesung": 560,
+      "merke": "Ankunft um 9:20 Uhr",
+      "tipp": "Erst bis zur vollen Stunde du rechnest, dann die übrigen Minuten dazu."
+    },
+    {
+      "bild": ["bravo staffel ueber naboo"],
+      "geschichte": "Die 42 Jäger fliegen in Staffeln. In jeder Staffel sind 5 Jäger.",
+      "frage": "Wie viele volle Staffeln gibt es – und wie viele Jäger fliegen allein?",
+      "rechnung": "42 / 5",
+      "loesung": 8,
+      "rest": 2,
+      "merke": "8 Staffeln, 2 Jäger allein",
+      "tipp": "Wie oft passt 5 in 42? Die Fünferreihe dir hilft. Was übrig bleibt, der Rest ist."
+    },
+    {
+      "bild": ["angriff auf droidenkontrollschiff"],
+      "art": "einheiten",
+      "geschichte": "Das Droidenkontrollschiff ist riesig: Es ist 3 Kilometer und 170 Meter breit.",
+      "frage": "Wie viele Meter breit ist das Kontrollschiff?",
+      "rechnung": "3 * 1000 + 170",
+      "loesung": 3170,
+      "merke": "3170 Meter breit",
+      "tipp": "Ein Kilometer hat 1000 Meter. Erst die Kilometer umrechnen, dann die Meter dazu."
+    },
+    {
+      "bild": ["droidenkontrollschiff explodiert"],
+      "geschichte": "Anakin trifft den Reaktor – das Kontrollschiff explodiert! Von den 42 Jägern wurden 13 getroffen, aber 6 davon können repariert werden und fliegen wieder.",
+      "frage": "Wie viele Jäger fliegen nach der Schlacht?",
+      "rechnung": "42 - 13 + 6",
+      "loesung": 35,
+      "merke": "35 Jäger fliegen wieder",
+      "tipp": "Erst die getroffenen wegnehmen, dann die reparierten wieder dazuzählen."
+    }
+  ],
+  "bonus": {
+    "bild": ["mandos naboo sternenjaeger in der werkstatt"],
+    "geschichte": "Anakin ist 9 Jahre alt. Königin Padmé ist 5 Jahre älter als er. Anakin, Padmé und Obi-Wan sind zusammen 48 Jahre alt.",
+    "frage": "Wie alt ist Obi-Wan?",
+    "loesung": 25,
+    "tipp": "Erst Padmés Alter ausrechnen. Dann Anakin und Padmé zusammenzählen und vom Gesamtalter abziehen."
+  }
+}

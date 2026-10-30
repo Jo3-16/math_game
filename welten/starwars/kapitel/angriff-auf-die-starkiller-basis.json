@@ -1,0 +1,74 @@
+{
+  "titel": "Angriff auf die Starkiller-Basis",
+  "vorschau": "spielbilder/Kapitelbilder/angriff-auf-die-starkiller-basis.jpg",
+  "belohnung": "spielbilder/Belohnung/angriff-auf-die-starkiller-basis.jpg",
+  "abzeichen": { "name": "Starkiller-Bezwinger", "symbol": "❄️" },
+  "aufgaben": [
+    {
+      "bild": ["starkiller basis planet aus dem all", "waffenschacht orbit"],
+      "art": "einheiten",
+      "geschichte": "Die Erste Ordnung hat einen ganzen Eisplaneten in eine Waffe verwandelt: die Starkiller-Basis. Der Waffenschacht ist 8 Kilometer und 250 Meter breit.",
+      "frage": "Wie viele Meter breit ist der Schacht?",
+      "rechnung": "8 * 1000 + 250",
+      "loesung": 8250,
+      "merke": "8250 Meter breiter Schacht",
+      "tipp": "Ein Kilometer hat 1000 Meter. Erst die Kilometer umrechnen, dann die Meter dazu."
+    },
+    {
+      "bild": ["waffe feuert", "strahl durch wolken"],
+      "art": "uhrzeit",
+      "format": "uhrzeit",
+      "geschichte": "Die Waffe lädt sich für den nächsten Schuss auf. Das Laden beginnt um 13:50 Uhr und dauert 1 Stunde und 45 Minuten.",
+      "frage": "Um wie viel Uhr ist die Waffe geladen?",
+      "rechnung": "13 * 60 + 50 + 1 * 60 + 45",
+      "loesung": 935,
+      "merke": "Waffe geladen um 15:35 Uhr",
+      "tipp": "Erst die Stunden dazuzählen, dann die Minuten. Werden es mehr als 60 Minuten, eine Stunde weiterrücken du musst."
+    },
+    {
+      "bild": ["schneelandschaft graben"],
+      "geschichte": "Han, Finn und Chewbacca schleichen durch den Schnee. Sie kommen an 6 Wachtürmen vorbei, in jedem sind 8 Sturmtruppen.",
+      "frage": "Wie viele Sturmtruppen sind in den Wachtürmen?",
+      "rechnung": "6 * 8",
+      "loesung": 48,
+      "merke": "48 Sturmtruppen in den Türmen",
+      "tipp": "6 Türme mit je 8 Sturmtruppen. Die Achterreihe dir hilft."
+    },
+    {
+      "bild": ["oszillator berge", "sturzflug auf oszillator"],
+      "geschichte": "Poe greift mit seinen X-Wings den Oszillator an. Sie haben 75 Torpedos, und jeder Jäger bekommt 4.",
+      "frage": "Wie viele Jäger bekommen Torpedos – und wie viele Torpedos bleiben übrig?",
+      "rechnung": "75 / 4",
+      "loesung": 18,
+      "rest": 3,
+      "merke": "18 Jäger, 3 Torpedos übrig",
+      "tipp": "Wie oft passt 4 in 75? Erst 4 mal 10, dann weiter in Viererschritten. Was übrig bleibt, der Rest ist."
+    },
+    {
+      "bild": ["paradeplatz schnee banner", "paradeplatz roter himmel"],
+      "geschichte": "Alarm auf dem Paradeplatz! Dort stehen 480 Sturmtruppen. 165 rennen zu den Schiffen, 128 zum Oszillator.",
+      "frage": "Wie viele Sturmtruppen bleiben auf dem Platz?",
+      "rechnung": "480 - 165 - 128",
+      "loesung": 187,
+      "merke": "187 Sturmtruppen auf dem Platz",
+      "tipp": "Zweimal wegnehmen du musst: erst die zu den Schiffen, dann die zum Oszillator."
+    },
+    {
+      "bild": ["schlacht schneeberge", "planet zerbricht"],
+      "art": "einheiten",
+      "geschichte": "Getroffen! Der Planet beginnt zu zerbrechen. Rey, Finn und Chewbacca bleiben noch 3 Minuten und 40 Sekunden zur Flucht.",
+      "frage": "Wie viele Sekunden sind das?",
+      "rechnung": "3 * 60 + 40",
+      "loesung": 220,
+      "merke": "220 Sekunden zur Flucht",
+      "tipp": "Eine Minute hat 60 Sekunden. Erst die Minuten umrechnen, dann die Sekunden dazu."
+    }
+  ],
+  "bonus": {
+    "bild": ["waffenschacht nahaufnahme"],
+    "geschichte": "Ein Gang in der Basis ist 48 Meter lang. Am Anfang und am Ende steht je eine Wache, und dazwischen steht alle 8 Meter eine weitere.",
+    "frage": "Wie viele Wachen stehen im Gang?",
+    "loesung": 7,
+    "tipp": "Erst die Abstände zählen: Wie oft passen 8 Meter in den Gang? Dann bedenken, dass am Anfang auch schon eine Wache steht."
+  }
+}

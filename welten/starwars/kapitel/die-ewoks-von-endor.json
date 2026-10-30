@@ -5,7 +5,7 @@
   "abzeichen": { "name": "Ewok-Freund", "symbol": "🧸" },
   "aufgaben": [
     {
-      "bild": ["endor mond"],
+      "bild": ["endor mond", "lambda-shuttle landung im wald"],
       "geschichte": "Der Schutzschild des neuen Todessterns kommt von einem Generator hier auf dem Waldmond Endor. Ein zweites Rebellen-Shuttle landet mit Verstärkung. Darin sitzen 4 Reihen mit je 6 Kämpfern.",
       "frage": "Wie viele Kämpfer sitzen im Shuttle?",
       "rechnung": "4 * 6",

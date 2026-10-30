@@ -5,7 +5,7 @@
   "abzeichen": { "name": "Cantina-Gast", "symbol": "🎺" },
   "aufgaben": [
     {
-      "bild": ["mos eisley strasse", "sturmtruppen mos eisley"],
+      "bild": ["mos eisley strasse", "sturmtruppen mos eisley", "landspeeder belebte strasse"],
       "geschichte": "In Mos Eisley wimmelt es von Sturmtruppen. An jeder der 8 Straßenecken stehen 4 von ihnen und kontrollieren alle Reisenden.",
       "frage": "Wie viele Sturmtruppen stehen an den Straßenecken?",
       "rechnung": "8 * 4",

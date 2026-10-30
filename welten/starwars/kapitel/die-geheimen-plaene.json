@@ -42,7 +42,7 @@
       "tipp": "Wie oft passt die 30 ganz in 100? Was dann noch fehlt, der Rest ist."
     },
     {
-      "bild": ["sandcrawler", "jawas"],
+      "bild": ["c-3po sandcrawler", "jawas", "sandcrawler in der wueste", "sandcrawler droiden davor", "sandcrawler sonnenuntergang"],
       "geschichte": "Doch kleine Jawas fangen die beiden Droiden und bringen sie in ihren riesigen Sandcrawler. Darin stehen schon 7 Reihen mit je 9 Droiden.",
       "frage": "Wie viele Droiden sind im Sandcrawler, wenn R2-D2 und C-3PO dazukommen?",
       "rechnung": "7 * 9 + 2",

@@ -5,7 +5,7 @@
   "abzeichen": { "name": "Rebellen-Pilot", "symbol": "🎖️" },
   "aufgaben": [
     {
-      "bild": ["red one", "trench run", "x wing swb", "takodana"],
+      "bild": ["red one", "trench run", "x wing swb", "x-wing/05_tfa_takodana"],
       "geschichte": "Willkommen in der Pilotenschule der Rebellen! Heute trainierst du in drei verschiedenen Jägern. Zuerst der X-Wing: Er hat 4 Laserkanonen, eine an jeder Flügelspitze. Im Hangar stehen 9 X-Wings für die Schüler bereit.",
       "frage": "Wie viele Laserkanonen haben alle 9 X-Wings zusammen?",
       "rechnung": "9 * 4",
@@ -14,7 +14,7 @@
       "tipp": "9 X-Wings mit je 4 Kanonen. Die Viererreihe dir hilft, junger Pilot."
     },
     {
-      "bild": ["red one", "trench run", "x wing swb", "takodana"],
+      "bild": ["red one", "trench run", "x wing swb", "x-wing/05_tfa_takodana"],
       "geschichte": "Zielschießen im X-Wing! Du hast 60 Schuss. Jede Zielscheibe muss 5-mal getroffen werden, bevor sie zerplatzt – und du triffst immer.",
       "frage": "Wie viele Zielscheiben lässt du zerplatzen?",
       "rechnung": "60 / 5",

@@ -32,7 +32,7 @@
       "tipp": "7 Kabel, an jedem 6 Stecker. Das Einmaleins mit 6 oder mit 7 dir hilft."
     },
     {
-      "bild": ["tie fighter"],
+      "bild": ["tie fighter", "tie-advanced/"],
       "geschichte": "Darth Vader jagt Luke mit 3 TIE-Fightern: seinem eigenen und 2 Begleitern. Jeder TIE-Fighter feuert 3 Salven ab, und jede Salve hat 5 Schüsse.",
       "frage": "Wie viele Schüsse feuern die TIE-Fighter insgesamt ab?",
       "rechnung": "3 * 3 * 5",

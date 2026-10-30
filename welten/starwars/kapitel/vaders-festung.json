@@ -1,0 +1,75 @@
+{
+  "titel": "Vaders Festung auf Mustafar",
+  "vorschau": "spielbilder/Kapitelbilder/vaders-festung.jpg",
+  "belohnung": "spielbilder/Belohnung/vaders-festung.jpg",
+  "abzeichen": { "name": "Lava-Späher", "symbol": "🌋" },
+  "aufgaben": [
+    {
+      "bild": ["vaders festung mustafar lavasee", "lambda-shuttle mit eskorte"],
+      "art": "uhrzeit",
+      "format": "uhrzeit",
+      "geschichte": "Nach der Jagd auf den Falken fliegt Darth Vader zu seiner Festung auf dem Lavaplaneten Mustafar. Sein Shuttle startet um 16:45 Uhr, der Flug dauert 2 Stunden und 30 Minuten.",
+      "frage": "Um wie viel Uhr landet Vader auf Mustafar?",
+      "rechnung": "16 * 60 + 45 + 2 * 60 + 30",
+      "loesung": 1155,
+      "merke": "Landung um 19:15 Uhr",
+      "tipp": "Erst die Stunden dazuzählen, dann die Minuten. Werden es mehr als 60 Minuten, eine Stunde weiterrücken du musst."
+    },
+    {
+      "bild": ["lavator anflug"],
+      "art": "einheiten",
+      "geschichte": "Die schwarze Festung steht mitten in einem Lavafall. Ihr Turm ragt 1 Kilometer und 240 Meter aus dem glühenden See.",
+      "frage": "Wie viele Meter hoch ist der Turm?",
+      "rechnung": "1 * 1000 + 240",
+      "loesung": 1240,
+      "merke": "1240 Meter hoher Turm",
+      "tipp": "Ein Kilometer hat 1000 Meter. Erst den Kilometer umrechnen, dann die Meter dazu."
+    },
+    {
+      "bild": ["eingangshalle schatten"],
+      "geschichte": "In der dunklen Eingangshalle wartet Vaders Ehrengarde. Auf jedem der 9 Stockwerke stehen 7 Gardisten in roten Umhängen.",
+      "frage": "Wie viele Gardisten bewachen die Festung?",
+      "rechnung": "9 * 7",
+      "loesung": 63,
+      "merke": "63 Ehrengardisten",
+      "tipp": "9 Stockwerke mit je 7 Gardisten. Die Siebenerreihe dir hilft – oder 10 mal 7 und dann 7 weniger."
+    },
+    {
+      "bild": ["aussichtsplattform lavaebene"],
+      "geschichte": "Auf der Aussichtsplattform über der Lavaebene halten die 63 Gardisten Wache. Immer 5 Gardisten bilden eine Schicht.",
+      "frage": "Wie viele volle Schichten gibt es – und wie viele Gardisten bleiben übrig?",
+      "rechnung": "63 / 5",
+      "loesung": 12,
+      "rest": 3,
+      "merke": "12 Schichten, 3 Gardisten übrig",
+      "tipp": "Wie oft passt 5 in 63? In Fünferschritten zählen du kannst. Was nicht mehr für eine ganze Schicht reicht, der Rest ist."
+    },
+    {
+      "bild": ["thronsaal lavablick"],
+      "art": "geld",
+      "format": "geld",
+      "geschichte": "Im Thronsaal mit Blick auf die Lava repariert ein Droide Vaders Rüstung. Er braucht 4 neue Atemfilter, jeder kostet 2,35 €.",
+      "frage": "Wie viel kosten die Atemfilter zusammen?",
+      "rechnung": "4 * 235",
+      "loesung": 940,
+      "merke": "9,40 € für die Filter",
+      "tipp": "Erst die Euro malnehmen, dann die Cent. Hundert Cent ein Euro sind."
+    },
+    {
+      "bild": ["turm abendrot"],
+      "geschichte": "Am Abend kreisen TIE-Jäger um den Turm. Von den 63 Gardisten fliegen 24 Patrouille, und 15 bewachen den Hangar. Die übrigen bleiben im Thronsaal.",
+      "frage": "Wie viele Gardisten bleiben im Thronsaal?",
+      "rechnung": "63 - 24 - 15",
+      "loesung": 24,
+      "merke": "24 Gardisten im Thronsaal",
+      "tipp": "Zweimal wegnehmen du musst: erst die Piloten, dann die Hangarwache."
+    }
+  ],
+  "bonus": {
+    "bild": ["turm lavafluss nacht"],
+    "geschichte": "Das Tor zum Thronsaal öffnet nur, wer den Code kennt: 2, 5, 11, 23, … Welche Zahl kommt als Nächstes?",
+    "frage": "Wie heißt die nächste Zahl?",
+    "loesung": 47,
+    "tipp": "Schau genau, wie aus einer Zahl die nächste wird. Erst etwas verdoppelt wird, dann ein kleines Stück dazu."
+  }
+}

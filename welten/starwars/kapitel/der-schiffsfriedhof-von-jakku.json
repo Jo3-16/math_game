@@ -1,0 +1,66 @@
+{
+  "titel": "Der Schiffsfriedhof von Jakku",
+  "vorschau": "spielbilder/Kapitelbilder/der-schiffsfriedhof-von-jakku.jpg",
+  "belohnung": "spielbilder/Belohnung/der-schiffsfriedhof-von-jakku.jpg",
+  "abzeichen": { "name": "Schrottsammlerin", "symbol": "⚙️" },
+  "aufgaben": [
+    {
+      "bild": ["jakku wrack triebwerke", "jakku schiffsfriedhof tal"],
+      "art": "einheiten",
+      "geschichte": "Viele Jahre später lebt Rey auf dem Wüstenplaneten Jakku. Sie sammelt Schrott in alten Raumschiff-Wracks. Das größte Wrack ist 2 Kilometer und 340 Meter lang.",
+      "frage": "Wie viele Meter ist das Wrack lang?",
+      "rechnung": "2 * 1000 + 340",
+      "loesung": 2340,
+      "merke": "2340 Meter langes Wrack",
+      "tipp": "Ein Kilometer hat 1000 Meter. Erst die Kilometer umrechnen, dann die Meter dazu."
+    },
+    {
+      "bild": ["laeufer wrack"],
+      "geschichte": "In einem umgestürzten Läufer findet Rey 6 Säcke mit je 9 Ersatzteilen.",
+      "frage": "Wie viele Ersatzteile findet Rey?",
+      "rechnung": "6 * 9",
+      "loesung": 54,
+      "merke": "54 Ersatzteile",
+      "tipp": "6 Säcke mit je 9 Teilen. Die Neunerreihe dir hilft."
+    },
+    {
+      "bild": ["niima sonnenuntergang"],
+      "geschichte": "Rey packt die 54 Teile in Kisten. In jede Kiste passen 8 Teile.",
+      "frage": "Wie viele Kisten werden voll – und wie viele Teile bleiben übrig?",
+      "rechnung": "54 / 8",
+      "loesung": 6,
+      "rest": 6,
+      "merke": "6 Kisten, 6 Teile übrig",
+      "tipp": "Die Achterreihe du brauchst: Wie oft passt 8 in 54? Was nicht mehr in eine volle Kiste passt, der Rest ist."
+    },
+    {
+      "bild": ["niima aussenposten luftbild"],
+      "art": "geld",
+      "format": "geld",
+      "geschichte": "Im Niima-Außenposten verkauft Rey die 54 Ersatzteile. Für jedes Teil bekommt sie 15 Cent.",
+      "frage": "Wie viel Geld bekommt Rey?",
+      "rechnung": "54 * 15",
+      "loesung": 810,
+      "merke": "8,10 € für die Teile",
+      "tipp": "Erst 50 Teile ausrechnen, dann die übrigen vier dazu. Hundert Cent ein Euro sind."
+    },
+    {
+      "bild": ["wrack verfolgungsjagd", "finalizer ueber jakku"],
+      "art": "uhrzeit",
+      "format": "uhrzeit",
+      "geschichte": "Plötzlich greift die Erste Ordnung an! Um 15:45 Uhr fliehen Rey und Finn, 1 Stunde und 25 Minuten jagen sie durch den Schiffsfriedhof.",
+      "frage": "Um wie viel Uhr sind sie entkommen?",
+      "rechnung": "15 * 60 + 45 + 1 * 60 + 25",
+      "loesung": 1030,
+      "merke": "Entkommen um 17:10 Uhr",
+      "tipp": "Erst die Stunden dazuzählen, dann die Minuten. Werden es mehr als 60 Minuten, eine Stunde weiterrücken du musst."
+    }
+  ],
+  "bonus": {
+    "bild": ["jakku planet aus dem all"],
+    "geschichte": "Auf dem Markt stehen Menschen und Happabore. Ein Mensch hat 2 Beine, ein Happabor 4. Rey zählt 12 Köpfe und 34 Beine.",
+    "frage": "Wie viele Happabore stehen auf dem Markt?",
+    "loesung": 5,
+    "tipp": "Stell dir vor, alle hätten nur 2 Beine. Die Beine, die übrig bleiben, den Happaboren gehören – je 2 mehr pro Happabor."
+  }
+}

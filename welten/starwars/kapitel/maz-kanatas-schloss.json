@@ -1,0 +1,75 @@
+{
+  "titel": "Maz Kanatas Schloss",
+  "vorschau": "spielbilder/Kapitelbilder/maz-kanatas-schloss.jpg",
+  "belohnung": "spielbilder/Belohnung/maz-kanatas-schloss.jpg",
+  "abzeichen": { "name": "Schlossgast", "symbol": "🏰" },
+  "aufgaben": [
+    {
+      "bild": ["takodana see huegel"],
+      "art": "uhrzeit",
+      "format": "uhrzeit",
+      "geschichte": "Han Solo fliegt mit Rey und Finn zum grünen Planeten Takodana. Sie starten um 8:25 Uhr, der Flug dauert 2 Stunden und 50 Minuten.",
+      "frage": "Um wie viel Uhr landen sie auf Takodana?",
+      "rechnung": "8 * 60 + 25 + 2 * 60 + 50",
+      "loesung": 675,
+      "merke": "Landung um 11:15 Uhr",
+      "tipp": "Erst die Stunden dazuzählen, dann die Minuten. Werden es mehr als 60 Minuten, eine Stunde weiterrücken du musst."
+    },
+    {
+      "bild": ["schloss am see", "maz schloss"],
+      "art": "einheiten",
+      "geschichte": "Am See steht das uralte Schloss von Maz Kanata. Das große Tor ist 6 Meter und 45 Zentimeter hoch.",
+      "frage": "Wie viele Zentimeter hoch ist das Tor?",
+      "rechnung": "6 * 100 + 45",
+      "loesung": 645,
+      "merke": "645 Zentimeter hohes Tor",
+      "tipp": "Ein Meter hat 100 Zentimeter. Erst die Meter umrechnen, dann die Zentimeter dazu."
+    },
+    {
+      "bild": ["schlosshof flaggen", "statue flaggen"],
+      "geschichte": "Über dem Eingang wehen bunte Flaggen von allen Planeten: 7 Reihen mit je 9 Flaggen.",
+      "frage": "Wie viele Flaggen wehen über dem Eingang?",
+      "rechnung": "7 * 9",
+      "loesung": 63,
+      "merke": "63 Flaggen",
+      "tipp": "7 Reihen mit je 9 Flaggen. Die Neunerreihe – oder 7 mal 10 und dann 7 weniger."
+    },
+    {
+      "bild": ["sonnenuntergang jaeger", "luftkampf ueber dem see"],
+      "art": "geld",
+      "format": "geld",
+      "geschichte": "Han lädt alle ein: Er kauft 4 Becher Saft für je 2,15 € und bezahlt mit einem 10-Euro-Schein.",
+      "frage": "Wie viel Wechselgeld bekommt Han?",
+      "rechnung": "10 * 100 - 4 * 215",
+      "loesung": 140,
+      "merke": "1,40 € Wechselgeld",
+      "tipp": "Erst ausrechnen, was die vier Becher kosten. Dann vom Schein abziehen du musst."
+    },
+    {
+      "bild": ["schloss brennt", "takodana schlacht ruinen"],
+      "geschichte": "Die Erste Ordnung greift das Schloss an! 63 Gäste fliehen über den See. In jedes Boot passen 8 Gäste.",
+      "frage": "Wie viele Boote werden voll – und wie viele Gäste bleiben übrig?",
+      "rechnung": "63 / 8",
+      "loesung": 7,
+      "rest": 7,
+      "merke": "7 volle Boote, 7 Gäste übrig",
+      "tipp": "Die Achterreihe du brauchst: Wie oft passt 8 in 63? Was nicht mehr in ein volles Boot passt, der Rest ist."
+    },
+    {
+      "bild": ["ruinen wald"],
+      "geschichte": "Die Erste Ordnung kommt mit 95 Sturmtruppen. Die Piloten des Widerstands besiegen 38, und 29 ziehen sich in den Wald zurück.",
+      "frage": "Wie viele Sturmtruppen bleiben bei den Ruinen?",
+      "rechnung": "95 - 38 - 29",
+      "loesung": 28,
+      "merke": "28 Sturmtruppen bleiben",
+      "tipp": "Zweimal wegnehmen du musst: erst die besiegten, dann die geflohenen."
+    }
+  ],
+  "bonus": {
+    "bild": ["takodana see huegel"],
+    "geschichte": "Maz denkt an eine Zahl zwischen 40 und 60. Sie steht in der Siebenerreihe und ist ungerade.",
+    "frage": "An welche Zahl denkt Maz?",
+    "loesung": 49,
+    "tipp": "Die Siebenerreihe zwischen 40 und 60 aufsagen du musst. Die geraden Zahlen dann streichen."
+  }
+}

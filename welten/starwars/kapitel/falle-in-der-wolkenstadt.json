@@ -23,7 +23,7 @@
       "tipp": "Von 250 die 180 abziehen du musst. Von 180 bis 200 ist es leicht – und dann bis 250, hmm."
     },
     {
-      "bild": ["boba"],
+      "bild": ["boba", "slave-i gelandet abendhimmel"],
       "geschichte": "Doch es ist eine Falle! Darth Vader und der Kopfgeldjäger Boba Fett warten schon. Vader hat 6 Trupps Sturmtruppen mitgebracht, mit je 8 Soldaten.",
       "frage": "Wie viele Sturmtruppen sind es?",
       "rechnung": "6 * 8",
@@ -50,7 +50,7 @@
       "tipp": "Zuerst die Gänge: 5 mal 45. Dann die Landeplattform dazuzählen du musst."
     },
     {
-      "bild": ["wolkenstadt"],
+      "bild": ["wolkenstadt", "wolkenwagen/"],
       "geschichte": "Landos Wachen nehmen die 48 Sturmtruppen gefangen und bringen sie mit Wolkenwagen weg. In jeden Wolkenwagen passen 5 Gefangene.",
       "frage": "Wie viele Wolkenwagen werden voll – und wie viele Sturmtruppen bleiben übrig?",
       "rechnung": "48 / 5",

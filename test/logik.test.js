@@ -85,9 +85,10 @@ test('rang nach gesamtpunkten', () => {
   assert.equal(rang(200).name, 'Padawan');
   assert.equal(rang(600).name, 'Jedi-Ritter');
   assert.equal(rang(899).name, 'Jedi-Ritter');
-  assert.equal(rang(900).name, 'Jedi-Wächter');
-  assert.equal(rang(1200).name, 'Jedi-Meister');
-  assert.deepEqual(rang(2000), { index: 5, name: 'Großmeister', symbol: '🌟', naechster: null });
+  assert.equal(rang(1399).name, 'Jedi-Ritter');
+  assert.equal(rang(1400).name, 'Jedi-Wächter');
+  assert.equal(rang(2200).name, 'Jedi-Meister');
+  assert.deepEqual(rang(3200), { index: 5, name: 'Großmeister', symbol: '🌟', naechster: null });
 });
 
 test('rang: nie degradieren', () => {

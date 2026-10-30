@@ -5,7 +5,7 @@
   "abzeichen": { "name": "Sith-Jäger", "symbol": "🖤" },
   "aufgaben": [
     {
-      "bild": ["vader hoth"],
+      "bild": ["vader hoth", "lambda-shuttle unter flaggschiff"],
       "geschichte": "Nach der Schlacht um Hoth ist Darth Vader wütend: Der Millennium Falke ist entkommen! Von seinem Flaggschiff Executor aus befiehlt er 7 Sternzerstörern, je 9 Suchsonden auszusenden.",
       "frage": "Wie viele Sonden suchen nach dem Falken?",
       "rechnung": "7 * 9",
@@ -25,7 +25,7 @@
       "tipp": "Dreimal den gleichen Betrag du zusammenzählst. Erst die Euro, dann die Cent – aus hundert Cent ein Euro wird."
     },
     {
-      "bild": ["vader bespin"],
+      "bild": ["vader bespin", "lambda-shuttle im all"],
       "art": "uhrzeit",
       "format": "uhrzeit",
       "geschichte": "Um 9:40 Uhr meldet eine Sonde: Der Falke fliegt zur Wolkenstadt auf Bespin! Vader startet sofort mit seinem Shuttle. Der Flug dauert 2 Stunden und 45 Minuten.",

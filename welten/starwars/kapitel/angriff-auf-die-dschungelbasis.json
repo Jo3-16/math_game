@@ -50,7 +50,7 @@
       "tipp": "Wie viele Bomber durchgekommen sind, unten du siehst. Mal 8 – erst 10 mal 8, dann 3 mal 8, und zusammenzählen du musst."
     },
     {
-      "bild": ["tempel"],
+      "bild": ["dschungel tempel", "massassi tempel", "grosser tempel", "tempel dschungel", "rebellenbasis tempel", "thronsaal tempel", "tempel gasriese"],
       "geschichte": "Der Schutzschild über dem Tempel hält bis zu 150 Bomben aus – und er hält! Alle Transporter starten und entkommen sicher ins Weltall.",
       "frage": "Wie viele Bomben hätte der Schild noch zusätzlich aushalten können?",
       "rechnung": "150 - 104",

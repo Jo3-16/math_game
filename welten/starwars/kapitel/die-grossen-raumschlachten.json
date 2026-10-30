@@ -5,7 +5,7 @@
   "abzeichen": { "name": "Flotten-Admiral", "symbol": "🌌" },
   "aufgaben": [
     {
-      "bild": ["coruscant"],
+      "bild": ["schlacht um coruscant", "raumschlacht ueber coruscant"],
       "geschichte": "Admiral Ackbar öffnet für dich das Holo-Archiv der Rebellen. Dort sind die größten Raumschlachten gespeichert. Die älteste ist die Schlacht um Coruscant: Dort kämpften 8 Kreuzer der Republik, jeder mit 45 Geschütztürmen.",
       "frage": "Wie viele Geschütztürme hatten die 8 Kreuzer zusammen?",
       "rechnung": "8 * 45",
@@ -23,7 +23,7 @@
       "tipp": "Zuerst alle Jäger zusammenzählen: X-Wings und Y-Wings. Dann verdoppeln du musst."
     },
     {
-      "bild": ["hammerhai", "rebellenflotte ueber scarif", "nebulon-b schlacht scarif", "y-wing scarif"],
+      "bild": ["hammerhai", "rebellenflotte ueber scarif", "nebulon-b schlacht scarif", "y-wing scarif", "korvette rammt imperialen"],
       "geschichte": "Bei der Schlacht von Scarif rammte ein kleines Hammerhai-Schiff einen Sternzerstörer gegen einen zweiten! Die Rebellen hatten 96 Jäger dabei, gerecht verteilt auf 8 Staffeln.",
       "frage": "Wie viele Jäger flogen in jeder Staffel?",
       "rechnung": "96 / 8",
@@ -32,7 +32,7 @@
       "tipp": "96 auf 8 Staffeln verteilen du musst. Erst 80 durch 8, dann 16 durch 8 – und beides zusammen."
     },
     {
-      "bild": ["b-wings", "sternzerstoerer formation", "executor und sternzerstoerer", "imperiale flotte am", "imperiale sternenflotte"],
+      "bild": ["b-wings", "sternzerstoerer formation", "executor und sternzerstoerer", "imperiale flotte am", "imperiale sternenflotte", "b-wing angriff"],
       "geschichte": "Über Endor greifen B-Wings einen Sternzerstörer an. Sein Schutzschild hat 470 Punkte, und jeder Treffer eines B-Wings zieht 30 Punkte ab.",
       "frage": "Wie viele volle Treffer zu je 30 Punkten passen in den Schild – und wie viele Punkte bleiben übrig?",
       "rechnung": "470 / 30",

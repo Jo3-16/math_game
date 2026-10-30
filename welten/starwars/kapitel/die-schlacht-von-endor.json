@@ -5,7 +5,7 @@
   "abzeichen": { "name": "Retter der Galaxis", "symbol": "🌟" },
   "aufgaben": [
     {
-      "bild": ["mon calamari"],
+      "bild": ["mon calamari", "b-wing staffel", "b-wing im weltall"],
       "geschichte": "Der Schild ist aus! Die Rebellenflotte springt aus dem Hyperraum. Admiral Ackbar führt 6 riesige Mon-Calamari-Kreuzer an. Jeder Kreuzer trägt 24 Jäger.",
       "frage": "Wie viele Jäger tragen die Kreuzer zusammen?",
       "rechnung": "6 * 24",
@@ -32,7 +32,7 @@
       "tipp": "Von 250 zuerst die 85 abziehen und dann die 75 – oder erst 85 und 75 zusammenzählen du kannst."
     },
     {
-      "bild": ["imperator palpatine"],
+      "bild": ["imperator palpatine", "lambda-shuttle im hangar"],
       "geschichte": "Auf dem Todesstern lacht Imperator Palpatine. Er glaubt, die Rebellen haben keine Chance: Er hat 4 Flotten mit je 25 Sternzerstörern.",
       "frage": "Wie viele Sternzerstörer hat der Imperator?",
       "rechnung": "4 * 25",

@@ -1,0 +1,75 @@
+{
+  "titel": "Die Razor Crest",
+  "vorschau": "spielbilder/Kapitelbilder/die-razor-crest.jpg",
+  "belohnung": "spielbilder/Belohnung/die-razor-crest.jpg",
+  "abzeichen": { "name": "Mandalorianer", "symbol": "🪖" },
+  "aufgaben": [
+    {
+      "bild": ["razor crest raumhafen nevarro", "razor crest im hangar"],
+      "art": "geld",
+      "format": "geld",
+      "geschichte": "Viele Jahre nach der Schlacht von Endor reist ein Mandalorianer mit seinem Schiff, der Razor Crest, durch die Galaxis. Im Raumhafen von Nevarro kostet das Parken 4,50 € pro Tag. Er bleibt 3 Tage und bezahlt mit einem 20-Euro-Schein.",
+      "frage": "Wie viel Wechselgeld bekommt der Mandalorianer?",
+      "rechnung": "20 * 100 - 3 * 450",
+      "loesung": 650,
+      "merke": "6,50 € Wechselgeld",
+      "tipp": "Erst ausrechnen, was die drei Tage kosten. Dann vom Schein abziehen du musst. Hundert Cent ein Euro sind."
+    },
+    {
+      "bild": ["flug ueber nevarro"],
+      "art": "uhrzeit",
+      "format": "uhrzeit",
+      "geschichte": "Mitten in der Nacht muss er fliehen! Um 21:40 Uhr startet die Razor Crest, der Flug zum nächsten Planeten dauert 1 Stunde und 35 Minuten.",
+      "frage": "Um wie viel Uhr kommt die Razor Crest an?",
+      "rechnung": "21 * 60 + 40 + 1 * 60 + 35",
+      "loesung": 1395,
+      "merke": "Ankunft um 23:15 Uhr",
+      "tipp": "Erst die Stunden dazuzählen, dann die Minuten. Werden es mehr als 60 Minuten, eine Stunde weiterrücken du musst."
+    },
+    {
+      "bild": ["gelandet eisplanet"],
+      "art": "einheiten",
+      "geschichte": "Er landet auf einem Eisplaneten. Bis zum nächsten Dorf sind es 2 Kilometer und 80 Meter durch den Schnee.",
+      "frage": "Wie viele Meter sind das?",
+      "rechnung": "2 * 1000 + 80",
+      "loesung": 2080,
+      "merke": "2080 Meter bis zum Dorf",
+      "tipp": "Ein Kilometer hat 1000 Meter. Erst die Kilometer umrechnen, dann die Meter dazu."
+    },
+    {
+      "bild": ["gelandet neben sandcrawler", "mando sandcrawler"],
+      "geschichte": "Auf einem Wüstenplaneten haben Jawas Teile von der Razor Crest abmontiert! Der Mandalorianer holt sie zurück: 7 Kisten mit je 8 Ersatzteilen.",
+      "frage": "Wie viele Ersatzteile holt er zurück?",
+      "rechnung": "7 * 8",
+      "loesung": 56,
+      "merke": "56 Ersatzteile",
+      "tipp": "7 Kisten mit je 8 Teilen. Die Achterreihe dir hilft."
+    },
+    {
+      "bild": ["weltraumkampf gegen kopfgeldjaeger", "unter beschuss im all", "slave-i ueber dschungel", "slave-i gelandet daemmerung"],
+      "geschichte": "Ein Kopfgeldjäger greift an! Die Kanonen der Razor Crest haben 75 Schuss. Der Mandalorianer feuert immer Salven mit 8 Schuss.",
+      "frage": "Wie viele volle Salven kann er feuern – und wie viele Schuss bleiben übrig?",
+      "rechnung": "75 / 8",
+      "loesung": 9,
+      "rest": 3,
+      "merke": "9 Salven, 3 Schuss übrig",
+      "tipp": "Die Achterreihe du brauchst: Wie oft passt 8 in 75? Was nicht mehr für eine Salve reicht, der Rest ist."
+    },
+    {
+      "bild": ["von republik jaegern eskortiert", "anflug auf trask"],
+      "geschichte": "Zwei X-Wings begleiten die Razor Crest zum Planeten Trask. Im Tank sind 500 Liter Treibstoff. Der Flug verbraucht 185 Liter und die Landung noch 48 Liter.",
+      "frage": "Wie viele Liter Treibstoff bleiben im Tank?",
+      "rechnung": "500 - 185 - 48",
+      "loesung": 267,
+      "merke": "267 Liter Treibstoff übrig",
+      "tipp": "Zweimal wegnehmen du musst: erst den Flug, dann die Landung."
+    }
+  ],
+  "bonus": {
+    "bild": ["gluehend"],
+    "geschichte": "An Bord isst das kleine grüne Kind Frösche. Am ersten Tag isst es 1 Frosch, und an jedem neuen Tag doppelt so viele wie am Tag davor.",
+    "frage": "Wie viele Frösche isst es am fünften Tag?",
+    "loesung": 16,
+    "tipp": "Jeden Tag verdoppeln du musst. Tag für Tag weiterzählen."
+  }
+}

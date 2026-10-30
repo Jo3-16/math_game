@@ -14,7 +14,7 @@
       "tipp": "6 Schiffe mit je 8 Personen. Die Achterreihe dir hilft."
     },
     {
-      "bild": ["pilot im cockpit", "raner"],
+      "bild": ["pilot im cockpit", "raner", "u-wing im weltall", "u-wing auf dem rebellen-landeplatz"],
       "art": "uhrzeit",
       "format": "uhrzeit",
       "geschichte": "Die Rebellen wollen die Pläne des Todessterns vom Planeten Scarif stehlen. Um 5:50 Uhr starten sie, der Flug dauert 4 Stunden und 40 Minuten.",
@@ -25,7 +25,7 @@
       "tipp": "Erst die Stunden dazuzählen, dann die Minuten. Werden es mehr als 60 Minuten, eine Stunde weiterrücken du musst."
     },
     {
-      "bild": ["luftkampf"],
+      "bild": ["luftkampf wobani", "rebellenjaeger und kreuzer springen ein", "goldstaffel", "bomber greifen", "rebellenjaeger am schutzschild", "rebellenjaeger stuerzt", "zwei imperiale kreuzer kollidieren"],
       "geschichte": "Über Scarif tobt die Raumschlacht. Die Rebellenflotte hat 75 Jäger im Einsatz. 28 werden abgeschossen, dann springen 13 Jäger als Verstärkung aus dem Hyperraum.",
       "frage": "Wie viele Jäger kämpfen jetzt für die Rebellen?",
       "rechnung": "75 - 28 + 13",
@@ -34,7 +34,7 @@
       "tipp": "Erst die abgeschossenen wegnehmen, dann die Verstärkung dazuzählen."
     },
     {
-      "bild": ["todesstern scarif"],
+      "bild": ["todesstern scarif", "kampfstation ueber scarif", "kampfstation laedt"],
       "art": "einheiten",
       "geschichte": "Jyn funkt die Pläne vom Turm hinauf zum Flaggschiff. Die Übertragung dauert 1 Stunde und 5 Minuten – und da erscheint der Todesstern auch über Scarif!",
       "frage": "Wie viele Minuten dauert die Übertragung?",
@@ -54,7 +54,7 @@
       "tipp": "Die Sechserreihe du brauchst: Wie oft passt 6 in 50? Was nicht mehr in eine volle Reihe passt, der Rest ist."
     },
     {
-      "bild": ["flucht von der profundity"],
+      "bild": ["flucht von der profundity", "flaggschiff der rebellen mit jaegern"],
       "geschichte": "Die Tantive IV entkommt mit den Plänen! An Bord sind 5 Gruppen Soldaten mit je 9 Mann und dazu 7 Offiziere – und Prinzessin Leia hält die Pläne in der Hand.",
       "frage": "Wie viele Soldaten und Offiziere sind an Bord?",
       "rechnung": "5 * 9 + 7",

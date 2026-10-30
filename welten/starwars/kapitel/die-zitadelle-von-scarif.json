@@ -1,0 +1,74 @@
+{
+  "titel": "Die Zitadelle von Scarif",
+  "vorschau": "spielbilder/Kapitelbilder/die-zitadelle-von-scarif.jpg",
+  "belohnung": "spielbilder/Belohnung/die-zitadelle-von-scarif.jpg",
+  "abzeichen": { "name": "Daten-Dieb", "symbol": "💾" },
+  "aufgaben": [
+    {
+      "bild": ["schildtor planet sonne", "schildtor von oben"],
+      "art": "uhrzeit",
+      "format": "uhrzeit",
+      "geschichte": "Jyn und Cassian fliegen mit einem gestohlenen imperialen Shuttle nach Scarif. Um 9:35 Uhr dürfen sie durch das Schildtor, bis zur Landung dauert es noch 40 Minuten.",
+      "frage": "Um wie viel Uhr landen sie?",
+      "rechnung": "9 * 60 + 35 + 40",
+      "loesung": 615,
+      "merke": "Landung um 10:15 Uhr",
+      "tipp": "Erst bis zur vollen Stunde du rechnest, dann die übrigen Minuten dazu."
+    },
+    {
+      "bild": ["landeplatz inseln"],
+      "art": "einheiten",
+      "geschichte": "Vom Landeplatz bis zum großen Turm der Zitadelle sind es 1 Kilometer und 900 Meter zwischen Palmen und Lagunen.",
+      "frage": "Wie viele Meter müssen sie schleichen?",
+      "rechnung": "1 * 1000 + 900",
+      "loesung": 1900,
+      "merke": "1900 Meter bis zum Turm",
+      "tipp": "Ein Kilometer hat 1000 Meter. Erst den Kilometer umrechnen, dann die Meter dazu."
+    },
+    {
+      "bild": ["strand kampf laeufer", "u-wing feuert", "u-wing landung am strand", "u-wing tiefflug"],
+      "geschichte": "Damit die beiden unbemerkt bleiben, greifen Rebellen am Strand an. Es kämpfen 9 Trupps mit je 8 Rebellen.",
+      "frage": "Wie viele Rebellen kämpfen am Strand?",
+      "rechnung": "9 * 8",
+      "loesung": 72,
+      "merke": "72 Rebellen am Strand",
+      "tipp": "9 Trupps mit je 8 Rebellen. Die Achterreihe – oder 10 mal 8 und dann 8 weniger."
+    },
+    {
+      "bild": ["strand inseln luftkampf"],
+      "geschichte": "Die 72 Rebellen teilen sich in Gruppen zu je 7 auf, um die Läufer abzulenken.",
+      "frage": "Wie viele volle Gruppen gibt es – und wie viele Rebellen bleiben übrig?",
+      "rechnung": "72 / 7",
+      "loesung": 10,
+      "rest": 2,
+      "merke": "10 Gruppen, 2 Rebellen übrig",
+      "tipp": "Die Siebenerreihe du brauchst: Wie oft passt 7 in 72? Was übrig bleibt, der Rest ist."
+    },
+    {
+      "bild": ["turm lagune palmen"],
+      "geschichte": "Im Archiv der Zitadelle liegen 846 Datenbänder. Jyn durchsucht 378, Cassian 259 – dann finden sie die Pläne des Todessterns.",
+      "frage": "Wie viele Datenbänder haben sie nicht durchsucht?",
+      "rechnung": "846 - 378 - 259",
+      "loesung": 209,
+      "merke": "209 Bänder nicht durchsucht",
+      "tipp": "Zweimal wegnehmen du musst: erst Jyns Bänder, dann die von Cassian."
+    },
+    {
+      "bild": ["turm strahl treffer", "schildtor zerstoerung", "imperialer kreuzer ueber scarif"],
+      "art": "einheiten",
+      "geschichte": "Jyn funkt die Pläne vom Turm zur Rebellenflotte. Die Übertragung dauert 4 Minuten und 25 Sekunden.",
+      "frage": "Wie viele Sekunden dauert die Übertragung?",
+      "rechnung": "4 * 60 + 25",
+      "loesung": 265,
+      "merke": "265 Sekunden Übertragung",
+      "tipp": "Eine Minute hat 60 Sekunden. Erst die Minuten umrechnen, dann die Sekunden dazu."
+    }
+  ],
+  "bonus": {
+    "bild": ["scarif zitadelle planet aus dem all"],
+    "geschichte": "Der Code für das Archiv hat drei Ziffern. Alle drei Ziffern sind gleich, und zusammen ergeben sie 12.",
+    "frage": "Wie lautet der Code?",
+    "loesung": 444,
+    "tipp": "Drei gleiche Ziffern, zusammen zwölf. Gerecht verteilen du musst."
+  }
+}

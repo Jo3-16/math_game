@@ -157,9 +157,9 @@ export const RAENGE = [
   { name: 'Jüngling', symbol: '🌱', ab: 0 },
   { name: 'Padawan', symbol: '🟢', ab: 200 },
   { name: 'Jedi-Ritter', symbol: '⚔️', ab: 600 },
-  { name: 'Jedi-Wächter', symbol: '🛡️', ab: 900 },
-  { name: 'Jedi-Meister', symbol: '🧙', ab: 1200 },
-  { name: 'Großmeister', symbol: '🌟', ab: 2000 },
+  { name: 'Jedi-Wächter', symbol: '🛡️', ab: 1400 },
+  { name: 'Jedi-Meister', symbol: '🧙', ab: 2200 },
+  { name: 'Großmeister', symbol: '🌟', ab: 3200 },
 ];
 // Grenzen bis Oktober 2026 – nur für Spielstände ohne gespeicherten Rang, damit niemand absteigt.
 // Damals gab es den Jedi-Wächter (Index 3) noch nicht: ab 1000 Punkten war man gleich Jedi-Meister.
