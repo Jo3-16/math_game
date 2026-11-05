@@ -402,22 +402,34 @@ export function erzeugeAufgabe(art, zufall = Math.random) {
   if (art === 'geld') {
     const n = zahl(zufall, 2, 5), p = zahl(zufall, 3, 40) * 10; // Preis 0,30–4,00 €
     const euro = (c) => zweiteilig(c, 'geld');
-    const [wer, ware] = eins(zufall, [
-      ['Luke', 'Gläser Blaue Milch'], ['Han Solo', 'Energiezellen'], ['Onkel Owen', 'Ersatzteile'],
-      ['C-3PO', 'Dosen Öl'], ['Chewbacca', 'Bantha-Würstchen'], ['R2-D2', 'Schaltkreise'], ['Lando', 'Datenkarten'],
+    const [wer, er] = eins(zufall, [
+      ['Luke', 'er'], ['Leia', 'sie'], ['Han Solo', 'er'], ['Chewbacca', 'er'], ['C-3PO', 'er'], ['R2-D2', 'er'],
+      ['Lando', 'er'], ['Obi-Wan', 'er'], ['Tante Beru', 'sie'], ['Onkel Owen', 'er'], ['Rey', 'sie'], ['Finn', 'er'],
+      ['Poe', 'er'], ['BB-8', 'er'], ['Der Mandalorianer', 'er'], ['Ahsoka', 'sie'], ['Jyn Erso', 'sie'], ['Wicket', 'er'],
     ]);
-    const [ort, bild] = eins(zufall, [
-      ['in Mos Eisley', ['mos-eisley']], ['auf dem Markt von Tatooine', ['tatooine/']], ['in der Echo-Basis auf Hoth', ['hoth/']],
-      ['in der Wolkenstadt', ['wolkenstadt-bespin/']], ['im Ewok-Dorf auf Endor', ['endor/']], ['in der Rebellenbasis auf Yavin 4', ['yavin-4/']],
-      ['bei Yoda auf Dagobah', ['dagobah/']], ['in der Kantine des Todessterns', ['todesstern/']],
+    // Jeder Ort mit eigenen Waren und eigenem Bild, damit Geschichte und Bild zusammenpassen.
+    const [ort, waren, bild] = eins(zufall, [
+      ['in der Kantine von Mos Eisley', ['Gläser Blaue Milch', 'Schalen Bantha-Eintopf'], ['mos-eisley-kantine/', 'cantina']],
+      ['auf dem Markt von Mos Eisley', ['Wasserflaschen', 'Sonnenbrillen'], ['blick-auf-mos-eisley', 'mos-eisley-strasse', 'sturmtruppen-mos-eisley', 'obi-wan-mos-eisley']],
+      ['bei den Jawas am Sandcrawler', ['Ersatzteile', 'Antriebsmotoren'], ['sandcrawler/']],
+      ['am Niima-Außenposten auf Jakku', ['Portionen Brotpulver', 'Wasserflaschen'], ['niima']],
+      ['in Maz Kanatas Schloss auf Takodana', ['Becher Würzsaft', 'Sternkarten'], ['schloss-am-see', 'maz-schloss', 'schlosshof']],
+      ['in der Wolkenstadt', ['Tibanna-Gaskanister', 'Wolkenwagen-Fahrkarten'], ['wolkenstadt-bespin/']],
+      ['in den Straßen von Coruscant', ['Becher Kaf', 'Hologramm-Karten'], ['coruscant-skyline', 'coruscant-stadt', 'coruscant-wolkenkratzer', 'coruscant-balkon']],
+      ['in Jabbas Palast', ['Krüge Wüstenwasser', 'Teller Schlangenfrösche'], ['jabbas-palast/']],
+      ['in der Echo-Basis auf Hoth', ['Wärmepads', 'Säcke Tauntaun-Futter'], ['hoth/']],
+      ['im Ewok-Dorf auf Endor', ['Körbe Beeren', 'Seile'], ['ewoks/']],
+      ['in der Rebellenbasis auf Yavin 4', ['Energiezellen', 'Datenkarten'], ['yavin-4/']],
+      ['bei Yoda auf Dagobah', ['Schalen Wurzelsuppe', 'Kerzen'], ['dagobah/']],
     ]);
-    const geschichte = `${wer} kauft ${ort} ${n} ${ware}. Eins kostet ${euro(p)}.`;
+    const geschichte = `${wer} kauft ${ort} ${n} ${eins(zufall, waren)}. Das Stück kostet ${euro(p)}.`;
     if (zufall() < 0.5) {
-      return { art, format: 'geld', geschichte, frage: 'Wie viel muss er zusammen bezahlen?', bild,
+      return { art, format: 'geld', geschichte, frage: `Wie viel muss ${er} zusammen bezahlen?`, bild,
         rechnung: `${n} * ${p}`, loesung: n * p, tipp: 'Erst die Euro malnehmen, dann die Cent. Hundert Cent ein Euro sind.' };
     }
     const schein = eins(zufall, [5, 10, 20, 50].filter(e => e * 100 > n * p).slice(0, 2)); // kleinster oder nächstgrößerer Schein, der reicht
-    return { art, format: 'geld', geschichte: `${geschichte} Er bezahlt mit einem ${schein}-Euro-Schein.`, frage: 'Wie viel Wechselgeld bekommt er zurück?', bild,
+    const Er = er[0].toUpperCase() + er.slice(1);
+    return { art, format: 'geld', geschichte: `${geschichte} ${Er} bezahlt mit einem ${schein}-Euro-Schein.`, frage: `Wie viel Wechselgeld bekommt ${er} zurück?`, bild,
       rechnung: `${schein} * 100 - ${n} * ${p}`, loesung: schein * 100 - n * p, tipp: 'Erst ausrechnen, was alles kostet. Dann bis zum Schein du ergänzen musst.' };
   }
   if (art === 'logik') {
@@ -491,8 +503,8 @@ export function erzeugeAufgabe(art, zufall = Math.random) {
     const nachGross = zufall() < 0.5;
     return { art, geschichte, frage: nachGross ? frageGross : frageKlein, bild,
       rechnung: nachGross ? `(${summe} - ${d}) / 2 + ${d}` : `(${summe} - ${d}) / 2`, loesung: nachGross ? h + d : h,
-      tipp: nachGross ? 'Nimm erst den Unterschied weg und halbiere gerecht. Dann den Unterschied wieder dazu du zählst.'
-        : 'Nimm erst den Unterschied weg. Den Rest dann gerecht halbieren du musst.' };
+      tipp: nachGross ? 'Nimm erst den Unterschied weg. Den Rest gerecht halbieren du musst – so viele hat der Kleinere. Der Größere hat den ganzen Unterschied mehr, nicht halbiert ihn dazu du zählst.'
+        : 'Nimm erst den Unterschied weg. Den Rest dann gerecht halbieren du musst – so viele hat der Kleinere.' };
   }
   throw new Error(`Unbekannte Rechenart ${art}`);
 }

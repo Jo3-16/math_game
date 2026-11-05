@@ -87,7 +87,7 @@ button.link { background: none; color: var(--akzent); opacity: 1; font-weight: n
 .frage { font-size: 24px; font-weight: bold; color: var(--akzent); }
 form { display: flex; gap: 12px; }
 #antwort, #antwort-rest {
-  flex: 1; min-width: 0; width: 0; font: inherit; font-size: 32px; padding: 8px 12px; border-radius: 8px;
+  flex: 1; min-width: 0; width: 0; font: inherit; font-weight: normal; font-size: 32px; padding: 8px 12px; border-radius: 8px;
   border: 3px solid var(--akzent); background: var(--flaeche); color: var(--text);
 }
 #rest-teil { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; font-weight: bold; color: var(--akzent); font-size: 24px; }
