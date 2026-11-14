@@ -265,7 +265,7 @@ button.holo { width: 100%; text-align: left; font: inherit; font-weight: normal;
 .sim-uhr.knapp { color: #ff8a80; }
 
 /* Flugsimulator: Umschalter Eintippen/Auswählen und Antwort-Knöpfe */
-.modus-leiste { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 16px; padding: 10px 16px; }
+.modus-leiste { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 28px 0 16px; padding: 10px 16px; }
 .wahl-knopf.klein { flex-direction: row; min-width: 0; padding: 8px 16px; }
 .auswahl-knoepfe { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .auswahl-knopf { font-size: 26px; padding: 10px; }
