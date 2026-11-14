@@ -2,7 +2,7 @@ import {
   findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatus, mitStelle, aufgabeGeloest, gesamtPunkte, mitName,
   rang, mitRang, RAENGE, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, BONUS_PUNKTE,
   rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, RECHENART_NAMEN, migriereStand,
-  SIMULATOR_STUFEN, simulatorAufgabeGeloest, ZWEI_FELDER, loesungText, mitFalscherAntwort, verteileBilder, bildAufgaben,
+  SIMULATOR_STUFEN, simulatorAufgabeGeloest, naechsteSimStufe, mitSimRekord, ZEITRENNEN_SEKUNDEN, ZWEI_FELDER, loesungText, mitFalscherAntwort, verteileBilder, bildAufgaben,
 } from './logik.js';
 import { ICON_SETS, ICONS } from './icons.js';
 
@@ -16,6 +16,7 @@ let kapitelIndex, aufgabeIndex, fehlversuche, wiederholung, wartet, weiterTimer;
 let kapitelBilder = []; // je Aufgabe des Kapitels (und Bonus-Rätsel) ein Bild, möglichst ohne Wiederholung
 let ohneTipp, laufSterne; // im aktuellen Durchlauf ohne Tipp gelöste Aufgaben, Sterne dieses Durchlaufs
 let simulatorArt = null, simAufgabe; // Flugsimulator: gewählte Rechenart, aktuelle Zufallsaufgabe
+let rennen = null; // Zeitrennen im Simulator: { ende, geloest, uhr }
 
 function zeige(ansicht) {
   for (const a of ANSICHTEN) $(a).hidden = a !== ansicht;
@@ -136,6 +137,7 @@ function abzeichenKarte(k, i, mitDetails) {
 }
 
 function zeigeUebersicht() {
+  stoppeRennen();
   const status = kapitelStatus(stand, welt.kapitel.map(k => k.id));
   $('kapitel').replaceChildren(...welt.kapitel.map((k, i) => {
     const s = stand.kapitel[k.id];
@@ -203,6 +205,7 @@ function zeigeRaenge() {
 }
 
 function starteKapitel(index, alsWiederholung) {
+  stoppeRennen();
   simulatorArt = null;
   kapitelIndex = index;
   kapitelBilder = verteileBilder(welt.bilder, bildAufgaben(welt.kapitel[index]));
@@ -270,6 +273,7 @@ function zeigeAufgabe() {
   if (simulatorArt) {
     $('kapiteltitel').textContent = `Flugsimulator – ${SIMULATOR_ARTEN.find(a => a.id === simulatorArt).name}`;
     $('fortschritt').textContent = `🎮 ${simulatorBilanz(simulatorArt)}`;
+    zeigeSimFortschritt();
   } else {
     $('kapiteltitel').textContent = kapitel.titel + (ADMIN ? ' (Admin)' : wiederholung ? ' (Wiederholung)' : '');
     const punkte = kapitel.aufgaben.map((_, i) => (i < aufgabeIndex ? '●' : i === aufgabeIndex ? '◉' : '○')).join(' ');
@@ -277,6 +281,8 @@ function zeigeAufgabe() {
       ? `🧩 Bonus-Rätsel – für das Gold-Abzeichen`
       : `Aufgabe ${aufgabeIndex + 1}/${kapitel.aufgaben.length}  ${punkte}`;
   }
+  $('sim-fortschritt').hidden = !simulatorArt;
+  $('sim-uhr').hidden = !rennen;
   $('gesamt-aufgabe').textContent = gesamtPunkte(stand);
   $('spielername-aufgabe').textContent = stand.name;
   zeigeRang($('rang-aufgabe'));
@@ -372,10 +378,12 @@ $('antwort-form').onsubmit = event => {
       ({ stand, neuesAbzeichen: neues } = simulatorAufgabeGeloest(stand, simulatorArt));
     }
     speichern();
+    zeigeSimFortschritt();
+    if (rennen) { rennen.geloest++; zeigeUhr(); }
     const name = SIMULATOR_ARTEN.find(a => a.id === simulatorArt).name;
     meldung('Richtig!'
       + (neues ? ` – Neues Abzeichen: ${name} ${neues.name} ${neues.symbol}!` : ''), 'richtig');
-    weiterTimer = setTimeout(() => { simAufgabe = erzeugeAufgabe(simulatorArt); zeigeAufgabe(); }, neues ? 3000 : 1200);
+    weiterTimer = setTimeout(() => { simAufgabe = erzeugeAufgabe(simulatorArt); zeigeAufgabe(); }, neues ? (rennen ? 1500 : 3000) : rennen ? 500 : 1200);
     return;
   }
   if (imBonus(kapitel)) {
@@ -539,11 +547,15 @@ $('bildansicht').onclick = e => { if (e.target === $('bildansicht')) schliesseBi
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('bildansicht').hidden) schliesseBildansicht(); });
 
 function zeigeSimulatorMenu() {
+  stoppeRennen();
   $('simulator-arten').replaceChildren(...SIMULATOR_ARTEN.map(a => {
+    const gruppe = element('div', 'sim-gruppe');
     const b = element('button', 'kachel offen');
     const text = element('div');
+    const naechste = naechsteSimStufe(stand.simulatorGeloest?.[a.id] ?? 0);
     text.append(element('b', '', a.name), simulatorAbzeichenZeile(a.id),
-      element('small', '', simulatorBilanz(a.id)));
+      element('small', '', simulatorBilanz(a.id)),
+      element('small', 'sim-naechste', naechste ? `noch ${naechste.fehlt} bis ${naechste.stufe.symbol} ${naechste.stufe.name}` : 'Alle Abzeichen geschafft!'));
     const bild = `spielbilder/Simulator/${a.id}.jpg`;
     if (welt.bilder.includes(bild)) {
       const vorschau = element('img', 'vorschau');
@@ -553,15 +565,24 @@ function zeigeSimulatorMenu() {
     }
     b.append(text);
     b.onclick = () => starteSimulator(a.id);
-    return b;
+    const rekord = stand.simulatorZeitrekord?.[a.id];
+    const r = element('button', 'rennen-knopf', `⏱️ Zeitrennen${rekord ? ` · Rekord ${rekord}` : ''}`);
+    r.onclick = () => starteSimulator(a.id, true);
+    gruppe.append(b, r);
+    return gruppe;
   }));
   zeige('simulator');
 }
 
 const simulatorBilanz = art => `✅ ${stand.simulatorGeloest?.[art] ?? 0} richtig · ❌ ${stand.simulatorFalsch?.[art] ?? 0} falsch`;
 
-function starteSimulator(art) {
+function starteSimulator(art, mitRennen = false) {
+  stoppeRennen();
   simulatorArt = art;
+  if (mitRennen) {
+    rennen = { ende: Date.now() + ZEITRENNEN_SEKUNDEN * 1000, geloest: 0, uhr: setInterval(zeigeUhr, 250) };
+    zeigeUhr();
+  }
   simAufgabe = erzeugeAufgabe(art);
   zeigeAufgabe();
 }
@@ -641,8 +662,51 @@ function zeigeKapitelEnde(kapitel) {
 
 $('overlay-weiter').onclick = () => {
   $('overlay').hidden = true;
-  zeigeUebersicht();
+  if (simulatorArt) zeigeSimulatorMenu(); // nach dem Zeitrennen
+  else zeigeUebersicht();
 };
+
+// Balken bis zum nächsten Simulator-Abzeichen der aktuellen Rechenart.
+function zeigeSimFortschritt() {
+  const n = naechsteSimStufe(stand.simulatorGeloest?.[simulatorArt] ?? 0);
+  $('sim-balken').value = n ? n.anteil : 1;
+  $('sim-naechste').textContent = n ? `noch ${n.fehlt} bis ${n.stufe.symbol} ${n.stufe.name}` : 'Alle Abzeichen geschafft! 👑';
+}
+
+function stoppeRennen() {
+  if (rennen) clearInterval(rennen.uhr);
+  rennen = null;
+}
+
+function zeigeUhr() {
+  const rest = Math.max(0, Math.ceil((rennen.ende - Date.now()) / 1000));
+  $('sim-uhr').textContent = `⏱️ ${Math.floor(rest / 60)}:${String(rest % 60).padStart(2, '0')} · ${rennen.geloest} geschafft`;
+  $('sim-uhr').classList.toggle('knapp', rest <= 10);
+  if (rest === 0) rennenEnde();
+}
+
+function rennenEnde() {
+  const { geloest } = rennen;
+  stoppeRennen();
+  clearTimeout(weiterTimer);
+  wartet = true;
+  let neu = false, alt = stand.simulatorZeitrekord?.[simulatorArt] ?? 0;
+  if (!ADMIN) {
+    ({ stand, neu, alt } = mitSimRekord(stand, simulatorArt, geloest));
+    if (neu) speichern();
+  }
+  if (neu) ton('richtig');
+  const name = SIMULATOR_ARTEN.find(a => a.id === simulatorArt).name;
+  $('overlay-symbol').replaceChildren(neu ? '🏆' : '⏱️');
+  $('overlay-symbol').classList.toggle('gold', neu);
+  $('overlay-titel').textContent = neu ? 'Neuer Rekord!' : 'Zeit um!';
+  $('overlay-sterne').textContent = '';
+  $('overlay-text').textContent = `${geloest} Aufgaben in 2 Minuten – ${name}.`
+    + (neu ? (alt ? ` Dein alter Rekord war ${alt}.` : '') : alt ? ` Dein Rekord: ${alt}. Beim nächsten Mal knackst du ihn!` : '');
+  $('overlay-belohnung').hidden = true;
+  $('overlay').hidden = false;
+  $('overlay-weiter').focus();
+}
 
 // Einstellungen: Pilotenname, Icon-Set und Ton
 function zeigeEinstellungen() {

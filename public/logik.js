@@ -1,6 +1,7 @@
 // Reine Spiellogik – wird vom Browser, vom Prüfskript und von den Tests genutzt.
 
 export const MAX_ZAHL = 500;
+export const MAX_GELD = 20000; // Geld in Cent: bis 200 € (größter Schein)
 export const MAX_EINHEITEN = 9999; // Einheiten-Aufgaben dürfen größer werden (km ↔ m)
 export const TIPP_AB = 2;
 
@@ -242,6 +243,7 @@ export function rechneMitRest(rechnung) {
 export const RECHENART_NAMEN = {
   mal: 'Malnehmen', geteilt: 'Teilen', rest: 'Teilen mit Rest', plusminus: 'Plus & Minus',
   einheiten: 'Größen & Einheiten', raetsel: 'Bonus-Rätsel', logik: 'Logik-Rätsel', uhrzeit: 'Uhrzeiten', geld: 'Geld',
+  malgross: 'Großes Malnehmen', runden: 'Runden & Überschlagen',
 };
 
 // Antworten in zwei Feldern: Lösung in Minuten bzw. Cent, eingegeben als Stunden : Minuten bzw. Euro , Cent.
@@ -282,9 +284,11 @@ export function mitStatistik(stand, arten, fehlversuche, schluessel) {
 // --- Flugsimulator: Zufallsaufgaben ---
 export const SIMULATOR_ARTEN = [
   { id: 'mal', name: 'Einmaleins' },
+  { id: 'malgross', name: 'Großes Malnehmen' },
   { id: 'geteilt', name: 'Teilen' },
   { id: 'rest', name: 'Teilen mit Rest' },
   { id: 'plusminus', name: 'Plus & Minus' },
+  { id: 'runden', name: 'Runden & Überschlagen' },
   { id: 'einheiten', name: 'Größen & Einheiten' },
   { id: 'logik', name: 'Logik-Rätsel' },
   { id: 'uhrzeit', name: 'Uhrzeiten' },
@@ -400,37 +404,95 @@ export function erzeugeAufgabe(art, zufall = Math.random) {
       rechnung: `${h} * 60 + ${m} - ${d}`, loesung: h * 60 + m - d, tipp: 'Rückwärts rechnen du musst. Erst zurück bis zur vollen Stunde, dann die übrigen Minuten.' };
   }
   if (art === 'geld') {
-    const n = zahl(zufall, 2, 5), p = zahl(zufall, 3, 40) * 10; // Preis 0,30–4,00 €
+    // Halb kleine Einkäufe (0,30–4,00 € das Stück), halb große (2,00–20,00 € in 50-Cent-Schritten) – zusammen höchstens 100 €.
+    const teuer = zufall() < 0.5;
+    const n = zahl(zufall, 2, 5), p = teuer ? zahl(zufall, 4, 40) * 50 : zahl(zufall, 3, 40) * 10;
     const euro = (c) => zweiteilig(c, 'geld');
     const [wer, er] = eins(zufall, [
       ['Luke', 'er'], ['Leia', 'sie'], ['Han Solo', 'er'], ['Chewbacca', 'er'], ['C-3PO', 'er'], ['R2-D2', 'er'],
       ['Lando', 'er'], ['Obi-Wan', 'er'], ['Tante Beru', 'sie'], ['Onkel Owen', 'er'], ['Rey', 'sie'], ['Finn', 'er'],
       ['Poe', 'er'], ['BB-8', 'er'], ['Der Mandalorianer', 'er'], ['Ahsoka', 'sie'], ['Jyn Erso', 'sie'], ['Wicket', 'er'],
     ]);
-    // Jeder Ort mit eigenen Waren und eigenem Bild, damit Geschichte und Bild zusammenpassen.
+    // Jeder Ort mit eigenen Waren (zwei günstige, eine teure) und eigenem Bild, damit Geschichte und Bild zusammenpassen.
     const [ort, waren, bild] = eins(zufall, [
-      ['in der Kantine von Mos Eisley', ['Gläser Blaue Milch', 'Schalen Bantha-Eintopf'], ['mos-eisley-kantine/', 'cantina']],
-      ['auf dem Markt von Mos Eisley', ['Wasserflaschen', 'Sonnenbrillen'], ['blick-auf-mos-eisley', 'mos-eisley-strasse', 'sturmtruppen-mos-eisley', 'obi-wan-mos-eisley']],
-      ['bei den Jawas am Sandcrawler', ['Ersatzteile', 'Antriebsmotoren'], ['sandcrawler/']],
-      ['am Niima-Außenposten auf Jakku', ['Portionen Brotpulver', 'Wasserflaschen'], ['niima']],
-      ['in Maz Kanatas Schloss auf Takodana', ['Becher Würzsaft', 'Sternkarten'], ['schloss-am-see', 'maz-schloss', 'schlosshof']],
-      ['in der Wolkenstadt', ['Tibanna-Gaskanister', 'Wolkenwagen-Fahrkarten'], ['wolkenstadt-bespin/']],
-      ['in den Straßen von Coruscant', ['Becher Kaf', 'Hologramm-Karten'], ['coruscant-skyline', 'coruscant-stadt', 'coruscant-wolkenkratzer', 'coruscant-balkon']],
-      ['in Jabbas Palast', ['Krüge Wüstenwasser', 'Teller Schlangenfrösche'], ['jabbas-palast/']],
-      ['in der Echo-Basis auf Hoth', ['Wärmepads', 'Säcke Tauntaun-Futter'], ['hoth/']],
-      ['im Ewok-Dorf auf Endor', ['Körbe Beeren', 'Seile'], ['ewoks/']],
-      ['in der Rebellenbasis auf Yavin 4', ['Energiezellen', 'Datenkarten'], ['yavin-4/']],
-      ['bei Yoda auf Dagobah', ['Schalen Wurzelsuppe', 'Kerzen'], ['dagobah/']],
+      ['in der Kantine von Mos Eisley', ['Gläser Blaue Milch', 'Schalen Bantha-Eintopf', 'Karten für das Konzert der Kantinen-Band'], ['mos-eisley-kantine/', 'cantina']],
+      ['auf dem Markt von Mos Eisley', ['Wasserflaschen', 'Sonnenbrillen', 'Wüstenumhänge'], ['blick-auf-mos-eisley', 'mos-eisley-strasse', 'sturmtruppen-mos-eisley', 'obi-wan-mos-eisley']],
+      ['bei den Jawas am Sandcrawler', ['Ersatzteile', 'Antriebsmotoren', 'gebrauchte Droiden'], ['sandcrawler/']],
+      ['am Niima-Außenposten auf Jakku', ['Portionen Brotpulver', 'Wasserflaschen', 'Schrottteile aus alten Sternzerstörern'], ['niima']],
+      ['in Maz Kanatas Schloss auf Takodana', ['Becher Würzsaft', 'Sternkarten', 'Holo-Schachspiele'], ['schloss-am-see', 'maz-schloss', 'schlosshof']],
+      ['in der Wolkenstadt', ['Tibanna-Gaskanister', 'Wolkenwagen-Fahrkarten', 'Wolkenstadt-Andenken'], ['wolkenstadt-bespin/']],
+      ['in den Straßen von Coruscant', ['Becher Kaf', 'Hologramm-Karten', 'Fahrkarten fürs Lufttaxi'], ['coruscant-skyline', 'coruscant-stadt', 'coruscant-wolkenkratzer', 'coruscant-balkon']],
+      ['in Jabbas Palast', ['Krüge Wüstenwasser', 'Teller Schlangenfrösche', 'Kisten Gewürze'], ['jabbas-palast/']],
+      ['in der Echo-Basis auf Hoth', ['Wärmepads', 'Säcke Tauntaun-Futter', 'Thermo-Anzüge'], ['hoth/']],
+      ['im Ewok-Dorf auf Endor', ['Körbe Beeren', 'Seile', 'Ewok-Speere'], ['ewoks/']],
+      ['in der Rebellenbasis auf Yavin 4', ['Energiezellen', 'Datenkarten', 'Pilotenhelme'], ['yavin-4/']],
+      ['bei Yoda auf Dagobah', ['Schalen Wurzelsuppe', 'Kerzen', 'Laternen'], ['dagobah/']],
     ]);
-    const geschichte = `${wer} kauft ${ort} ${n} ${eins(zufall, waren)}. Das Stück kostet ${euro(p)}.`;
+    const geschichte = `${wer} kauft ${n} ${teuer ? waren[2] : eins(zufall, waren.slice(0, 2))} ${ort}. Das Stück kostet ${euro(p)}.`;
     if (zufall() < 0.5) {
       return { art, format: 'geld', geschichte, frage: `Wie viel muss ${er} zusammen bezahlen?`, bild,
         rechnung: `${n} * ${p}`, loesung: n * p, tipp: 'Erst die Euro malnehmen, dann die Cent. Hundert Cent ein Euro sind.' };
     }
-    const schein = eins(zufall, [5, 10, 20, 50].filter(e => e * 100 > n * p).slice(0, 2)); // kleinster oder nächstgrößerer Schein, der reicht
+    const schein = eins(zufall, [5, 10, 20, 50, 100, 200].filter(e => e * 100 > n * p).slice(0, 3)); // kleinster Schein, der reicht, oder einer der zwei nächstgrößeren
     const Er = er[0].toUpperCase() + er.slice(1);
     return { art, format: 'geld', geschichte: `${geschichte} ${Er} bezahlt mit einem ${schein}-Euro-Schein.`, frage: `Wie viel Wechselgeld bekommt ${er} zurück?`, bild,
       rechnung: `${schein} * 100 - ${n} * ${p}`, loesung: schein * 100 - n * p, tipp: 'Erst ausrechnen, was alles kostet. Dann bis zum Schein du ergänzen musst.' };
+  }
+  if (art === 'malgross') {
+    // Halbschriftlich: zweistellig (selten dreistellig) mal einstellig, zerlegt in Hunderter, Zehner und Einer.
+    let a, b;
+    do {
+      const dreistellig = zufall() < 0.25;
+      a = dreistellig ? zahl(zufall, 101, 250) : zahl(zufall, 12, 99);
+      b = zahl(zufall, dreistellig ? 2 : 3, dreistellig ? 4 : 9);
+    } while (a % 10 === 0 || a * b > MAX_ZAHL);
+    const teile = [a - (a % 100), (a % 100) - (a % 10), a % 10].filter(Boolean); // Hunderter, Zehner, Einer
+    const [geschichte, frage, bild] = eins(zufall, [
+      [`${b} Sternzerstörer haben je ${a} TIE-Jäger an Bord.`, 'Wie viele TIE-Jäger sind es zusammen?', ['sternzerstörer/']],
+      [`Die Rebellen beladen ${b} Transporter mit je ${a} Kisten Vorräten.`, 'Wie viele Kisten sind es insgesamt?', ['transporter']],
+      [`${b} AT-ATs marschieren auf die Echo-Basis zu. Jeder trägt ${a} Schneetruppen.`, 'Wie viele Schneetruppen sind es?', ['at-at/']],
+      [`Der Millennium Falcon springt ${b}-mal in den Hyperraum, jedes Mal ${a} Lichtjahre weit.`, 'Wie viele Lichtjahre fliegt er insgesamt?', ['millennium-falcon/']],
+      [`${b} Mon-Calamari-Kreuzer bringen je ${a} Piloten zur Schlacht.`, 'Wie viele Piloten sind es zusammen?', ['mon-calamari-cruiser/']],
+      [`Die Ewoks sammeln an ${b} Tagen je ${a} Tannenzapfen für ihre Fallen.`, 'Wie viele Tannenzapfen sind es?', ['ewoks/']],
+    ]);
+    return { art, geschichte, frage, bild, rechnung: `${a} * ${b}`, loesung: a * b,
+      tipp: `Zerlege die ${a}: erst ${teile.map(t => `${t} mal ${b}`).join(', dann ')}. Alles zusammenzählen du musst.` };
+  }
+  if (art === 'runden') {
+    const auf = (n, s) => Math.round(n / s) * s;
+    const typ = zahl(zufall, 0, 3);
+    if (typ < 2) {
+      const s = typ === 0 ? 10 : 100;
+      let n;
+      do n = typ === 0 ? zahl(zufall, 11, 989) : zahl(zufall, 101, 949); while (n % s === 0);
+      const r = auf(n, s), stelle = s === 10 ? 'Zehner' : 'Hunderter', davor = s === 10 ? 'Einer' : 'Zehner';
+      const [geschichte, bild] = eins(zufall, [
+        [`Auf dem Radar der Echo-Basis blinken ${n} Punkte.`, ['hoth/']],
+        [`Im Hangar des Sternzerstörers stehen ${n} TIE-Jäger.`, ['sternzerstörer/']],
+        [`Die Rebellenflotte hat ${n} Piloten.`, ['mon-calamari-cruiser/']],
+        [`Im Wald von Endor leben ${n} Ewoks.`, ['ewoks/']],
+        [`Vor dem Todesstern stehen ${n} Sturmtruppen in Reih und Glied.`, ['sturmtruppen']],
+      ]);
+      return { art, geschichte, frage: `Runde die ${n} auf ${stelle}. Welche Zahl kommt heraus?`, bild,
+        rechnung: n % s >= s / 2 ? `${n} + ${s - (n % s)}` : `${n} - ${n % s}`, loesung: r,
+        tipp: `Auf die ${davor} du schaust. Bei 0 bis 4 abrunden, bei 5 bis 9 aufrunden du musst.` };
+    }
+    let a, b;
+    if (typ === 2) do { a = zahl(zufall, 101, 849); b = zahl(zufall, 101, 849); } while (a % 100 === 0 || b % 100 === 0 || auf(a, 100) + auf(b, 100) > MAX_PLUSMINUS);
+    else do { a = zahl(zufall, 251, 949); b = zahl(zufall, 101, a - 100); } while (a % 100 === 0 || b % 100 === 0 || auf(a, 100) <= auf(b, 100));
+    const ra = auf(a, 100), rb = auf(b, 100);
+    const [geschichte, frage, bild] = typ === 2 ? eins(zufall, [
+      [`Am Morgen landen ${a} Rebellen auf Yavin 4, am Abend noch ${b}.`, 'Überschlage: Ungefähr wie viele Rebellen sind es zusammen?', ['yavin-4/']],
+      [`Han Solo fliegt ${a} Lichtjahre bis Bespin und dann ${b} Lichtjahre weiter.`, 'Überschlage: Ungefähr wie viele Lichtjahre sind es insgesamt?', ['millennium-falcon/']],
+      [`Die Jawas haben ${a} Ersatzteile im Sandcrawler und finden ${b} neue.`, 'Überschlage: Ungefähr wie viele Ersatzteile haben sie jetzt?', ['sandcrawler/']],
+    ]) : eins(zufall, [
+      [`Der Todesstern hat ${a} Geschütze. Die Rebellen zerstören ${b} davon.`, 'Überschlage: Ungefähr wie viele Geschütze bleiben übrig?', ['todesstern/']],
+      [`Im Lager der Echo-Basis liegen ${a} Energiezellen. ${b} werden verbraucht.`, 'Überschlage: Ungefähr wie viele Energiezellen sind noch da?', ['hoth/']],
+      [`Ein Sternzerstörer hat ${a} Sturmtruppen an Bord. ${b} fliegen mit Shuttles weg.`, 'Überschlage: Ungefähr wie viele bleiben an Bord?', ['sternzerstörer/']],
+    ]);
+    return { art, geschichte, frage: `${frage} Runde dafür beide Zahlen auf Hunderter.`, bild,
+      rechnung: typ === 2 ? `${ra} + ${rb}` : `${ra} - ${rb}`, loesung: typ === 2 ? ra + rb : ra - rb,
+      tipp: `Erst beide Zahlen auf volle Hunderter runden – bei 50 und mehr aufrunden. Dann mit den runden Zahlen ${typ === 2 ? 'plus' : 'minus'} rechnen du musst.` };
   }
   if (art === 'logik') {
     // Tipps ohne Zahlen, damit sie nie die Lösung verraten.
@@ -526,11 +588,12 @@ export function migriereStand(stand) {
 
 export const MAX_PLUSMINUS = 999;
 
-// Zahlenraum je Aufgabe: reine Plus/Minus-Aufgaben bis 999, Einheiten bis 9999, alles andere bis 500.
+// Zahlenraum je Aufgabe: reine Plus/Minus-Aufgaben bis 999, Einheiten bis 9999, Geld bis 200 € (in Cent), alles andere bis 500.
 export function maxFuer(aufgabe) {
-  if (['einheiten', 'uhrzeit', 'geld'].includes(aufgabe.art)) return MAX_EINHEITEN;
+  if (aufgabe.art === 'geld') return MAX_GELD;
+  if (['einheiten', 'uhrzeit'].includes(aufgabe.art)) return MAX_EINHEITEN;
   const arten = rechenarten(aufgabe);
-  return arten.length === 1 && arten[0] === 'plusminus' ? MAX_PLUSMINUS : MAX_ZAHL;
+  return arten.length === 1 && ['plusminus', 'runden'].includes(arten[0]) ? MAX_PLUSMINUS : MAX_ZAHL;
 }
 
 // Flugsimulator-Abzeichen: je Rechenart bei 5, 10, 25, 50 und 100 gelösten Aufgaben.
@@ -560,4 +623,20 @@ export function mitFalscherAntwort(stand, schluessel, eingabe) {
   st.falsch ??= {};
   st.falsch[schluessel] = [...(st.falsch[schluessel] ?? []), eingabe].slice(-10);
   return neu;
+}
+
+// Fortschritt zum nächsten Simulator-Abzeichen: welche Stufe, wie viele fehlen, Anteil 0–1 seit der letzten Stufe; null wenn alle erreicht.
+export function naechsteSimStufe(anzahl) {
+  const i = SIMULATOR_STUFEN.findIndex(s => anzahl < s.ab);
+  if (i < 0) return null;
+  const stufe = SIMULATOR_STUFEN[i], von = SIMULATOR_STUFEN[i - 1]?.ab ?? 0;
+  return { stufe, fehlt: stufe.ab - anzahl, anteil: (anzahl - von) / (stufe.ab - von) };
+}
+
+// Zeitrennen: so viele Aufgaben wie möglich in dieser Zeit; der Rekord je Rechenart steht in simulatorZeitrekord.
+export const ZEITRENNEN_SEKUNDEN = 120;
+export function mitSimRekord(stand, art, anzahl) {
+  const alt = stand.simulatorZeitrekord?.[art] ?? 0;
+  if (anzahl <= alt) return { stand, neu: false, alt };
+  return { stand: { ...stand, simulatorZeitrekord: { ...stand.simulatorZeitrekord, [art]: anzahl } }, neu: true, alt };
 }

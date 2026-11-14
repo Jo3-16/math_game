@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer, mitRang, SIMULATOR_STUFEN, simulatorAufgabeGeloest, simulatorStufen, mitFalscherAntwort, verteileBilder, bildAufgaben, RECHENART_NAMEN, RAENGE, mitStelle } from '../public/logik.js';
+import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer, mitRang, SIMULATOR_STUFEN, simulatorAufgabeGeloest, simulatorStufen, mitFalscherAntwort, verteileBilder, bildAufgaben, RECHENART_NAMEN, RAENGE, mitStelle, naechsteSimStufe, mitSimRekord } from '../public/logik.js';
 
 test('normalisiere', () => {
   assert.equal(normalisiere('X-wing_SWB.webp'), 'x wing swb.webp');
@@ -211,6 +211,7 @@ test('maxFuer: plus/minus bis 999, einheiten bis 9999, sonst 500', () => {
   assert.equal(maxFuer({ rechnung: '240 - 12 * 15' }), 500); // gemischt mit Mal
   assert.equal(maxFuer({ rechnung: '25 / 4', rest: 1 }), 500);
   assert.equal(maxFuer({ rechnung: '3 * 1000 + 450', art: 'einheiten' }), 9999);
+  assert.equal(maxFuer({ rechnung: '200 * 100 - 4 * 1850', art: 'geld', format: 'geld' }), 20000); // Geld in Cent bis 200 €
 });
 
 test('simulator plus/minus nutzt den zahlenraum bis 999', () => {
@@ -305,4 +306,42 @@ test('bildAufgaben: Bonus bekommt ein anderes Bild als die letzte Aufgabe', () =
   const b = verteileBilder(['X-Wing/a.png', 'X-Wing/b.png'], bildAufgaben(kapitel));
   assert.equal(b.length, 2);
   assert.notEqual(b[0], b[1]);
+});
+
+test('naechsteSimStufe: fehlende Aufgaben bis zum nächsten Abzeichen', () => {
+  assert.deepEqual(naechsteSimStufe(0), { stufe: SIMULATOR_STUFEN[0], fehlt: 5, anteil: 0 });
+  assert.deepEqual(naechsteSimStufe(7), { stufe: SIMULATOR_STUFEN[1], fehlt: 3, anteil: 0.4 });
+  assert.equal(naechsteSimStufe(10).stufe.name, 'Gold');
+  assert.equal(naechsteSimStufe(100), null);
+});
+
+test('mitSimRekord: nur ein besseres Ergebnis wird neuer Rekord', () => {
+  const s1 = mitSimRekord(leererStand(), 'mal', 12);
+  assert.equal(s1.neu, true);
+  assert.equal(s1.stand.simulatorZeitrekord.mal, 12);
+  assert.equal(mitSimRekord(s1.stand, 'mal', 12).neu, false);
+  assert.equal(mitSimRekord(s1.stand, 'mal', 0).neu, false);
+  assert.equal(mitSimRekord(s1.stand, 'geld', 3).stand.simulatorZeitrekord.mal, 12); // je Rechenart getrennt
+});
+
+test('runden und großes Malnehmen: Werte stimmen', () => {
+  let x = 3;
+  const zufall = () => (x = (x * 9301 + 49297) % 233280) / 233280;
+  for (let i = 0; i < 300; i++) {
+    const r = erzeugeAufgabe('runden', zufall);
+    assert.ok(r.loesung % 10 === 0 && r.loesung <= 999, r.rechnung);
+    const m = erzeugeAufgabe('malgross', zufall);
+    assert.ok(m.loesung <= 500 && Number(m.rechnung.split(' * ')[0]) > 10, m.rechnung);
+  }
+});
+
+test('geld im simulator: einkäufe bis 100 €, bezahlt wird mit Scheinen bis 200 €', () => {
+  let x = 11;
+  const zufall = () => (x = (x * 9301 + 49297) % 233280) / 233280;
+  const aufgaben = Array.from({ length: 400 }, () => erzeugeAufgabe('geld', zufall));
+  const kosten = a => rechne(a.rechnung.split(' - ').at(-1), 20000).wert;
+  assert.ok(aufgaben.every(a => kosten(a) <= 10000));
+  assert.ok(aufgaben.some(a => kosten(a) > 5000), 'auch Einkäufe über 50 €');
+  const scheine = new Set(aufgaben.map(a => a.geschichte.match(/(\d+)-Euro-Schein/)?.[1]).filter(Boolean));
+  assert.ok(scheine.has('100') && scheine.has('200'), [...scheine].join());
 });

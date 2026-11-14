@@ -7,3 +7,5 @@ einheiten.jpg: Wookieepedia File:MF Cockpit TFA.png (TFA-Standbild, Cockpit des 
 logik.jpg: Wookieepedia File:GeramsCockpit-RO.png (Rogue-One-Standbild, Pilot im Cockpit)
 uhrzeit.jpg: Kopie von Tatooine/02_ANH_Falke_verlaesst_Tatooine.png (eigene Sammlung)
 geld.jpg: Kopie von Tatooine/06_ANH_Mos_Eisley_Strasse.png (eigene Sammlung)
+malgross.jpg: Kopie von Cockpit/26_Art_Cockpit_Luftkampf_Wobani.png (eigene Sammlung)
+runden.jpg: Kopie von Cockpit/25_Art_Cockpit_Blick.png (eigene Sammlung, Radar im X-Wing-Cockpit)
