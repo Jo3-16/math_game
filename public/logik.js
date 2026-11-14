@@ -640,3 +640,36 @@ export function mitSimRekord(stand, art, anzahl) {
   if (anzahl <= alt) return { stand, neu: false, alt };
   return { stand: { ...stand, simulatorZeitrekord: { ...stand.simulatorZeitrekord, [art]: anzahl } }, neu: true, alt };
 }
+
+// Auswahl-Modus im Simulator: die richtige Antwort und drei falsche, die nach typischen Fehlern aussehen
+// (Nachbar in der Einmaleins-Reihe, ±1, ±10, falsch gerundet, Rest daneben, 10 Cent oder 5 Minuten daneben …).
+export function antwortOptionen(aufgabe, zufall = Math.random) {
+  const { loesung, rest } = aufgabe;
+  const zahlen = aufgabe.rechnung?.match(/\d+/g)?.map(Number) ?? [];
+  let schritte = [1, 2, 10];
+  if (aufgabe.format === 'geld') schritte = [10, 50, 100, 1000];
+  else if (aufgabe.format === 'uhrzeit') schritte = [5, 10, 60];
+  else if (aufgabe.art === 'runden') schritte = loesung % 100 ? [10, 20, 100] : [100, 200, 10];
+  else if (aufgabe.art === 'einheiten') schritte = [1, 10, 100, 1000];
+  else if (/^\d+ \* \d+$/.test(aufgabe.rechnung ?? '')) schritte = [...zahlen, 10]; // Nachbarn in der Reihe statt ±1
+  const kandidaten = [];
+  if (rest !== undefined) {
+    const teiler = zahlen.at(-1);
+    for (const [q, r] of [[loesung + 1, rest], [loesung - 1, rest], [loesung, rest + 1], [loesung, rest - 1], [loesung + 1, rest - 1], [loesung - 1, rest + 1]]) {
+      if (q >= 0 && r > 0 && r < teiler) kandidaten.push({ loesung: q, rest: r });
+    }
+  } else {
+    const max = aufgabe.format === 'uhrzeit' ? 24 * 60 - 1 : Infinity;
+    for (const s of schritte) for (const w of [loesung + s, loesung - s]) if (w >= 0 && w <= max && s > 0) kandidaten.push({ loesung: w });
+  }
+  const gleich = (a, b) => a.loesung === b.loesung && a.rest === b.rest;
+  const richtig = rest !== undefined ? { loesung, rest } : { loesung };
+  const optionen = [richtig];
+  const mische = liste => { for (let i = liste.length - 1; i > 0; i--) { const j = Math.floor(zufall() * (i + 1)); [liste[i], liste[j]] = [liste[j], liste[i]]; } return liste; };
+  for (const k of mische(kandidaten)) if (optionen.length < 4 && !optionen.some(o => gleich(o, k))) optionen.push(k);
+  for (let s = 3; optionen.length < 4; s++) { // Notnagel, falls die typischen Fehler nicht reichen
+    const k = { ...richtig, loesung: loesung + s };
+    if (!optionen.some(o => gleich(o, k))) optionen.push(k);
+  }
+  return mische(optionen);
+}

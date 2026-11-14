@@ -2,7 +2,7 @@ import {
   findeBilder, istRichtig, punkteFuer, TIPP_AB, leererStand, kapitelStatus, mitStelle, aufgabeGeloest, gesamtPunkte, mitName,
   rang, mitRang, RAENGE, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, BONUS_PUNKTE,
   rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, RECHENART_NAMEN, migriereStand,
-  SIMULATOR_STUFEN, simulatorAufgabeGeloest, naechsteSimStufe, mitSimRekord, ZEITRENNEN_SEKUNDEN, ZWEI_FELDER, loesungText, mitFalscherAntwort, verteileBilder, bildAufgaben,
+  SIMULATOR_STUFEN, simulatorAufgabeGeloest, naechsteSimStufe, mitSimRekord, ZEITRENNEN_SEKUNDEN, antwortOptionen, ZWEI_FELDER, loesungText, mitFalscherAntwort, verteileBilder, bildAufgaben,
 } from './logik.js';
 import { ICON_SETS, ICONS } from './icons.js';
 
@@ -195,12 +195,12 @@ function zeigeRaenge() {
   // Simulator-Stufen je Rechenart: gelöste Aufgaben und welche Stufen erreicht sind
   const kopf2 = element('tr');
   for (const t of ['Rechenart', 'gelöst', ...SIMULATOR_STUFEN.map(st => `${st.symbol} ${st.name} (ab ${st.ab})`)]) kopf2.append(element('th', '', t));
-  $('sim-stufen-tabelle').replaceChildren(kopf2, ...SIMULATOR_ARTEN.map(a => {
-    const n = stand.simulatorGeloest?.[a.id] ?? 0;
+  $('sim-stufen-tabelle').replaceChildren(kopf2, ...['', '-auswahl'].flatMap(endung => SIMULATOR_ARTEN.map(a => {
+    const n = stand.simulatorGeloest?.[a.id + endung] ?? 0;
     const tr = element('tr');
-    for (const t of [a.name, n, ...SIMULATOR_STUFEN.map(st => (n >= st.ab ? '✓' : `noch ${st.ab - n}`))]) tr.append(element('td', '', t));
+    for (const t of [a.name + (endung ? ' (Auswählen)' : ''), n, ...SIMULATOR_STUFEN.map(st => (n >= st.ab ? '✓' : `noch ${st.ab - n}`))]) tr.append(element('td', '', t));
     return tr;
-  }));
+  })));
   $('admin-raenge').hidden = false;
 }
 
@@ -272,7 +272,7 @@ function zeigeAufgabe() {
 
   if (simulatorArt) {
     $('kapiteltitel').textContent = `Flugsimulator – ${SIMULATOR_ARTEN.find(a => a.id === simulatorArt).name}`;
-    $('fortschritt').textContent = `🎮 ${simulatorBilanz(simulatorArt)}`;
+    $('fortschritt').textContent = `🎮 ${simulatorBilanz(simSchluessel(simulatorArt))}`;
     zeigeSimFortschritt();
   } else {
     $('kapiteltitel').textContent = kapitel.titel + (ADMIN ? ' (Admin)' : wiederholung ? ' (Wiederholung)' : '');
@@ -308,8 +308,30 @@ function zeigeAufgabe() {
   if (helferUrl) $('helfer-bild').src = helferUrl;
   $('tipp-text').textContent = `${helferUrl ? '' : '🟢 '}${welt.helfer}: „${aufgabe.tipp}“`;
   $('antwort').value = '';
+  const auswahl = Boolean(simulatorArt && stand.simulatorAuswahl);
+  $('antwort-form').hidden = auswahl;
+  $('auswahl-knoepfe').hidden = !auswahl;
+  if (auswahl) zeigeAuswahl(aufgabe);
   zeige('aufgabe');
-  $('antwort').focus();
+  if (!auswahl) $('antwort').focus();
+}
+
+// Auswahl-Modus: vier Antwort-Knöpfe; ein Klick füllt die Eingabefelder und schickt das Formular ab.
+function zeigeAuswahl(aufgabe) {
+  const zwei = ZWEI_FELDER[aufgabe.format];
+  $('auswahl-knoepfe').replaceChildren(...antwortOptionen(aufgabe).map(o => {
+    const b = element('button', 'auswahl-knopf', loesungText({ ...aufgabe, ...o }));
+    b.onclick = () => {
+      if (wartet) return;
+      $('antwort').value = zwei ? Math.floor(o.loesung / zwei.faktor) : o.loesung;
+      $('antwort-rest').value = zwei ? o.loesung % zwei.faktor : o.rest ?? '';
+      const vorher = fehlversuche;
+      $('antwort-form').requestSubmit();
+      if (fehlversuche > vorher) { b.disabled = true; b.classList.add('falsch'); }
+      else b.classList.add('richtig');
+    };
+    return b;
+  }));
 }
 
 function meldung(text, klasse) {
@@ -348,9 +370,10 @@ $('antwort-form').onsubmit = event => {
   if (!richtig) {
     fehlversuche++;
     if (!ADMIN && simulatorArt) {
-      stand = { ...stand, simulatorFalsch: { ...stand.simulatorFalsch, [simulatorArt]: (stand.simulatorFalsch?.[simulatorArt] ?? 0) + 1 } };
+      const k = simSchluessel(simulatorArt);
+      stand = { ...stand, simulatorFalsch: { ...stand.simulatorFalsch, [k]: (stand.simulatorFalsch?.[k] ?? 0) + 1 } };
       speichern();
-      $('fortschritt').textContent = `🎮 ${simulatorBilanz(simulatorArt)}`;
+      $('fortschritt').textContent = `🎮 ${simulatorBilanz(simSchluessel(simulatorArt))}`;
     }
     if (!ADMIN && !simulatorArt) {
       const schluessel = `${kapitel.id}#${imBonus(kapitel) ? 'Bonus' : aufgabeIndex + 1}`;
@@ -374,15 +397,18 @@ $('antwort-form').onsubmit = event => {
   }
   if (simulatorArt) {
     let neues = null;
-    if (!ADMIN) {
-      ({ stand, neuesAbzeichen: neues } = simulatorAufgabeGeloest(stand, simulatorArt));
+    // Im Auswahl-Modus zählt nur ein Treffer im ersten Versuch – sonst könnte man sich zum Abzeichen durchklicken.
+    const zaehlt = !stand.simulatorAuswahl || fehlversuche === 0;
+    if (!ADMIN && zaehlt) {
+      ({ stand, neuesAbzeichen: neues } = simulatorAufgabeGeloest(stand, simSchluessel(simulatorArt)));
     }
     speichern();
+    $('fortschritt').textContent = `🎮 ${simulatorBilanz(simSchluessel(simulatorArt))}`;
     zeigeSimFortschritt();
-    if (rennen) { rennen.geloest++; zeigeUhr(); }
+    if (rennen && zaehlt) { rennen.geloest++; zeigeUhr(); }
     const name = SIMULATOR_ARTEN.find(a => a.id === simulatorArt).name;
     meldung('Richtig!'
-      + (neues ? ` – Neues Abzeichen: ${name} ${neues.name} ${neues.symbol}!` : ''), 'richtig');
+      + (neues ? ` – Neues Abzeichen: ${name}${stand.simulatorAuswahl ? " (Auswählen)" : ""} ${neues.name} ${neues.symbol}!` : ''), 'richtig');
     weiterTimer = setTimeout(() => { simAufgabe = erzeugeAufgabe(simulatorArt); zeigeAufgabe(); }, neues ? (rennen ? 1500 : 3000) : rennen ? 500 : 1200);
     return;
   }
@@ -456,11 +482,13 @@ function zeigeRuhmeshalle() {
   if (r.naechster) $('ruhm-naechster').replaceChildren(`Noch ${r.naechster.ab - punkte} Punkte bis zum Rang `, ikon(`rang-${r.index + 1}`, r.naechster.symbol), ` ${r.naechster.name}!`);
   else $('ruhm-naechster').textContent = 'Höchster Rang erreicht – du bist ein Großmeister! 🌟';
   $('ruhm-abzeichen').replaceChildren(...welt.kapitel.map((k, i) => abzeichenKarte(k, i, true)));
-  $('ruhm-simulator').replaceChildren(...SIMULATOR_ARTEN.map(a => {
-    const d = element('div');
-    d.append(simulatorAbzeichenZeile(a.id), a.name, element('small', '', `${stand.simulatorGeloest?.[a.id] ?? 0} gelöst`));
-    return d;
-  }));
+  for (const [id, endung] of [['ruhm-simulator', ''], ['ruhm-simulator-auswahl', '-auswahl']]) {
+    $(id).replaceChildren(...SIMULATOR_ARTEN.map(a => {
+      const d = element('div');
+      d.append(simulatorAbzeichenZeile(a.id + endung), a.name, element('small', '', `${stand.simulatorGeloest?.[a.id + endung] ?? 0} gelöst`));
+      return d;
+    }));
+  }
   zeige('ruhmeshalle');
 }
 
@@ -546,16 +574,35 @@ $('bildansicht-zurueck').onclick = schliesseBildansicht;
 $('bildansicht').onclick = e => { if (e.target === $('bildansicht')) schliesseBildansicht(); };
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('bildansicht').hidden) schliesseBildansicht(); });
 
+// Eintippen und Auswählen zählen getrennt (gelöst, falsch, Abzeichen, Zeitrekord): Auswählen unter "<art>-auswahl".
+const simSchluessel = art => (stand.simulatorAuswahl ? `${art}-auswahl` : art);
+
 function zeigeSimulatorMenu() {
   stoppeRennen();
+  // Zwei Umschalter, beide im Spielstand gemerkt: Eintippen/Auswählen und Normal/Zeitrennen
+  const umschalter = (id, feld, optionen) => $(id).replaceChildren(...optionen.map(([wert, text]) => {
+    const b = element('button', `wahl-knopf klein${Boolean(stand[feld]) === wert ? ' aktiv' : ''}`, text);
+    b.onclick = () => {
+      stand = { ...stand, [feld]: wert };
+      speichern();
+      zeigeSimulatorMenu();
+    };
+    return b;
+  }));
+  umschalter('modus-wahl', 'simulatorAuswahl', [[false, '⌨️ Eintippen'], [true, '🔘 Auswählen']]);
+  umschalter('rennen-wahl', 'simulatorRennen', [[false, '▶️ Normal'], [true, '⏱️ Zeitrennen']]);
   $('simulator-arten').replaceChildren(...SIMULATOR_ARTEN.map(a => {
-    const gruppe = element('div', 'sim-gruppe');
     const b = element('button', 'kachel offen');
     const text = element('div');
-    const naechste = naechsteSimStufe(stand.simulatorGeloest?.[a.id] ?? 0);
-    text.append(element('b', '', a.name), simulatorAbzeichenZeile(a.id),
-      element('small', '', simulatorBilanz(a.id)),
+    const k = simSchluessel(a.id);
+    const naechste = naechsteSimStufe(stand.simulatorGeloest?.[k] ?? 0);
+    text.append(element('b', '', a.name), simulatorAbzeichenZeile(k),
+      element('small', '', simulatorBilanz(k)),
       element('small', 'sim-naechste', naechste ? `noch ${naechste.fehlt} bis ${naechste.stufe.symbol} ${naechste.stufe.name}` : 'Alle Abzeichen geschafft!'));
+    if (stand.simulatorRennen) {
+      const rekord = stand.simulatorZeitrekord?.[k];
+      text.append(element('small', 'sim-rekord', rekord ? `⏱️ Rekord: ${rekord} Aufgaben` : '⏱️ Noch kein Rekord'));
+    }
     const bild = `spielbilder/Simulator/${a.id}.jpg`;
     if (welt.bilder.includes(bild)) {
       const vorschau = element('img', 'vorschau');
@@ -564,12 +611,8 @@ function zeigeSimulatorMenu() {
       b.append(vorschau);
     }
     b.append(text);
-    b.onclick = () => starteSimulator(a.id);
-    const rekord = stand.simulatorZeitrekord?.[a.id];
-    const r = element('button', 'rennen-knopf', `⏱️ Zeitrennen${rekord ? ` · Rekord ${rekord}` : ''}`);
-    r.onclick = () => starteSimulator(a.id, true);
-    gruppe.append(b, r);
-    return gruppe;
+    b.onclick = () => starteSimulator(a.id, Boolean(stand.simulatorRennen));
+    return b;
   }));
   zeige('simulator');
 }
@@ -668,7 +711,7 @@ $('overlay-weiter').onclick = () => {
 
 // Balken bis zum nächsten Simulator-Abzeichen der aktuellen Rechenart.
 function zeigeSimFortschritt() {
-  const n = naechsteSimStufe(stand.simulatorGeloest?.[simulatorArt] ?? 0);
+  const n = naechsteSimStufe(stand.simulatorGeloest?.[simSchluessel(simulatorArt)] ?? 0);
   $('sim-balken').value = n ? n.anteil : 1;
   $('sim-naechste').textContent = n ? `noch ${n.fehlt} bis ${n.stufe.symbol} ${n.stufe.name}` : 'Alle Abzeichen geschafft! 👑';
 }
@@ -690,9 +733,9 @@ function rennenEnde() {
   stoppeRennen();
   clearTimeout(weiterTimer);
   wartet = true;
-  let neu = false, alt = stand.simulatorZeitrekord?.[simulatorArt] ?? 0;
+  let neu = false, alt = stand.simulatorZeitrekord?.[simSchluessel(simulatorArt)] ?? 0;
   if (!ADMIN) {
-    ({ stand, neu, alt } = mitSimRekord(stand, simulatorArt, geloest));
+    ({ stand, neu, alt } = mitSimRekord(stand, simSchluessel(simulatorArt), geloest));
     if (neu) speichern();
   }
   if (neu) ton('richtig');

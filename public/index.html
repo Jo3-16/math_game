@@ -56,9 +56,14 @@
       <div id="ruhm-abzeichen" class="abzeichen ruhm"></div>
     </section>
     <section class="hud-panel abzeichen-panel">
-      <h2><span data-icon="simulator">🎮</span> Flugsimulator-Abzeichen</h2>
+      <h2><span data-icon="simulator">🎮</span> Flugsimulator-Abzeichen – ⌨️ Eintippen</h2>
       <p>Bronze ab 5, Silber ab 10, Gold ab 25, Meister ab 50 und Großmeister ab 100 gelösten Aufgaben je Rechenart.</p>
       <div id="ruhm-simulator" class="abzeichen ruhm"></div>
+    </section>
+    <section class="hud-panel abzeichen-panel">
+      <h2><span data-icon="simulator">🎮</span> Flugsimulator-Abzeichen – 🔘 Auswählen</h2>
+      <p>Eigene Abzeichen für den Auswahl-Modus – hier zählt nur, was im ersten Versuch richtig war.</p>
+      <div id="ruhm-simulator-auswahl" class="abzeichen ruhm"></div>
     </section>
   </main>
 
@@ -106,8 +111,12 @@
       </div>
       <p>Jeder Pilot ist nur so gut wie sein schwächster Bereich. Hier trainierst du gezielt einzelne Fähigkeiten, bis du sie im Schlaf beherrschst – so wirst du ein echtes Flieger-Ass!</p>
       <p>Trainiere so lange du willst – immer neue Aufgaben. Jede gelöste Aufgabe zählt für deine Abzeichen.</p>
-      <p>Lust auf eine Herausforderung? Beim ⏱️ Zeitrennen löst du in 2 Minuten so viele Aufgaben wie du schaffst – und knackst deinen eigenen Rekord.</p>
+      <p>Lust auf eine Herausforderung? Stell den Modus auf ⏱️ Zeitrennen: Dann löst du in 2 Minuten so viele Aufgaben wie du schaffst – und knackst deinen eigenen Rekord.</p>
     </header>
+    <div class="hud-panel modus-leiste">
+      <span>Antworten:</span> <div id="modus-wahl" class="wahl-liste"></div>
+      <span>Modus:</span> <div id="rennen-wahl" class="wahl-liste"></div>
+    </div>
     <div id="simulator-arten" class="raster"></div>
   </main>
 
@@ -155,6 +164,7 @@
         <label id="rest-teil" hidden><span id="rest-vor">Rest</span> <input id="antwort-rest" inputmode="numeric" aria-label="Rest" placeholder="?"> <span id="rest-nach"></span></label>
         <button>Los!</button>
       </form>
+      <div id="auswahl-knoepfe" class="auswahl-knoepfe" hidden></div>
       <p id="meldung" class="meldung" aria-live="polite"></p>
       <button id="bonus-ueberspringen" class="link" hidden>Rätsel überspringen →</button>
       <div id="admin-leiste" class="admin-leiste" hidden>

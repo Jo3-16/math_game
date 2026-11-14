@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer, mitRang, SIMULATOR_STUFEN, simulatorAufgabeGeloest, simulatorStufen, mitFalscherAntwort, verteileBilder, bildAufgaben, RECHENART_NAMEN, RAENGE, mitStelle, naechsteSimStufe, mitSimRekord } from '../public/logik.js';
+import { normalisiere, findeBilder, rechne, istRichtig, punkteFuer, leererStand, kapitelStatus, aufgabeGeloest, gesamtPunkte, mitName, rang, sterneFuer, kapitelSterne, mitSternen, bonusGeloest, rechneMitRest, rechenarten, mitStatistik, erzeugeAufgabe, SIMULATOR_ARTEN, migriereStand, maxFuer, mitRang, SIMULATOR_STUFEN, simulatorAufgabeGeloest, simulatorStufen, mitFalscherAntwort, verteileBilder, bildAufgaben, RECHENART_NAMEN, RAENGE, mitStelle, naechsteSimStufe, mitSimRekord, antwortOptionen } from '../public/logik.js';
 
 test('normalisiere', () => {
   assert.equal(normalisiere('X-wing_SWB.webp'), 'x wing swb.webp');
@@ -344,4 +344,19 @@ test('geld im simulator: einkäufe bis 100 €, bezahlt wird mit Scheinen bis 20
   assert.ok(aufgaben.some(a => kosten(a) > 5000), 'auch Einkäufe über 50 €');
   const scheine = new Set(aufgaben.map(a => a.geschichte.match(/(\d+)-Euro-Schein/)?.[1]).filter(Boolean));
   assert.ok(scheine.has('100') && scheine.has('200'), [...scheine].join());
+});
+
+test('antwortOptionen: vier verschiedene Antworten, genau eine richtig, alle sinnvoll', () => {
+  let x = 5;
+  const zufall = () => (x = (x * 9301 + 49297) % 233280) / 233280;
+  for (const art of SIMULATOR_ARTEN.map(a => a.id)) {
+    for (let i = 0; i < 100; i++) {
+      const a = erzeugeAufgabe(art, zufall);
+      const o = antwortOptionen(a, zufall);
+      const text = o.map(k => `${k.loesung}|${k.rest}`);
+      assert.equal(new Set(text).size, 4, `${art}: ${text}`);
+      assert.equal(o.filter(k => k.loesung === a.loesung && k.rest === a.rest).length, 1, `${art}: ${text}`);
+      assert.ok(o.every(k => k.loesung >= 0 && (a.rest === undefined || k.rest > 0)), `${art}: ${text}`);
+    }
+  }
 });

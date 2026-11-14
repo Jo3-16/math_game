@@ -263,9 +263,13 @@ button.holo { width: 100%; text-align: left; font: inherit; font-weight: normal;
 .sim-naechste { display: block; color: var(--akzent); }
 .sim-uhr { margin-top: 6px; font-family: 'Orbitron', sans-serif; font-size: 22px; color: var(--akzent); }
 .sim-uhr.knapp { color: #ff8a80; }
-.sim-gruppe { position: relative; display: flex; }
-.sim-gruppe .kachel { flex: 1; }
-/* Zeitrennen: kleiner, unauffälliger Extra-Knopf unten rechts in der Kachel */
-.rennen-knopf { position: absolute; right: 10px; bottom: 10px; font-size: 13px; font-weight: normal; padding: 3px 10px;
-  background: rgba(0, 0, 0, .35); color: var(--hud); border: 1px solid rgba(61, 224, 255, .45); border-radius: 0; opacity: .75; }
-.rennen-knopf:hover, .rennen-knopf:focus-visible { opacity: 1; border-color: var(--hud); }
+
+/* Flugsimulator: Umschalter Eintippen/Auswählen und Antwort-Knöpfe */
+.modus-leiste { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 16px; padding: 10px 16px; }
+.wahl-knopf.klein { flex-direction: row; min-width: 0; padding: 8px 16px; }
+.auswahl-knoepfe { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.auswahl-knopf { font-size: 26px; padding: 10px; }
+.auswahl-knopf.falsch { opacity: .35; text-decoration: line-through; }
+.auswahl-knopf.richtig { box-shadow: 0 0 16px #7cdb6a; }
+.sim-rekord { display: block; color: var(--hud); }
+.modus-leiste > span:nth-of-type(2) { margin-left: 24px; }
