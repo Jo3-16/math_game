@@ -272,7 +272,8 @@ function zeigeAufgabe() {
 
   if (simulatorArt) {
     $('kapiteltitel').textContent = `Flugsimulator – ${SIMULATOR_ARTEN.find(a => a.id === simulatorArt).name}`;
-    $('fortschritt').textContent = `🎮 ${simulatorBilanz(simSchluessel(simulatorArt))}`;
+    // Im Zeitrennen zählt nur der Rekord – keine Abzeichen, kein richtig/falsch.
+    $('fortschritt').textContent = rennen ? `⏱️ Zeitrennen${stand.simulatorAuswahl ? ' · 🔘 Auswählen' : ''}` : `🎮 ${simulatorBilanz(simSchluessel(simulatorArt))}`;
     zeigeSimFortschritt();
   } else {
     $('kapiteltitel').textContent = kapitel.titel + (ADMIN ? ' (Admin)' : wiederholung ? ' (Wiederholung)' : '');
@@ -281,7 +282,7 @@ function zeigeAufgabe() {
       ? `🧩 Bonus-Rätsel – für das Gold-Abzeichen`
       : `Aufgabe ${aufgabeIndex + 1}/${kapitel.aufgaben.length}  ${punkte}`;
   }
-  $('sim-fortschritt').hidden = !simulatorArt;
+  $('sim-fortschritt').hidden = !simulatorArt || Boolean(rennen);
   $('sim-uhr').hidden = !rennen;
   $('gesamt-aufgabe').textContent = gesamtPunkte(stand);
   $('spielername-aufgabe').textContent = stand.name;
@@ -369,7 +370,7 @@ $('antwort-form').onsubmit = event => {
     : istRichtig(eingabe, aufgabe.loesung) && (!mitRest || istRichtig(restEingabe, aufgabe.rest));
   if (!richtig) {
     fehlversuche++;
-    if (!ADMIN && simulatorArt) {
+    if (!ADMIN && simulatorArt && !rennen) {
       const k = simSchluessel(simulatorArt);
       stand = { ...stand, simulatorFalsch: { ...stand.simulatorFalsch, [k]: (stand.simulatorFalsch?.[k] ?? 0) + 1 } };
       speichern();
@@ -399,17 +400,19 @@ $('antwort-form').onsubmit = event => {
     let neues = null;
     // Im Auswahl-Modus zählt nur ein Treffer im ersten Versuch – sonst könnte man sich zum Abzeichen durchklicken.
     const zaehlt = !stand.simulatorAuswahl || fehlversuche === 0;
-    if (!ADMIN && zaehlt) {
+    if (!ADMIN && zaehlt && !rennen) {
       ({ stand, neuesAbzeichen: neues } = simulatorAufgabeGeloest(stand, simSchluessel(simulatorArt)));
     }
     speichern();
-    $('fortschritt').textContent = `🎮 ${simulatorBilanz(simSchluessel(simulatorArt))}`;
-    zeigeSimFortschritt();
+    if (!rennen) {
+      $('fortschritt').textContent = `🎮 ${simulatorBilanz(simSchluessel(simulatorArt))}`;
+      zeigeSimFortschritt();
+    }
     if (rennen && zaehlt) { rennen.geloest++; zeigeUhr(); }
     const name = SIMULATOR_ARTEN.find(a => a.id === simulatorArt).name;
     meldung('Richtig!'
       + (neues ? ` – Neues Abzeichen: ${name}${stand.simulatorAuswahl ? " (Auswählen)" : ""} ${neues.name} ${neues.symbol}!` : ''), 'richtig');
-    weiterTimer = setTimeout(() => { simAufgabe = erzeugeAufgabe(simulatorArt); zeigeAufgabe(); }, neues ? (rennen ? 1500 : 3000) : rennen ? 500 : 1200);
+    weiterTimer = setTimeout(() => { simAufgabe = erzeugeAufgabe(simulatorArt); zeigeAufgabe(); }, neues ? 3000 : rennen ? 500 : 1200);
     return;
   }
   if (imBonus(kapitel)) {
@@ -596,12 +599,13 @@ function zeigeSimulatorMenu() {
     const text = element('div');
     const k = simSchluessel(a.id);
     const naechste = naechsteSimStufe(stand.simulatorGeloest?.[k] ?? 0);
-    text.append(element('b', '', a.name), simulatorAbzeichenZeile(k),
-      element('small', '', simulatorBilanz(k)),
-      element('small', 'sim-naechste', naechste ? `noch ${naechste.fehlt} bis ${naechste.stufe.symbol} ${naechste.stufe.name}` : 'Alle Abzeichen geschafft!'));
+    text.append(element('b', '', a.name));
     if (stand.simulatorRennen) {
       const rekord = stand.simulatorZeitrekord?.[k];
       text.append(element('small', 'sim-rekord', rekord ? `⏱️ Rekord: ${rekord} Aufgaben` : '⏱️ Noch kein Rekord'));
+    } else {
+      text.append(simulatorAbzeichenZeile(k), element('small', '', simulatorBilanz(k)),
+        element('small', 'sim-naechste', naechste ? `noch ${naechste.fehlt} bis ${naechste.stufe.symbol} ${naechste.stufe.name}` : 'Alle Abzeichen geschafft!'));
     }
     const bild = `spielbilder/Simulator/${a.id}.jpg`;
     if (welt.bilder.includes(bild)) {
